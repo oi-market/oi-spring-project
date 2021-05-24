@@ -7,7 +7,9 @@
 
 
 
-
+<select id="getSelect" resultType="TestVO">
+select * from test
+</select>
 
 
 
