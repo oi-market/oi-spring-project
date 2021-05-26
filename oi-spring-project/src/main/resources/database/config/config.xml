@@ -7,7 +7,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.market.oi.test.TestVO" alias="TestVO" />
-
+		<typeAlias type="com.market.oi.community.CommunityVO" alias="CommunityVO" />
 	</typeAliases>
 
 </configuration>
