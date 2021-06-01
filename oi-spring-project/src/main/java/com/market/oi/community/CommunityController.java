@@ -20,9 +20,9 @@ public class CommunityController {
 	
 	//List
 	@GetMapping("communityList")
-	public ModelAndView getList(ModelAndView mv) throws Exception{
+	public ModelAndView getList(ModelAndView mv, CommunityVO communityVO) throws Exception{
 		
-		List<CommunityVO> ar = communityService.getList();
+		List<CommunityVO> ar = communityService.getList(communityVO);
 		
 		mv.addObject("list", ar);
 		mv.setViewName("community/communityList");

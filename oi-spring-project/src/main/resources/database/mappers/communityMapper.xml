@@ -11,7 +11,7 @@
 		FROM community C LEFT JOIN communityCategory CA
 		ON C.categoryNum = CA.num
 		<if test="categoryNum!=0">
-			WHERE C.categoryNum=#{categoryNum};
+			WHERE C.categoryNum=#{categoryNum}
 		</if>
 	</select>
 	

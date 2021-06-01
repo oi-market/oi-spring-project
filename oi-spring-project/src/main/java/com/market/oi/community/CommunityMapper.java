@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface CommunityMapper {
 	
 	//List
-	public List<CommunityVO> getList() throws Exception;
+	public List<CommunityVO> getList(CommunityVO communityVO) throws Exception;
 	
 	//Select
 	public CommunityVO getSelect(CommunityVO communityVO) throws Exception;

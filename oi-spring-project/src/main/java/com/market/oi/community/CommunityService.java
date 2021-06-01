@@ -12,9 +12,9 @@ public class CommunityService {
 	private CommunityMapper communityMapper;
 	
 	//List
-	public List<CommunityVO> getList() throws Exception{
+	public List<CommunityVO> getList(CommunityVO communityVO) throws Exception{
 		
-		List<CommunityVO> ar = communityMapper.getList();
+		List<CommunityVO> ar = communityMapper.getList(communityVO);
 		
 		return ar;
 		
