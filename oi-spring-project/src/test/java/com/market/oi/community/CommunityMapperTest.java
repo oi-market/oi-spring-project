@@ -17,14 +17,16 @@ class CommunityMapperTest {
 	
 	@Test
 	void getListTest() throws Exception{
+		
 		CommunityVO communityVO = new CommunityVO();
+		
 		List<CommunityVO> ar = communityMapper.getList(communityVO);
-		System.out.println(ar.size());
+		System.out.println("ar의size : "+ar.size());
+		//0
 		
 		for(int i=0; i<ar.size(); i++) {
 			System.out.println(ar.toString());
-		}
-		
+		}	
 		assertNotNull(ar);
 	}
 	
