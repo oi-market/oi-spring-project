@@ -5,12 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+
+	var result = '${msg}';
+	var path = '${path}';
+	alert(result);
+	location.href=path;
+
+</script>
 </head>
 <body>
-
-<h1>index Page</h1>
-
-<a href="/community/communityList">Community</a>
 
 </body>
 </html>

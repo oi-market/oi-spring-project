@@ -8,9 +8,7 @@
 </head>
 <body>
 
-<h1>index Page</h1>
-
-<a href="/community/communityList">Community</a>
+	<h1>Community Insert</h1>
 
 </body>
 </html>

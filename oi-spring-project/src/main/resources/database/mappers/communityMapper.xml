@@ -3,6 +3,41 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-	<mapper namespace="com.market.oi.community.CommunityMapper">
+<mapper namespace="com.market.oi.community.CommunityMapper">
 	
-	</mapper>
+	<!-- 커뮤니티 List -->
+	<select id="getList" parameterType="CommunityVO" resultType="CommunityVO">		
+		SELECT C.*, CA.category
+		FROM community C LEFT JOIN communityCategory CA
+		ON C.categoryNum = CA.num
+		<if test="categoryNum!=0">
+			WHERE C.categoryNum=#{categoryNum};
+		</if>
+	</select>
+	
+	<!-- 커뮤니티 Select -->
+	<select id="getSelect" parameterType="CommunityVO" resultType="CommunityVO">
+		select * from community where num=#{num}
+	</select>
+	
+	<!-- 커뮤니티 Insert -->
+	<insert id="setInsert" parameterType="CommunityVO">
+		insert into community (categoryNum, contents, writer, location)
+		values (#{categoryNum}, #{contents}, #{writer}, #{location})
+	</insert>
+	
+	<!-- 커뮤니티 Delete -->
+	<delete id="setDelete" parameterType="CommunityVO">
+		delete community where num = #{num}
+	</delete>
+	
+	<!-- 커뮤니티 Update -->
+	<update id="setUpdate" parameterType="CommunityVO">
+		update community set categoryNum = #{categoryNum}, contents = #{contents}, writer = #{writer}, location = #{location}, regDate = now() 
+		where num = #{num}
+	</update>
+	
+	<!-- 좋아요 수 Update -->
+	
+	
+</mapper>

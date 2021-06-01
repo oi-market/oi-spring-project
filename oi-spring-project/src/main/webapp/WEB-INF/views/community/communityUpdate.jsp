@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-<h1>index Page</h1>
-
-<a href="/community/communityList">Community</a>
-
+		<h1>Community Update</h1>
 </body>
 </html>
