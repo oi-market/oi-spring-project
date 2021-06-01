@@ -20,6 +20,9 @@ class CommunityMapperTest {
 		
 		CommunityVO communityVO = new CommunityVO();
 		
+		//현재 기본값을 0L로 설정
+		//communityVO.setCategoryNum(1L);
+		
 		List<CommunityVO> ar = communityMapper.getList(communityVO);
 		System.out.println("ar의size : "+ar.size());
 		//0

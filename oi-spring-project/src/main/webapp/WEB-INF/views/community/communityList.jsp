@@ -21,7 +21,7 @@
 	<tbody>
 		<c:forEach items="${list}" var="vo" >
 				<tr>
-					<td></td>
+					<td>${vo.category}</td>
 					<td><a href="./${commounitySelect}?num=${vo.num}">
 					${vo.contents}
 					</a></td>
