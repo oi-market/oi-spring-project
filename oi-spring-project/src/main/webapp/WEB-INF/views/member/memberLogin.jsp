@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <c:import url="../template/header.jsp"></c:import>
 </head>
 <body>
 
@@ -27,13 +23,13 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Login</h4>
+          <h4 class="modal-title">oi market</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-        	
+        	<h1 style="	text-align: center;">Login</h1>
           <div class="form-group">
 				<input type="text" class="form-control" placeholder="아이디를 입력하시오."
 					id="id" name="id" style="width: 300px; height:50px; margin: 0 auto; ">
@@ -56,6 +52,6 @@
   </div>
   
 </div>
-
+<a href="${pageContext.request.contextPath}/member/memberJoinCheck" type="button" class="btn btn-primary">회원가입</a>
 </body>
 </html>

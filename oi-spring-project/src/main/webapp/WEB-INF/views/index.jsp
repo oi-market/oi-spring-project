@@ -11,5 +11,8 @@
 
 <h1>index Page</h1>
 
+<a href="${pageContext.request.contextPath}/member/memberLogin">로그인창</a>
+
+
 </body>
 </html>
