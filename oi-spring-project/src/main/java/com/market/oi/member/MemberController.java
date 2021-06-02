@@ -56,8 +56,8 @@ public class MemberController {
 			}
 			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
 			key+=numIndex;
-			message.setSubject("인증번호 입력을 위한 메일 전송");
-			message.setText("인증 번호 : "+key);
+			message.setSubject("오이마켓 인증번호");
+			message.setText("오이마켓 인증번호입니다.\n"+"인증 번호 : "+key);
 			javaMailSender.send(message);
 		}
 	
