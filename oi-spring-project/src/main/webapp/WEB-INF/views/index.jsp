@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -33,8 +34,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- 먼저 호출되야함 reset! -->
+   <!-- 먼저 호출되야함 reset! -->
     <link rel="stylesheet" href="./css/main.css">
+
   
 </head>
 <body>
@@ -48,17 +50,17 @@
                             <div class="logo">
                                 <a href="#">github</a>
                             </div>
-                            <ul class="main-menu">
+                            <ul class="main-menu toggle">
                                 <li><a href="#">동네 생활</a></li>
                                 <li><a href="#">내 근처</a></li>
                             </ul>
                         </div>
 
 
-                        <div class="sign-group float--right">
+                        <div class="sign-group float--right toggle">
                             <div class="btn-group">
-                                <a href="#" class="btn sign-in">로그인</a>
-                                <a href="#" class="btn btn--primary sign-up">회원가입</a>
+                                <a href="#" class="mybtn sign-in">로그인</a>
+                                <a href="#" class="mybtn mybtn--primary sign-up">회원가입</a>
                             </div>
                             <form id="search-form" action="#" method="POST">
                                 <input id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
@@ -71,10 +73,10 @@
                             </ul>
                         </div>
 
-                        
-                        <div class="clearfix" style="clear: both;">
+                        <div id="toggle-btn">Header Menu Toggle Button</div>
+                        <!-- <div class="clearfix" style="clear: both;">
                                     (토글버튼)
-                        </div>
+                        </div> -->
                     </div>
         </header>
 
@@ -113,12 +115,12 @@
                     </div>
 
                     <div class="summary__description">
-                        동네 주민들과 가깝고 따듯하 거래를 지금 경험해보세요.
+                        동네 주민들과 가깝고 따듯한 거래를 지금 경험해보세요.
                     </div>
                     
                     <div class="summary__buttonGroup">
-                        <a href="#" class="btn">인기매물 보기</a>
-                        <a href="#" class="btn">믿을 수 있는 중고 거래</a>
+                        <a href="#" class="mybtn">인기매물 보기</a>
+                        <a href="#" class="mybtn">믿을 수 있는 중고 거래</a>
                     </div>
 
                 </div>
@@ -187,18 +189,93 @@
                     <div class="productLike">관심16</div>
                     </a>
                 </div>
-                <div class="product">2</div>
-                <div class="product">3</div>
-                <div class="product">4</div>
-                <div class="product">5</div>
-                <div class="product">6</div>
-                <div class="product">7</div>
-                <div class="product">8</div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
+                <div class="product">
+                    <a href="#">
+                        <div class="productImgBox">
+                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
+                        </div>
+                        <div class="productName">위닉스 제습기</div>
+                        <div class="productAmount">80,000</div>
+                        <div class="productLocation">대전 서구</div>
+                        <div class="productLike">관심16</div>
+                        </a>
+                </div>
             </div>
 
-            <div></div>
-            <a class="moreProduct" href="#">더보기</a>
-            <div></div>
+
+            <div class="moreProduct">
+                <a href="#">더보기</a>
+            </div>
+          
+            
+
+
         </div>
     </section>
 
@@ -257,5 +334,8 @@
 
 
      </div>
+
+     <script src="./js/main.js"></script>
+     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </body>
 </html>
