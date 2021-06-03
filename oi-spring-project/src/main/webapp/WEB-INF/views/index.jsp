@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
  <head>
@@ -26,49 +27,11 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">판매내역</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">구매내역</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">관심목록</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">내 위치</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${pageContext.request.contextPath}/myPage/myPage">마이페이지</a></li>
                 </ul>
             </div>
-        </nav>
-        <!-- Page Content-->
-        <div class="container-fluid p-0">
+        </nav>  
         
-            <!-- 첫번째 section -->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h3>판매내역</h3>
-                </div>
-            </section>
-            <hr class="m-0" />
-            
-            <!-- 두번째 section-->
-            <section class="resume-section" id="experience">
-                <div class="resume-section-content">
-                    <h3>구매내역</h3>                
-                </div>
-            </section>
-            <hr class="m-0" />
-            
-            <!-- 세번째 section-->
-            <section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h3>관심목록</h3>    
-                </div>
-            </section>
-            <hr class="m-0" />
-            
-            <!-- 네번째 section-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h3>내 위치</h3>    
-                </div>
-            </section>
-            <hr class="m-0" />
-            
-        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
