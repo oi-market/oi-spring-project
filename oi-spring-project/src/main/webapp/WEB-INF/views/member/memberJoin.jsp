@@ -45,7 +45,7 @@
 	<div id="div_page" class="container mt-2">
 <h1>회원가입페이지</h1>
 <div id ="div_main">
-<form:form modelAttribute="memberVO" id="frm" action="./memberJoin" method="post">
+<form:form modelAttribute="memberVO" id="joinForm" action="./memberJoin" method="post">
 			<!-- ID -->
 			<div class="form-group">
 				<label for="username">아이디</label> <!-- path에 memberVO에 없는 것을 넣으면 오류남 -->
@@ -103,15 +103,16 @@
 			<div class="form-group">
 				<label for="email">이메일</label> 
 				<form:input class="form-control" id="email" path="email" />
-				<button id = "emailCheck" type="button" class="sendMail" onclick="sendMail()" style="border: 1px solid black;">인증번호받기</button>                               
+				<button id = "CheckMail" type="button" class="sendMail" onclick="sendMail()" style="border: 1px solid black;">인증번호받기</button>                               
 				<form:errors path="email"></form:errors>
 				<!-- 비어 있으면 X -->
 			</div>
 			<!-- Email 인증 -->
 			<div class="form-group">
-				<label for="emailNum">인증번호</label> 
-				<input  id="CheckMail"  type="text"  >
-  			
+				<label for="emailNum">인증번호</label>
+				<form:input  id="emailNum" type="text" path="emailNum"  />
+				<button type="button" class="emailCheck"  onclick="emailCheck()" style="border: 1px solid black;">인증확인</button>                                                             
+  				<form:errors path="emailNum"></form:errors>
 				<!-- 비어 있으면 X -->
 			</div>
 			<!-- 주소 -->
@@ -126,6 +127,8 @@
   			<form:errors path="location"></form:errors>
 			</div>
 			
+
+			
 			
 			<!-- 이 버튼은 submit이벤트가 내장되어있어 값을 비교하고 보내는것이 아닌 그냥 보내므로 null값이여도 보내서 exception발생시킴 -->
 			<!-- <button type="submit" class="btn btn-primary" id="check">Submit</button> -->
@@ -133,12 +136,33 @@
 			<!-- input type으로 만든 버튼은 form 내부/외부 둘 다 작동안함 -->
 			<!-- <input type="button" value="JOIN" class="btn btn-primary">  -->
 			
-			<input type="submit" value="JOIN" id="btn" class="btn btn-primary">
+			<input type="button" value="JOIN" id="join_btn" class="btn btn-primary">
 			<!-- button -->
+			<a href="javascript:history.back();" class="btn btn-danger">취소</a>
 		</form:form>
 		 </div>
 </div>		
+
+
+
 <script>
+
+var isCertification=false;
+var CheckNum;
+
+//회원가입 클릭
+$("#join_btn").click(function(){
+	//
+	if(isCertification==false){
+		alert("메일 인증이 되지않았습니다.")
+	}
+	else{
+		$("#joinForm").submit();
+		}
+});		
+	
+
+// 주소찾기 api
 function findAddr(){
 	new daum.Postcode({
         oncomplete: function(data) {
@@ -161,10 +185,10 @@ function findAddr(){
         }
     }).open();
 }
-</script>
 
-<script type="text/javascript">
 
+
+//이메일 인증번호 보내기
 function sendMail(){
 	var email = $("#email").val(); //사용자의 이메일 입력값.
 	var test = email.indexOf("@");
@@ -180,18 +204,44 @@ function sendMail(){
 			type : 'GET',
 			url : 'CheckMail',
 			data : {
-				"mail" : email,
+				"email" : email,
 			},
-			contentType: "application/json; charset=utf-8;",
-			dataType :'json',
+
+			dataType :'text',
+			
+			success : function(data) {
+		         CheckNum = data;
+		        alert(CheckNum);
+		        
+		    },
+			
+		    error:function(requeest, status, error){
+		    	alert(error);
+		    },
+
+			
 
 		});
-		alert("인증번호가 전송되었습니다.") 
-		isCertification=true; //추후 인증 여부를 알기위한 값
+		alert("인증번호가 전송되었습니다.")
+		
 	}
 		
 }
+
+//이메일 인증번호 확인
+
+function emailCheck(){
+	 var emailNum = $("#emailNum").val();
+	    if (emailNum == CheckNum) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
+			alert("인증성공");
+			isCertification = true;
+	    } else {	
+	    	alert("인증실패");
+	    	isCertification = false;
+	    }
+ };
 </script>
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 					
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

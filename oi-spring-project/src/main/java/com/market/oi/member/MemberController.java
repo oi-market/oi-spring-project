@@ -1,6 +1,8 @@
 package com.market.oi.member;
 
+import java.io.Console;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -14,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -40,26 +43,46 @@ public class MemberController {
 		
 	}
 	
-	@GetMapping("CheckMail")
-	@ResponseBody  //AJAX후 값을 리턴하기위해 작성
-		public void SendMail(@RequestParam Map<String,Object> body) {
-
-			Random random=new Random();  //난수 생성을 위한 랜덤 클래스
-			String key="";  //인증번호 
+	@GetMapping("memberPage")
+	public void memberPage(HttpSession session)throws Exception{
+		System.out.println("1111");
+//		Enumeration<String> en = session.getAttributeNames();
 		
-			SimpleMailMessage message = new SimpleMailMessage();
-			message.setTo(body.get("mail").toString()); //스크립트에서 보낸 메일을 받을 사용자 이메일 주소 
-			//입력 키를 위한 코드
-			for(int i =0; i<3;i++) {
-				int index=random.nextInt(25)+65; //A~Z까지 랜덤 알파벳 생성
-				key+=(char)index;
-			}
-			int numIndex=random.nextInt(9999)+1000; //4자리 랜덤 정수를 생성
-			key+=numIndex;
-			message.setSubject("오이마켓 인증번호");
-			message.setText("오이마켓 인증번호입니다.\n"+"인증 번호 : "+key);
-			javaMailSender.send(message);
+//		while(en.hasMoreElements()) {
+//			System.out.println(en.nextElement());
+//		}
+		SecurityContextImpl ob = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
+		System.out.println(ob.getAuthentication());
+	}
+
+	
+	
+	
+	@GetMapping("CheckMail")
+	@ResponseBody
+	public String SendMail(Model model,String email, HttpSession session) {
+		Random random = new Random();
+		String key = "";
+		SimpleMailMessage message = new SimpleMailMessage();
+		message.setTo(email); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
+		// 입력 키를 위한 코드
+		for (int i = 0; i < 3; i++) {
+			int index = random.nextInt(25) + 65; // A~Z까지 랜덤 알파벳 생성
+			key += (char) index;
 		}
+		int numIndex = random.nextInt(8999) + 1000; // 4자리 정수를 생성
+		key += numIndex;
+		message.setSubject("오이마켓 인증번호");
+		message.setText("오이마켓 인증번호입니다.\n"+"인증 번호 : "+key);
+		javaMailSender.send(message);
+		model.addAttribute("key", key);
+//		session.setAttribute("key", key);
+		System.out.println(key);
+		
+		return key;
+	}
+	
+	
 	
 	
 	@GetMapping("memberJoinCheck")
@@ -68,16 +91,17 @@ public class MemberController {
 	}
 	
 	@GetMapping("memberJoin")
-	public String setJoin(@ModelAttribute MemberVO memberVO)throws Exception{
+	public String memberJoin(@ModelAttribute MemberVO memberVO)throws Exception{
 		return "member/memberJoin";
 	}
 	
 	@PostMapping("memberJoin")
 	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
-		if(errors.hasErrors()) {
-			return "member/memberJoin";
-		}
+//		if(errors.hasErrors()) {
+//			return "member/memberJoin";
+//		}
+		
 		if(memberService.memberError(memberVO, errors)) {
 			
 			return "member/memberJoin";
@@ -91,18 +115,42 @@ public class MemberController {
 	
 	@GetMapping("memberLogin")
 	public String memberLogin() throws Exception{
-		
+		System.out.println("GetLogin");
 		return "member/memberLogin";
 	}
 	
-	@PostMapping("memberLogin")
-	public String getLogin(HttpServletRequest request)throws Exception{
-		
-		System.out.println("Message:"+request.getAttribute("message"));
-		
-		return "member/memberLogin";
+	
+	
+	
+	@GetMapping("memberLoginResult")
+	public String memberLoginResult()throws Exception{
+		System.out.println("Login 성공");
+		return "redirect:/";
 	}
 	
+	@GetMapping("memberFindID")
+	public void memberFindID()throws Exception{
+		
+	}
+	@PostMapping("memberFindID")
+	@ResponseBody
+	   public String searchId(MemberVO memberVO,Model model)throws Exception{
+	      memberVO = memberService.memberFindID(memberVO);
+	      System.out.println(memberVO);
+	      String message ="";
+
+	      if(memberVO== null) {
+	         message="이름과 핸드폰 불일치";
+
+	      } else {
+	         message="회원님의 아이디는 " + memberVO.getUsername()+" 입니다.";
+	      }
+	      model.addAttribute("message",message);
+	      System.out.println(message);
+
+	      return message;
+	   }
+
 	
 	
 }

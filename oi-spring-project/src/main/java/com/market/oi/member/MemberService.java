@@ -19,13 +19,25 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
-public class MemberService{
+public class MemberService implements UserDetailsService{
 
 	@Autowired
 	private MemberMapper memberMapper;
 	
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	
+	//Login 메서드
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername(username);
+		System.out.println(username);
+		memberVO = memberMapper.memberLogin(memberVO);
+		System.out.println(memberVO);
+		return memberVO;
+	}
 	
 	
 	
@@ -66,7 +78,8 @@ public class MemberService{
 	public int memberJoin(MemberVO memberVO, MultipartFile multipartFile)throws Exception{
 		//0. 사전 작업
 		//a. password 암호화
-		// memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+		System.out.println(memberVO);
+		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 		//b. 사용자 계정 활성화
 
 		
@@ -96,5 +109,12 @@ public class MemberService{
 		return result;
 	}
 	
+	public MemberVO memberFindID(MemberVO memberVO) throws Exception{
+		return memberMapper.memberFindID(memberVO);
+	}
 	
+	
+//	public MemberVO getLogin(MemberVO memberVO)throws Exception{
+//	return memberMapper.getLogin(memberVO);
+//}
 }

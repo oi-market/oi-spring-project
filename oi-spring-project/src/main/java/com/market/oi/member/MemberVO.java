@@ -17,8 +17,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import lombok.Data;
 
 @Data
-public class MemberVO {
+public class MemberVO implements UserDetails{
 
+	
+	@NotEmpty(message="아이디를 입력하시오")
 	@Length(min =6 , max=12)
 	private String username;
 	
@@ -26,6 +28,7 @@ public class MemberVO {
 	private String nickName;
 	
 	@Length(min = 8, max = 16)
+	@NotEmpty(message="패스워드를 입력하시오")
 	private String password;
 	
 	private String password1;
@@ -41,9 +44,51 @@ public class MemberVO {
 	
 	@NotEmpty(message="주소를 입력하시오")
 	private String location;
+	
+	@NotEmpty(message = "필수입력")
+	private String emailNum;
+	
+	private List<RoleVO> roles;
 
+	
+	//role 저장
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		
+		for(RoleVO roleVO:this.roles) {
+			authorities.add(new SimpleGrantedAuthority(roleVO.getRoleName()));
+		}
+		return authorities;
+	}
 
+	
+	//아이디가 없으면 안됨
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 
+	//계정이 락이걸렷냐
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	//유효기간
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	//계정 사용 여부
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 	
 	

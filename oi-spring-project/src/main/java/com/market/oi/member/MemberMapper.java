@@ -4,6 +4,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 
+
 @Mapper
 public interface MemberMapper {
 	
@@ -15,7 +16,9 @@ public interface MemberMapper {
 	
 	public MemberVO getUsername(MemberVO memberVO)throws Exception;
 	
-
+	 public MemberVO memberLogin(MemberVO memberVO);
+	 
+	public MemberVO memberFindID(MemberVO memberVO);
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 

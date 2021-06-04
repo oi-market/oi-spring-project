@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -51,7 +51,8 @@
     <h1>약관동의</h1>      
     <p>3.약관동의 하시겠습니까</p>
   </div>
-  <button class="btn btn-danger" id="btn">JOIN</button>
+  <button class="btn btn-primary" id="btn">JOIN</button>
+  <a href="javascript:history.back();" class="btn btn-danger">취소</a>
 </div>
 
 
