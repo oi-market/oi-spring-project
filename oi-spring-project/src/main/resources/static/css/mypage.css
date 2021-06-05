@@ -1,14 +1,64 @@
 
 @media (max-width:992px){
-    .mypage .inner{
+    .section.mypage .inner{
         flex-direction: column;
-        margin:50px 30px;
+        margin:50px 10px;
     }
     .sidebar-menu{
         padding-right: 20px;
     }
+    .inner .content{
+        margin: 0 auto;
+        padding: 10px;
+    }
+    .inner .content{
+        width: auto;
+    }
+    .content .content-description{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0 auto;
+    }
+    .content .content-description nav{
+       width: 300px;
+    }
+   .content-body .on-sale{
+       padding:0px;
+       margin: 0px;
+    }
+    .content-body .on-sale .product-description{
+       padding:0px;
+   }
    
 }
+@media (max-width:576px){
+    .content .content-description{
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin:0 auto;
+    }
+    .content-body .on-sale .product-description{
+       padding:0px;
+       width: unset;
+    }
+    .on-sale .product{
+        margin:0;
+        padding: 0;
+    }
+    .on-sale .product .dropdown{
+        position:unset;
+    }
+
+    .on-sale .product .dropdown-content{
+        position:unset;
+
+    }
+} 
+
+
+
 
 .mypage .inner{
     max-width:1030px ;
