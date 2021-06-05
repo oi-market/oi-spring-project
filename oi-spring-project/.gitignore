@@ -165,3 +165,6 @@ $RECYCLE.BIN/
 
 .classpath
 HELP.md
+
+node_modules/
+node/
