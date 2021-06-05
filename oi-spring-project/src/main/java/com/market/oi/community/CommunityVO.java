@@ -1,6 +1,7 @@
 package com.market.oi.community;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -18,5 +19,8 @@ public class CommunityVO {
 	
 	//category의 값 가져오기위함
 	private String category;
+	
+	//files
+	private List<CommunityfilesVO> files;
 
 }

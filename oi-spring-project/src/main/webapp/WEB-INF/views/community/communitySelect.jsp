@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,19 +45,28 @@
     }
     
     .div-size{
+    	border-bottom: 1px solid black;
     	width: 100%;
+    	height: 30%;
     	font-size: 10pt;
     	color: gray;
+    	float:left;
+    	
+    	padding-bottom: 1.5%;
+    	margin: 0 0 2% 0;
     }
     
     .div-left{
-    	width: 50%;
+    	border: 1px solid black;
+    	width: 50px;
+    	height: 50px;
     	float: left;
+    	margin-right: 2%; 
     }
     
     .div-right{
     	width: 50%;
-    	float: right;
+    	float: left;
     }
     
     .insert-button{
@@ -67,42 +76,46 @@
     	margin-left: 55%; 
     	margin-bottom: 5%;
     }
+
     
 	
 </style>
 
 </head>
 <body>
-
-	<h1>Community List</h1>
+	<h1>Community Select</h1>
 	
-	<c:forEach items="${list}" var="vo" >
-		<div class="table-box">
-			<ul>
-				<li>
-					<div class="category-line">
-						${vo.category}
+	<div class="table-box">
+		<ul>
+			<li >
+				<div class="category-line">
+					${vo.category}
+				</div>
+			</li>
+			
+			<li>
+				<div class="div-size">
+					<div class="div-left">아이콘</div>
+					<div class="div-right">
+						${vo.writer}<br>
+						${vo.location} · ${vo.regDate}
 					</div>
-				</li>
-				
-				<li>
-					<a href="./communitySelect?categoryNum=${vo.categoryNum}&&num=${vo.num}">
-					${vo.contents}
-					</a>
-				</li>
-				<li>
-					<div class="div-size">
-						<div class="div-left">${vo.writer} · ${vo.location}</div>
-						<div class="div-right">${vo.regDate}</div>
-					</div>
-				</li>
-			</ul>
-		</div>
-	</c:forEach>
-
-	<div class="insert-button">
-		<a href="./communityInsert">글 작성</a>
+				</div>
+			</li>
+			
+			<li>${vo.contents}</li>
+		</ul>
 	</div>
-
+	
+	<div>
+		<div class="insert-button">
+			<a href="./communityUpdate?num=${vo.num}">글 수정</a>
+		</div>
+		
+		<div class="insert-button">
+			<a href="./communityDelete?num=${vo.num}">글 삭제</a>
+		</div>
+	</div>
+	
 </body>
 </html>

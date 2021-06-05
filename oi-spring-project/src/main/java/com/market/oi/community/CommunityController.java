@@ -3,12 +3,16 @@ package com.market.oi.community;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.market.oi.util.CommunityPager;
 
 
 @Controller
@@ -18,19 +22,26 @@ public class CommunityController {
 	@Autowired
 	private CommunityService communityService;
 	
-	//List
+	@Value("${community.filePath}")
+	private String filePath;
+	
+	
+	//커뮤니티 List
 	@GetMapping("communityList")
-	public ModelAndView getList(ModelAndView mv, CommunityVO communityVO) throws Exception{
+	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager) throws Exception{
 		
-		List<CommunityVO> ar = communityService.getList(communityVO);
+		System.out.println("FilePath : "+filePath);
+		
+		List<CommunityVO> ar = communityService.getList(communityPager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("communityPager", communityPager);
 		mv.setViewName("community/communityList");
 		
 		return mv;
 	}
 	
-	//Select
+	//커뮤니티 Select
 	@GetMapping("communitySelect")
 	public ModelAndView getSelect(CommunityVO communityVO) throws Exception{
 		
@@ -38,19 +49,20 @@ public class CommunityController {
 		
 		communityVO = communityService.getSelect(communityVO);
 		
-		mv.addObject("vo", mv);
+		mv.addObject("vo", communityVO);
 		mv.setViewName("community/communitySelect");
 		
 		return mv;
 	}
 	
-	//Insert
+	//커뮤니티 Insert
 	@GetMapping("communityInsert")
 	public ModelAndView setInsert() throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		CommunityVO communityVO = new CommunityVO();
 		
-		mv.addObject("vo", new CommunityVO());
+		mv.addObject("vo", communityVO);
 		mv.setViewName("community/communityInsert");
 
 		return mv;
@@ -58,9 +70,13 @@ public class CommunityController {
 	
 	
 	@PostMapping("communityInsert")
-	public String setInsert(CommunityVO communityVO, Model model) throws Exception{
-
-		int result = communityService.setInsert(communityVO);
+	public String setInsert(CommunityVO communityVO, MultipartFile [] files, Model model) throws Exception {
+		
+		for(MultipartFile f : files) {
+			System.out.println(f.getOriginalFilename());
+		}
+		
+		int result = communityService.setInsert(communityVO, files);
 		
 		String message = "등록에 실패했습니다!";
 		String path = "./communityList";
@@ -76,7 +92,7 @@ public class CommunityController {
 		
 	}
 	
-	//Delete
+	//커뮤니티 Delete
 	@GetMapping("communityDelete")
 	public ModelAndView setDelete(CommunityVO communityVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -98,7 +114,7 @@ public class CommunityController {
 		return mv;
 	}
 	
-	//Update
+	//커뮤니티 Update
 	@GetMapping("communityUpdate")
 	public ModelAndView setUpdate(CommunityVO communityVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -116,6 +132,7 @@ public class CommunityController {
 	public ModelAndView setUpdate(CommunityVO communityVO, ModelAndView mv) throws Exception{
 		
 		int result = communityService.setUpdate(communityVO);
+		System.out.println("result : "+result);
 		
 		//실행 O
 		if(result>0) {
