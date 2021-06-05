@@ -6,7 +6,7 @@
                 <div class="inner clearfix">
                         <div class="menu-group float--left">
                             <div class="logo">
-                                <a href="${pageContext.request.contextPath}">oi</a>
+                                <a href="${pageContext.request.contextPath}/">oi</a>
                             </div>
                             <ul class="main-menu toggle">
                                 <li><a href="#">동네 생활</a></li>

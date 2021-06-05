@@ -8,7 +8,7 @@
                         <a href="${pageContext.request.contextPath}/mypage/profile">프로필</a>
                     </li>
                     <li>
-                        <a href="${pageContext.request.contextPath}/mypage/purchase-buy">상품</a>
+                        <a href="${pageContext.request.contextPath}/mypage/purchase-sell">상품</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/mypage/village">내 동네 설정</a>

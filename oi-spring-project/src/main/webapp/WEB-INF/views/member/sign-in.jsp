@@ -49,7 +49,7 @@
             <div class="inner clearfix">
                     <div class="menu-group float--left">
                         <div class="logo">
-                            <a href="#">oi</a>
+                            <a href="${pageContext.request.contextPath}/">oi</a>
                         </div>
                     </div>
                 </div>
