@@ -38,10 +38,6 @@ public class MemberController {
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	@GetMapping("jusoAPI")
-	public void jusoAPI()throws Exception{
-
-	}
 
 	@GetMapping("memberPage")
 	public void memberPage(HttpSession session)throws Exception{
@@ -113,6 +109,12 @@ public class MemberController {
 		return "member/memberLogin";
 	}
 
+	@GetMapping("memberLogout")
+	public String Logout(HttpSession session)throws Exception{
+		session.invalidate();
+		
+		return "redirect:../";	
+	}
 
 
 
