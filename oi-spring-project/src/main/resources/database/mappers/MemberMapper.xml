@@ -48,8 +48,16 @@
       
       <select id="memberFindID" parameterType="MemberVO" resultType="MemberVO">
       select username from member where email=#{email} and name =#{name}
-      
       </select>
+      
+      <select id="memberFindPW" parameterType="MemberVO" resultType="MemberVO">
+      select * from member where username=#{username} and email=#{email} and name =#{name}
+      </select>
+      
+       <update id="memberUpdatePW" parameterType="MemberVO">
+      update member set password=#{password} where username=#{username}      
+      </update>
+      
 
 
 

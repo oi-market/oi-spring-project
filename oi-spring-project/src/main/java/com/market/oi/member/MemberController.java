@@ -32,32 +32,26 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService memberService;
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
+
 	@GetMapping("jusoAPI")
 	public void jusoAPI()throws Exception{
-		
+
 	}
-	
+
 	@GetMapping("memberPage")
 	public void memberPage(HttpSession session)throws Exception{
 		System.out.println("1111");
-//		Enumeration<String> en = session.getAttributeNames();
-		
-//		while(en.hasMoreElements()) {
-//			System.out.println(en.nextElement());
-//		}
-		SecurityContextImpl ob = (SecurityContextImpl)session.getAttribute("SPRING_SECURITY_CONTEXT");
-		System.out.println(ob.getAuthentication());
+
 	}
 
-	
-	
-	
+
+
+
 	@GetMapping("CheckMail")
 	@ResponseBody
 	public String SendMail(Model model,String email, HttpSession session) {
@@ -76,81 +70,134 @@ public class MemberController {
 		message.setText("오이마켓 인증번호입니다.\n"+"인증 번호 : "+key);
 		javaMailSender.send(message);
 		model.addAttribute("key", key);
-//		session.setAttribute("key", key);
+		//		session.setAttribute("key", key);
 		System.out.println(key);
-		
+
 		return key;
 	}
-	
-	
-	
-	
+
+
+
+
 	@GetMapping("memberJoinCheck")
 	public void memberJoinCheck()throws Exception{
-		
+
 	}
-	
+
 	@GetMapping("memberJoin")
 	public String memberJoin(@ModelAttribute MemberVO memberVO)throws Exception{
 		return "member/memberJoin";
 	}
-	
+
 	@PostMapping("memberJoin")
 	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
-//		if(errors.hasErrors()) {
-//			return "member/memberJoin";
-//		}
-		
+		//		if(errors.hasErrors()) {
+		//			return "member/memberJoin";
+		//		}
+
 		if(memberService.memberError(memberVO, errors)) {
-			
+
 			return "member/memberJoin";
 		}
-		
+
 		int result = memberService.memberJoin(memberVO, avatar);
-		
+
 		return "redirect:../";
 	}
-	
-	
+
+
 	@GetMapping("memberLogin")
 	public String memberLogin() throws Exception{
 		System.out.println("GetLogin");
 		return "member/memberLogin";
 	}
-	
-	
-	
-	
+
+
+
+
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult()throws Exception{
 		System.out.println("Login 성공");
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("memberFindID")
 	public void memberFindID()throws Exception{
-		
+
 	}
 	@PostMapping("memberFindID")
 	@ResponseBody
-	   public String searchId(MemberVO memberVO,Model model)throws Exception{
-	      memberVO = memberService.memberFindID(memberVO);
-	      System.out.println(memberVO);
-	      String message ="";
+	public String memberFindId(MemberVO memberVO,Model model)throws Exception{
+		memberVO = memberService.memberFindID(memberVO);
+		System.out.println(memberVO);
+		String message ="";
 
-	      if(memberVO== null) {
-	         message="이름과 핸드폰 불일치";
+		if(memberVO== null) {
+			message="이름과 핸드폰 불일치";
 
-	      } else {
-	         message="회원님의 아이디는 " + memberVO.getUsername()+" 입니다.";
-	      }
-	      model.addAttribute("message",message);
-	      System.out.println(message);
+		} else {
+			message="회원님의 아이디는 " + memberVO.getUsername()+" 입니다.";
+		}
+		model.addAttribute("message",message);
+		System.out.println(message);
 
-	      return message;
-	   }
+		return message;
+	}
 
-	
-	
+	@GetMapping
+	public void memberFindPW() {
+
+	}
+
+	@PostMapping("memberFindPW")
+	@ResponseBody
+	public String memberFindPW(MemberVO memberVO,Model model)throws Exception{
+		Random random = new Random();
+		memberVO = memberService.memberFindPW(memberVO); 
+		SimpleMailMessage message = new SimpleMailMessage();
+		String alertMessage ="";
+
+		
+		if(memberVO== null) {
+			alertMessage="이름과 핸드폰 불일치";
+
+		}else {
+			String newPW = "";
+			
+			for (int i = 0; i < 3; i++) {
+				int index = random.nextInt(25) + 65; // A~Z까지 랜덤 알파벳 생성
+				newPW += (char) index;
+			}
+			int numIndex = random.nextInt(8999) + 1000; // 4자리 정수를 생성
+			newPW += numIndex;
+			
+			memberVO.setPassword(newPW);
+			System.out.println(newPW);
+			System.out.println(memberVO.getEmail());
+			
+			message.setTo(memberVO.getEmail());
+			
+			message.setSubject("오이마켓 임시비밀번호");
+			message.setText("오이마켓 임시비밀번호입니다.\n"+"임시비밀번호 : "+newPW);
+			javaMailSender.send(message);
+
+
+			int result = memberService.memberUpdatePW(memberVO);
+			System.out.println(memberVO);
+
+
+
+			alertMessage="임시비밀번호는 " + newPW +" 입니다.";
+		}
+		model.addAttribute("message",message);
+		System.out.println(message);
+
+		return alertMessage;
+	}
+
+
+
+
+
 }

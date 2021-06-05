@@ -20,6 +20,11 @@ public interface MemberMapper {
 	 
 	public MemberVO memberFindID(MemberVO memberVO);
 	
+	public MemberVO memberFindPW(MemberVO memberVO);
+	
+	public int memberUpdatePW(MemberVO memberVO);
+	
+	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 
 	
