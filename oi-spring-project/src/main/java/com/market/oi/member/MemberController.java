@@ -136,7 +136,7 @@ public class MemberController {
 		String message ="";
 
 		if(memberVO== null) {
-			message="이름과 핸드폰 불일치";
+			message="이름 , 이메일 불일치";
 
 		} else {
 			message="회원님의 아이디는 " + memberVO.getUsername()+" 입니다.";
@@ -162,7 +162,7 @@ public class MemberController {
 
 		
 		if(memberVO== null) {
-			alertMessage="이름과 핸드폰 불일치";
+			alertMessage="아이디 ,이름 ,이메일 불일치";
 
 		}else {
 			String newPW = "";
@@ -186,14 +186,14 @@ public class MemberController {
 
 
 			int result = memberService.memberUpdatePW(memberVO);
-			System.out.println(memberVO);
+//			System.out.println(memberVO);
 
 
-
-			alertMessage="임시비밀번호는 " + newPW +" 입니다.";
+			alertMessage=memberVO.getEmail()+"로 임시비밀번호가 전송되었습니다";
+//test			alertMessage="임시비밀번호는 " + newPW +" 입니다.";
 		}
 		model.addAttribute("message",message);
-		System.out.println(message);
+//		System.out.println(message);
 
 		return alertMessage;
 	}

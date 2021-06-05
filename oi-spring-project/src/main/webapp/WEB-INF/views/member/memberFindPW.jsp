@@ -55,40 +55,12 @@
 					style="width: 300px; height: 50px; margin: 0 auto;">
 			</div>
 
-			<input type="button" id="find_PW" value="아이디 찾기"
+			<input type="button" id="find_PW" value="비밀번호 찾기"
 				class="btn btn-primary"> <a
 				href="javascript:history.back();" class="btn btn-danger">취소</a>
 
 		</div>
 	</div>
-
-
-	<div class="modal fade" id="showPW">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
-					<button type="button" class="close" data-dismiss="modal">×</button>
-				</div>
-
-				<!-- Modal body -->
-				<div class="modal-body">
-				<input type="text" class="form-control etc" id="message" readonly>
-				</div>
-
-				<!-- Modal footer -->
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-				</div>
-
-			</div>
-		</div>
-	</div>
-
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"
-	 style="display: none;">11111</button>
 		
  
 	<script type="text/javascript">
@@ -115,10 +87,7 @@
 			success : function(data) {
 				
 				msg = data;
-		        alert(msg);
-		        message =$("message").val("msg");
-		        $("#showPW}").modal("show");
-		       
+		        alert(msg);		       
 		        
 		    }
 			
