@@ -33,9 +33,9 @@
     <link rel="apple-touch-icon" href="./favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        <!-- 먼저 호출되야함 reset! -->
-       <link rel="stylesheet" href="./css/mainScss.css">
-     <link rel="stylesheet" href="./css/main.css">
-     <link rel="stylesheet" href="./css/sign-up.css">
+       <link rel="stylesheet" href="../css/mainScss.css">
+     <link rel="stylesheet" href="../css/main.css">
+     <link rel="stylesheet" href="../css/sign-up.css">
   
 </head>
 <body>

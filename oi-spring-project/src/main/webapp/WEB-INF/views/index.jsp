@@ -8,7 +8,7 @@
     <title>오이마켓</title>
 
     <meta name="author" content="wook">
-    <meta name="description" content="GitHub practice project">
+    <meta name="description" content="오이마켓">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1, maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -44,7 +44,7 @@
 
 
         <!-- HEADER -->
-        <header class="section">
+       <!--  <header class="section">
                 <div class="inner clearfix">
                         <div class="menu-group float--left">
                             <div class="logo">
@@ -74,12 +74,13 @@
                         </div>
 
                         <div id="toggle-btn">Header Menu Toggle Button</div>
-                        <!-- <div class="clearfix" style="clear: both;">
+                        <div class="clearfix" style="clear: both;">
                                     (토글버튼)
-                        </div> -->
+                        </div>
                     </div>
         </header>
-
+ -->
+ 	<c:import url="./template/header.jsp"></c:import>
     
      <section class="section section--visual1">
          <div class="inner">
@@ -279,9 +280,9 @@
         </div>
     </section>
 
-
+<c:import url="./template/footer.jsp"></c:import>
         <!-- FOOTER -->
-        <footer class="section">
+       <!--  <footer class="section">
             <div class="inner">
 
                 
@@ -330,7 +331,7 @@
                 </div>
 
             </div>
-        </footer>
+        </footer> -->
 
 
      </div>
