@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
 <style type="text/css">
 
 	.table-box {
@@ -73,8 +74,8 @@
     	border: 1px solid black;
     	width: 5%;
     	height: auto;
-    	margin-left: 55%; 
-    	margin-bottom: 5%;
+    	margin-left: 5%;
+    	margin-bottom: 3%;
     }
 
     
@@ -85,6 +86,7 @@
 <body>
 	<h1>Community Select</h1>
 	
+	<!-- 글 내용 -->
 	<div class="table-box">
 		<ul>
 			<li >
@@ -105,16 +107,61 @@
 			
 			<li>${vo.contents}</li>
 		</ul>
+		
+		<a class="insert-button" href="./communityUpdate?num=${vo.num}">글 수정</a>
+		<a class="insert-button" href="./communityDelete?num=${vo.num}">글 삭제</a>
+	
 	</div>
 	
-	<div>
-		<div class="insert-button">
-			<a href="./communityUpdate?num=${vo.num}">글 수정</a>
+	
+	<!-- 댓글 -->
+	<div class="table-box">
+	
+		<div class="table-box">
+			<form id="form" action="../comments/commentsInsert?communityNum=${vo.num}" method="post">
+				<ul>
+					<li>
+						<input type="hidden" id="communityNum" name="communityNum">
+					</li>
+					
+					<li>
+						<input type="text" id="writer" name="writer" placeholder="writer">
+					</li>
+					
+					<li>
+						<input type="text" id="location" name="location" placeholder="location">
+					</li>
+	
+					<li>
+						<textarea class="form-control myCheck" cols="30" rows="5" id="contents" name="contents">
+		        		</textarea>	
+					</li>
+		        
+		        	<li>
+		        		 <input type="submit" value="작성!" />
+		        	</li>	        
+				</ul>
+			</form>
 		</div>
-		
-		<div class="insert-button">
-			<a href="./communityDelete?num=${vo.num}">글 삭제</a>
-		</div>
+	
+		<c:if test="${comments ne null}">				
+			<ul>					
+				<li>			
+					<div class="div-size">
+						<div class="div-left">아이콘</div>
+						<div class="div-right">
+							${comments.writer}<br>
+							${comments.location} · ${comments.regDate}
+						</div>
+						<a class="insert-button" href="./communityUpdate?num=${vo.num}">댓글 수정</a>
+						<a class="insert-button" href="./communityDelete?num=${vo.num}">댓글 삭제</a>
+					</div>
+				</li>
+				
+				<li>${comments.contents}</li>					
+			</ul>
+		</c:if>
+			
 	</div>
 	
 </body>

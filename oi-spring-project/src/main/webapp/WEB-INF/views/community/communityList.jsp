@@ -7,6 +7,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+
 <style type="text/css">
 
 	.table-box {
@@ -86,7 +91,7 @@
 				</li>
 				
 				<li>
-					<a href="./communitySelect?categoryNum=${vo.categoryNum}&&num=${vo.num}">
+					<a href="./communitySelect?categoryNum=${vo.categoryNum}&&num=${vo.num}&&communityNum=${vo.num}">
 					${vo.contents}
 					</a>
 				</li>
@@ -103,6 +108,44 @@
 	<div class="insert-button">
 		<a href="./communityInsert">글 작성</a>
 	</div>
+	
+	
+	<!-- 있어야 pageing 가능 : 원래 kind, search 부분 -->
+	<div class="input-group mt-3 mb-3 first-size">
+	  <form id="form" action="./communityList" class="form-inline">
+		  <input type="hidden" name="curPage" value="1" id="curPage">
+ 	  </form> 
+  	</div>
+	
+	
+	<div class="second-size" style="margin-left:42%;">
+		  <ul class="pagination">
+		  
+			  <c:if test="${communityPager.pre}">	
+			    <li class="page-item"><a class="page-link pager" href="#" title="${communityPager.startNum-1}">Previous</a></li>
+			  </c:if>
+		   
+		   	  <c:forEach begin="${communityPager.startNum}" end="${communityPager.lastNum}" var="i">
+		   		<li class="page-item"><a class="page-link pager" href="#" title="${i}">${i}</a></li>
+		   	  </c:forEach>
+		   
+		      <c:if test="${communityPager.next}">
+		      	<li class="page-item"><a class="page-link pager" href="#" title="${communityPager.lastNum+1}">Next</a></li>
+		      </c:if>
+		      
+		  </ul>
+		  
+		  <script type="text/javascript">
+				
+				$(".pager").click(function () {
+					let curPage = $(this).attr("title");
+					$("#curPage").val(curPage);
+					$("#form").submit();
+				
+				});
+			
+			</script> 
+	  </div>
 
-</body>
+</body> 
 </html>

@@ -31,18 +31,21 @@ public class CommunityPager {
 		if(totalCount % this.getPerPage() != 0) {
 			totalPage++;
 		}
+		System.out.println("totalPage : "+totalPage);
 		
 		//3. totalPage를 이용해서 totalBlock 수 구하기
 		Long totalBlock = totalPage / perBlock;
 		if(totalPage % perBlock != 0) {
 			totalBlock++;
 		}
+		System.out.println("totalBlock : "+totalBlock);
 		
 		//4. curPage를 이용해서 curBlock 구하기
 		Long curBlock = this.getCurPage() / perBlock;
 		if(this.curPage % perBlock != 0) {
 			curBlock++;
 		}
+		System.out.println("curBlock : "+curBlock);
 		
 		//5. curBlock 이용해서 startNum, lastNum 구하기
 		this.startNum = (curBlock-1) * perBlock+1;

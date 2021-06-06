@@ -30,6 +30,7 @@ public class CommunityService {
 		
 		communityPager.makeRow();
 		Long totalCount = communityMapper.getTotalCount(communityPager);
+		System.out.println("totalcount : "+totalCount);
 		communityPager.makeNum(totalCount);
 		
 		System.out.println("startNum : "+communityPager.getStartNum());

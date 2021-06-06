@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.community.comments.CommentsService;
+import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.util.CommunityPager;
 
 
@@ -21,6 +23,9 @@ public class CommunityController {
 	
 	@Autowired
 	private CommunityService communityService;
+	
+	@Autowired
+	private CommentsService commentsService; 
 	
 	@Value("${community.filePath}")
 	private String filePath;
@@ -33,6 +38,9 @@ public class CommunityController {
 		System.out.println("FilePath : "+filePath);
 		
 		List<CommunityVO> ar = communityService.getList(communityPager);
+		CommentsVO commentsVO = new CommentsVO();
+		
+		mv.addObject("comments", commentsVO);
 		
 		mv.addObject("list", ar);
 		mv.addObject("communityPager", communityPager);
@@ -43,13 +51,20 @@ public class CommunityController {
 	
 	//커뮤니티 Select
 	@GetMapping("communitySelect")
-	public ModelAndView getSelect(CommunityVO communityVO) throws Exception{
+	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
 		communityVO = communityService.getSelect(communityVO);
 		
+		//comments select
+		commentsVO = commentsService.getSelect(commentsVO);
+		
+		//System.out.println("writer : "+commentsVO.getWriter());
+		
 		mv.addObject("vo", communityVO);
+		mv.addObject("comments", commentsVO);
+		
 		mv.setViewName("community/communitySelect");
 		
 		return mv;

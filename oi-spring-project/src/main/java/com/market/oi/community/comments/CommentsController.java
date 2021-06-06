@@ -1,4 +1,4 @@
-package com.market.oi.community;
+package com.market.oi.community.comments;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.market.oi.community.comments.CommentsService;
-import com.market.oi.community.comments.CommentsVO;
 
 @Controller
 @RequestMapping("/comments/**")
@@ -18,19 +15,19 @@ public class CommentsController {
 	private CommentsService commentsService;
 	
 	
-	//댓글 Select
-	@GetMapping("commentsSelect")
-	public ModelAndView getSelect(CommentsVO commentsVO) throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
-		
-		commentsVO = commentsService.getSelect(commentsVO);
-		
-		mv.addObject("vo", commentsVO);
-		mv.setViewName("community/communitySelect");
-		
-		return mv;
-	}
+//	//댓글 Select
+//	@GetMapping("commentsSelect")
+//	public ModelAndView getSelect(CommentsVO commentsVO) throws Exception{
+//		
+//		ModelAndView mv = new ModelAndView();
+//		
+//		commentsVO = commentsService.getSelect(commentsVO);
+//		
+//		mv.addObject("vo", commentsVO);
+//		mv.setViewName("community/communitySelect");
+//		
+//		return mv;
+//	}
 	
 	
 	// 댓글 Insert

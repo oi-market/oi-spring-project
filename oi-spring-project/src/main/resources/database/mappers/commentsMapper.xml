@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.market.oi.community.comments.CommentsMapper">
+
+	<!-- 댓글 getSelect -->
+	<select id="getSelect" parameterType="CommentsVO" resultType="CommentsVO">
+		select * from comments where communityNum = #{communityNum}
+	</select>
+	
+	<!-- 댓글 setInsert -->
+	<insert id="setInsert" parameterType="CommentsVO" useGeneratedKeys="true" keyProperty="num">
+		insert into comments(communityNum, writer, contents, location, ref, regDate)
+		values(#{communityNum}, #{writer}, #{contents}, #{location}, #{num}, now())
+	</insert>
+	
+	<!-- 댓글 setDelete  -->
+	<delete id="setDelete" parameterType="CommentsVO">
+		delete comments where num = #{num}
+	</delete> 
+	
+	<!-- 댓글 setUpdate -->
+	<update id="setUpdate" parameterType="CommentsVO">
+		update comments set writer = #{writer}, contents = #{contents}, location = #{location}, regdate = sysdate 
+    	where num = #{num}  
+	</update>
+
+</mapper>

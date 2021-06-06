@@ -7,7 +7,7 @@
 	
 	<!-- 커뮤니티 getTotalCount -->
 	<select id="getTotalCount" parameterType="CommunityPager" resultType="Long">
-  		select count(num) from community  		
+  		select count(num) from community 		
   	</select>
 	
 	<!-- 커뮤니티 List -->

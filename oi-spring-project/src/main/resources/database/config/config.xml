@@ -10,6 +10,7 @@
 		<typeAlias type="com.market.oi.community.CommunityVO" alias="CommunityVO" />
 		<typeAlias type="com.market.oi.util.CommunityPager" alias="CommunityPager"/>
 		<typeAlias type="com.market.oi.community.CommunityfilesVO" alias="CommunityfilesVO"/>
+		<typeAlias type="com.market.oi.community.comments.CommentsVO" alias="CommentsVO" />
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
 		
