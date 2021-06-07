@@ -45,8 +45,8 @@ function uploadFile(files) {
 			console.log(fileName);
 			$("#contents").summernote('insertImage', fileName, function ($image) {
 			 
-			 alert($image.width());
-			 
+			 console.log($image.width());
+			 //이미지 사이즈에 따라 크기 바뀌어서 나오도록
 			  if($image.width()>300){
 			  	$image.css('width', $image.width() / 2);
 			  }

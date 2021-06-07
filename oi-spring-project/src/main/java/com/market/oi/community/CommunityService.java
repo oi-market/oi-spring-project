@@ -75,7 +75,7 @@ public class CommunityService {
 			
 		}
 		
-		return 0;//communityMapper.setFileInsert(communityfilesVO);
+		return result;
 	}
 	
 	//Delete
