@@ -43,16 +43,24 @@ function uploadFile(files) {
 		success:function(result){
 			fileName=result.trim();
 			console.log(fileName);
-			$("#contents").summernote('insertImage', fileName);
+			$("#contents").summernote('insertImage', fileName, function ($image) {
+			 
+			 alert($image.width());
+			 
+			  if($image.width()>300){
+			  	$image.css('width', $image.width() / 2);
+			  }
+			  
+			  if($image.width()>800){
+			  	$image.css('width', $image.width() / 3);
+			  }
+			
+			  $image.css('width', $image.width());
+			  $image.attr('data-filename', 'retriever');
+			});
 		} 
 		
 	})
 };
-
-//image size
-$('#contents').summernote('insertImage', "./summerFileUpload", function ($image) {
-  $image.css('width', $image.width() / 3);
-  $image.attr('data-filename', 'retriever');
-});
 
 
