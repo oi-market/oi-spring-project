@@ -45,27 +45,32 @@ if(pageName=='비밀번호'){
 //상품 옆 (...)메뉴 드롭다운
 
 
-
-let togleBtn = document.getElementById("on-sale-dropdown");
-
-function dropdownFunction() {
-    let result=togleBtn.classList.toggle('show');
-}
-
-window.onclick = function(event) {
-    if (!event.target.closest('.dropdown')) {
-       //이벤트 위임을 위해 closest사용
-       //currentTarget은 안된다 또 ,,
-      let dropdowns = document.getElementsByClassName("dropdown-content");
-      let i;
-      for (i = 0; i < dropdowns.length; i++) {
-        let openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-        }
-      }
-    }
-  }
+	
+	
+	function dropdownFunction(n) {
+	let togleBtn = document.getElementsByClassName("dropdown-content");
+	    togleBtn[n].classList.toggle('show');
+	}
+	function soldoutDropdownFunction(n){
+		let togleBtn = document.getElementsByClassName("soldout-dropdown-content");
+	    togleBtn[n].classList.toggle('show');
+	}
+	
+	
+	window.onclick = function(event) {
+	    if (!event.target.closest('.dropdown')) {
+	       //이벤트 위임을 위해 closest사용
+	       //currentTarget은 안된다 또 ,,
+	      let dropdowns = document.getElementsByClassName("dropdown-content");
+	      let i;
+	      for (i = 0; i < dropdowns.length; i++) {
+	        let openDropdown = dropdowns[i];
+	        if (openDropdown.classList.contains('show')) {
+	          openDropdown.classList.remove('show');
+	        }
+	      }
+	    }
+	  }
 
   //후기 이름 색깔
 

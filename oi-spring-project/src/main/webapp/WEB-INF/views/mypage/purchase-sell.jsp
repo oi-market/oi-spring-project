@@ -97,6 +97,10 @@
                     </div>
                     <div class="on-sale">
 
+
+	
+						<%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
+						<c:forEach var="i" begin="0" end="2">
                         <div class="product">
                             <div>
                                 사진
@@ -107,7 +111,8 @@
                                 <p>price</p>
                             </div>
                             <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
+<%--                   db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
+                                <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
                                     <i class="bi bi-three-dots"></i>
                                 </button>
                                 <div id="on-sale-dropdown" class="dropdown-content">
@@ -117,41 +122,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                            </div>
-                        </div>
+                        </c:forEach>
+                        
+                    
+                        
                   
                     </div>
                     <div class="title-underline">
@@ -161,6 +135,9 @@
                     </div>
                     <!-- 반복문으로 최대 3개만 불러오기 -->
                     <div class="on-sale sold-out">
+                    
+			<%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
+						<c:forEach var="i" begin="0" end="1">
                         <div class="product">
                             <div>
                                 사진
@@ -171,16 +148,18 @@
                                 <p>price</p>
                             </div>
                             <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
+			<%--  db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
+                                <button type="button" class="dropdown" onclick="soldoutDropdownFunction(${i})">
                                     <i class="bi bi-three-dots"></i>
                                 </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
+                                <div id="on-sale-dropdown" class="dropdown-content soldout-dropdown-content">
+                                    <a href="#">거래중으로 변경</a>
                                     <a href="#">게시글 수정</a>
                                     <a href="#">삭제</a>
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
         
 
 

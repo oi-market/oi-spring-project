@@ -100,6 +100,8 @@
                     </div>
                     <div class="on-sale">
 
+                       <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
+						<c:forEach var="i" begin="0" end="0">
                         <div class="product">
                             <div>
                                 사진
@@ -110,16 +112,18 @@
                                 <p>price</p>
                             </div>
                             <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
+<%--                   db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
+                                <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
                                     <i class="bi bi-three-dots"></i>
                                 </button>
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">작성한 후기 보기</a>
-                                    <a href="#">목록에서 지우기</a>
-                               
+                                    <a href="#">거래완료로 변경</a>
+                                    <a href="#">게시글 수정</a>
+                                    <a href="#">삭제</a>
                                 </div>
                             </div>
                         </div>
+                        </c:forEach>
                        
                         
                         <!-- end of product block -->
