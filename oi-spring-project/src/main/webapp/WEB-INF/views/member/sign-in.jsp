@@ -82,7 +82,7 @@
                                 아이디
                             </p>
                             <p>
-                                <a href="#">아이디 찾기</a>
+                                <a href="${pageContext.request.contextPath}/member/find-id">아이디 찾기</a>
                             </p>
                         </div>
                         <input name="username" placeholder="아이디" class="col-12 input--text">
@@ -91,7 +91,7 @@
                                 비밀번호
                             </p>
                             <p>
-                                <a href="#">비밀번호 찾기</a>
+                                <a href="${pageContext.request.contextPath}/member/find-pw">비밀번호 찾기</a>
                             </p>
                         </div>
                         <input name="username" placeholder="비밀번호" class="col-12 input--text">

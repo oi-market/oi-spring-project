@@ -118,7 +118,7 @@
 
 
                 <div class="anotherLogin">
-                    <p> <a href="#">로그인 하러가기</a></p>
+                    <p> <a href="${pageContext.request.contextPath}/member/sign-in">로그인 하러가기</a></p>
                 </div>
 
             </div>

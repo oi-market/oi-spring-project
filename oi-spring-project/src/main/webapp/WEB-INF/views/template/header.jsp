@@ -19,6 +19,7 @@
                             <div class="btn-group">
                                 <a href="${pageContext.request.contextPath}/member/sign-in" class="mybtn sign-in">로그인</a>
                                 <a href="${pageContext.request.contextPath}/member/sign-up" class="mybtn mybtn--primary sign-up">회원가입</a>
+<%--                                 <a href="#" class="mybtn mybtn--primary sign-up">로그아</a> --%>
                             </div>
                             <form id="search-form" action="#" method="POST">
                                 <input id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">

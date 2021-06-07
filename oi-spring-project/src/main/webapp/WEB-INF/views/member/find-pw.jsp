@@ -103,7 +103,7 @@
                 </form>
 
                 <div class="anotherLogin">
-                    <p> 임시 비밀번호로 <a href="#">로그인 하러가기</a></p>
+                    <p> 임시 비밀번호로 <a href="${pageContext.request.contextPath}/member/sign-in">로그인 하러가기</a></p>
                 </div>
 
             </div>
