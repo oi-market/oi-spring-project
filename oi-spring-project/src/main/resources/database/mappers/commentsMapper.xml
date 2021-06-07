@@ -5,8 +5,8 @@
 
 <mapper namespace="com.market.oi.community.comments.CommentsMapper">
 
-	<!-- 댓글 getSelect -->
-	<select id="getSelect" parameterType="CommentsVO" resultType="CommentsVO">
+	<!-- 댓글 getList -->
+	<select id="getList" parameterType="CommentsVO" resultType="CommentsVO">
 		select * from comments where communityNum = #{communityNum}
 	</select>
 	

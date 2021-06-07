@@ -21,6 +21,6 @@ public class CommunityVO {
 	private String category;
 	
 	//files
-	private List<CommunityfilesVO> files;
+	private List<CommunityfilesVO> file;
 
 }
