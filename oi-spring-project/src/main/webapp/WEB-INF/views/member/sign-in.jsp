@@ -35,7 +35,7 @@
        <!-- 먼저 호출되야함 reset! -->
        <link rel="stylesheet" href="../css/mainScss.css">
      <link rel="stylesheet" href="../css/main.css">
-     <link rel="stylesheet" href="../css/sign-in.css">
+        <link rel="stylesheet" href="../css/member.css">
 
   
 </head>
@@ -76,10 +76,24 @@
                 <form action="#" method="POST" class="sign-in-frm row">
 
 
-                    <div class="inputs">
-                        <div id="id-input">아이디</div>
+                         <div class="inputs">
+                        <div id="id-input">
+                            <p>
+                                아이디
+                            </p>
+                            <p>
+                                <a href="#">아이디 찾기</a>
+                            </p>
+                        </div>
                         <input name="username" placeholder="아이디" class="col-12 input--text">
-                        <div id="pw-input">비밀번호</div>
+                        <div id="pw-input">
+                            <p>
+                                비밀번호
+                            </p>
+                            <p>
+                                <a href="#">비밀번호 찾기</a>
+                            </p>
+                        </div>
                         <input name="username" placeholder="비밀번호" class="col-12 input--text">
                     </div>
                     
@@ -91,7 +105,8 @@
                 </form>
 
                 <div class="anotherLogin">
-                    <p>회원이 아니신가요? <a href="#">가입하기</a></p>
+                    <p>회원이 아니신가요? <a href="${pageContext.request.contextPath}/member/sign-up">가입하기</a></p>
+                  
                 </div>
 
             </div>
