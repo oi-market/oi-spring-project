@@ -28,7 +28,7 @@ function deleteFile(files){
 }
 
 
-function uploadFile(files) {
+function uploadFile(file) {
 	const formData = new FormData();//Form 태그 생성
 	formData.append('file', files[0]); //input type="file" name="file"
 	let fileName="";

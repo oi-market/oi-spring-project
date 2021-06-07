@@ -48,7 +48,7 @@
    			<result column="like" property="like"/>
    			<result column="category" property="category"/>
    			
-   			<collection property="files" javaType="java.util.List" ofType="CommunityfilesVO">
+   			<collection property="file" javaType="java.util.List" ofType="CommunityfilesVO">
    				<id column="num" property="num"/>
    				<result column="communityNum" property="communityNum"/>
    				<result column="fileName" property="fileName"/>

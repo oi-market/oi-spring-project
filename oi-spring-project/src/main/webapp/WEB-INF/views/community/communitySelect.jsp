@@ -144,22 +144,25 @@
 			</form>
 		</div>
 	
-		<c:if test="${comments ne null}">				
-			<ul>					
-				<li>			
-					<div class="div-size">
-						<div class="div-left">아이콘</div>
-						<div class="div-right">
-							${comments.writer}<br>
-							${comments.location} · ${comments.regDate}
+		<c:if test="${comments ne null}">
+			<c:forEach items="${list}" var="comments">			
+				<ul>					
+					<li>			
+						<div class="div-size">
+							<div class="div-left">아이콘</div>
+							<div class="div-right">
+								${comments.writer}<br>
+								${comments.location} · ${comments.regDate}
+							</div>
+							<a class="insert-button" href="./communityUpdate?num=${vo.num}">댓글 수정</a>
+							<a class="insert-button" href="./communityDelete?num=${vo.num}">댓글 삭제</a>
+							<a class="insert-button" href="#">답글</a>
 						</div>
-						<a class="insert-button" href="./communityUpdate?num=${vo.num}">댓글 수정</a>
-						<a class="insert-button" href="./communityDelete?num=${vo.num}">댓글 삭제</a>
-					</div>
-				</li>
-				
-				<li>${comments.contents}</li>					
-			</ul>
+					</li>
+					
+					<li>${comments.contents}</li>					
+				</ul>
+			</c:forEach>
 		</c:if>
 			
 	</div>

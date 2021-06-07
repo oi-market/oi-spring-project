@@ -58,12 +58,13 @@ public class CommunityController {
 		communityVO = communityService.getSelect(communityVO);
 		
 		//comments select
-		commentsVO = commentsService.getSelect(commentsVO);
+		List<CommentsVO> ar = commentsService.getList(commentsVO);
 		
 		//System.out.println("writer : "+commentsVO.getWriter());
 		
 		mv.addObject("vo", communityVO);
 		mv.addObject("comments", commentsVO);
+		mv.addObject("list", ar);
 		
 		mv.setViewName("community/communitySelect");
 		

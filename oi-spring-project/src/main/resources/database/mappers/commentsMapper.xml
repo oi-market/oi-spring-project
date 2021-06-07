@@ -10,6 +10,11 @@
 		select * from comments where communityNum = #{communityNum}
 	</select>
 	
+	<!-- 댓글 getSelect -->
+	<select id="getSelect" parameterType="CommentsVO" resultType="CommentsVO">
+		select * from comments where num = #{num}
+	</select>
+	
 	<!-- 댓글 setInsert -->
 	<insert id="setInsert" parameterType="CommentsVO" useGeneratedKeys="true" keyProperty="num">
 		insert into comments(communityNum, writer, contents, location, ref, regDate)
