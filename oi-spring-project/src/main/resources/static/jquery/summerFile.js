@@ -28,7 +28,7 @@ function deleteFile(files){
 }
 
 
-function uploadFile(file) {
+function uploadFile(files) {
 	const formData = new FormData();//Form 태그 생성
 	formData.append('file', files[0]); //input type="file" name="file"
 	let fileName="";
@@ -40,6 +40,8 @@ function uploadFile(file) {
 		cache:false,
 		processData:false,
 		contentType:false,
+		width:50,
+		height:50,
 		success:function(result){
 			fileName=result.trim();
 			console.log(fileName);

@@ -63,7 +63,7 @@
 		values (#{categoryNum}, #{contents}, #{writer}, #{location})
 	</insert>
 	
-	<!-- 커뮤니티 FileInsert -->
+	<!-- 커뮤니티 summerFile -->
 	<insert id="setFileInsert" parameterType="CommunityfilesVO">
    		insert into communityfiles (communityNum, fileName, ogName)
    		values (#{num}, #{fileName}, #{ogName})

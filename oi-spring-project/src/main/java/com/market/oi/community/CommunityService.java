@@ -21,6 +21,9 @@ public class CommunityService {
 	@Autowired
 	private CommunityFileManager communityFileManager;
 	
+	@Autowired
+	private HttpSession session;
+	
 	@Value("${community.filePath}")
 	private String filePath;
 
@@ -60,7 +63,7 @@ public class CommunityService {
 				continue;
 			}
 			
-			String fileName = communityFileManager.save(filePath, multipartFile);
+			String fileName = communityFileManager.save("community", multipartFile, session);
 			System.out.println("fileName : "+fileName);
 			
 			CommunityfilesVO communityfilesVO = new CommunityfilesVO();
@@ -87,5 +90,26 @@ public class CommunityService {
 	}
 	
 	//좋아요 수 Update
+	
+	
+	//summerFile
+//	public String setSummerFileUpload(MultipartFile file) throws Exception {
+//		// 첨부파일x
+//		String fileName = communityFileManager.save(filePath, file);
+//		return fileName;
+//
+//	}
+	public String setSummerFileUpload(MultipartFile file) throws Exception {
+		// 첨부파일x
+		String fileName = communityFileManager.save("community", file, session);
+		return fileName;
+
+	}
+
+	public Boolean setSummerFileDelete(String fileName) throws Exception {
+		// 폴더명, 파일명
+		boolean result = communityFileManager.delete("community", fileName, session);
+		return result;
+	}
 
 }

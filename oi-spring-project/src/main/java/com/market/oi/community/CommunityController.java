@@ -164,5 +164,36 @@ public class CommunityController {
 		
 		return mv;
 	}
+	
+	
+	//summerfile upload	
+	@PostMapping("summerFileUpload")
+	public ModelAndView setSummerFileUpload(MultipartFile file)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println("Summer File Upload");
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getName());
+		String fileName = communityService.setSummerFileUpload(file);
+		fileName = "../resources/upload/community/"+fileName;
+		
+		mv.addObject("result", fileName);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+		
+	}
+	
+	@PostMapping("summerFileDelete")
+	public ModelAndView setSummerFileDelete(String fileName) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		boolean result = communityService.setSummerFileDelete(fileName);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
 
 }
