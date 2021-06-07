@@ -58,7 +58,7 @@
 	
 	
 	<!-- 커뮤니티 Insert -->
-	<insert id="setInsert" parameterType="CommunityVO">
+	<insert id="setInsert" parameterType="CommunityVO" useGeneratedKeys="true" keyProperty="num">
 		insert into community (categoryNum, contents, writer, location)
 		values (#{categoryNum}, #{contents}, #{writer}, #{location})
 	</insert>
@@ -66,7 +66,7 @@
 	<!-- 커뮤니티 FileInsert -->
 	<insert id="setFileInsert" parameterType="CommunityfilesVO">
    		insert into communityfiles (communityNum, fileName, ogName)
-   		values (#{communityNum}, #{fileName}, #{ogName})
+   		values (#{num}, #{fileName}, #{ogName})
    	</insert>
 
 	<delete id="setFileDelete" parameterType="CommunityfilesVO">
