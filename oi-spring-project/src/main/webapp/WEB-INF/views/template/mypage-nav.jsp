@@ -11,6 +11,9 @@
                         <a href="${pageContext.request.contextPath}/mypage/purchase-sell">상품</a>
                     </li>
                     <li>
+                        <a href="${pageContext.request.contextPath}/mypage/review">후기</a>
+                    </li>
+                    <li>
                         <a href="${pageContext.request.contextPath}/mypage/village">내 동네 설정</a>
                     </li>
                     <li>

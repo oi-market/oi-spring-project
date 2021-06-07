@@ -18,20 +18,24 @@ if(pageName=='상품'){
     let li = document.querySelector(".sidebar-menu li:nth-child(2)");
     sidebarStyle(li)
 }
-if(pageName=='내 동네 설정'){   
+if(pageName=='후기'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(3)");
     sidebarStyle(li)
 }
-if(pageName=='동네생활 글'){   
+if(pageName=='내 동네 설정'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(4)");
     sidebarStyle(li)
 }
-if(pageName=='동네생활 댓글'){   
+if(pageName=='동네생활 글'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(5)");
     sidebarStyle(li)
 }
-if(pageName=='비밀번호'){   
+if(pageName=='동네생활 댓글'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(6)");
+    sidebarStyle(li)
+}
+if(pageName=='비밀번호'){   
+    let li = document.querySelector(".sidebar-menu li:nth-child(7)");
     sidebarStyle(li)
 }
 
@@ -62,3 +66,25 @@ window.onclick = function(event) {
       }
     }
   }
+
+  //후기 이름 색깔
+
+  if(window.location.pathname=="/mypage/review"){
+      
+    let reviewName = document.querySelector(".content-description .kinds-review div:nth-child(1)");
+    reviewName.style.color="#333"
+  }
+  if(window.location.pathname=="/mypage/review-seller"){
+      
+    let reviewName = document.querySelector(".content-description .kinds-review li:nth-child(2) div");
+    reviewName.style.color="#333"
+  }
+  if(window.location.pathname=="/mypage/review-buyer"){
+      
+    let reviewName = document.querySelector(".content-description .kinds-review li:nth-child(3) div");
+    reviewName.style.color="#333"
+  }
+
+
+
+

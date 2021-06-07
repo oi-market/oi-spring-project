@@ -20,9 +20,18 @@ public class HomeController {
 	public String getSignUp()throws Exception{
 		return "member/sign-up";
 	}
+	@GetMapping("member/find-id")
+	public void getFindId()throws Exception{
+	}
+	@GetMapping("member/find-pw")
+	public void getFindPw()throws Exception{
+	}
+	@GetMapping("mypage/profile")
+	public void getProfile()throws Exception{
+	}
+
 	@GetMapping("mypage/purchase-wish")
 	public void getPurchaseWish()throws Exception{
-		
 	}
 	@GetMapping("mypage/purchase-sell")
 	public void getPurchasesell()throws Exception{
@@ -31,8 +40,14 @@ public class HomeController {
 	@GetMapping("mypage/purchase-buy")
 	public void getPurchaseBuy()throws Exception{
 	}
-	@GetMapping("mypage/profile")
-	public void getProfile()throws Exception{
+	@GetMapping("mypage/review")
+	public void getreview()throws Exception{
+	}
+	@GetMapping("mypage/review-seller")
+	public void getreviewSeller()throws Exception{
+	}
+	@GetMapping("mypage/review-buyer")
+	public void getreviewBuyer()throws Exception{
 	}
 	@GetMapping("mypage/village")
 	public void getVillage()throws Exception{

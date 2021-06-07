@@ -366,3 +366,19 @@
 }
 .on-sale .show {display:flex;
 }
+
+
+
+
+
+
+/* review */
+
+.content-description .kinds-review div{
+    padding-bottom: 10px;
+    color:#ccc;
+}
+
+.content-description .kinds-review div:hover{
+    color:black;
+}
