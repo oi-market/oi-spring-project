@@ -40,8 +40,6 @@ function uploadFile(files) {
 		cache:false,
 		processData:false,
 		contentType:false,
-		width:50,
-		height:50,
 		success:function(result){
 			fileName=result.trim();
 			console.log(fileName);
@@ -49,4 +47,12 @@ function uploadFile(files) {
 		} 
 		
 	})
-};		
+};
+
+//image size
+$('#contents').summernote('insertImage', "./summerFileUpload", function ($image) {
+  $image.css('width', $image.width() / 3);
+  $image.attr('data-filename', 'retriever');
+});
+
+

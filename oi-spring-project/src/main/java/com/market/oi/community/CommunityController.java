@@ -97,6 +97,8 @@ public class CommunityController {
 		String message = "등록에 실패했습니다!";
 		String path = "./communityList";
 		
+		System.out.println("insert result :"+result);
+		
 		if(result>0) {
 			message = "등록에 성공했습니다!";
 		}
