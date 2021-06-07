@@ -86,7 +86,7 @@
                         <p>
                             판매상품 n개
                         </p>
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
@@ -94,7 +94,7 @@
                         <p>
                             동네생활
                         </p>
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/mypage/village-list">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
@@ -102,7 +102,7 @@
                         <p>
                             받은 리뷰 n
                         </p>
-                        <a href="#">
+                        <a href="${pageContext.request.contextPath}/mypage/review">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
