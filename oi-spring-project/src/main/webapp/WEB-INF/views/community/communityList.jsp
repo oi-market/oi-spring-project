@@ -73,6 +73,17 @@
     	margin-bottom: 5%;
     }
     
+    /*말줄임 css*/
+    .box {
+	    display: -webkit-box;
+	    height: 180px;/*줄일 높이?*/
+	    word-wrap: break-word;
+	    -webkit-line-clamp: 1;	/*보여주고싶은 줄 수*/
+	    -webkit-box-orient: vertical;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+	}
+    
 	
 </style>
 
@@ -90,7 +101,7 @@
 					</div>
 				</li>
 				
-				<li>
+				<li class="box">
 					<a href="./communitySelect?categoryNum=${vo.categoryNum}&&num=${vo.num}&&communityNum=${vo.num}">
 					${vo.contents}
 					</a>

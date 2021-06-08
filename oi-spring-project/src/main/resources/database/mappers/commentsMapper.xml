@@ -23,12 +23,12 @@
 	
 	<!-- 댓글 setDelete  -->
 	<delete id="setDelete" parameterType="CommentsVO">
-		delete comments where num = #{num}
+		delete from comments where num = #{num}
 	</delete> 
 	
 	<!-- 댓글 setUpdate -->
 	<update id="setUpdate" parameterType="CommentsVO">
-		update comments set writer = #{writer}, contents = #{contents}, location = #{location}, regdate = sysdate 
+		update comments set writer = #{writer}, contents = #{contents}, location = #{location}, regdate = now() 
     	where num = #{num}  
 	</update>
 

@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <style type="text/css">
 
@@ -34,7 +35,7 @@
     	border-radius: 5px 5px 5px 5px;
     	border: 1px solid #e2e2e2;
     	text-align: center;
-    	width: 30%;
+    	width: 20%;
     	height: auto;
     	padding: 0.5%;
     	font-size: 8pt;
@@ -77,10 +78,18 @@
     	margin-left: 5%;
     	margin-bottom: 3%;
     }
+    
+    .input-box{
+    	border: 1px solid black;
+    	width: 95%;
+    	margin-top:2%;
+    	margin-left:2%;
+    }
 
     
 	
 </style>
+
 
 </head>
 <body>
@@ -108,6 +117,7 @@
 			<li>${vo.contents}</li>
 		</ul>
 		
+		<a class="insert-button" href="#">♡</a>
 		<a class="insert-button" href="./communityUpdate?num=${vo.num}">글 수정</a>
 		<a class="insert-button" href="./communityDelete?num=${vo.num}">글 삭제</a>
 	
@@ -117,7 +127,7 @@
 	<!-- 댓글 -->
 	<div class="table-box">
 	
-		<div class="table-box">
+		<div class="input-box">
 			<form id="form" action="../comments/commentsInsert?communityNum=${vo.num}" method="post">
 				<ul>
 					<li>
@@ -126,46 +136,41 @@
 					
 					<li>
 						<input type="text" id="writer" name="writer" placeholder="writer">
-					</li>
-					
-					<li>
 						<input type="text" id="location" name="location" placeholder="location">
+						<input type="submit" value="작성!" />
 					</li>
 	
 					<li>
 						<textarea class="form-control myCheck" cols="30" rows="5" id="contents" name="contents">
-		        		</textarea>	
-					</li>
-		        
-		        	<li>
-		        		 <input type="submit" value="작성!" />
-		        	</li>	        
+		        		</textarea>
+					</li>        
 				</ul>
 			</form>
 		</div>
 	
 		<c:if test="${comments ne null}">
 			<c:forEach items="${list}" var="comments">			
-				<ul>					
-					<li>			
-						<div class="div-size">
-							<div class="div-left">아이콘</div>
-							<div class="div-right">
-								${comments.writer}<br>
-								${comments.location} · ${comments.regDate}
+					<ul>					
+						<li>			
+							<div class="div-size">
+								<div class="div-left">아이콘</div>
+								<div class="div-right">
+									${comments.writer}<br>
+									${comments.location} · ${comments.regDate}
+								</div>
+								<a class="insert-button" href="../comments/commentsUpdate?num=${comments.num}">댓글 수정</a>
+								<a class="insert-button" href="../comments/commentsDelete?num=${comments.num}">댓글 삭제</a>
+								<a class="insert-button" href="#">답글</a>
 							</div>
-							<a class="insert-button" href="./communityUpdate?num=${vo.num}">댓글 수정</a>
-							<a class="insert-button" href="./communityDelete?num=${vo.num}">댓글 삭제</a>
-							<a class="insert-button" href="#">답글</a>
-						</div>
-					</li>
-					
-					<li>${comments.contents}</li>					
-				</ul>
+						</li>
+						
+						<li>${comments.contents}</li>					
+					</ul>
 			</c:forEach>
 		</c:if>
 			
 	</div>
 	
 </body>
+
 </html>

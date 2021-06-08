@@ -67,6 +67,8 @@ public class CommentsController {
 		String message = "삭제 실패";
 		String path = "../community/communityList";
 		
+		System.out.println("comments result : "+result);
+		
 		if(result > 0) {
 			message = "삭제 성공";
 		}
@@ -87,13 +89,13 @@ public class CommentsController {
 		//값 가져오기
 		commentsVO = commentsService.getSelect(commentsVO);
 		
-		mv.addObject("vo", commentsVO);
-		mv.setViewName("community/communitySelect");
+		mv.addObject("comments", commentsVO);
+		mv.setViewName("comments/commentsUpdate");
 		
 		return mv;
 	}
 	
-	@PostMapping("communityUpdate")
+	@PostMapping("commentsUpdate")
 	public ModelAndView setUpdate(CommentsVO commentsVO, ModelAndView mv) throws Exception{
 		
 		int result = commentsService.setUpdate(commentsVO);
@@ -102,13 +104,13 @@ public class CommentsController {
 		//실행 O
 		if(result>0) {
 			System.out.println("수정에 성공했습니다!");
-			mv.setViewName("redirect:./communityList");
+			mv.setViewName("redirect:../community/communityList");
 		}
 		
 		//실행 X
 		else {
 			System.out.println("수정에 실패했습니다!");
-			mv.setViewName("redirect:./communityList");
+			mv.setViewName("redirect:../community/communityList");
 		}
 		
 		return mv;

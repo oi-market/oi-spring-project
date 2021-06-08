@@ -24,7 +24,12 @@ public class CommentsService {
 	}
 	
 	public int setDelete(CommentsVO commentsVO) throws Exception{
-		return commentsMapper.setDelete(commentsVO);
+		
+		int result = commentsMapper.setDelete(commentsVO);
+		
+		System.out.println("comments service result : "+result);
+		
+		return result;
 	}
 	
 	public int setUpdate(CommentsVO commentsVO) throws Exception{
