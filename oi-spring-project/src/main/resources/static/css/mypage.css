@@ -383,10 +383,9 @@
     color:black;
 }
 
-
 /* password */
 
-.password-body{
+.account-body{
     margin-top: 50px;
     justify-content: start;
     align-items:flex-start;
@@ -394,24 +393,24 @@
     margin: 50px 20px 20px 20px;
     padding: 5px 20px 20px 20px;
 }
-.password-body .password__bundle:first-child{
+.account-body .password__bundle:first-child{
 margin-bottom: 60px;
 }
 
-.password-body .password__bundle{
+.account-body  .password__bundle{
     margin-bottom: 30px;
 }
 
-.password-body .red-star{
+.red-star{
     color: tomato;
     display: inline;
 }
 
-.password-body label{
+.account-body  label{
     margin: 0  0 5px 2px;
     font-size: 14px;
 }
-.password-body input{
+.account-body  input{
     width: 300px;
     background-color: rgb(248, 248, 248);
     border: 1px solid #ccc;
@@ -421,13 +420,17 @@ margin-bottom: 60px;
  box-shadow: 0 0 0 2px tomato;
 } 
 
-form  .mybtn{
+.account-body  .mybtn{
     display: block;
-   
+} 
+.mybtn:hover{
+    background: rgba(0,0,0,0.07);
 }
+
 
 .content .content-second-header{
     margin-top: 100px;
+
 }
 
 .content .delete-body{
@@ -435,18 +438,72 @@ form  .mybtn{
     flex-direction: column;
     justify-content:right;
     /* align-items: center; */
+    margin: 0 40px;
+    
 }
 .delete-body label{
-    display: block;
+    display: inline-block;
     color: tomato;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin: 30px 0 10px 0;
+    width: 153px;
 }
 .delete-body .passwordBtn{
     display: block;
-    background-color: #fff;
+    /* background-color: #fff; */
     border:2px solid tomato;
     width: 150px;
     height: 30px;
     color: tomato;
 }
+
+/* modify */
+
+.account__bundle{
+ margin-bottom: 30px;   
+}
+
+#account-image-preview{
+    display: block;
+    width: 100px;
+    height: 100px;
+
+}
+.account-inner-title p{
+    margin-bottom: 10px;
+}
+.account-inner-title + img{
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+#account-image-input ~ label {
+    display: inline-block;
+    padding: .5em .75em;
+    color:#333;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    background-color: #fdfdfd;
+    cursor: pointer;
+    border: 1px solid #ebebeb;
+    border-bottom-color: #e2e2e2;
+    border-radius: .25em;
+}
+#account-image-input ~ label:hover{
+    background-color: rgba(0,0,0,0.07);
+}
+
+
+.account-body .account__bundle input[type="file"] { 
+    
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding: 0; 
+    margin: -1px; 
+    overflow: hidden; 
+    clip:rect(0,0,0,0); 
+    border: 0;
+} 
