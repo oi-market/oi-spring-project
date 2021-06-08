@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 
+
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -101,13 +102,32 @@ public class MemberController {
 
 		return "redirect:../";
 	}
-
+	
+	@GetMapping("idCheck")
+	@ResponseBody
+	   public String memberIdCheck (MemberVO memberVO)throws Exception{
+		System.out.println("idCheck시작전");
+	      memberVO = memberService.idCheck(memberVO);
+	      String result = "";//0 사용 불가 1:사용가능
+	      if(memberVO==null) {
+	         result="null";
+	      }      
+//	      model.addAttribute("result", result);
+	      return result;
+	   }
 
 	@GetMapping("memberLogin")
 	public String memberLogin() throws Exception{
 		System.out.println("GetLogin");
 		return "member/memberLogin";
 	}
+	
+	@GetMapping("loginFail")
+	public String loginFail()throws Exception{
+		System.out.println("Login Fail");
+		return "redirect:/member/memberLogin";
+	}
+	
 
 	@GetMapping("memberLogout")
 	public String Logout(HttpSession session)throws Exception{

@@ -125,7 +125,11 @@ public class MemberService implements UserDetailsService{
 		
 	}
 	
-	
+	public MemberVO idCheck(MemberVO memberVO)throws Exception{
+		
+		return  memberMapper.getUsername(memberVO);
+		
+	}
 //	public MemberVO getLogin(MemberVO memberVO)throws Exception{
 //	return memberMapper.getLogin(memberVO);
 //}

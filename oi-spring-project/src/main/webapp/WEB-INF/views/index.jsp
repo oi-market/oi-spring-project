@@ -11,7 +11,8 @@
 
 <h1>index Page</h1>
 
-<a href="${pageContext.request.contextPath}/member/memberPage">실험용쥐1</a>
+<a href="${pageContext.request.contextPath}/member/memberPage">실험끝난쥐1</a>
+<a href="${pageContext.request.contextPath}/qna/qnaList">실험용쥐1</a>
 
 
 </body>
