@@ -54,7 +54,7 @@
          <c:import url="../template/mypage-nav.jsp"></c:import>  
            
 
-           <div class="content col-5">
+            <div class="content col-5">
                 
                 <div class="content-header">
                     <h1 class="page-name">비밀번호</h1>
@@ -62,7 +62,7 @@
                 
                 
 
-                <div class="password-body">
+                <div class="account-body">
                     
 
                     <form method="post" action="#">
@@ -101,7 +101,7 @@
                     <h1>계정 삭제</h1>
                 </div>
                 
-                <form>
+                <form method="POST" action="#">
                     <div class="password-body delete-body">
                         <label for="deleteID">모든 정보가 삭제됩니다</label>
                         <input id="deleteID" class="mybtn passwordBtn" type="button" value="계정 삭제"></input>
