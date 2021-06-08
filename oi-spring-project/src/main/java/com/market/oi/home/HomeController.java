@@ -61,6 +61,9 @@ public class HomeController {
 	@GetMapping("mypage/password")
 	public void getSetPassword()throws Exception{
 	}
+	@GetMapping("mypage/modify")
+	public void getModify()throws Exception{
+	}
 
 
 	

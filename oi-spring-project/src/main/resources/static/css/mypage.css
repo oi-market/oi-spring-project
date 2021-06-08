@@ -382,3 +382,71 @@
 .content-description .kinds-review div:hover{
     color:black;
 }
+
+
+/* password */
+
+.password-body{
+    margin-top: 50px;
+    justify-content: start;
+    align-items:flex-start;
+    flex-direction: column;
+    margin: 50px 20px 20px 20px;
+    padding: 5px 20px 20px 20px;
+}
+.password-body .password__bundle:first-child{
+margin-bottom: 60px;
+}
+
+.password-body .password__bundle{
+    margin-bottom: 30px;
+}
+
+.password-body .red-star{
+    color: tomato;
+    display: inline;
+}
+
+.password-body label{
+    margin: 0  0 5px 2px;
+    font-size: 14px;
+}
+.password-body input{
+    width: 300px;
+    background-color: rgb(248, 248, 248);
+    border: 1px solid #ccc;
+}
+.password__bundle input:focus{
+ outline: none;
+ box-shadow: 0 0 0 2px tomato;
+} 
+
+form  .mybtn{
+    display: block;
+   
+}
+
+.content .content-second-header{
+    margin-top: 100px;
+}
+
+.content .delete-body{
+    display: flex;
+    flex-direction: column;
+    justify-content:right;
+    /* align-items: center; */
+}
+.delete-body label{
+    display: block;
+    color: tomato;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.delete-body .passwordBtn{
+    display: block;
+    background-color: #fff;
+    border:2px solid tomato;
+    width: 150px;
+    height: 30px;
+    color: tomato;
+}

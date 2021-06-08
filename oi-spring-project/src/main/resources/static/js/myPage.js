@@ -34,8 +34,12 @@ if(pageName=='동네생활 댓글'){
     let li = document.querySelector(".sidebar-menu li:nth-child(6)");
     sidebarStyle(li)
 }
-if(pageName=='비밀번호'){   
+if(pageName=='계정 관리'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(7)");
+    sidebarStyle(li)
+}
+if(pageName=='비밀번호'){   
+    let li = document.querySelector(".sidebar-menu li:nth-child(8)");
     sidebarStyle(li)
 }
 
@@ -50,6 +54,7 @@ if(pageName=='비밀번호'){
 	function dropdownFunction(n) {
 	let togleBtn = document.getElementsByClassName("dropdown-content");
 	    togleBtn[n].classList.toggle('show');
+
 	}
 	function soldoutDropdownFunction(n){
 		let togleBtn = document.getElementsByClassName("soldout-dropdown-content");

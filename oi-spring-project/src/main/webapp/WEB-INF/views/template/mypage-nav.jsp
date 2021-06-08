@@ -23,6 +23,9 @@
                         <a href="${pageContext.request.contextPath}/mypage/village-comment">동네생활 댓글</a>
                     </li>
                     <li>
+                        <a href="${pageContext.request.contextPath}/mypage/modify">계정 관리</a>
+                    </li>
+                    <li>
                         <a href="${pageContext.request.contextPath}/mypage/password">비밀번호</a>
                     </li>
                 </ul>
