@@ -47,18 +47,15 @@
         margin:0;
         padding: 0;
     }
-    .on-sale .product .dropdown{
+    .dropdown{
         position:unset;
     }
 
-    .on-sale .product .dropdown-content{
+    .dropdown-content{
         position:unset;
 
     }
 } 
-
-
-
 
 .mypage .inner{
     max-width:1030px ;
@@ -179,15 +176,16 @@
     background-color: #fff ;
     border : 1px solid #ccc;
     height: 32px;
-    padding : 5px;
+    padding : 8px;
     border-radius:4px;
-    display:flex;
-    align-items:center;
+    display:inline-block;
+    text-align: center;
     font-size:15px;
     font-weight:500;
     cursor: pointer;
     box-sizing:border-box;
     position: relative;
+    
 }
 
 .mybtn--secondary:hover::before{
@@ -341,7 +339,7 @@
     padding: 5px 0 0 0;
     /* flex-direction: column; */
 }
-.on-sale .dropdown{
+.dropdown{
     position: relative;
     display: inline-block;
     background: none;
@@ -349,7 +347,7 @@
     cursor: pointer;
     height: 10px;
 }
-.on-sale .dropdown-content{
+.dropdown ~ .dropdown-content{
     display: none; 
     position: absolute;
     flex-direction: column;
@@ -364,10 +362,8 @@
     margin-bottom: 10px;
     font-size: 14px;
 }
-.on-sale .show {display:flex;
+.dropdown ~ .show {display:flex;
 }
-
-
 
 
 
@@ -437,7 +433,6 @@ margin-bottom: 60px;
     display: flex;
     flex-direction: column;
     justify-content:right;
-    /* align-items: center; */
     margin: 0 40px;
     
 }
@@ -450,7 +445,6 @@ margin-bottom: 60px;
 }
 .delete-body .passwordBtn{
     display: block;
-    /* background-color: #fff; */
     border:2px solid tomato;
     width: 150px;
     height: 30px;
@@ -509,8 +503,6 @@ margin-bottom: 60px;
 } 
 
 
-
-
 /* village */
 
 .village-body{
@@ -547,4 +539,9 @@ margin-bottom: 60px;
 }
 .post-bundle .post--small-service div:first-child{
     margin-right: 10px;
+}
+
+.comment-bundle{
+    display: flex;
+    align-items: center;
 }
