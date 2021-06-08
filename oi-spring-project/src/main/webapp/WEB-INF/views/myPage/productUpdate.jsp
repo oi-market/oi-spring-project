@@ -15,9 +15,9 @@
 		<form id="form" action="./productUpdate" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="num" value="${param.num}">
                 <div class="row gx-4 gx-lg-5 align-items-center">
-                    <div class="col-md-6">
+                   		<div class="form-group">
                         	Title: <input type="text" id="title" name="title" value="${vo.title}">
-                        <div class="fs-5 mb-5">
+                        <div class="form-group">
                         	Contents: <input type="text" id="contents" name="contents" value="${vo.contents}">
                         	Price: <input type="text" id="price" name="price" value="${vo.price}">
                         </div>

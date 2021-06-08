@@ -6,7 +6,11 @@
 <mapper namespace="com.market.oi.myPage.MyPageMapper">
 
 	<select id="getList" parameterType="ProductVO" resultType="ProductVO">
-		select * from product <!-- 추후에 sale이 0인것 만 보여주기로 수정 -->
+		select * from product where sale = 0
+	</select>
+	
+	<select id="getSellList" parameterType="ProductVO" resultType="ProductVO">
+		select * from product where sale = 1
 	</select>
 	
 	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
@@ -17,7 +21,7 @@
 		update product set title=#{title}, price=#{price}, contents=#{contents} where num = #{num}
 	</update>
 	
-	<update id="saleUpdate" parameterType="ProductVO">
+	<update id="sellUpdate" parameterType="ProductVO">
 		update product set sale=1 where num=#{num}
 	</update>
 	
@@ -26,7 +30,9 @@
 	</delete>
 	
 	<select id="getBuyList" parameterType="ProductVO" resultType="ProductVO">
-		select P.*, O.* from product P inner join ordercomplete O on P.username = O.buyer;
+	    <!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
+		SELECT P.* from product P left join ordercomplete O ON P.num = O.productNum 
+		WHERE buyer = (SELECT buyer FROM ordercomplete WHERE buyer='id2')
 	</select>
 		
 </mapper>

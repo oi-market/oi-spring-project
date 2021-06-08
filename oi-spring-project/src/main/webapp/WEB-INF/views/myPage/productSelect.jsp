@@ -20,7 +20,10 @@
                         <h1 class="display-5 fw-bolder">${vo.title}</h1>
                         <div class="fs-5 mb-5">
                         <p>${vo.contents}</p>
-                            <span>price: ${vo.price}</span>
+                        <span>price: ${vo.price}</span>
+                        <br>
+                        <br>
+                        <span>관심 ${vo.like}</span> <span>조회 ${vo.hit}</span>
                         </div>
                         <div class="d-flex">
                         	<!-- 로그인한 username과 동일해야 수정 삭제 가능하도록 -->
@@ -32,7 +35,7 @@
                     </div>
                 </div>
             </div>       
-        
+            
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

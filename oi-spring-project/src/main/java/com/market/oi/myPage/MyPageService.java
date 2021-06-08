@@ -15,6 +15,10 @@ public class MyPageService {
 		return myPageMapper.getList(productVO);
 	}
 	
+	public List<ProductVO> getSellList(ProductVO productVO) throws Exception {
+		return myPageMapper.getSellList(productVO);
+	}
+	
 	public ProductVO getSelect(ProductVO productVO) throws Exception {
 		return myPageMapper.getSelect(productVO);
 	}
@@ -23,8 +27,8 @@ public class MyPageService {
 		return myPageMapper.setUpdate(productVO);
 	}
 	
-	public int saleUpdate(ProductVO productVO) throws Exception {
-		return myPageMapper.saleUpdate(productVO);
+	public int sellUpdate(ProductVO productVO) throws Exception {
+		return myPageMapper.sellUpdate(productVO);
 	}
 	
 	public int setDelete(ProductVO productVO) throws Exception {

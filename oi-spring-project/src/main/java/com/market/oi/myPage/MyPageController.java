@@ -29,6 +29,10 @@ public class MyPageController {
 		List<ProductVO> list = myPageService.getBuyList(productVO);
 		mv.addObject("order", list);
 		mv.addObject("vo", productVO);
+		//판매 완료 list
+		List<ProductVO> sale = myPageService.getSellList(productVO);
+		mv.addObject("sale", sale);
+		mv.addObject("vo", productVO);
 		
 		return mv;
 	}
@@ -81,7 +85,7 @@ public class MyPageController {
 	//product 테이블의 sale 부분 1(판매완료)로 변경
 	@GetMapping("myPage/saleUpdate")
 	public String saleUpdate(ProductVO productVO) throws Exception {
-		int result = myPageService.saleUpdate(productVO);		
+		int result = myPageService.sellUpdate(productVO);		
 		System.out.println("업데이트");	
 		
 		return "redirect:./myPage";

@@ -9,11 +9,13 @@ public interface MyPageMapper {
 
 	public List<ProductVO> getList(ProductVO productVO);
 	
+	public List<ProductVO> getSellList(ProductVO productVO);
+	
 	public ProductVO getSelect(ProductVO productVO) throws Exception;
 	
 	public int setUpdate(ProductVO productVO) throws Exception;
 	
-	public int saleUpdate(ProductVO productVO) throws Exception;
+	public int sellUpdate(ProductVO productVO) throws Exception;
 	
 	public int setDelete(ProductVO productVO) throws Exception;
 	
