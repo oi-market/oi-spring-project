@@ -65,22 +65,25 @@ public class QnaController {
 		return "redirect:./qnaList";
 	}
 
-	@GetMapping("boardUpdate")
-	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
+	@GetMapping
+	public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		System.out.println("업데이트 전");
 		boardVO = qnaService.getSelect(boardVO);
-		model.addAttribute("vo", boardVO);
-		model.addAttribute("action", "update");
-		return "board/form";
+		mv.addObject("vo", boardVO);
+		mv.addObject("board", "qna");
+		mv.setViewName("board/qnaUpdate");
 		
+		return mv;
 	}
 	
-	@PostMapping("boardUpdate")
-	public String setUpdate(BoardVO boardVO)throws Exception{
+//	@PostMapping("boardUpdate")
+//	public String setUpdate(BoardVO boardVO)throws Exception{
 		
-		int result = qnaService.setUpdate(boardVO);
+//		int result = qnaService.setUpdate(boardVO);
 		
-		return "redirect:./boardList";
-	}
+//		return "redirect:./boardList";
+//	}
 	
 	@GetMapping("boardDelete")
 	public String setDelete(BoardVO boardVO)throws Exception{

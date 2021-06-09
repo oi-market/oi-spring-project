@@ -19,7 +19,7 @@
 
 
 	
-	<a href="@{./update(num=${vo.num})}" class="btn btn-success">Update</a>
+	<a href="./${board}Update?num=${vo.num}" class="btn btn-primary">Update</a>
 	<a href="@{./delete(num=${vo.num})}" class="btn btn-danger">Delete</a>
 </div>
 </body>
