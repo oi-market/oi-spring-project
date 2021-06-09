@@ -125,7 +125,7 @@ public class MemberController {
 	@GetMapping("loginFail")
 	public String loginFail()throws Exception{
 		System.out.println("Login Fail");
-		return "redirect:/member/memberLogin";
+		return "member/memberLoginResult";
 	}
 	
 

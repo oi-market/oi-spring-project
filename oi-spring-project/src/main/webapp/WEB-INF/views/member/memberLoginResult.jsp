@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1> 로그인 됫냐!?</h1>
-
+<script type="text/javascript">
+	alert('로그인에 실패하셨습니다.');
+	
+	
+	location.href="./memberLogin"
+	
+</script>
 </body>
 </html>
