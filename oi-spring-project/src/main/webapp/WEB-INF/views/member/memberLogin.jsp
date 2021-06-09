@@ -5,7 +5,7 @@
 <html >
 <head>
   <title>Bootstrap Example</title>
-  <c:import url="../template/header.jsp"></c:import>
+  <c:import url="../template/hm_import.jsp"></c:import>
   
   <style type="text/css">
 #div_footer {

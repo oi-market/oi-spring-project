@@ -6,7 +6,7 @@
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
-<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/hm_import.jsp"></c:import>
 </head>
 <body>
 

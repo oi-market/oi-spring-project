@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/hm_import.jsp"></c:import>
 </head>
 <body>
 <div class="container">

@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<c:import url="../template/header.jsp"></c:import>
+<c:import url="../template/hm_import.jsp"></c:import>
 <style type="text/css">
 #div_main {
 	position: absolute;
