@@ -27,11 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// Security를 무시(제외)
 		web.ignoring()
 		   .antMatchers("/resources/**")	
-		   .antMatchers("/images/**")
+		   .antMatchers("/img/**")
 		   .antMatchers("/css/**")
 		   .antMatchers("/js/**")
 		   .antMatchers("/vendor/**")
 		   .antMatchers("/favicon/**")
+		   .antMatchers("/node/**")
 		   ;
 	}
 	

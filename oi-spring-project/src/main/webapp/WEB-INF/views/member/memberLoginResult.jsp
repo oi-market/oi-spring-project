@@ -11,7 +11,7 @@
 	alert('로그인에 실패하셨습니다.');
 	
 	
-	location.href="./memberLogin"
+	location.href="./sign-in"
 	
 </script>
 </body>

@@ -70,7 +70,6 @@
          <div class="inner">
 
                 <div class="summaryImg">
-                    
                 </div>
              
                  <div class="summary">
@@ -248,9 +247,6 @@
 			
 			
             </div>
-
-<a href="${pageContext.request.contextPath}/member/memberPage">실험끝난쥐1</a>
-<a href="${pageContext.request.contextPath}/qna/qnaList">실험용쥐1</a>
 
 
      <script src="./js/main.js"></script>

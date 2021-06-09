@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
       <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+      <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>회원가입| 오이마켓</title>
 
@@ -71,40 +74,77 @@
                     <button class="btn btn-secondary">일단 넣어놈</button>
                     <button class="btn btn-dark">삭제 가능</button>
                 </div>
+                
+                
+                
+                
+				
 
               
 
-                <form action="#" method="POST" class="sign-up-frm row">
+                <form:form modelAttribute="memberVO" id="joinForm"
+				action="./memberJoin" method="post">
 
-
-                    <div class="inputs">
-                        <div>아이디</div>
-                        <input name="username" placeholder="아이디" class="col-12 input--text">
-                        <div>비밀번호(제약사항 여기 적어주세요)</div>
-                        <input name="username" placeholder="비밀번호" class="col-12 input--text">
+                    <div class="inputs" style="text-align: left;">
+                        <div>아이디(6글자 이상 12글자 이하입니다)</div>
+                        <form:input id="username" path="username" placeholder="아이디" class="col-12 input--text" aria-describedby="idHelp"/>
+                        <button type="button" class="idCheck" onclick="idCheck()"
+						style="border: 1px solid black;">중복확인</button>
+                        <div>비밀번호(8글자 이상 16글자 이하입니다)</div>
+                        <form:password  path="password" placeholder="비밀번호" class="col-12 input--text"/>
+                        <h4 id="pwResult"></h4>
+                        
                         <div>비밀번호 확인</div>
-                        <input name="username" placeholder="비밀번호 확인" class="col-12 input--text">
+						<form:errors id="password" path="password" class="form-control is-invalid"></form:errors>
+                        <form:password  placeholder="비밀번호 확인" class="col-12 input--text" id="password1" path="password1"/>
+                        <h6 id="pwResult2"></h6>
                         
                         <div>이름</div>
-                        <input name="username" placeholder="이름" class="col-12 input--text">
-                        
+                        <form:input  id="name" path="name" placeholder="이름" class="col-12 input--text"/>
+						<form:errors path="name" cssClass="c1"></form:errors>
+				
                         <div>별명</div>
-                        <input name="username" placeholder="별명" class="col-12 input--text">
+                        <form:input id="nickName" path="nickName" placeholder="별명" class="col-12 input--text"/>
+                        <form:errors path="nickName"></form:errors>
                         
                         <div>전화번호</div>
-                        <input name="username" placeholder="전화번호" class="col-12 input--text">
-                        
+                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text"/>
+                		<form:errors path="phone"></form:errors>     
+                		
+                		
                         <div>이메일</div>
-                        <input name="username" placeholder="이메일" class="col-12 input--text">
+                        <form:input id="email" path="email" placeholder="이메일" class="col-12 input--text"/>
+                        <button id="CheckMail" type="button" class="sendMail"
+						onclick="sendMail()" style="border: 1px solid black;">인증번호받기</button>
+						<form:errors path="email"></form:errors>
+						<p>
+						<div>인증번호</div>
+						<form:input id="emailNum"  path="emailNum"  placeholder="인증번호" class="col-12 input--text"/>
+						<button type="button" class="emailCheck" onclick="emailCheck()"
+						style="border: 1px solid black;">인증확인</button>
+						<form:errors path="emailNum"></form:errors>
                         
                         <div>위치</div>
-                        <input name="username" placeholder="위치" class="col-12 input--text">
+                        <input id="member_post" type="text" placeholder="우편번호" readonly class="col-12 input--text">
+                        <button type="button" class="btn btn-default" onclick="findAddr()"
+							style="border: 1px solid black;">
+							<i class="fa fa-search"></i> 주소 찾기
+						</button>
+						
+						
+						<input class="form-control" id="member_addr" name="location"
+						type="text" placeholder="주소" readonly> <br>
+						<form:errors path="location"></form:errors>
+						
+                
+                        
+                        
                     </div>
                     
                     <div class="agrees">
                         <label class="checkbox-inline">
-                            <input type="checkbox"  value="option1">
-                            <a href="#">이용약관</a> 및 <a href="#">개인정보 처리 방침</a>에 동의
+                            <input type="checkbox"  value="option1" id="mainCheck">
+                            <a href="#List1" data-toggle="modal">이용약관</a> 및 <a href="#List2" data-toggle="modal">개인정보 처리 방침</a>에 동의
                         </label>
                     </div>
                     
@@ -112,12 +152,12 @@
                     
                     <div class="buttons d-grid">
                                                     <!-- 비활성화 된 버튼 -->
-                        <input type="button" class="btn mybtn mybtn--primary disabled" value="계정 만들기">
+                        <input type="button" class="btn mybtn mybtn--primary " id="join_btn" value="계정 만들기">
                                                     <!--  활성화 된 버튼  -->
                         <!-- <input type="button" class="mybtn mybtn--primary" value="계정 만들기"> -->
                     </div>
                 
-                </form>
+                </form:form>
 
                 <div class="anotherLogin">
                     <p>이미 회원이신가요? <a href="${pageContext.request.contextPath}/member/sign-in">로그인하기</a></p>
@@ -132,5 +172,70 @@
 
      </div>
 
+  <!-- 이용약관 modal -->
+  <div class="modal fade" id="List1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title" >이용약관</h6>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="List2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h6 class="modal-title">개인정보 처리 방침</h6>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" style="overflow-x:hidden; width:490px; height:150px;">
+          Modal body..
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+        
+     
+     
+     
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="../js/member.js"></script>
+		
+		
+		
+		
+		
 </body>
 </html>

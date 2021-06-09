@@ -83,7 +83,7 @@ public class MemberController {
 
 	@GetMapping("memberJoin")
 	public String memberJoin(@ModelAttribute MemberVO memberVO)throws Exception{
-		return "member/memberJoin";
+		return "member/sign-up";
 	}
 
 	@PostMapping("memberJoin")
@@ -95,7 +95,7 @@ public class MemberController {
 
 		if(memberService.memberError(memberVO, errors)) {
 
-			return "member/memberJoin";
+			return "member/sign-up";
 		}
 
 		int result = memberService.memberJoin(memberVO, avatar);
