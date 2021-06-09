@@ -13,7 +13,6 @@ public class CommentsVO {
 	private String contents;
 	private String location;
 	private Date regDate;
-	private Long like;
 	private Long ref;
 	private Long step;
 	private Long depth;

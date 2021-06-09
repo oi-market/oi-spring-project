@@ -35,5 +35,22 @@ public class CommentsService {
 	public int setUpdate(CommentsVO commentsVO) throws Exception{
 		return commentsMapper.setUpdate(commentsVO);
 	}
+	
+	public int setReply(CommentsVO commentsVO) throws Exception{
+		//부모글의 ref, step depth 조회
+		CommentsVO parent = commentsMapper.getSelect(commentsVO);
+		System.out.println("service ref : "+parent.getRef());
+		System.out.println("service step : "+parent.getStep());
+		System.out.println("service depth : "+parent.getDepth());
+		
+		commentsVO.setRef(parent.getRef());
+		commentsVO.setStep(parent.getStep()+1);
+		commentsVO.setDepth(parent.getDepth()+1);
+		
+		int result = commentsMapper.setReplyUpdate(parent);
+		result = commentsMapper.setReply(commentsVO);
+		
+		return result;
+	}
 
 }

@@ -31,5 +31,20 @@
 		update comments set writer = #{writer}, contents = #{contents}, location = #{location}, regdate = now() 
     	where num = #{num}  
 	</update>
+	
+	
+	
+	<!-- reply -->
+	<!-- 댓글 setReply -->
+	<insert id="setReply" parameterType="CommentsVO">
+		insert into comments(communityNum, writer, contents, location, ref, step, depth, regDate) 
+		values(#{communityNum}, #{writer}, #{contents}, #{location}, #{ref}, #{step}, #{depth}, now())
+	</insert>
+	
+	
+	<!-- 댓글 setReplyUpdate -->
+	<update id="setReplyUpdate" parameterType="CommentsVO">
+		update comments set step=step+1 where ref=#{ref} and step>#{step}
+	</update>
 
 </mapper>

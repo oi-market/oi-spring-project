@@ -21,5 +21,13 @@ public interface CommentsMapper{
 	
 	// 댓글 Update
 	public int setUpdate(CommentsVO commentsVO) throws Exception;
+	
+	
+	// 댓글 Reply
+	//insert
+	public int setReply(CommentsVO commentsVO) throws Exception;
+	
+	//update
+	public int setReplyUpdate(CommentsVO commentsVO) throws Exception;
 
 }

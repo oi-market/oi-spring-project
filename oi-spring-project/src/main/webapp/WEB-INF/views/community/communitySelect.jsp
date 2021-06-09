@@ -160,7 +160,7 @@
 								</div>
 								<a class="insert-button" href="../comments/commentsUpdate?num=${comments.num}">댓글 수정</a>
 								<a class="insert-button" href="../comments/commentsDelete?num=${comments.num}">댓글 삭제</a>
-								<a class="insert-button" href="#">답글</a>
+								<a class="insert-button" href="../comments/commentsReply?communityNum=${vo.num}">답글</a>
 							</div>
 						</li>
 						

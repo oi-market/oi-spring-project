@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 @Controller
 @RequestMapping("/comments/**")
 public class CommentsController {
@@ -114,6 +115,36 @@ public class CommentsController {
 		}
 		
 		return mv;
+	}
+	
+	
+	
+	//댓글 reply
+	@GetMapping("commentsReply")
+	public ModelAndView setReply() throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		CommentsVO commentsVO = new CommentsVO();
+							
+		mv.setViewName("comments/commentsReply");
+		
+		return mv;
+		
+	}
+	
+	@PostMapping("commentsReply")
+	public ModelAndView setReply(CommentsVO commentsVO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		
+		int result = commentsService.setReply(commentsVO);
+		
+		System.out.println("reply result: "+result);
+		
+		mv.setViewName("../community/communityList");
+		
+		return mv;
+		
 	}
 
 }
