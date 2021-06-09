@@ -312,6 +312,20 @@
     font-size: 14px;
 }
 
+.kinds-deal.kinds-purchase{
+   
+    height: 100px;
+    justify-content: flex-end;
+}
+.kinds-deal.kinds-purchase ul{
+   height: 40px;
+}
+.kinds-deal.kinds-purchase a{
+    color:#ccc;
+}
+.kinds-deal.kinds-purchase div:hover{
+    color:black;
+}
 
 .on-sale{
     display:flex;
@@ -365,7 +379,9 @@
 .dropdown ~ .show {display:flex;
 }
 
-
+.purchase-wish.village-body{
+	margin-top:0;
+}
 
 
 /* review */
@@ -506,7 +522,6 @@ margin-bottom: 60px;
 /* village */
 
 .village-body{
-    margin-top: 50px;
     justify-content: start;
     align-items:flex-start;
     flex-direction: column;
@@ -527,8 +542,13 @@ margin-bottom: 60px;
 .post-bundle *{
     margin-top:6px
 }
+.post--content img{
+	width:100px;
+	height:100px;
+	object-fit:cover;
+}
 
-.village-body .post-bundle .post--category{
+.post-bundle .post--category{
     background-color: rgb(196, 240, 187);
     display: inline-flex;
 }

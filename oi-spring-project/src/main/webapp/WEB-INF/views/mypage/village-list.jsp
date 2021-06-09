@@ -66,13 +66,18 @@
                          <div class="post--category">
                              같이해요
                          </div>
-                         <p class="post--content">
+                         <div class="post--content">
+                             <p>
                              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
                              deleniti nostrum doloremque tenetur excepturi,
                              repellendus distinctio inventore,
                              repellat corporis suscipit veritatis modi optio?
                              Fuga consectetur officiis numquam nesciunt dolorum? Minima.
-                         </p>
+                        	</p>
+                        	<%-- <c:if test="${커뮤니티.이미지}"> --%>
+                        	<!-- <img alt="" src=""> -->
+                        	<%-- </c:if> --%>
+                         </div>
                          <div class="post--small-service">
                              <div class="like">댓글 3개</div>
                              <div class="comment">좋아요 n개</div>

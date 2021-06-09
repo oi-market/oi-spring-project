@@ -61,12 +61,12 @@
                     <h1 class="page-name">상품</h1>
                 </div>
                 
-                <div class="content-description">
+                 <div class="content-description">
                     <nav class="kinds-deal">                    
                         <ul>
                             <li class="sell">
                                <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
-                                   <i class="bi bi-file-earmark-medical-fill"></i>
+                                    <i class="bi bi-file-earmark-medical-fill"></i>
                                     <div>판매내역</div>
                                 </a>
                             </li>
@@ -109,7 +109,7 @@
                         </nav>
     
                     </div>
-                     <div class="on-sale">
+                   <div class="on-sale">
 
                          <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
 						<c:forEach var="i" begin="0" end="1">
@@ -139,41 +139,6 @@
                         
                   
                     </div>
-
-
-                    <!-- <div class="title-underline">
-                        <p>
-                            거래완료
-                        </p>
-                    </div> -->
-                    <!-- 반복문으로 최대 3개만 불러오기 -->
-                    <!-- <div class="on-sale sold-out">
-                        <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
-                     -->
-
-
-
 
                 </div>
                 

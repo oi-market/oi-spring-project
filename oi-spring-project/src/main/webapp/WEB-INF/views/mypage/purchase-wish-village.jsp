@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,7 +47,8 @@
 
 
        <!-- HEADER -->
-       <c:import url="../template/header.jsp"></c:import>  
+      
+ <c:import url="../template/header.jsp"></c:import>  
 
     
      <section class="section mypage">
@@ -65,21 +66,22 @@
                     <nav class="kinds-deal">                    
                         <ul>
                             <li class="sell">
-                               <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
-                                   <i class="bi bi-file-earmark-medical-fill"></i>
+                                 <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
+                                    <i class="bi bi-file-earmark-medical">
+                                    </i>
                                     <div>판매내역</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/mypage/purchase-buy">
+                          <a href="${pageContext.request.contextPath}/mypage/purchase-buy">
                                     <i class="bi bi-cart-check"></i>
                         
                                     <div>구매내역</div>
                                 </a>
                             </li>
                             <li>
-                              <a href="${pageContext.request.contextPath}/mypage/purchase-wish">
-                                    <i class="bi bi-suit-heart"></i>
+                                <a href="${pageContext.request.contextPath}/mypage/purchase-wish">
+                                    <i class="bi bi-suit-heart-fill"></i>
                                     <div>관심목록</div>
                                 </a>
                             </li>
@@ -93,96 +95,84 @@
                         <nav class="kinds-deal kinds-purchase">                    
                             <ul>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
+                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish">
                                        
-                                        <div>판매중</div>
+                                        <div>중고거래</div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/mypage/purchase-sell-soldout">
+                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish-village">
                                         
                             
-                                        <div>판매완료</div>
+                                        <div>동네생활</div>
                                     </a>
                                 </li>
                             </ul>
                         </nav>
     
                     </div>
-                     <div class="on-sale">
 
-                         <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
-						<c:forEach var="i" begin="0" end="1">
-                        <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-<%--                   db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
-                                <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
-                        </div>
-                        </c:forEach>
-                        
-                        
-                  
-                    </div>
+                   
+                    
+                    
 
-
-                    <!-- <div class="title-underline">
-                        <p>
-                            거래완료
-                        </p>
-                    </div> -->
-                    <!-- 반복문으로 최대 3개만 불러오기 -->
-                    <!-- <div class="on-sale sold-out">
-                        <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
-                        </div>
-        
-                    </div>
-                     -->
-
-
-
-
+                    
+                   
+                    
                 </div>
                 
+                
+                
+                   <div class="village-body purchase-wish">
+                    
+                     <a href="#" class="post-bundle">
+                         <div class="post--category">
+                             같이해요
+                         </div>
+                         <div class="post--content">
+                             <p>
+                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                             deleniti nostrum doloremque tenetur excepturi,
+                             repellendus distinctio inventore,
+                             repellat corporis suscipit veritatis modi optio?
+                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                        	</p>
+                        	<%-- <c:if test="${커뮤니티.이미지}">
+                        	<!-- <img alt="" src=""> -->
+                        	</c:if> --%>
+                         </div>
+                         <div class="post--small-service">
+                             <div class="like">댓글 3개</div>
+                             <div class="comment">좋아요 n개</div>
+                         </div>
+                     </a>
+                     
+                     <a href="#" class="post-bundle">
+                         <div class="post--category">
+                             같이해요
+                         </div>
+                         <p class="post--content">
+                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                             deleniti nostrum doloremque tenetur excepturi,
+                             repellendus distinctio inventore,
+                             repellat corporis suscipit veritatis modi optio?
+                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                         </p>
+                         <div class="post--small-service">
+                             <div class="like">댓글 3개</div>
+                             <div class="comment">좋아요 n개</div>
+                         </div>
+                     </a>
+     
+                
+     
+               
+                 </div> 
                 
             </div>
             
          </div>
      </section>
-
 
 
      

@@ -97,4 +97,13 @@ if(pageName=='비밀번호'){
 
 
 
+  //purchas-sell,wish 이름 색깔
+  if(window.location.pathname=="/mypage/purchase-sell"||window.location.pathname=="/mypage/purchase-wish"){
+    let purchaseName = document.querySelector(".kinds-deal.kinds-purchase li:nth-child(1) div");
+    purchaseName.style.color="#333"
+  }
+  if(window.location.pathname=="/mypage/purchase-sell-soldout"||window.location.pathname=="/mypage/purchase-wish-village"){
+    let purchaseName = document.querySelector(".kinds-deal.kinds-purchase li:nth-child(2) div");
+    purchaseName.style.color="#333"
+  }
 

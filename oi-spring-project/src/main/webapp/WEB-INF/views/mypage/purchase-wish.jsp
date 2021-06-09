@@ -92,10 +92,26 @@
 
                 <div class="content-body">
                     <div class="title-underline">
-                        <p>
-                            중고거래
-                        </p>
+                        <nav class="kinds-deal kinds-purchase">                    
+                            <ul>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish">
+                                       
+                                        <div>중고거래</div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish-village">
+                                        
+                            
+                                        <div>동네생활</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+    
                     </div>
+
                     <div class="on-sale">
 
                          <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
@@ -126,41 +142,65 @@
                         
                   
                     </div>
-                    <div class="title-underline">
+                    
+                    
+              <!--       <div class="title-underline">
                         <p>
                             동네생활
                         </p>
-                    </div>
+                    </div> -->
                     
-                    <div class="on-sale">
-                       <!-- <div class="product">
-                            <div>
-                                사진
-                            </div>
-                            <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
-                            </div>
-                            <div>
-                                <button type="button" class="dropdown" onclick="dropdownFunction()">
-                                    <i class="bi bi-three-dots"></i>
-                                </butto n>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- 커뮤니티 만들고 해보자 -->
-
-
-        
-                    </div>
+                   
                     
                 </div>
                 
+                
+                
+                 <%--  <div class="village-body purchase-wish">
+                    
+                     <a href="#" class="post-bundle">
+                         <div class="post--category">
+                             같이해요
+                         </div>
+                         <div class="post--content">
+                             <p>
+                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                             deleniti nostrum doloremque tenetur excepturi,
+                             repellendus distinctio inventore,
+                             repellat corporis suscipit veritatis modi optio?
+                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                        	</p>
+                        	<c:if test="${커뮤니티.이미지}">
+                        	<!-- <img alt="" src=""> -->
+                        	</c:if>
+                         </div>
+                         <div class="post--small-service">
+                             <div class="like">댓글 3개</div>
+                             <div class="comment">좋아요 n개</div>
+                         </div>
+                     </a>
+                     
+                     <a href="#" class="post-bundle">
+                         <div class="post--category">
+                             같이해요
+                         </div>
+                         <p class="post--content">
+                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
+                             deleniti nostrum doloremque tenetur excepturi,
+                             repellendus distinctio inventore,
+                             repellat corporis suscipit veritatis modi optio?
+                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                         </p>
+                         <div class="post--small-service">
+                             <div class="like">댓글 3개</div>
+                             <div class="comment">좋아요 n개</div>
+                         </div>
+                     </a>
+     
+                
+     
+               
+                 </div> --%>
                 
             </div>
             
