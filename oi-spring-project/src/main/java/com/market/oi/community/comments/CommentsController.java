@@ -141,7 +141,7 @@ public class CommentsController {
 		
 		System.out.println("reply result: "+result);
 		
-		mv.setViewName("../community/communityList");
+		mv.setViewName("redirect:../community/communityList");
 		
 		return mv;
 		

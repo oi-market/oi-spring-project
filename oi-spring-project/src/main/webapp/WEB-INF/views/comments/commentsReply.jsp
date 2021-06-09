@@ -10,10 +10,10 @@
 
 	<h1>Comments Reply</h1>
 	
-	<form id="form" action="./commentsReply?communityNum=${param.communityNum}" method="post">
+	<form id="form" action="./commentsReply" method="post">
 	
 			<div>
-
+				<input type="hidden" id="num" name="num" value="${param.num}" />
 		        <input type="hidden" id="communityNum" name="communityNum" value="${param.communityNum}" />
 		        
 		        <input type="text" id="writer" name="writer" 

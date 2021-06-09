@@ -37,6 +37,9 @@ public class CommentsService {
 	}
 	
 	public int setReply(CommentsVO commentsVO) throws Exception{
+		
+		System.out.println("getnum : "+commentsVO.getNum());
+		
 		//부모글의 ref, step depth 조회
 		CommentsVO parent = commentsMapper.getSelect(commentsVO);
 		System.out.println("service ref : "+parent.getRef());

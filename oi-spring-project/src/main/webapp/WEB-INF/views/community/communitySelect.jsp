@@ -13,7 +13,7 @@
 
 	.table-box {
 		border: 1px solid black;
-		width: 30%;
+		width: 50%;
 		height: auto;
 		margin-left: 30%;
 		margin-bottom: 2%;
@@ -48,7 +48,7 @@
     
     .div-size{
     	border-bottom: 1px solid black;
-    	width: 100%;
+    	width: 80%;
     	height: 30%;
     	font-size: 10pt;
     	color: gray;
@@ -67,7 +67,7 @@
     }
     
     .div-right{
-    	width: 50%;
+    	width: 30%;
     	float: left;
     }
     
@@ -84,6 +84,10 @@
     	width: 95%;
     	margin-top:2%;
     	margin-left:2%;
+    }
+    
+    .comments-size {
+    	width: 70%;
     }
 
     
@@ -149,9 +153,16 @@
 		</div>
 	
 		<c:if test="${comments ne null}">
-			<c:forEach items="${list}" var="comments">			
-					<ul>					
-						<li>			
+			<c:forEach items="${list}" var="comments">
+					<ul class="comments-size">
+							
+						<c:catch>
+							<c:forEach begin="1" end="${comments.depth}">
+								&ensp;→
+							</c:forEach>
+						</c:catch>	
+							
+						<li>
 							<div class="div-size">
 								<div class="div-left">아이콘</div>
 								<div class="div-right">
@@ -160,10 +171,10 @@
 								</div>
 								<a class="insert-button" href="../comments/commentsUpdate?num=${comments.num}">댓글 수정</a>
 								<a class="insert-button" href="../comments/commentsDelete?num=${comments.num}">댓글 삭제</a>
-								<a class="insert-button" href="../comments/commentsReply?communityNum=${vo.num}">답글</a>
+								<a class="insert-button" href="../comments/commentsReply?communityNum=${vo.num}&num=${comments.num}">답글</a>
 							</div>
 						</li>
-						
+						<br><br><br>
 						<li>${comments.contents}</li>					
 					</ul>
 			</c:forEach>

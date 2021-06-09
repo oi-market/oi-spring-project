@@ -7,7 +7,8 @@
 
 	<!-- 댓글 getList -->
 	<select id="getList" parameterType="CommentsVO" resultType="CommentsVO">
-		select * from comments where communityNum = #{communityNum}
+		select * from comments 
+		where communityNum = #{communityNum}
 	</select>
 	
 	<!-- 댓글 getSelect -->
@@ -17,8 +18,8 @@
 	
 	<!-- 댓글 setInsert -->
 	<insert id="setInsert" parameterType="CommentsVO" useGeneratedKeys="true" keyProperty="num">
-		insert into comments(communityNum, writer, contents, location, ref, regDate)
-		values(#{communityNum}, #{writer}, #{contents}, #{location}, #{num}, now())
+		insert into comments(num, communityNum, writer, contents, location, ref, regDate)
+		values(#{num}, #{communityNum}, #{writer}, #{contents}, #{location}, #{num}, now())
 	</insert>
 	
 	<!-- 댓글 setDelete  -->
