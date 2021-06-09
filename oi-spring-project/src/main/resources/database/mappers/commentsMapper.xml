@@ -9,6 +9,7 @@
 	<select id="getList" parameterType="CommentsVO" resultType="CommentsVO">
 		select * from comments 
 		where communityNum = #{communityNum}
+		order by step desc
 	</select>
 	
 	<!-- 댓글 getSelect -->
