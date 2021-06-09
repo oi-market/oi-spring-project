@@ -107,3 +107,12 @@ if(pageName=='비밀번호'){
     purchaseName.style.color="#333"
   }
 
+
+  let loadImg  = function(event) {
+        let reader = new FileReader();
+        reader.onload = function(){
+          let preImg = document.getElementById('account-image-preview');
+          preImg.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+      };
