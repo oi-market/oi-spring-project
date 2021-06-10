@@ -33,6 +33,11 @@ public class MyPageController {
 		List<ProductVO> sale = myPageService.getSellList(productVO);
 		mv.addObject("sale", sale);
 		mv.addObject("vo", productVO);
+		//나의 관심 list
+		MywishVO mywishVO = new MywishVO();
+		List<MywishVO> wish = myPageService.getMywish(mywishVO);
+		mv.addObject("wish", wish);
+		mv.addObject("vo", mywishVO);
 		
 		return mv;
 	}
@@ -41,6 +46,7 @@ public class MyPageController {
 	@GetMapping("myPage/productSelect")
 	public ModelAndView getSelect(ProductVO productVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		int result = myPageService.setHitUpdate(productVO);
 		
 		productVO = myPageService.getSelect(productVO);
 		
@@ -87,6 +93,26 @@ public class MyPageController {
 	public String saleUpdate(ProductVO productVO) throws Exception {
 		int result = myPageService.sellUpdate(productVO);		
 		System.out.println("업데이트");	
+		
+		return "redirect:./myPage";
+	}
+	
+	//관심상품 추가
+	@GetMapping("myPage/setWishInsert")
+	public String setWishInsert(ProductVO productVO) throws Exception {
+		//선택한 상품 insert
+		productVO = myPageService.getSelect(productVO); 
+		int result = myPageService.setWishInsert(productVO);
+		
+		System.out.println("성공");
+		return "redirect:./myPage";
+	}
+	
+	//상품 삭제
+	@GetMapping("myPage/setWishDelete")
+	public String setWishDelete(MywishVO mywishVO) throws Exception {
+		int result = myPageService.setWishDelete(mywishVO);		
+		System.out.println("삭제 성공");
 		
 		return "redirect:./myPage";
 	}

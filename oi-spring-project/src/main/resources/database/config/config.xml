@@ -9,6 +9,7 @@
 		<typeAlias type="com.market.oi.test.TestVO" alias="TestVO" />
 		<typeAlias type="com.market.oi.myPage.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.market.oi.myPage.OrdercompleteVO" alias="OrdercompleteVO"/>
+		<typeAlias type="com.market.oi.myPage.MywishVO" alias="MywishVO"/>
 	</typeAliases>
 
 </configuration>

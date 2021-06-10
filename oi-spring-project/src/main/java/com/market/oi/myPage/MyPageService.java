@@ -19,6 +19,10 @@ public class MyPageService {
 		return myPageMapper.getSellList(productVO);
 	}
 	
+	public int setHitUpdate(ProductVO productVO) throws Exception {
+		return myPageMapper.setHitUpdate(productVO);
+	}
+	
 	public ProductVO getSelect(ProductVO productVO) throws Exception {
 		return myPageMapper.getSelect(productVO);
 	}
@@ -39,4 +43,15 @@ public class MyPageService {
 		return myPageMapper.getBuyList(productVO);
 	}
 	
+	public List<MywishVO> getMywish(MywishVO mywishVO) throws Exception {
+		return myPageMapper.getMywish(mywishVO);
+	}
+	
+	public int setWishInsert(ProductVO productVO) throws Exception {
+		return myPageMapper.setWishInsert(productVO);
+	}
+	
+	public int setWishDelete(MywishVO mywishVO) throws Exception {
+		return myPageMapper.setWishDelete(mywishVO);
+	}
 }

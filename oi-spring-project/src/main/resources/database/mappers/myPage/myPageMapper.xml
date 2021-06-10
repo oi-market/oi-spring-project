@@ -17,6 +17,10 @@
 		select * from product where num = #{num}
 	</select>
 	
+	<update id="setHitUpdate" parameterType="ProductVO">
+		update product set hit = hit+1 where num = #{num}
+	</update>
+	
 	<update id="setUpdate" parameterType="ProductVO">
 		update product set title=#{title}, price=#{price}, contents=#{contents} where num = #{num}
 	</update>
@@ -30,9 +34,23 @@
 	</delete>
 	
 	<select id="getBuyList" parameterType="ProductVO" resultType="ProductVO">
-	    <!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
+	 	<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
 		SELECT P.* from product P left join ordercomplete O ON P.num = O.productNum 
 		WHERE buyer = (SELECT buyer FROM ordercomplete WHERE buyer='id2')
 	</select>
 		
+	<select id="getMywish" parameterType="MyWishVO" resultType="MyWishVO">
+		<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
+		SELECT P.* from mywish P left join product M ON P.productNum = M.num
+		WHERE P.username = any (SELECT username FROM mywish WHERE username='id1')
+	</select>
+	
+	<!-- 관심목록 -->
+	<insert id="setWishInsert" parameterType="ProductVO">
+		insert into mywish (username, productNum, title, wish, sale) values ('id1', #{num}, #{title}, 1, #{sale})
+	</insert>
+	
+	<delete id="setWishDelete" parameterType="MyWishVO">
+		delete from mywish where productNum = #{productNum}
+	</delete>
 </mapper>

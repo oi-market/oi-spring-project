@@ -11,6 +11,7 @@
 <title>My Page</title>
 <!-- Font Awesome icons (free version)-->
 <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Google fonts-->
 <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
 <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
@@ -53,6 +54,12 @@
                             <!-- 상품 이미지 -->
                             <a href="./productSelect?num=${vo.num}">
                             <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /></a>
+                           	 
+                           	 <!-- 즐겨찾기 추가 버튼 테스트 -->
+                           	<div class="button">
+								<a href="./setWishInsert?num=${vo.num}" class="btn">관심목록에 담기</a>
+							</div>
+							
                            	 <div class="card-body p-4">
                                	 <div class="text-center">
                                   	  <!-- 상품명 -->
@@ -139,6 +146,43 @@
 		<section class="resume-section" id="skills">
 			<div class="resume-section-content">
 				<h3>관심목록</h3>
+				<p>즐겨찾기 하트 부분 마무리하기</p>
+				 <div class="container px-4 px-lg-5 mt-5">
+                	<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                   	<c:forEach items="${wish}" var="vo">
+                    <div class="col mb-5">                 
+                        <div class="card h-100">
+                        	<c:if test="${vo.sale eq 1}">
+                           		<div class="badge bg-dark text-white position-absolute" style="top:0.5rem; right:0.5rem">거래완료</div>
+                            </c:if> 
+                            <!-- 상품 이미지 -->
+                            <a href="./productSelect?num=${vo.num}">
+                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /></a>
+                           	<br>
+                            <!-- 즐겨찾기의 데이터들만 채워진 빨간 하트 -->
+                            <c:if test="${vo.wish eq 1}">
+                            <span style="color:red; text-align: center;"><button class="fas fa-heart fa-lg"></button></span>  
+                            </c:if>     
+                            <!-- 즐겨찾기 등록이 안되어있는 경우
+                           	<span style="color:red;"><button class="far fa-heart fa-lg"></button></span> -->
+                           	
+                           	<!-- 즐겨찾기 추가 버튼 테스트 -->
+                           	<div class="button">
+								<a href="./setWishInsert" class="btn">관심목록에 담기</a>
+								<a href="./setWishDelete?productNum=${vo.productNum}" class="btn">관심목록 해제</a>
+							</div>
+                           	
+                           	 <div class="card-body p-4">
+                               	 <div class="text-center">
+                                  	  <!-- 상품명 -->
+                                  	  <h5 class="fw-bolder">${vo.title}</h5>
+                               	 </div>
+                            	</div>
+                       	 </div>   
+                    </div>
+                   	</c:forEach>                         
+					</div>
+				</div>
 			</div>
 		</section>
 		<hr class="m-0" />
