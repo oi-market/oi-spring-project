@@ -177,6 +177,38 @@ function emailCheck(){
  };
 
 
+//아이디 찾기
+ $("#find_ID").click(function () {
+		 var name = $("#name").val();
+		 var email = $("#email").val();
+		 var phone = $("#phone").val();
+		if (email == "" || name=="" || phone=="") {
+			alert("정보를 입력해주시기 바랍니다.");
+		}else{ $.ajax({
+			type : 'POST',
+			url : 'memberFindID',
+			data : {
+				email	:	email,
+				name	:	name,
+				phone	:	phone,
+			},
+
+			dataType :'text',
+			
+			success : function(data) {
+				
+				msg = data;
+		        alert(msg);
+		        message =$("message").val("principal.username");
+//		        $("#showID").modal("show");
+		       
+		        
+		    }
+			
+	 })
+		} 
+		
+	})
 
 
 

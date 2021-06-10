@@ -156,7 +156,7 @@ public class MemberController {
 		String message ="";
 
 		if(memberVO== null) {
-			message="이름 , 이메일 불일치";
+			message="잘못된 정보를 입력하셨습니다.";
 
 		} else {
 			message="회원님의 아이디는 " + memberVO.getUsername()+" 입니다.";
