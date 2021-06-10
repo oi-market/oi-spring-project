@@ -201,7 +201,7 @@ a{
         margin-right: 10px;
     }
     header .logo a{
-        background: url("../img/logo-oi.svg");
+        background: url("/img/logo-oi.svg");
         width: 120px;
         height:50px;
         display: block;

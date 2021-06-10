@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>로그인 | 오이마켓</title>
 
@@ -78,26 +79,26 @@
                             </p>
                            
                         </div>
-                        <input name="username" placeholder="이름" class="col-12 input--text">
+                        <input id="name" name="name" placeholder="이름" class="col-12 input--text">
                         <div id="id-input">
                             <p>
                                 아이디
                             </p>
                             
                         </div>
-                        <input name="username" placeholder="아이디" class="col-12 input--text">
+                        <input id="username" name="username" placeholder="아이디" class="col-12 input--text">
                         <div id="id-input">
                             <p>
                                 이메일
                             </p>
                             
                         </div>
-                        <input name="username" placeholder="이메일" class="col-12 input--text">
+                        <input id="email" name="email" placeholder="이메일" class="col-12 input--text">
                     </div>
                     
                    
                     <div class="d-grid">
-                        <input type="button" class="mybtn mybtn--primary mb-5 sign-up-btn" value="임시 비밀번호 전송">
+                        <input type="button" id="find_PW" class="mybtn mybtn--primary mb-5 sign-up-btn" value="임시 비밀번호 전송">
                     </div>
                 
                 </form>
@@ -116,6 +117,39 @@
 
 
      </div>
+
+<script type="text/javascript">
+
+$("#find_PW").click(function () {
+	 var username = $("#username").val();
+	 var name = $("#name").val();
+	 var email = $("#email").val();
+	if (email == "" || name=="" ||username=="") {
+		alert("정보를 입력해주시기 바랍니다.");
+	}else{ $.ajax({
+		type : 'POST',
+		url : 'memberFindPW',
+		data : {
+			username	:	username,
+			email	:	email,
+			name	:	name,
+		},
+
+		dataType :'text',
+		
+		success : function(data) {
+			
+			msg = data;
+	        alert(msg);		       
+	        
+	    }
+		
+})
+	} 
+	
+})
+
+</script>
 
 </body>
 </html>
