@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		   .antMatchers("/vendor/**")
 		   .antMatchers("/favicon/**")
 		   .antMatchers("/node/**")
+		   .antMatchers("/node_modules/**")
 		   ;
 	}
 	
@@ -60,6 +61,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").permitAll()
 //				.antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
+				.antMatchers("/neighborhood/**").permitAll()
+				.antMatchers("/mypage/**").hasRole("MEMBER")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

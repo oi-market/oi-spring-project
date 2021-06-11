@@ -9,7 +9,7 @@
                                 <a href="${pageContext.request.contextPath}/">oi</a>
                             </div>
                             <ul class="main-menu toggle">
-                                <li><a href="#">동네 생활</a></li>
+                                <li><a href="${pageContext.request.contextPath}/neighborhood/board">동네 생활</a></li>
                                 <li><a href="#">내 근처</a></li>
                             </ul>
                         </div>
