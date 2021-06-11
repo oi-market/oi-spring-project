@@ -57,11 +57,12 @@
 	    <li class="page-item"><a class="page-link p" href="#" title="${pager.lastNum+1}">Next</a></li>
 	    </c:if>
 	  </ul>
-	  
+	  	
 	<div class="input-group mt-3 mb-3">
 	<form id="frm" action="./${board}List" class="form-inline">
 		<input type="hidden" name="curPage" value="1" id="curPage">
 	  <div class="input-group-prepend">
+	  
 	  </div>
 	  <input type="text" class="form-control" name="search" id="search" value="${pager.search}" placeholder="">
 	    <div class="input-group-append">
@@ -74,6 +75,9 @@
 			</sec:authorize>
   <a href="./${board}Insert" class="btn  btn-primary" role="button">Write</a>
 <script type="text/javascript">
+
+	let kind= '${pager.kind}';//Title, Writer, Contents
+	
 	
 	$(".p").click(function () {
 		let curPage = $(this).attr("title");
@@ -82,11 +86,11 @@
 		$("#frm").submit();
 		
 		
-		/* $("#curPage").val(curPage);
+/*		 $("#curPage").val(curPage);
 		$("#kind").val('${pager.kind}');
 		$("#search").val(${pager.search}');
-		$("#frm").submit(); */
-		
+		$("#frm").submit(); 
+		*/
 		//location.href="./${board}List?curPage="+curPage+"&kind=${pager.kind}&search=${pager.search}";
 		
 	});

@@ -10,24 +10,19 @@
 <sql id="searcher">
    		<!-- 공통으로 사용하는 sql문 -->
    		<where>
-				<choose>
-					<when test="kind=='Title'">
-						title like concat('%', #{search}, '%')
-					</when>
+				
+						title like concat('%', #{search}, '%') or contents like concat('%', #{search}, '%')
 					
-					<otherwise>
-						contents like concat('%', #{search}, '%')
-					</otherwise>
-					
-					
-				</choose>
 			</where>
    		</sql>
    		
    		
    		<select id="getList" resultType="QnaVO" parameterType="Pager">
-			select * from qna order by num desc
-			limit #{startRow}, #{perPage}
+			select * from qna 
+			 <include refid="searcher"></include>
+			order by num desc
+			
+			 limit #{startRow}, #{perPage}
 			<!-- limit 시작index번호(0부터시작), 갯수 --> 
    		</select>
    		
