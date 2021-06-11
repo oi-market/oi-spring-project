@@ -11,8 +11,8 @@
    		<!-- 공통으로 사용하는 sql문 -->
    		<where>
 				<choose>
-					<when test="kind=='Writer'">
-						writer like concat('%', #{search}, '%')
+					<when test="kind=='Title'">
+						title like concat('%', #{search}, '%')
 					</when>
 					
 					<otherwise>

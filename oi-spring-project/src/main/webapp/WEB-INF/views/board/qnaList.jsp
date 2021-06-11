@@ -16,7 +16,7 @@
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th>NUM</th>
+					<th>분류</th>
 					<th>TITLE</th>
 					<th>DATE</th>
 				</tr>
@@ -25,7 +25,7 @@
 			<tbody>
 			<c:forEach items="${list}" var="dto" >
 				<tr>
-					<td>${dto.num}</td>
+					<td>Q.</td>
 					<td><a href="./${board}Select?num=${dto.num}">
 					
 					<c:catch>
@@ -62,10 +62,6 @@
 	<form id="frm" action="./${board}List" class="form-inline">
 		<input type="hidden" name="curPage" value="1" id="curPage">
 	  <div class="input-group-prepend">
-	   <select class="form-control" name="kind" id="kind" >
-	    <option class="sel">Title</option>
-	    <option class="sel">Contents</option>
-	  </select>
 	  </div>
 	  <input type="text" class="form-control" name="search" id="search" value="${pager.search}" placeholder="">
 	    <div class="input-group-append">
@@ -78,13 +74,6 @@
 			</sec:authorize>
   <a href="./${board}Insert" class="btn  btn-primary" role="button">Write</a>
 <script type="text/javascript">
-	let kind= '${pager.kind}';//Title, Contents
-	$(".sel").each(function() {
-		let t = $(this).text();//Title, Contents
-		if(t == kind){
-			$(this).prop("selected", true);
-		}
-	});
 	
 	$(".p").click(function () {
 		let curPage = $(this).attr("title");

@@ -66,6 +66,7 @@ public class QnaController {
 	}
 
 	@GetMapping
+	@GetMapping("qnaUpdate")
 	public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("업데이트 전");
@@ -77,20 +78,26 @@ public class QnaController {
 		return mv;
 	}
 	
-//	@PostMapping("boardUpdate")
-//	public String setUpdate(BoardVO boardVO)throws Exception{
+	@PostMapping("qnaUpdate")
+	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
 		
-//		int result = qnaService.setUpdate(boardVO);
+		int result = qnaService.setUpdate(boardVO);
 		
-//		return "redirect:./boardList";
-//	}
+		if(result>0) {
+			
+		}
+		
+		return "redirect:./qnaList";	
+	}
 	
-	@GetMapping("boardDelete")
+	
+	
+	@GetMapping("qnaDelete")
 	public String setDelete(BoardVO boardVO)throws Exception{
-		
+		System.out.println(boardVO);
 		int result = qnaService.setDelete(boardVO);
 		
-		return "redirect:./boardList";
+		return "redirect:./qnaList";
 	}
 
 }

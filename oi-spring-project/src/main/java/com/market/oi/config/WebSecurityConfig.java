@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/qna/qnaSelect").permitAll()
 				.antMatchers("/qna/**").permitAll()
 //				.antMatchers("/qna/**").hasRole("ADMIN")
-				.antMatchers("/member/jusoAPI").hasRole("MEMBER")
+
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").permitAll()
 //				.antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.passwordParameter("pw")
 				//로그인페이지를 따로 만들지 않아도 기본 내장된 폼으로 이동
 				//개발자가 만든 로그인폼을 사용하려면 다음과 같이 작성
-				.loginPage("/member/memberLogin")
+				.loginPage("/member/sign-in")
 				.defaultSuccessUrl("/member/memberLoginResult")
 				//Login 실패 처리
 				.failureUrl("/member/loginFail")

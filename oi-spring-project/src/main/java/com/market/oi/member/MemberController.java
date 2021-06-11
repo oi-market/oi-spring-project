@@ -55,6 +55,7 @@ public class MemberController {
 		Random random = new Random();
 		String key = "";
 		SimpleMailMessage message = new SimpleMailMessage();
+		//message.setFrom("오이마켓");
 		message.setTo(email); // 스크립트에서 보낸 메일을 받을 사용자 이메일 주소
 		// 입력 키를 위한 코드
 		for (int i = 0; i < 3; i++) {

@@ -20,7 +20,9 @@
 
 	
 	<a href="./${board}Update?num=${vo.num}" class="btn btn-primary">Update</a>
-	<a href="@{./delete(num=${vo.num})}" class="btn btn-danger">Delete</a>
+	<a href="./${board}Delete?num=${vo.num}" class="btn btn-link" onclick="if(!confirm('게시글을 삭제하시겠습니다?')){return false;}">Delete</a>
 </div>
+
+
 </body>
 </html>
