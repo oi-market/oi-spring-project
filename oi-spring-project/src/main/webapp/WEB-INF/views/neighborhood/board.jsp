@@ -49,9 +49,9 @@
        <!-- HEADER -->
        <c:import url="../template/header.jsp"></c:import>
 
-    <header class="section section--second-header">
+   <header class="section section--second-header">
         <div class="inner inner--second">
-            <div class="inner--left">
+            <div class="inner--left toggle--small">
                 <div class="inner__dropdown">
                     <a href="#" class="dropbtn">
                         철산 1동<i class="bi bi-caret-right-fill"></i>
@@ -74,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="inner__right">
+            <div class="inner__right toggle--small">
                 
                 <a href="#">
                     <i class="bi bi-pencil-fill"></i> 글쓰기
@@ -85,6 +85,9 @@
                 </form>
 
             </div>
+            <button id="toggle-btn--village">
+                <i class="bi bi-list"></i>
+            </button>
 
         </div>
 
@@ -272,7 +275,7 @@
             
             
             
-         
+        
      </section>
 
 
