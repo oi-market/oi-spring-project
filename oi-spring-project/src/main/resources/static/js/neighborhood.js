@@ -25,6 +25,13 @@ for(let i=0; i<btn.length;i++){
 })
 }
 
+const replyBtn = document.querySelectorAll(".comment--reply");
+const reply = document.querySelectorAll(".comment-insert.comment-insert--reply");
+  for(let i=0; i<replyBtn.length;i++){
+      replyBtn[i].addEventListener('click',function(){
+        reply[i].classList.toggle("show");
+      })
+  }
 
   // Close the dropdown menu if the user clicks outside of it
   window.onclick = function(event) {

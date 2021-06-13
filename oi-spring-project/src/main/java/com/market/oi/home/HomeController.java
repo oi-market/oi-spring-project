@@ -77,6 +77,9 @@ public class HomeController {
 	@GetMapping("neighborhood/board")
 	public void getVillageBoard()throws Exception{
 	}
+	@GetMapping("neighborhood/select")
+	public void getVillageSelect()throws Exception{
+	}
 
 
 	
