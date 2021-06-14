@@ -83,3 +83,14 @@ const reply = document.querySelectorAll(".comment-insert.comment-insert--reply")
       offElementsSmall();
     }
   })
+
+  $(document).ready(function() {
+    $('#summernote').summernote({
+      height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '우리동네에 관련된 질문이나 이야기를 써주세요'	//placeholder 설정
+    });
+  });

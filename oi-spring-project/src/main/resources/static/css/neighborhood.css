@@ -311,11 +311,49 @@ position: relative;
     display: none;
 }
 
+/* insert */
+
+.neighborhood-form{
+    
+    padding: 10px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+.neighborhood-form__kinds{
+    margin: 20px 20px 20px 0;
+    border-radius: 10px;
+    font-size: 18px;
+   
+}
+
+.neighborhood-form__kinds:focus{
+    outline: tomato;
+} 
+
+.neighborhood-form .mybtn{
+    margin: 20px 20px 20px 0;
+    display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+
+
 .show {
     display: block;
      opacity: 1;
     }
-
 /* media */
 
 @media (max-width:580px){

@@ -80,6 +80,9 @@ public class HomeController {
 	@GetMapping("neighborhood/select")
 	public void getVillageSelect()throws Exception{
 	}
+	@GetMapping("neighborhood/insert")
+	public void getVillageInsert()throws Exception{
+	}
 
 
 	
