@@ -104,7 +104,10 @@
                     <div class="post-list__header">
                         우리동네질문
                     </div>
-                    <div class="content__info content__info--post">
+                    
+                    
+                    
+                                 <div class="content__info content__info--post">
                         <div class="info--photo">사진</div>
                         <div class="info--users">
                             <div class="info--user">우기</div>
@@ -113,7 +116,28 @@
                                 <div class="info--date">2시간 전</div>
                             </div>
                         </div>
+
+                        <div class="info--modify inner__dropdown"> 
+                                    
+                            <button class="dropbtn">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+
+                            <div class="dropdown-content">
+                                <a href="#">수정하기</a>
+                                <a href="#">삭제하기</a>
+                                <a href="#">새로고침</a>
+                            </div>
+                        
+                        </div>
+
+
                     </div>
+                    
+                    
+                    
+                    
+                    
                     <div class="post-list__content post-list__content--post">
                         <p class="content__article">
                             개봉역 앞 필라테스 모드온 괜찮은가유?

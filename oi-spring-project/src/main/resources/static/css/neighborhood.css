@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* board  */
 
 .section--second-header{
@@ -212,6 +211,7 @@ header .inner--second{
     margin-top:0;
     margin-bottom: 0;
     padding-bottom: 5px;
+    position:relative
 }
 .content__info--post .info--photo{
     margin:10px;
@@ -220,6 +220,17 @@ header .inner--second{
     color:#515151;
     margin:5px;
 }
+.content__info--post .info--modify{
+    margin:5px;
+    position: absolute;
+    right: 0.4%;
+}
+.content__info--post .info--modify button{
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+}
+
 .info--second-line{
     display: flex;
     margin:5px;
