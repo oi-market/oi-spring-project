@@ -74,6 +74,15 @@ public class HomeController {
 	@GetMapping("mypage/modify")
 	public void getModify()throws Exception{
 	}
+	@GetMapping("neighborhood/board")
+	public void getVillageBoard()throws Exception{
+	}
+	@GetMapping("neighborhood/select")
+	public void getVillageSelect()throws Exception{
+	}
+	@GetMapping("neighborhood/insert")
+	public void getVillageInsert()throws Exception{
+	}
 
 
 	
