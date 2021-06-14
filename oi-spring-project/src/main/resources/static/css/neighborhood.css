@@ -324,6 +324,8 @@ position: relative;
 
 /* insert */
 
+
+
 .neighborhood-form{
     
     padding: 10px;
@@ -336,9 +338,10 @@ position: relative;
     
 }
 .neighborhood-form__kinds{
-    margin: 20px 20px 20px 0;
+    margin: 20px;
     border-radius: 10px;
     font-size: 18px;
+    
    
 }
 
@@ -347,7 +350,7 @@ position: relative;
 } 
 
 .neighborhood-form .mybtn{
-    margin: 20px 20px 20px 0;
+    margin: 20px;
     display: inline-flex;
 }
 
@@ -392,7 +395,7 @@ position: relative;
     #toggle-btn--village{
         display: block;
         position :absolute;
-        top :9px;
+        top :5px;
         right: 20px;
     }
     .post-list{

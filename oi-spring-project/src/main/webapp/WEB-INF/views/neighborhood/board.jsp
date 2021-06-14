@@ -48,51 +48,9 @@
 
        <!-- HEADER -->
        <c:import url="../template/header.jsp"></c:import>
-
-   <header class="section section--second-header">
-        <div class="inner inner--second">
-            <div class="inner--left toggle--small">
-                <div class="inner__dropdown">
-                    <a href="#" class="dropbtn">
-                        철산 1동<i class="bi bi-caret-right-fill"></i>
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="#">동네 바꾸기</a>
-                    </div>
-                </div>
-                <div class="inner__dropdown inner__dropdown--category">
-                    <a href="#" class="dropbtn">
-                        전체보기<i class="bi bi-caret-right-fill"></i>
-                    </a>
-                    <div class="dropdown-content">
-                        <a href="#">같이 해요</a>
-                        <a href="#">동네 질문</a>
-                        <a href="#">해주세요</a>
-                        <a href="#">동네 맛집</a>
-                        <a href="#">일상</a>
-                        <a href="#">기타</a>
-                    </div>
-                </div>
-            </div>
-            <div class="inner__right toggle--small">
-                
-                <a href="#">
-                    <i class="bi bi-pencil-fill"></i> 글쓰기
-                </a>
-                <form id="search-form--village" action="#" method="POST">
-                    <input id="search" type="text" class="input--text" placeholder="동네 정보를 검색하세요!">
-                    <input type="submit" value="submit">
-                </form>
-
-            </div>
-            <button id="toggle-btn--village">
-                <i class="bi bi-list"></i>
-            </button>
-
-        </div>
-
-    </header>
-
+       <c:import url="../template/header-neiborhood.jsp"></c:import>
+		
+  
 
     
      <section class="section article">
