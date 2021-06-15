@@ -15,6 +15,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -27,6 +28,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+
+
+
 
 
 
@@ -218,9 +224,86 @@ public class MemberController {
 
 		return alertMessage;
 	}
+	
+	
 
 
+	
+	@PostMapping("memberUpdate")
+	public UserDetails memberUpdate(MemberVO memberVO , Authentication authentication,ModelAndView mv) throws Exception{
+		  UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	       memberVO.setUsername(userDetails.getUsername());
+		int result = memberService.memberUpdate(memberVO);
+		
+		System.out.println(result);
+		if(result>0) {
+			mv.setViewName("./mypage/modify");
+		}
+		System.out.println(memberVO);
+		
+		return userDetails;
+	}
+	
+	
+	@GetMapping("memberDelete")
+	@ResponseBody
+	public boolean memberDelete(MemberVO memberVO, Authentication authentication)throws Exception{
+		boolean Check =false;
+		System.out.println(memberVO);
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		System.out.println(userDetails.getUsername());
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		memberVO = memberService.memberPWCheck(memberVO);
+		System.out.println(memberVO);
+		if(memberVO==null) {
+			Check=false;
+			
+		}else {
+			Check=true;
+			
+		}
+			
+		
+//		int result = memberService.memberDelete(memberVO, session);
+//		
+//		session.invalidate();
+//		
+		return Check;
+	}
+	
+	
+	
+	
 
+	@PostMapping("memberPWChange")
+	public MemberVO memberPWChange(MemberVO memberVO) throws Exception{
+		
+		memberVO = memberService.memberPWChange(memberVO);
+	
+		return memberVO;
+		
+	}
+	
+ 
+	
+//	public mv name(MemberVO memberVO, String pw1, String pw2) {
+//	
+//		mebervo. passwr = pasw{}
+//		if(membervo==true
+//				) {
+//			messgae 틀렷다
+//			if(pw1=pw2) {
+//				membervo.setpasw(pw1)
+//				membmervo.membersver.
+//				message 맞다.
+//				set
+//			}
+//		}
+//		mv.seta(message msg)
+//		mv.setview("")
+//		return mv;
+//	}
 
 
 }

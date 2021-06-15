@@ -125,11 +125,40 @@ public class MemberService implements UserDetailsService{
 		
 	}
 	
+	
 	public MemberVO idCheck(MemberVO memberVO)throws Exception{
 		
 		return  memberMapper.getUsername(memberVO);
 		
 	}
+	
+	public int memberUpdate(MemberVO memberVO)throws Exception{
+		
+		
+		return memberMapper.memberUpdate(memberVO);
+		
+	}
+	
+	public int memberDelete(MemberVO memberVO)throws Exception{
+		
+		
+		return memberMapper.memberDelete(memberVO);
+	
+	}
+	
+	public MemberVO memberPWCheck(MemberVO memberVO) throws Exception{
+		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+		 
+		 System.out.println(memberVO.getPassword());
+		return memberMapper.memberPWCheck(memberVO);
+	}
+	
+	
+	public MemberVO memberPWChange(MemberVO memberVO) throws Exception{
+		return memberMapper.memberPWChange(memberVO);
+	}
+	
+	
 //	public MemberVO getLogin(MemberVO memberVO)throws Exception{
 //	return memberMapper.getLogin(memberVO);
 //}

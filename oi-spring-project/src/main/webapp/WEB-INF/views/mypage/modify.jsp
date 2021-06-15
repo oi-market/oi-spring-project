@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -62,8 +64,8 @@
                 
                <div class="account-body">
                     
-
-                    <form method="post" action="#">
+<sec:authorize access="isAuthenticated()">
+                    <form method="post" action="../member/memberUpdate">
 
                         <div class="account__bundle">
                             <div class="account-inner-title">
@@ -78,7 +80,7 @@
                                 <p class="red-star">*</p>
                                 <label for="account-name">이름</label>
                             </div>
-                            <input id="account-name" class="input--text" type="text"> </input>
+                            <input id="account-name" class="input--text" type="text" name="name" value="${memberVO.name}"> </input>
                         </div>
 
                         <div class="account__bundle">
@@ -86,7 +88,7 @@
                                 <p class="red-star">*</p>
                                 <label for="account-nickname">닉네임</label>
                             </div>
-                            <input id="account-nickname" class="input--text" type="text"> </input>
+                            <input id="account-nickname" class="input--text" type="text" name="nickName" value="<sec:authentication property="principal.nickName"/>"> </input>
                         </div>
 
                         <div class="account__bundle">
@@ -94,23 +96,23 @@
                                 <p class="red-star">*</p>
                                 <label for="account-email">이메일</label>
                             </div>
-                            <input id="account-email" class="input--text" type="text"> </input>
+                            <input id="account-email" class="input--text" type="text" name="email" value="<sec:authentication property="principal.email"/>"> </input>
                         </div>
                         <div class="account__bundle">
                             <div class="account-inner-title">
                                 <p class="red-star">*</p>
                                 <label for="account-phone">휴대전화</label>
                             </div>
-                            <input id="account-phone" class="input--text" type="text"> </input>
+                            <input id="account-phone" class="input--text" type="text" name="phone" value="<sec:authentication property="principal.phone"/>"> </input>
                         </div>
 
                     
 
                    
                    
-                        <input class="mybtn passwordBtn" type="button" value="바꾸기"></input>
+                        <input class="mybtn passwordBtn" type="submit" value="바꾸기"></input>
                     </form>
-                    
+                  </sec:authorize>  
                     
                 </div>
                 

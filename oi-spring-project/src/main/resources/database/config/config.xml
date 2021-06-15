@@ -10,8 +10,8 @@
 		<typeAlias type="com.market.oi.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.market.oi.member.RoleVO" alias="RoleVO"/>
 		<typeAlias type="com.market.oi.board.BoardVO" alias="BoardVO"/>
-<!-- 		<typeAlias type="com.market.oi.board.BoardFileVO" alias="BoardFileVO"/>  -->
 		<typeAlias type="com.market.oi.board.qna.QnaVO" alias="QnaVO"/>
+		<typeAlias type="com.market.oi.board.notice.NoticeVO" alias="NoticeVO"/>
 		
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
 	</typeAliases>

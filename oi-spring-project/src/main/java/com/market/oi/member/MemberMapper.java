@@ -24,6 +24,15 @@ public interface MemberMapper {
 	
 	public int memberUpdatePW(MemberVO memberVO);
 	
+	public int memberUpdate(MemberVO memberVO);
+	
+	public int memberDelete(MemberVO memberVO);
+	
+	public MemberVO memberPWCheck(MemberVO memberVO);
+	
+	public MemberVO memberPWChange(MemberVO memberVO);
+	
+	
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 

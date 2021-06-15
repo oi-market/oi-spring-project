@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -65,8 +68,8 @@
                 <div class="content-description">
                     <div class="user-name">
                         <div class="user-picture">유저 사진</div>
-                        <strong>유저 이름</strong>
-                        <a class="mybtn--secondary" type="button" href="#">프로필 수정</a>
+                        <strong><sec:authentication property="principal.nickName"/></strong>
+  
                     </div>
                     <div class="user-info">
                         <div class="star-rating">

@@ -58,6 +58,22 @@
       update member set password=#{password} where username=#{username}      
       </update>
       
+      <update id="memberUpdate" parameterType="MemberVO">
+      update member set name=#{name},nickName=#{nickName},email=#{email},phone=#{phone} where username=#{username}      
+      </update>
+      
+      <delete id="memberDelete" parameterType="MemberVO">
+		delete member where username=#{username}
+	  </delete>
+      
+      
+      <select id="memberPWCheck" parameterType="MemberVO" resultType="MemberVO">
+      select * from member where password=#{password} and username=#{username}
+      </select>
+      
+      
+      
+      
 
 
 

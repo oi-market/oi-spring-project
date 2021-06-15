@@ -26,11 +26,7 @@
 			<c:forEach items="${list}" var="dto" >
 				<tr>
 					<td>Q.</td>
-					<td><a href="./${board}Select?num=${dto.num}">
-					
-					<c:catch>
-					<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
-					</c:catch>
+					<td><a href="./${board}Select?num=${dto.num}">	
 					${dto.title}
 					</a></td>
 					<td>${dto.regDate}</td>
@@ -84,14 +80,6 @@
 		$("#curPage").val(curPage);
 		let search= '${pager.search}';
 		$("#frm").submit();
-		
-		
-/*		 $("#curPage").val(curPage);
-		$("#kind").val('${pager.kind}');
-		$("#search").val(${pager.search}');
-		$("#frm").submit(); 
-		*/
-		//location.href="./${board}List?curPage="+curPage+"&kind=${pager.kind}&search=${pager.search}";
 		
 	});
 </script>  
