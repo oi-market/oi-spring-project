@@ -28,8 +28,6 @@ public interface MemberMapper {
 	
 	public int memberDelete(MemberVO memberVO);
 	
-	public MemberVO memberPWCheck(MemberVO memberVO);
-	
 	public MemberVO memberPWChange(MemberVO memberVO);
 	
 	

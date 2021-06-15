@@ -16,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -36,6 +37,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
+
+
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -44,6 +47,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private JavaMailSender javaMailSender;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 
 	@GetMapping("memberPage")
@@ -246,31 +251,34 @@ public class MemberController {
 	
 	
 	@GetMapping("memberDelete")
-	@ResponseBody
-	public boolean memberDelete(MemberVO memberVO, Authentication authentication)throws Exception{
-		boolean Check =false;
-		System.out.println(memberVO);
+	public int memberDelete(MemberVO memberVO,Authentication authentication)throws Exception{
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		System.out.println(userDetails.getUsername());
-		memberVO.setUsername(userDetails.getUsername());
-		System.out.println(memberVO);
-		memberVO = memberService.memberPWCheck(memberVO);
-		System.out.println(memberVO);
-		if(memberVO==null) {
-			Check=false;
-			
-		}else {
-			Check=true;
-			
-		}
-			
 		
-//		int result = memberService.memberDelete(memberVO, session);
-//		
-//		session.invalidate();
-//		
-		return Check;
+		memberVO.setUsername(userDetails.getUsername());
+		
+		int result = memberService.memberDelete(memberVO);
+		
+		
+		
+		return result;
 	}
+	
+	@GetMapping("memberPWCheck")
+	@ResponseBody
+	public boolean memberPWCheck(MemberVO memberVO, Authentication authentication)throws Exception{
+		
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		
+		String pw2 =userDetails.getPassword();
+		
+		boolean result = passwordEncoder.matches(memberVO.getPassword(), pw2);
+		
+		System.out.println(result);
+		
+		return result;
+	}
+	
+
 	
 	
 	

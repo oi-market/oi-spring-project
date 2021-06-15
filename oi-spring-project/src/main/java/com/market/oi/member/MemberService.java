@@ -82,6 +82,7 @@ public class MemberService implements UserDetailsService{
 		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 		 
 		//b. 사용자 계정 활성화
+		 
 
 		
 		
@@ -146,12 +147,7 @@ public class MemberService implements UserDetailsService{
 	
 	}
 	
-	public MemberVO memberPWCheck(MemberVO memberVO) throws Exception{
-		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
-		 
-		 System.out.println(memberVO.getPassword());
-		return memberMapper.memberPWCheck(memberVO);
-	}
+
 	
 	
 	public MemberVO memberPWChange(MemberVO memberVO) throws Exception{

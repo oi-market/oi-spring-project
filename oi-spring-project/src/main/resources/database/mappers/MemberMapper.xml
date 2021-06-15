@@ -66,10 +66,7 @@
 		delete member where username=#{username}
 	  </delete>
       
-      
-      <select id="memberPWCheck" parameterType="MemberVO" resultType="MemberVO">
-      select * from member where password=#{password} and username=#{username}
-      </select>
+
       
       
       

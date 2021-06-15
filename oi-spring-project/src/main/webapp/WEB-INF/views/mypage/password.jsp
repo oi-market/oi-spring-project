@@ -163,17 +163,18 @@ function usernameDelete(){
 
 		$.ajax({
 			type : 'GET',
-			url : '../member/memberDelete',
+			url : '../member/memberPWCheck',
 			data : {
 				"password" : passwordCheck,
 			},
 
 			dataType :'text',
 			success : function(data) {
-		         if(data==true){
+		         if(data=="true"){
 		        	 $("#userDel").trigger("click");
+		        	 
 		         }else{
-		        	 alert("비밀번호 잘못침.")
+		        	 alert("비밀번호 잘못침.");
 		         }
 				
 		        
