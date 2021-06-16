@@ -55,10 +55,10 @@
     
      <section class="section article">
          <div class="inner">
-
+			
             <div class="post-list">
 
-                <a href="#">
+                <a href="./select">
                     <div class="post-list__header">
                         우리동네질문
                     </div>
@@ -83,114 +83,7 @@
                 </a>
                 
             </div>
-            <div class="post-list">
-
-                <a href="#">
-                <div class="post-list__header">
-                    우리동네질문
-                </div>
-                <div class="post-list__content">
-                    <p class="content__article">
-                       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, iste nemo, corporis quo minima vero numquam ad rem doloremque porro iusto. Porro dolorem minima, quod modi tenetur vero similique maiores.
-                    </p>
-                    <div class="content__info">
-                        <div class="info__left">
-                            <div class="info--user">우기</div>
-                            <div class="info--location">개봉3동</div>
-                        </div>
-                        <div class="info--date">2시간 전</div>
-                    </div> 
-                </div>
-                <div class="post-list__footer">
-                        <div class="footer--wrap">
-                            <div class="post-list--like">좋아요 3</div>
-                            <div class="post-list--comment">댓글 1</div>
-                        </div>
-                </div>
-                </a>
-
-            </div>
-            <div class="post-list">
-
-                <a href="#">
-                    <div class="post-list__header">
-                        우리동네질문
-                    </div>
-                    <div class="post-list__content">
-                        <p class="content__article">
-                            개봉역 앞 필라테스 모드온 괜찮은가유?
-                        </p>
-                        <div class="content__info">
-                            <div class="info__left">
-                                <div class="info--user">우기</div>
-                                <div class="info--location">개봉3동</div>
-                            </div>
-                            <div class="info--date">2시간 전</div>
-                        </div>
-                    </div>
-                    <div class="post-list__footer">
-                            <div class="footer--wrap">
-                                <div class="post-list--like">좋아요 3</div>
-                                <div class="post-list--comment">댓글 1</div>
-                            </div>
-                    </div>
-                </a>
-                
-            </div>
-            <div class="post-list">
-
-                <a href="#">
-                    <div class="post-list__header">
-                        우리동네질문
-                    </div>
-                    <div class="post-list__content">
-                        <p class="content__article">
-                            개봉역 앞 필라테스 모드온 괜찮은가유?
-                        </p>
-                        <div class="content__info">
-                            <div class="info__left">
-                                <div class="info--user">우기</div>
-                                <div class="info--location">개봉3동</div>
-                            </div>
-                            <div class="info--date">2시간 전</div>
-                        </div>
-                    </div>
-                    <div class="post-list__footer">
-                            <div class="footer--wrap">
-                                <div class="post-list--like">좋아요 3</div>
-                                <div class="post-list--comment">댓글 1</div>
-                            </div>
-                    </div>
-                </a>
-                
-            </div>
-            <div class="post-list">
-
-                <a href="#">
-                    <div class="post-list__header">
-                        우리동네질문
-                    </div>
-                    <div class="post-list__content">
-                        <p class="content__article">
-                            개봉역 앞 필라테스 모드온 괜찮은가유?
-                        </p>
-                        <div class="content__info">
-                            <div class="info__left">
-                                <div class="info--user">우기</div>
-                                <div class="info--location">개봉3동</div>
-                            </div>
-                            <div class="info--date">2시간 전</div>
-                        </div>
-                    </div>
-                    <div class="post-list__footer">
-                            <div class="footer--wrap">
-                                <div class="post-list--like">좋아요 3</div>
-                                <div class="post-list--comment">댓글 1</div>
-                            </div>
-                    </div>
-                </a>
-                
-            </div>
+            
 
             <div class="paging-nav">
                 <ul>

@@ -24,7 +24,7 @@ public class CommunityService {
 	@Autowired
 	private HttpSession session;
 	
-	@Value("${community.filePath}")
+	//@Value("${community.filePath}")
 	private String filePath;
 
 	
@@ -55,7 +55,7 @@ public class CommunityService {
 		int result = communityMapper.setInsert(communityVO);
 		
 			//지역변수			맴버변수
-		String filePath = this.filePath;
+		//String filePath = this.filePath;
 		
 		for(MultipartFile multipartFile : files) {
 			

@@ -18,7 +18,7 @@ import com.market.oi.util.CommunityPager;
 
 
 @Controller
-@RequestMapping("/community/**")
+@RequestMapping("/neighborhood/**")
 public class CommunityController {
 	
 	@Autowired
@@ -27,12 +27,12 @@ public class CommunityController {
 	@Autowired
 	private CommentsService commentsService; 
 	
-	@Value("${community.filePath}")
+	//@Value("${community.filePath}")
 	private String filePath;
 	
 	
 	//커뮤니티 List
-	@GetMapping("communityList")
+	@GetMapping("board")
 	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager) throws Exception{
 		
 		System.out.println("FilePath : "+filePath);
@@ -44,13 +44,13 @@ public class CommunityController {
 		
 		mv.addObject("list", ar);
 		mv.addObject("communityPager", communityPager);
-		mv.setViewName("community/communityList");
+		mv.setViewName("neighborhood/board");
 		
 		return mv;
 	}
 	
 	//커뮤니티 Select
-	@GetMapping("communitySelect")
+	@GetMapping("select")
 	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
@@ -66,26 +66,26 @@ public class CommunityController {
 		mv.addObject("comments", commentsVO);
 		mv.addObject("list", ar);
 		
-		mv.setViewName("community/communitySelect");
+		mv.setViewName("neighborhood/select");
 		
 		return mv;
 	}
 	
 	//커뮤니티 Insert
-	@GetMapping("communityInsert")
+	@GetMapping("insert")
 	public ModelAndView setInsert() throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		CommunityVO communityVO = new CommunityVO();
 		
 		mv.addObject("vo", communityVO);
-		mv.setViewName("community/communityInsert");
+		mv.setViewName("neighborhood/insert");
 
 		return mv;
 	}
 	
 	
-	@PostMapping("communityInsert")
+	@PostMapping("insert")
 	public String setInsert(CommunityVO communityVO, MultipartFile [] files, Model model) throws Exception {
 		
 		for(MultipartFile f : files) {
@@ -95,7 +95,7 @@ public class CommunityController {
 		int result = communityService.setInsert(communityVO, files);
 		
 		String message = "등록에 실패했습니다!";
-		String path = "./communityList";
+		String path = "./board";
 		
 		System.out.println("insert result :"+result);
 		
