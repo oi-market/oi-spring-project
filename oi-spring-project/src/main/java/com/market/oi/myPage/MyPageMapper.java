@@ -17,6 +17,8 @@ public interface MyPageMapper {
 	
 	public int setUpdate(ProductVO productVO) throws Exception;
 	
+	public int soldoutUpdate(ProductVO productVO) throws Exception;
+	
 	public int sellUpdate(ProductVO productVO) throws Exception;
 	
 	public int setDelete(ProductVO productVO) throws Exception;
@@ -29,4 +31,7 @@ public interface MyPageMapper {
 	
 	public int setWishDelete(MywishVO mywishVO) throws Exception;
 	
+	public int likeUpdate(ProductVO productVO) throws Exception;
+	
+	public int likeDelete(ProductVO productVO) throws Exception;
 }

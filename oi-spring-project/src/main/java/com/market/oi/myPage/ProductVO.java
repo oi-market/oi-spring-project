@@ -17,6 +17,6 @@ public class ProductVO {
 	private String username;
 	private String location;
 	private Long hit;
-	private Long like;
+	private Long wish;
 	
 }

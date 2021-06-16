@@ -31,6 +31,10 @@ public class MyPageService {
 		return myPageMapper.setUpdate(productVO);
 	}
 	
+	public int soldoutUpdate(ProductVO productVO) throws Exception {
+		return myPageMapper.soldoutUpdate(productVO);
+	}
+	
 	public int sellUpdate(ProductVO productVO) throws Exception {
 		return myPageMapper.sellUpdate(productVO);
 	}
@@ -53,5 +57,13 @@ public class MyPageService {
 	
 	public int setWishDelete(MywishVO mywishVO) throws Exception {
 		return myPageMapper.setWishDelete(mywishVO);
+	}
+	
+	public int likeUpdate(ProductVO productVO) throws Exception {
+		return myPageMapper.likeUpdate(productVO);
+	}
+	
+	public int likeDelete(ProductVO productVO) throws Exception {
+		return myPageMapper.likeDelete(productVO);
 	}
 }

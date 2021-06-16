@@ -30,23 +30,7 @@ public class HomeController {
 	public void getProfile()throws Exception{
 	}
 
-	@GetMapping("mypage/purchase-wish")
-	public void getPurchaseWish()throws Exception{
-	}
-	@GetMapping("mypage/purchase-wish-village")
-	public void getPurchaseWishVillage()throws Exception{
-	}
-	@GetMapping("mypage/purchase-sell")
-	public void getPurchasesell()throws Exception{
-		
-	}
-	@GetMapping("mypage/purchase-sell-soldout")
-	public void getPurchasesSoldout()throws Exception{
-		
-	}
-	@GetMapping("mypage/purchase-buy")
-	public void getPurchaseBuy()throws Exception{
-	}
+	
 	@GetMapping("mypage/review")
 	public void getreview()throws Exception{
 	}
