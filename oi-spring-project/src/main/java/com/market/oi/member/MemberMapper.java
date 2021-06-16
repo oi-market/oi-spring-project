@@ -28,8 +28,7 @@ public interface MemberMapper {
 	
 	public int memberDelete(MemberVO memberVO);
 	
-	public MemberVO memberPWChange(MemberVO memberVO);
-	
+
 	
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;

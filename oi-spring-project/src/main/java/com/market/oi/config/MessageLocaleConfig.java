@@ -11,7 +11,7 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-@Configuration
+//@Configuration
 public class MessageLocaleConfig implements WebMvcConfigurer{
 
 	@Bean
@@ -23,10 +23,10 @@ public class MessageLocaleConfig implements WebMvcConfigurer{
 		
 		//cookie
 		CookieLocaleResolver cookieResolver = new CookieLocaleResolver();
-		cookieResolver.setDefaultLocale(Locale.KOREA);
+		//cookieResolver.setDefaultLocale(Locale.KOREA);
 		cookieResolver.setCookieName("lang");
 		
-		return sessionResolver;
+		return cookieResolver;
 		
 	}
 	

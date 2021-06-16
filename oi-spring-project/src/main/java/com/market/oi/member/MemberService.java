@@ -142,17 +142,11 @@ public class MemberService implements UserDetailsService{
 	
 	public int memberDelete(MemberVO memberVO)throws Exception{
 		
-		
 		return memberMapper.memberDelete(memberVO);
-	
 	}
 	
 
-	
-	
-	public MemberVO memberPWChange(MemberVO memberVO) throws Exception{
-		return memberMapper.memberPWChange(memberVO);
-	}
+
 	
 	
 //	public MemberVO getLogin(MemberVO memberVO)throws Exception{

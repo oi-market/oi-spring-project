@@ -235,48 +235,66 @@ public class MemberController {
 
 	
 	@PostMapping("memberUpdate")
-	public UserDetails memberUpdate(MemberVO memberVO , Authentication authentication,ModelAndView mv) throws Exception{
+	@ResponseBody
+	public String memberUpdate(MemberVO memberVO , Authentication authentication) throws Exception{
 		  UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		  String message = "";
 	       memberVO.setUsername(userDetails.getUsername());
-		int result = memberService.memberUpdate(memberVO);
-		
-		System.out.println(result);
-		if(result>0) {
-			mv.setViewName("./mypage/modify");
-		}
-		System.out.println(memberVO);
-		
-		return userDetails;
+	       System.out.println(memberVO);
+	       int result = memberService.memberUpdate(memberVO);
+	       System.out.println(result);
+	       if(result>0) {
+	       MemberVO sessionUpdateVO = (MemberVO)userDetails; 
+	       sessionUpdateVO.setNickName(memberVO.getNickName());
+	       sessionUpdateVO.setName(memberVO.getName());
+	       sessionUpdateVO.setEmail(memberVO.getEmail());
+	       sessionUpdateVO.setPhone(memberVO.getPhone());
+	       
+	       	System.out.println(sessionUpdateVO);
+	       	message="회원정보가 수정 되었습니다.";
+	       }else {
+	    	   message="회원정보 수정에 실패하였습니다.";
+	       }
+
+	       return message;
 	}
 	
 	
 	@GetMapping("memberDelete")
-	public int memberDelete(MemberVO memberVO,Authentication authentication)throws Exception{
+	@ResponseBody
+	public String memberDelete(MemberVO memberVO ,Authentication authentication)throws Exception{
+		System.out.println(memberVO);
+		String message ="";
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
 		memberVO.setUsername(userDetails.getUsername());
+		boolean result = passwordEncoder.matches(memberVO.getPassword(), userDetails.getPassword());
+		System.out.println(memberVO);
+		System.out.println(result);
+		if(result) {
+			memberService.memberDelete(memberVO);
+			message="삭제되었습니다.";
+			
+		}else {
+			message="비밀번호가 일치하지않습니다.";
+		}
 		
-		int result = memberService.memberDelete(memberVO);
 		
-		
-		
-		return result;
+		return message;	
 	}
 	
-	@GetMapping("memberPWCheck")
-	@ResponseBody
-	public boolean memberPWCheck(MemberVO memberVO, Authentication authentication)throws Exception{
-		
-		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-		
-		String pw2 =userDetails.getPassword();
-		
-		boolean result = passwordEncoder.matches(memberVO.getPassword(), pw2);
-		
-		System.out.println(result);
-		
-		return result;
-	}
+//	@GetMapping("memberPWCheck")
+//	public boolean memberPWCheck(MemberVO memberVO, Authentication authentication)throws Exception{
+//		
+//		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+//		
+//		String pw2 =userDetails.getPassword();
+//		
+//		boolean result = passwordEncoder.matches(memberVO.getPassword(), pw2);
+//		
+//		System.out.println(result);
+//		
+//		return result;
+//	}
 	
 
 	
@@ -285,11 +303,29 @@ public class MemberController {
 	
 
 	@PostMapping("memberPWChange")
-	public MemberVO memberPWChange(MemberVO memberVO) throws Exception{
-		
-		memberVO = memberService.memberPWChange(memberVO);
+	@ResponseBody
+	public String memberPWChange(MemberVO memberVO ,Authentication authentication,String newPW1, String newPW2) throws Exception{
+		String message="";
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		boolean result = passwordEncoder.matches(memberVO.getPassword(), userDetails.getPassword());
+		System.out.println(newPW1);
+		System.out.println(newPW2);
+		if(result) {
+			if(newPW1.equals(newPW2)){
+				memberVO.setPassword(newPW1);
+				int num = memberService.memberUpdatePW(memberVO);
+				message="비밀번호가 변경되었습니다. 다시 로그인해주세요.";
+			}else {
+				message="바꿀 비밀번호가 같지않습니다.";
+			}
+			
+		}else {
+			message="현재비밀번호가 틀렸습니다.";
+		}
+
 	
-		return memberVO;
+		return message;
 		
 	}
 	

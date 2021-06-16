@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -65,8 +66,7 @@
                <div class="account-body">
                     
 <sec:authorize access="isAuthenticated()">
-                    <form method="post" action="../member/memberUpdate">
-
+ 
                         <div class="account__bundle">
                             <div class="account-inner-title">
                                 <p>프로필 이미지</p>
@@ -80,7 +80,7 @@
                                 <p class="red-star">*</p>
                                 <label for="account-name">이름</label>
                             </div>
-                            <input id="account-name" class="input--text" type="text" name="name" value="${memberVO.name}"> </input>
+                            <input id="account-name" class="input--text" type="text" name="name" value="<sec:authentication property="principal.name"/>"> </input>
                         </div>
 
                         <div class="account__bundle">
@@ -110,8 +110,8 @@
 
                    
                    
-                        <input class="mybtn passwordBtn" type="submit" value="바꾸기"></input>
-                    </form>
+                        <input class="mybtn passwordBtn" type="button" onclick="update_dtn()" value="바꾸기"></input>
+
                   </sec:authorize>  
                     
                 </div>
@@ -133,8 +133,9 @@
 
      </div>
      <script src="../js/main.js"></script>
-     <script src="../js/myPage.js"></script>
-
+     <script src="../js/myPage.js"></script>'
+     <script type="text/javascript"></script>
+	<script type="text/javascript" src="../js/member.js"></script>
 
 </body>
 </html>

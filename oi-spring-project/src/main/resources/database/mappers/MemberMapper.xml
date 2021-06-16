@@ -63,7 +63,7 @@
       </update>
       
       <delete id="memberDelete" parameterType="MemberVO">
-		delete member where username=#{username}
+		delete from member where username=#{username}
 	  </delete>
       
 

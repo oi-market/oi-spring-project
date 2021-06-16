@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -92,7 +94,7 @@
                             <input id="new-password-confirm" type="password"> </input>
                         </div>
                    
-                        <input class="mybtn passwordBtn" type="button" value="바꾸기"></input>
+                        <input class="mybtn passwordBtn" type="button" onclick="passwordNewpw()" value="바꾸기"></input>
                     </form>
                     
                     
@@ -109,8 +111,6 @@
                     </div>
                 </form>
             </div>
-            <a href="#" class="btn btn-link" type="button" id="userDel"
-					onclick="if(!confirm('회원 탈퇴 하시겠습니까?')){return false;}" style="display: none;"></a>
          </div>
      </section>
 
@@ -153,46 +153,58 @@
 
      <script src="../js/main.js"></script>
      <script src="../js/myPage.js"></script>
+	<script type="text/javascript" src="../js/member.js"></script>
 
 <script type="text/javascript">
 
-function usernameDelete(){
-	var passwordCheck = $("#passwordCheck").val(); //사용자의 이메일 입력값.
+function passwordNewpw(){
+	var origin_password = $("#origin-password").val();
+	var newPassword = $("#new-password").val();
+	var newPassword_confirm = $("#new-password-confirm").val();
 	
-		alert(passwordCheck);
+	var newPasswordTrim= $.trim(newPassword);
+	if(confirm("정말 변경하시겠습니까?") == true){
 
+		if(newPasswordTrim.length>17||newPasswordTrim.length<7||newPasswordTrim==null){
+			alert( "패스워드는 8글자 이상 16글자 이하입니다.");
+				
+		}else
+		
 		$.ajax({
-			type : 'GET',
-			url : '../member/memberPWCheck',
+			type : 'POST',
+			url : '../member/memberPWChange',
 			data : {
-				"password" : passwordCheck,
+				"password" : origin_password,
+				"newPW1" : newPassword,
+				"newPW2" : newPassword_confirm,
+				
 			},
 
 			dataType :'text',
+			
 			success : function(data) {
-		         if(data=="true"){
-		        	 $("#userDel").trigger("click");
-		        	 
-		         }else{
-		        	 alert("비밀번호 잘못침.");
-		         }
-				
-		        
+		       
+				alert(data);
+				if(data=="비밀번호가 변경되었습니다. 다시 로그인해주세요."){
+				location.href="../member/memberLogout"
+				}
 		    },
 			
 		    error:function(requeest, status, error){
 		    	alert(error);
 		    },
-			
 
 			
 
 		});
 		
-		
+	
+	}else{
+		return;
 	}
+	
 		
-
+}
 
 </script>
 
