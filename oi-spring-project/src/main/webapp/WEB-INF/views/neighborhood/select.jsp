@@ -67,7 +67,9 @@
                     
                     
                                  <div class="content__info content__info--post">
-                        <div class="info--photo">사진</div>
+                        <div class="info--photo">
+                        	<img src="../img/default-user-picture.png">
+                        </div>
                         <div class="info--users">
                             <div class="info--user">우기</div>
                             <div class="info--second-line">
@@ -119,7 +121,9 @@
 
                             <div class="comment--header">
                                 <div class="content__info content__info--post">
-                                    <div class="info--photo">사진</div>
+                                    <div class="info--photo">
+                                    	<img src="../img/default-user-picture.png">
+                                    </div>
                                     <div class="info--users">
                                         <div class="info--user">우기</div>
                                         <div class="info--second-line">
@@ -165,7 +169,9 @@
 
                             <div class="comment--header">
                                 <div class="content__info content__info--post">
-                                    <div class="info--photo">사진</div>
+                                    <div class="info--photo">
+										<img src="../img/default-user-picture.png">
+									</div>
                                     <div class="info--users">
                                         <div class="info--user">우기</div>
                                         <div class="info--second-line">
