@@ -92,6 +92,7 @@
                         
                         <strong class="product--name">나이키SB 후리스</strong>
                         <strong class="product--amount">40,000원</strong>
+                        <p>남성의류</p>
                         <div class="product-info">
                             <div class="product--like">
                                 <i class="bi bi-suit-heart-fill"></i> 0

@@ -349,6 +349,10 @@ header .inner--second{
     font-weight: 700;
     border-bottom: 1px solid #ccc;
 }
+.body--right .product--amount + p{
+    font-size: 15px;
+    color: rgb(141, 141, 141);
+}
 .body--right .product-info{
     display: flex;
     min-width: 280px;
@@ -356,10 +360,10 @@ header .inner--second{
 }
 .body--right .product-info div{
     color: #ccc;
-    margin:20px
+    margin:10px 20px 20px 20px;
 }
 .body--right .product-info div:first-child{
-    margin: 20px 20px 20px 0;
+    margin: 10px 20px 20px 0;
 }
 .body--right .product--user-info{
     margin-bottom: 15px;
