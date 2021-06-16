@@ -1,0 +1,235 @@
+@charset "UTF-8";
+
+
+/* header process */
+
+.section--second-header{
+    border-bottom: 0px;
+    /* box-shadow : 0 0 5px #5c6267; */
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+header .inner--second{
+    background-color: #E5F3E6;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.inner--left{
+    display: flex;
+    margin : 10px 10px 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.inner__dropdown{
+    
+    margin-right: 30px;
+    position: relative;
+    display: inline-block;
+}
+.inner__dropdown i{
+    display: inline-block;
+    transition: 300ms ease all; 
+    
+}
+
+
+.inner__right{
+    margin:10px 20px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inner__right a:first-child{
+    margin-right: 30px;
+}
+
+#search-form--village{
+    margin-right: 0px;
+}
+#search-form--village input[type=submit]{
+    display: none;
+}
+
+.inner__right .input--text{
+    /* width: inherit; */
+    height: 30px;
+}
+#toggle-btn--village{
+    border: none;
+    font-size: 30px;
+    background-color:#E5F3E6 ;
+    display: none;
+}
+
+
+
+.article .inner{
+    max-width:1030px ;
+    padding-top: 141px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-list{
+    background-color: #F8F9FA;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+   margin: 15px;
+   padding:20px;
+    align-items: flex-start;
+    box-sizing: border-box;
+   border-radius: 10px;
+}
+.post-list a{
+    color: #333;
+}
+.post-list:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 220px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    z-index: 1;
+    margin-top: 15px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 450ms ease all; 
+  }
+
+  .dropdown-content.dropdown--product-category a{
+      display: block;
+      width: 110px;
+  }
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 5px 12px 5px;
+    text-decoration: none;
+    display: block;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* text-align: center; */
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: rgb(168, 168, 168)}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {
+    display: block;
+     opacity: 1;
+    }
+   .show.dropdown--product-category{
+       display: flex;
+       flex-direction: row;
+       flex-wrap: wrap;
+   }
+
+
+/* product */
+
+.article--product .inner{
+    max-width: 1010px;
+
+}
+.product-list{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+
+
+.product-list .product{
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 1px;
+}
+.product-list .product div{
+    margin-bottom: 5px;
+}
+.product-list a{
+    color: #333;
+    margin: 15px 17.75px;
+    display: inline-block;
+}
+.product-list .product--header{
+    width: 217px;
+    height: 217px;
+}
+.product-list .product--image{
+    object-fit: cover;
+    width: 217px;
+    height: 180px;
+}
+.product-list .product--name{
+    font-weight: 700;
+    margin-top:10px
+}
+.product-list .product--location{
+    color: rgb(153, 153, 153);
+    font-weight: 300;
+    font-size: 14.5px;
+}
+.product-list .product--footer{
+    display: flex;
+    justify-content: space-between;
+}
+.product-list .product--amount,
+.product-list .product--like i{
+    color:#65b836 ;
+}
+.paging-nav{
+    margin: 59px;
+}
+
+.paging-nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.paging-nav ul li{
+    padding: 10px;
+}
+
+.paging-nav li a{
+   text-decoration: none;
+   color: #3c4146;
+}
+.paging-nav li a:hover{
+ color: #ccc;
+} 
+
+
+
+
