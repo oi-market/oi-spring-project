@@ -233,3 +233,315 @@ header .inner--second{
 
 
 
+
+
+
+
+/* select */
+
+.product-select__body{
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 50px auto 120px auto;
+   
+}
+.body--left{
+    margin: 20px;
+    position: relative;
+}
+.mySlides{
+    display: none
+}
+.body--left img{
+    width: 408px;
+    height:408px;
+    object-fit: cover;
+    vertical-align: middle;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 10px 2px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active{
+      background-color: rgb(85, 85, 85);
+      border:none;
+  }
+  .dot:hover {
+    background-color: #b8b8b8;
+  }
+  
+  
+  /* Fading animation */
+  .fades {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1s;
+    animation-name: fade;
+    animation-duration: 1s;
+  }
+  
+  @-webkit-keyframes fade {
+    from {opacity: .8} 
+    to {opacity: 1}
+  }
+  
+  @keyframes fade {
+    from {opacity: .8} 
+    to {opacity: 1}
+  }
+  
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+
+.body--right{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+   letter-spacing: 1px;
+   position : relative;
+   
+}
+.body--right .product--name{
+    font-size: 25px;
+    font-weight: 700;
+}
+.body--right .product--amount{
+    margin: 22px 0 17px 0;
+    padding-bottom: 10px;
+    font-size: 40px;
+    font-weight: 700;
+    border-bottom: 1px solid #ccc;
+}
+.body--right .product-info{
+    display: flex;
+    min-width: 280px;
+    align-items: center;
+}
+.body--right .product-info div{
+    color: #ccc;
+    margin:20px
+}
+.body--right .product-info div:first-child{
+    margin: 20px 20px 20px 0;
+}
+.body--right .product--user-info{
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.body--right a{
+    color: #333;
+}
+.product--user-info .user__left{
+    display: flex;
+}
+.product--user-info img{
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 24px;
+}
+.product--user-info .user--namebox{
+  margin-left: 7px;
+  padding-top: 5px;
+}
+.user--namebox .user--name{
+    margin-bottom: 7px;
+    font-weight: 700;
+}
+.user--namebox .user--location{
+    font-weight: 300;
+}
+.product--user-info .user--score{
+    padding-top: 14px;
+} 
+
+.star-rating{
+    width: 103px;
+}
+.star-rating,
+.colored-star{
+    background: url(../img/star2.png);
+    height: 20px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+.colored-star{
+    background-position:left bottom;
+    vertical-align:top;
+}
+/* html에서 width %로 평점 조정 */
+.body--right .product--description{
+    overflow: auto;
+    height: 130px;
+    padding: 10px;
+    line-height: 25px;
+}
+
+.body--right .product--buttons{
+    display: flex;
+}
+
+.mybtn.zzimBtn{
+    width: 140px;
+    height: 37px;
+    font-size: 16px;
+    display: block;
+    margin-right: 10px;
+    border: none;
+    position: absolute;
+    bottom: 0;
+    
+}
+.mybtn.chatBtn{
+    width: 140px;
+    height: 37px;
+    font-size: 16px;
+    display: block;
+    background: rgb(240, 118, 5);
+    border: none;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+
+
+
+/* media */
+
+@media (max-width:580px){
+ 
+    .inner--second{
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        /* padding-top: 50px; */
+    }
+    .inner--left{
+        display: none;
+        padding-top:50px
+    }
+   .inner__right{
+        display: none;
+    }
+    .inner__right form{
+        margin-left: 50px;
+    }
+    header.section .inner--second{
+        min-height: 50px;
+        justify-content:flex-start;
+    }
+    #toggle-btn--village{
+        display: block;
+        position :absolute;
+        top :5px;
+        right: 20px;
+    }
+    .post-list{
+        width: 320px;
+    }
+    .content__info{
+        width: 280px;
+    }
+    .toggle--small.on{
+        display: flex;
+        /* flex-direction: column; */
+        margin: 10px;
+    }
+    .toggle--small.on a{
+        margin: 10px;
+    }
+    .dropdown-content{
+        width: 120px;
+    }
+
+}
+
+@media (max-width:1024px){
+    .article--product .inner{
+        max-width:757.5px;
+    }
+}
+@media (max-width:772px){
+    .article--product .inner{
+        max-width:505px;
+    }
+    .body--left{
+        margin: 20px auto;
+    }
+    .product-select__body{
+        flex-direction: column;
+    }
+    .body--right{
+        height: 450px;
+    }
+    .body--right .product--name{
+        text-align: center;
+    }
+    .body--right .product--amount{
+        text-align: center;
+    }
+
+}
+@media (max-width:519px){
+    .article--product .inner{
+        max-width:252.5px;
+    }
+    .body--left img{
+        width :250px;
+        height: 250px;
+    }
+    .body--right .product--description{
+    line-height: 30px;
+    width: 250px;
+    }
+    .mybtn.zzimBtn{
+        width: 100px;
+    }
+    .mybtn.chatBtn{
+        width: 100px;
+   
+    }
+
+}
+

@@ -66,7 +66,7 @@
             <div class="product-list">
 
 
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
@@ -81,7 +81,7 @@
                         </div>
                     </div>  
                 </a>
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
@@ -96,7 +96,7 @@
                         </div>
                     </div>  
                 </a>
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
@@ -111,7 +111,7 @@
                         </div>
                     </div>  
                 </a>
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
@@ -126,7 +126,7 @@
                         </div>
                     </div>  
                 </a>
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
@@ -141,7 +141,7 @@
                         </div>
                     </div>  
                 </a>
-                <a href="#">
+                <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
