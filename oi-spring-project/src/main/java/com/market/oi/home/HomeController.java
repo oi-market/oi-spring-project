@@ -83,7 +83,26 @@ public class HomeController {
 	@GetMapping("neighborhood/insert")
 	public void getVillageInsert()throws Exception{
 	}
+	@GetMapping("product/list")
+	public void getProductList()throws Exception{
+	}
+	@GetMapping("product/select")
+	public void getProductSelect()throws Exception{
+	}
+	@GetMapping("product/insert")
+	public void getProductInsert()throws Exception{
+	}
+	@GetMapping("board/insert")
+	public void getBoardInsert()throws Exception{
+	}
+	@GetMapping("board/select")
+	public void getBoardSelect()throws Exception{
+	}
+	@GetMapping("board/list")
+	public void getBoardList()throws Exception{
+	}
 
+	
 
 	
 }
