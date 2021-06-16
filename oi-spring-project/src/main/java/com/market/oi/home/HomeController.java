@@ -2,6 +2,9 @@ package com.market.oi.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.market.oi.member.MemberVO;
 
 @Controller
 public class HomeController {
@@ -17,7 +20,7 @@ public class HomeController {
 		return "member/sign-in";
 	}
 	@GetMapping("/member/sign-up")
-	public String getSignUp()throws Exception{
+	public String getSignUp(@ModelAttribute MemberVO memberVO)throws Exception{
 		return "member/sign-up";
 	}
 	@GetMapping("member/find-id")
@@ -54,6 +57,15 @@ public class HomeController {
 	}
 	@GetMapping("mypage/modify")
 	public void getModify()throws Exception{
+	}
+	@GetMapping("neighborhood/board")
+	public void getVillageBoard()throws Exception{
+	}
+	@GetMapping("neighborhood/select")
+	public void getVillageSelect()throws Exception{
+	}
+	@GetMapping("neighborhood/insert")
+	public void getVillageInsert()throws Exception{
 	}
 
 

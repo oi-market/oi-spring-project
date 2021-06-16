@@ -73,7 +73,7 @@
                 </div>
 
               
-                <form action="#" method="POST" class="sign-in-frm row">
+                <form action="./memberLogin" method="post" class="sign-in-frm row">
 
 
                          <div class="inputs">
@@ -85,7 +85,7 @@
                                 <a href="${pageContext.request.contextPath}/member/find-id">아이디 찾기</a>
                             </p>
                         </div>
-                        <input name="username" placeholder="아이디" class="col-12 input--text">
+                        <input id="username" name="username" placeholder="아이디"  class="col-12 input--text">
                         <div id="pw-input">
                             <p>
                                 비밀번호
@@ -94,12 +94,12 @@
                                 <a href="${pageContext.request.contextPath}/member/find-pw">비밀번호 찾기</a>
                             </p>
                         </div>
-                        <input name="username" placeholder="비밀번호" class="col-12 input--text">
+                        <input type="password" id="password" name="password" placeholder="비밀번호" class="col-12 input--text">
                     </div>
                     
                    
                     <div class="d-grid">
-                        <input type="button" class="mybtn mybtn--primary mb-5 sign-up-btn" value="로그인">
+                        <input type="submit" class="mybtn mybtn--primary mb-5 sign-up-btn" value="로그인">
                     </div>
                 
                 </form>

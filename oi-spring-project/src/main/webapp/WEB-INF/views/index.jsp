@@ -69,7 +69,6 @@
          <div class="inner">
 
                 <div class="summaryImg">
-                    
                 </div>
              
                  <div class="summary">
@@ -248,7 +247,9 @@
 			
             </div>
 
+
      <script src="./js/main.js"></script>
      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
 </body>
 </html>
