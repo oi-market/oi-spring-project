@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -40,6 +42,21 @@
     <link rel="stylesheet" href="../css/neighborhood.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
+    
+    <style type="text/css">
+    	/*말줄임 css*/
+	    .box {
+		    display: -webkit-box;
+		    height: 100px;/*줄일 높이?*/
+		    word-wrap: break-word;
+		    -webkit-line-clamp: 3;	/*보여주고싶은 줄 수*/
+		    -webkit-box-orient: vertical;
+		    text-overflow: ellipsis;
+		    overflow: hidden;
+		    margin-bottom: 3%;
+		}
+    </style>
+    
   
 </head>
 <body>
@@ -55,76 +72,98 @@
     
      <section class="section article">
          <div class="inner">
-			
-            <div class="post-list">
-
-                <a href="./select">
-                    <div class="post-list__header">
-                        우리동네질문
-                    </div>
-                    <div class="post-list__content">
-                        <p class="content__article">
-                            개봉역 앞 필라테스 모드온 괜찮은가유?
-                        </p>
-                        <div class="content__info">
-                            <div class="info__left">
-                                <div class="info--user">우기</div>
-                                <div class="info--location">개봉3동</div>
-                            </div>
-                            <div class="info--date">2시간 전</div>
-                        </div>
-                    </div>
-                    <div class="post-list__footer">
-                            <div class="footer--wrap">
-                                <div class="post-list--like">좋아요 3</div>
-                                <div class="post-list--comment">댓글 1</div>
-                            </div>
-                    </div>
-                </a>
-                
-            </div>
-            
-
-            <div class="paging-nav">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-chevron-left"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            1
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            2
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            3
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            4
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </li>
-   
-                </ul>
-            </div>
-            </div>
+			<c:forEach items="${list}" var="vo" varStatus="i">
+	            <div class="post-list">
+	
+	                <a href="./select?categoryNum=${vo.categoryNum}&&num=${vo.num}&&communityNum=${vo.num}">
+	                    <div class="post-list__header">
+	                        ${vo.category}
+	                    </div>
+	                    <div class="post-list__content box">
+	                        <p class="content__article">
+	                            ${vo.contents}
+	                        </p>
+	                    </div>
+	                    
+	                    <div class="content__info">
+                           <div class="info__left">
+                               <div class="info--user">${vo.writer}</div>
+                               <div>&ensp;·&ensp;</div>
+                               <div class="info--location">
+                               		${fn:substring(vo.location, start, end)}
+                               </div>
+                           </div>
+                           <div class="info--date">${vo.regDate}</div>
+	                    </div>
+	                    
+	                    <div class="post-list__footer">
+	                            <div class="footer--wrap">
+	                                <!--<div class="post-list--like">좋아요 3</div> ${count}-->
+	                                  <div class="post-list--comment">댓글 ${count[i.index]}</div>
+	                            </div>
+	                    </div>
+	                </a>
+	                
+	            </div>
+            </c:forEach>
             
             
+			<c:if test="${size ne 0}">
+	            <div class="paging-nav">
+	                <ul>
+	 					<c:if test="${communityPager.pre}">	
+						   <li style="width:10%"><a class="pager" href="#" title="${communityPager.startNum-1}">
+						   
+							   	<img alt="enter-arrow" src="../img/nei-pre.png"
+								style="width:200%; margin-top:80%" />
+						   
+						   </a></li>
+						</c:if>
+			   
+				   	  	<c:forEach begin="${communityPager.startNum}" end="${communityPager.lastNum}" var="i">
+				   			<li><a class="pager" href="#" title="${i}">${i}</a></li>
+				   	  	</c:forEach>
+			   
+				      	<c:if test="${communityPager.next}">
+				      		<li style="width:10%"><a class="pager" href="#" title="${communityPager.lastNum+1}">
+				      		
+					      		<img alt="enter-arrow" src="../img/nei-next.png"
+								style="width:60%; margin-top:20%" />
+				      		
+				      		</a></li>
+				      	</c:if>
+	   
+	                </ul>
+	                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	                <script type="text/javascript">
+		
+						$(".pager").click(function() {
+							let curPage = $(this).attr("title");
+							$("#curPage").val(curPage);
+							let search = '${communityPager.search}';
+							$("#search2").val(search);
+							let categoryNum = '${communityPager.categoryNum}';
+							$("#categoryNum").val(categoryNum);
+							//alert($("#categoryNum").val());
+							//alert($("#search2").val());
+							$("#search-form--village").submit();
+						
+						});
+				
+					</script> 
+	                
+	                
+	            </div>
+            </c:if>
+            
+            <c:if test="${size eq 0}">
+            
+            	<img alt="no-contents" src="../img/nei-no-contents.png" style="width:50%;" />
+            
+            </c:if>
             
             
+         </div>
             
         
      </section>

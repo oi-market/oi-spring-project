@@ -30,4 +30,10 @@ public interface CommentsMapper{
 	//update
 	public int setReplyUpdate(CommentsVO commentsVO) throws Exception;
 
+	//step update
+	public int stepUpdate(CommentsVO commentsVO) throws Exception;
+	
+	//totalCount
+	public Long getTotalCount(CommentsVO commentsVO) throws Exception;
+	
 }

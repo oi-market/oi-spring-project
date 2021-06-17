@@ -2,6 +2,19 @@ package com.market.oi.util;
 
 public class CommunityPager {
 	
+	private String cutLocation;
+	
+	public String getCutLocation() {
+		
+		return cutLocation;
+	}
+
+	public void setCutLocation(String cutLocation) {
+		
+		this.cutLocation = cutLocation;
+	}
+
+
 	//현재페이지
 	private Long curPage;
 	private Long perPage;
@@ -17,7 +30,7 @@ public class CommunityPager {
 	private boolean next;
 	
 	//search 변수
-	private String kind;
+	//private String kind;
 	private String search;
 	
 	public void makeNum(Long totalCount) {
@@ -50,6 +63,7 @@ public class CommunityPager {
 		//5. curBlock 이용해서 startNum, lastNum 구하기
 		this.startNum = (curBlock-1) * perBlock+1;
 		this.lastNum = curBlock * perBlock;
+
 		
 		//6. curBlock이 마지막 totalBlock
 		this.pre = true;
@@ -62,7 +76,7 @@ public class CommunityPager {
 		
 		if(curBlock == 1) {
 			this.pre = false;
-		}	
+		}
 		
 	}
 	
@@ -100,7 +114,7 @@ public class CommunityPager {
 	public Long getPerPage() {
 		
 		if(this.perPage == null || this.perPage==0) {
-			this.perPage = 10L;
+			this.perPage = 3L;
 		}
 		
 		return perPage;
@@ -109,7 +123,7 @@ public class CommunityPager {
 	public void setPerPage(Long perPage) {
 		
 		if(perPage == null || perPage == 0) {
-			this.perPage=10L;
+			this.perPage = 3L;
 		}else {
 			this.perPage = perPage;
 		}
@@ -160,13 +174,13 @@ public class CommunityPager {
 
 	
 	//search
-	public String getKind() {
-		return kind;
-	}
-
-	public void setKind(String kind) {
-		this.kind = kind;
-	}
+//	public String getKind() {
+//		return kind;
+//	}
+//
+//	public void setKind(String kind) {
+//		this.kind = kind;
+//	}
 
 	public String getSearch() {
 		
@@ -185,6 +199,18 @@ public class CommunityPager {
 		
 		this.search = search;
 	}
+
+
+	public Long getCategoryNum() {
+		return categoryNum;
+	}
+
+
+	public void setCategoryNum(Long categoryNum) {
+		this.categoryNum = categoryNum;
+	}
+	
+	
 	
 	
 

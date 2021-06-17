@@ -68,9 +68,9 @@
           
            
            
-           <form class="neighborhood-form" action="./insert" method="post" enctype="multipart/form-data">
+           <form class="neighborhood-form" action="./update" method="post" enctype="multipart/form-data">
 	
-             
+             		 <input type="hidden" id="num" name="num" value="${vo.num}" />
                 
                     <!-- 카테고리 선택 -->
                     <select class="neighborhood-form__kinds" name="categoryNum">
@@ -82,9 +82,11 @@
                         <option value="6" >기타</option>
                     </select>
                    
-                    <textarea  id="summernote" name="contents" name="editordasta"></textarea>
+                    <textarea  id="summernote" name="contents" name="editordasta">
+                    	${vo.contents}
+                    </textarea>
               
-                    <button class="mybtn" type="submit">글쓰기</button>
+                    <button class="mybtn" type="submit">수정</button>
                     
             
             </form>	

@@ -7,21 +7,47 @@
 	
 	<!-- 커뮤니티 getTotalCount -->
 	<select id="getTotalCount" parameterType="CommunityPager" resultType="Long">
-  		select count(num) from community 		
+  		<!-- select count(num) from community
+  		<if test="categoryNum != 0 ">
+			WHERE categoryNum=#{categoryNum}
+		</if> -->
+		
+		SELECT COUNT(num)
+		FROM 
+		(SELECT * FROM community C WHERE C.contents
+		LIKE concat('%', #{search}, '%')) S
+		WHERE S.location LIKE concat('%', #{cutLocation}, '%')
+  		<if test="categoryNum != 0 ">
+			AND categoryNum=#{categoryNum}
+		</if>
+		
   	</select>
 	
 	<!-- 커뮤니티 List -->
 	<select id="getList" parameterType="CommunityPager" resultType="CommunityVO">		
-		SELECT C.*, CA.category
+		
+		<!--  SELECT C.*, CA.category
 		FROM community C LEFT JOIN communityCategory CA
 		ON C.categoryNum = CA.num
-		<if test="categoryNum!=0">
+		<if test="categoryNum != 0 ">
 			WHERE C.categoryNum=#{categoryNum}
 		</if>
 		
 		order by num desc
-		limit #{startRow}, #{perPage}
+		limit #{startRow}, #{perPage} -->
 		<!-- limit 시작index번호(0부터시작), 갯수 --> 
+		
+		SELECT CA.category, S.*
+		FROM (SELECT * FROM community C WHERE C.contents
+		LIKE concat('%', #{search}, '%'))S LEFT JOIN communityCategory CA
+		ON S.categoryNum = CA.num	 
+		WHERE S.location LIKE concat('%', #{cutLocation}, '%')
+		<if test="categoryNum != 0 ">
+			AND S.categoryNum=#{categoryNum}
+		</if>
+		
+		order by num desc
+		limit #{startRow}, #{perPage}
 		
 	</select>
 	

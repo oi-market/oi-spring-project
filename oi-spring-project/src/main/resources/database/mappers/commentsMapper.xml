@@ -5,11 +5,17 @@
 
 <mapper namespace="com.market.oi.community.comments.CommentsMapper">
 
+	<!-- 댓글 getTotalCount -->
+	<select id="getTotalCount" parameterType="CommentsVO" resultType="Long">
+  		select count(num) from comments where communityNum = #{communityNum} 		
+  	</select>
+
+
 	<!-- 댓글 getList -->
 	<select id="getList" parameterType="CommentsVO" resultType="CommentsVO">
 		select * from comments 
 		where communityNum = #{communityNum}
-		order by step desc
+		order by step asc
 	</select>
 	
 	<!-- 댓글 getSelect -->
@@ -19,8 +25,8 @@
 	
 	<!-- 댓글 setInsert -->
 	<insert id="setInsert" parameterType="CommentsVO" useGeneratedKeys="true" keyProperty="num">
-		insert into comments(num, communityNum, writer, contents, location, ref, regDate)
-		values(#{num}, #{communityNum}, #{writer}, #{contents}, #{location}, #{num}, now())
+		insert into comments(num, communityNum, writer, contents, location, ref, step, depth, regDate)
+		values(#{num}, #{communityNum}, #{writer}, #{contents}, #{location}, #{num}, #{step}, #{depth}, now())
 	</insert>
 	
 	<!-- 댓글 setDelete  -->
@@ -32,6 +38,13 @@
 	<update id="setUpdate" parameterType="CommentsVO">
 		update comments set writer = #{writer}, contents = #{contents}, location = #{location}, regdate = now() 
     	where num = #{num}  
+	</update>
+	
+	<!-- step update -->
+	<update id="stepUpdate" parameterType="CommentsVO">
+		update comments set step=step+1 where communityNum = #{communityNum}
+		and step > #{step}
+		
 	</update>
 	
 	

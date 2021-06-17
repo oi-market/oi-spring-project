@@ -1,5 +1,6 @@
 package com.market.oi.community;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.market.oi.community.comments.CommentsMapper;
+import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.util.CommunityFileManager;
 import com.market.oi.util.CommunityPager;
 
@@ -17,6 +20,9 @@ public class CommunityService {
 	
 	@Autowired
 	private CommunityMapper communityMapper;
+	
+	@Autowired
+	private CommentsMapper commentsMapper;
 	
 	@Autowired
 	private CommunityFileManager communityFileManager;
@@ -36,10 +42,17 @@ public class CommunityService {
 		System.out.println("totalcount : "+totalCount);
 		communityPager.makeNum(totalCount);
 		
+		//System.out.println("service-search : "+communityPager.getSearch());
+		
 		System.out.println("startNum : "+communityPager.getStartNum());
 		System.out.println("lastNum : "+communityPager.getLastNum());
-
-		return communityMapper.getList(communityPager);
+		
+		//ar : 받아온 리스트
+		//copy : 받아온 리스트의 communityNum 쿼리문으로 비교해서
+		//		 count 값 넣기
+		//System.out.println("catergoryNum : "+ communityPager.getCategoryNum());
+		List<CommunityVO> ar = communityMapper.getList(communityPager);
+		return ar;
 		
 	}
 	
@@ -85,6 +98,10 @@ public class CommunityService {
 	
 	//Update
 	public int setUpdate(CommunityVO communityVO) throws Exception{
+		
+//		communityVO.setWriter("username1");
+//		communityVO.setLocation("마포구");
+		
 		System.out.println("service result : "+communityMapper.setUpdate(communityVO));
 		return communityMapper.setUpdate(communityVO);
 	}

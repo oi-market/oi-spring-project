@@ -1,9 +1,13 @@
 package com.market.oi.community;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.market.oi.community.comments.CommentsService;
 import com.market.oi.community.comments.CommentsVO;
+import com.market.oi.member.MemberVO;
 import com.market.oi.util.CommunityPager;
-
 
 @Controller
 @RequestMapping("/neighborhood/**")
@@ -33,36 +37,142 @@ public class CommunityController {
 	
 	//커뮤니티 List
 	@GetMapping("board")
-	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager) throws Exception{
+	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager, Authentication auth) throws Exception{
 		
+		System.out.println("search1 : "+communityPager.getSearch());
 		System.out.println("FilePath : "+filePath);
 		
-		List<CommunityVO> ar = communityService.getList(communityPager);
-		CommentsVO commentsVO = new CommentsVO();
 		
-		mv.addObject("comments", commentsVO);
+		//MemberVO가 UserDetail를 상속
+		//				<-	principal에서 꺼냄
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		//꺼낸 걸 memberVO로 변환해서 넣음
+		MemberVO sessionMember = (MemberVO)user;
+		
+		System.out.println("Location : "+sessionMember.getLocation());
+		
+		
+		//*****************  주소값 잘라서 보여주기  ******************
+		
+		int check1 = 0;
+		int check2 = 0;
+			
+			for(int i = 0; i < sessionMember.getLocation().length(); i++) {
+	
+				// charAt 함수로 문자열을 한글자씩 취득
+				System.out.println(sessionMember.getLocation().charAt(i));
+				
+				if(sessionMember.getLocation().charAt(i)==' ') {
+					if(check1 == 0) {
+						check1 = i+1;
+					} else if(check1 != 0 && check2 == 0) {
+						check2 = i;
+					}
+				}
+				
+			}
+
+		System.out.println("check1 : "+check1);
+		System.out.println("check2 : "+check2);
+		
+		String cutLocation = sessionMember.getLocation().substring(check1, check2);
+		
+		communityPager.setCutLocation(cutLocation);
+		System.out.println(communityPager.getCutLocation());
+		
+		//******************************************************
+		
+				
+		List<CommunityVO> ar = communityService.getList(communityPager);
+
+		List<Long> copy = new ArrayList<Long>();
+		
+		for(int i=0; i<ar.size(); i++) {
+			CommentsVO commentsVO = new CommentsVO();
+			commentsVO.setCommunityNum(ar.get(i).getNum());
+			Long count = commentsService.getTotalCount(commentsVO);
+			
+			copy.add(count);
+			System.out.println("copyList : "+copy.get(i));
+			
+		}
+		
+		mv.addObject("start", check1);
+		mv.addObject("end", check2);
+
+		mv.addObject("count", copy);
 		
 		mv.addObject("list", ar);
+		mv.addObject("size", ar.size());
+
 		mv.addObject("communityPager", communityPager);
 		mv.setViewName("neighborhood/board");
+		
+		System.out.println("search : "+communityPager.getSearch());
 		
 		return mv;
 	}
 	
 	//커뮤니티 Select
 	@GetMapping("select")
-	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO) throws Exception{
+	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO, Authentication auth) throws Exception{
 		
+		System.out.println("select");
+	
 		ModelAndView mv = new ModelAndView();
 		
 		communityVO = communityService.getSelect(communityVO);
 		
+		
+		//MemberVO가 UserDetail를 상속
+		//				<-	principal에서 꺼냄
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		//꺼낸 걸 memberVO로 변환해서 넣음
+		MemberVO sessionMember = (MemberVO)user;
+		
+		System.out.println("username : "+sessionMember.getUsername());
+		System.out.println("writer : "+communityVO.getWriter());
+		
+		
+		
+		//*****************  주소값 잘라서 보여주기  ******************
+		
+		int check1 = 0;
+		int check2 = 0;
+
+		for(int i = 0; i < communityVO.getLocation().length(); i++) {
+
+			// charAt 함수로 문자열을 한글자씩 취득
+			System.out.println(communityVO.getLocation().charAt(i));
+			
+			if(communityVO.getLocation().charAt(i)==' ') {
+				if(check1 == 0) {
+					check1 = i+1;
+				} else if(check1 != 0 && check2 == 0) {
+					check2 = i;
+				}
+			}
+			
+		}
+		
+		System.out.println("check1 : "+check1);
+		System.out.println("check2 : "+check2);
+				
+		//******************************************************
+		
+		
+		
 		//comments select
 		List<CommentsVO> ar = commentsService.getList(commentsVO);
+		Long count = commentsService.getTotalCount(commentsVO);
+
+		mv.addObject("start", check1);
+		mv.addObject("end", check2);
 		
-		//System.out.println("writer : "+commentsVO.getWriter());
-		
+		mv.addObject("count", count);
 		mv.addObject("vo", communityVO);
+		mv.addObject("session", sessionMember.getUsername());
+		
 		mv.addObject("comments", commentsVO);
 		mv.addObject("list", ar);
 		
@@ -74,7 +184,7 @@ public class CommunityController {
 	//커뮤니티 Insert
 	@GetMapping("insert")
 	public ModelAndView setInsert() throws Exception{
-		
+		System.out.println("insert");
 		ModelAndView mv = new ModelAndView();
 		CommunityVO communityVO = new CommunityVO();
 		
@@ -86,7 +196,19 @@ public class CommunityController {
 	
 	
 	@PostMapping("insert")
-	public String setInsert(CommunityVO communityVO, MultipartFile [] files, Model model) throws Exception {
+	public String setInsert(CommunityVO communityVO, MultipartFile [] files, Model model, Authentication auth) throws Exception {
+		
+		//MemberVO가 UserDetail를 상속
+		//				<-	principal에서 꺼냄
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		//꺼낸 걸 memberVO로 변환해서 넣음
+		MemberVO memberVO = (MemberVO)user;
+		
+		communityVO.setWriter(memberVO.getUsername());
+		communityVO.setLocation(memberVO.getLocation());
+		
+		System.out.println("nicName : "+memberVO.getUsername());
+		System.out.println("location : "+memberVO.getLocation());
 		
 		for(MultipartFile f : files) {
 			System.out.println(f.getOriginalFilename());
@@ -111,14 +233,15 @@ public class CommunityController {
 	}
 	
 	//커뮤니티 Delete
-	@GetMapping("communityDelete")
+	@GetMapping("delete")
 	public ModelAndView setDelete(CommunityVO communityVO) throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		
 		int result = communityService.setDelete(communityVO);
 		
-		String message = "삭제에 실패했습니다!";
-		String path = "./communityList";
+		String message = "삭제 권한이 없습니다!";
+		String path = "./board";
 		
 		if(result > 0) {
 			message = "삭제를 성공적으로 마쳤습니다!";
@@ -133,38 +256,52 @@ public class CommunityController {
 	}
 	
 	//커뮤니티 Update
-	@GetMapping("communityUpdate")
+	@GetMapping("update")
 	public ModelAndView setUpdate(CommunityVO communityVO) throws Exception{
+		
 		ModelAndView mv = new ModelAndView();
 		
 		//값 가져오기
 		communityVO = communityService.getSelect(communityVO);
 		
 		mv.addObject("vo", communityVO);
-		mv.setViewName("community/communityUpdate");
+		mv.setViewName("neighborhood/update");
 		
 		return mv;
 	}
 	
-	@PostMapping("communityUpdate")
-	public ModelAndView setUpdate(CommunityVO communityVO, ModelAndView mv) throws Exception{
+	@PostMapping("update")
+	public ModelAndView setUpdate(CommunityVO communityVO, ModelAndView mv, Authentication auth) throws Exception{
+		
+		//MemberVO가 UserDetail를 상속
+		//				<-	principal에서 꺼냄
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		//꺼낸 걸 memberVO로 변환해서 넣음
+		MemberVO memberVO = (MemberVO)user;
+		
+		communityVO.setWriter(memberVO.getUsername());
+		communityVO.setLocation(memberVO.getLocation());
+		
+		System.out.println("nicName : "+memberVO.getUsername());
+		System.out.println("location : "+memberVO.getLocation());
+		
 		
 		int result = communityService.setUpdate(communityVO);
-		System.out.println("result : "+result);
+
+		String message = "수정 권한이 없습니다!";
+		String path = "./board";
 		
-		//실행 O
-		if(result>0) {
-			System.out.println("수정에 성공했습니다!");
-			mv.setViewName("redirect:./communityList");
+		if(result > 0) {
+			message = "수정을 성공적으로 마쳤습니다!";
 		}
+
+		mv.addObject("msg", message);
+		mv.addObject("path", path);
 		
-		//실행 X
-		else {
-			System.out.println("수정에 실패했습니다!");
-			mv.setViewName("redirect:./communityList");
-		}
+		mv.setViewName("common/communityResult");
 		
 		return mv;
+
 	}
 	
 	
@@ -176,7 +313,7 @@ public class CommunityController {
 		
 		System.out.println("Summer File Upload");
 		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getName());
+//		System.out.println(file.getName());
 		String fileName = communityService.setSummerFileUpload(file);
 		fileName = "../resources/upload/community/"+fileName;
 		

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,175 +63,152 @@
 
                
                     <div class="post-list__header">
-                        우리동네질문
+                        ${vo.category}
                     </div>
                     
+                    <div class="content__info content__info--post">
                     
-                    
-                                 <div class="content__info content__info--post">
+
+						
                         <div class="info--photo">사진</div>
-                        <div class="info--users">
-                            <div class="info--user">우기</div>
-                            <div class="info--second-line">
-                                <div class="info--location">개봉3동</div>
-                                <div class="info--date">2시간 전</div>
-                            </div>
-                        </div>
-
-                        <div class="info--modify inner__dropdown"> 
-                                    
-                            <button class="dropbtn">
-                                <i class="bi bi-three-dots-vertical"></i>
-                            </button>
-
-                            <div class="dropdown-content">
-                                <a href="#">수정하기</a>
-                                <a href="#">삭제하기</a>
-                                <a href="#">새로고침</a>
-                            </div>
-                        
-                        </div>
-
+	                        <div class="info--users">
+	                            <div class="info--user">${vo.writer}</div>
+	                            <div class="info--second-line">
+	                                <div class="info--location">
+	                                	${fn:substring(vo.location, start, end)}
+	                                </div>
+	                                <div>&ensp;·&ensp;</div>
+	                                <div class="info--date">${vo.regDate}</div>
+	                            </div>
+	                        </div>
+						
+						
+						<c:if test="${vo.writer eq session}">
+	                        <div class="info--modify inner__dropdown"> 
+	                                    
+	                            <button class="dropbtn">
+	                                <i class="bi bi-three-dots-vertical"></i>
+	                            </button>
+	                            
+								
+	                            <div class="dropdown-content">
+                                	<a href="./update?num=${vo.num}">수정하기</a> 
+                                	<a href="./delete?num=${vo.num}">삭제하기</a>   
+	                            </div>
+	                            
+	                        
+	                        </div>
+						</c:if> 
 
                     </div>
                     
-                    
-                    
-                    
-                    
+                   
                     <div class="post-list__content post-list__content--post">
                         <p class="content__article">
-                            개봉역 앞 필라테스 모드온 괜찮은가유?
+                            ${vo.contents}
                         </p>
                     </div>
                     <div class="post-list__footer post-list__footer--post">
                             <div class="footer--wrap footer--wrap--post">
-                                <a href="#">
+                                
+                                <!--<a href="#">
                                     <i class="bi bi-emoji-smile"></i>
                                     <div class="post-list--like">공감하기 3</div>
-                                </a>
+                                </a>-->
                                 <a href="#">
-                                    <div class="post-list--comment">댓글 1</div>
+                                    <div class="post-list--comment">댓글 ${count}</div>
                                 </a>
                             </div>
                     </div>
+                    
+                    
                     <div class="comment-list">
+						<c:if test="${comments ne null}">
+							<c:forEach items="${list}" var="comments">
+							
+		                        <div class="comment">
+		
+		                            <div class="comment--header">
+		                                <div class="content__info content__info--post">
+		                                	
+		                                	<c:if test="${comments.depth>1}">
+		                                		<img alt="enter-arrow" src="../img/nei-reply.png"
+														style="width:5%; height: 50%" />
+		                                	</c:if>
 
-                        <div class="comment">
+		                                
+		                                    <div class="info--photo">사진</div>
+		                                    <div class="info--users">
+		                                        <div class="info--user">${comments.writer}</div>
+		                                        <div class="info--second-line">
+		                                            <div class="info--location">${comments.location}</div>
+		                                            <div>&ensp;·&ensp;</div>
+		                                            <div class="info--date">${comments.regDate}</div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                
 
-                            <div class="comment--header">
-                                <div class="content__info content__info--post">
-                                    <div class="info--photo">사진</div>
-                                    <div class="info--users">
-                                        <div class="info--user">우기</div>
-                                        <div class="info--second-line">
-                                            <div class="info--location">개봉3동</div>
-                                            <div class="info--date">2시간 전</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment--modify inner__dropdown"> 
-                                    
-                                    <button class="dropbtn">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </button>
+		                                <div class="comment--modify inner__dropdown"> 
+		                                    
+		                                    <button class="dropbtn">
+		                                        <i class="bi bi-three-dots-vertical"></i>
+		                                    </button>
+		
+		                                    <div class="dropdown-content">
+		                                        <a href="../comments/commentsDelete?num=${comments.num}">삭제</a>
+		                                    </div>
+		                                
+		                                </div>
 
-                                    <div class="dropdown-content">
-                                        <a href="#">삭제</a>
-                                    </div>
-                                
-                                </div>
-                            </div>
+		                                
+		                            </div>
+															
+		                            <div class="comment--body" <c:if test="${comments.depth>1}">style="margin-left:17%"</c:if>
+		                            >	                            
+		                                ${comments.contents}      
+		                            </div>
+		                            
+		                            <c:if test="${comments.depth<2}">
+			                            <div class="comment--footer" <c:if test="${comments.depth>1}">style="margin-left:17%"</c:if>>   
+			                                <button class="comment--reply">답글달기</button>
+			                            </div>
+		                            </c:if>
+		
+		                            <div class="comment-insert comment-insert--reply"> 
+			                        	<form id="form" action="../comments/commentsInsert" method="post">
+			                                
+			                                <input type="hidden" id="communityNum" name="communityNum" value="${vo.num}">
+			                                <input type="hidden" id="num" name="num" value="${comments.num}">
+			                            	<input type="text" placeholder="답글을 입력해주세요!" id="contents" name="contents" class="comment--input input--text">
+			                                
+			                               <button type="submit">
+			                                    <i class="bi bi-pencil"></i>
+			                                </button>
 
-                            <div class="comment--body">
-                                동양 미래대학 쪽에 돔타이마시라고 있어요. 엄청 시원합니다 !!
-                            
-                            </div>
-                            <div class="comment--footer">   
-                                <button class="comment--reply">답글달기</button>
-                            </div>
-
-                            <div class="comment-insert comment-insert--reply"> 
+			                            </form> 
+		                            </div>
+		
+		
+		                        </div>
+	                        </c:forEach>
+                        </c:if>
                         
-                                <input type="text" placeholder="답글을 입력해주세요!" class="comment--input input--text">
-                                
-                                <a href="#">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                
-                            </div>
-
-
-                        </div>
-                        <div class="comment">
-
-                            <div class="comment--header">
-                                <div class="content__info content__info--post">
-                                    <div class="info--photo">사진</div>
-                                    <div class="info--users">
-                                        <div class="info--user">우기</div>
-                                        <div class="info--second-line">
-                                            <div class="info--location">개봉3동</div>
-                                            <div class="info--date">2시간 전</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="comment--modify inner__dropdown"> 
-                                    
-                                    <button class="dropbtn">
-                                        <i class="bi bi-three-dots-vertical"></i>
-                                    </button>
-
-                                    <div class="dropdown-content">
-                                        <a href="#">삭제</a>
-                                    </div>
-                                
-                                </div>
-                            </div>
-
-                            <div class="comment--body">
-                                동양 미래대학 쪽에 돔타이마시라고 있어요. 엄청 시원합니다 !!
-                            
-                            </div>
-                            <div class="comment--footer">   
-                                <button class="comment--reply">답글달기</button>
-                            </div>
-
-                            <div class="comment-insert comment-insert--reply"> 
-                        
-                                <input type="text" placeholder="답글을 입력해주세요!" class="comment--input input--text">
-                                
-                                <a href="#">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="comment-insert"> 
-                        
-                    <input type="text" placeholder="따뜻한 댓글을 입력해주세요!" class="comment--input input--text">
                     
-                    <a href="#">
-                        <i class="bi bi-pencil-fill"></i>
-                    </a>
-                    
-                    </div>
+                    <!-- 댓글 -->
+                    <div class="comment-insert" name="comments"> 
+                        <form id="form" action="../comments/commentsInsert" method="post">
+                        	<input type="hidden" id="communityNum" name="communityNum" value="${vo.num}">
+		                    <input type="text" placeholder="따뜻한 댓글을 입력해주세요!" id="contents" name="contents" class="comment--input input--text">
+
+                            <button type="submit">
+                                 <i class="bi bi-pencil"></i>
+                            </button>
+		                    
+                    	</form>
+                   </div>
             </div>
-           
-           
-           
-            
 
-        
-            
-            
-            
-            
-            
         </div>
      </section>
 
