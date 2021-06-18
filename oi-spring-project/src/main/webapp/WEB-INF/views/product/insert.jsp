@@ -55,7 +55,7 @@
    
 
 
-     <section class="section article article--product">
+           <section class="section article article--product">
          <div class="inner">
 
      
@@ -140,8 +140,10 @@
 
                         <div class="photo-inner__body photo-inner__body--amount">
                             
-                            <input id="amount-scale" type="text" class="input--text" placeholder="숫자만 적어주세요">
-                            <span>원</span>
+                           
+                                <input id="amount-scale" type="text" class="input--text" placeholder="숫자만 적어주세요">
+                                <span>원</span>
+                            
                         </div>
                         
                     </div>
@@ -178,6 +180,7 @@
 
         </div>     
      </section>
+
 
      
  
