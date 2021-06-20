@@ -15,34 +15,52 @@ $("#join_btn").click(function(){
 	var nickName = $("#nickName").val();
 	var phone = $("#phone").val();
 	var location = $("#location").val();
+	var c="r";
 	
 	//
-	if(password==null||password1==null|| name==null||nickName==null||phone==null||location==null){
+	if(password==null ||password1==null|| name==null||nickName==null||phone==null||location==null){
 		
 		alert("빈칸을 입력해주시기바랍니다.")
 		if(password==null){
 			 c = "r1";
+			password = document.getElementById("password");
+			$("#password").removeClass("r1");
+			$("#password").addClass(c);
 		}
 		if(password1==null){
 			 c = "r1";
+			password = document.getElementById("password1");
+			$("#password1").removeClass("r1");
+			$("#password1").addClass(c);
 		}
 		if(name==null){
 			 c = "r1";
+			name = document.getElementById("name");
+			$("#name").removeClass("r1");
+			$("#name").addClass(c);
 		}
 		if(nickName==null){
 			 c = "r1";
+			nickName = document.getElementById("nickName");
+			$("#nickName").removeClass("r1");
+			$("#nickName").addClass(c);
 		}
 		if(phone==null){
 			 c = "r1";
+			phone = document.getElementById("phone");
+			$("#phone").removeClass("r1");
+			$("#phone").addClass(c);
 		}
 		if(location==null){
 			 c = "r1";
+			location = document.getElementById("location");
+			$("#location").removeClass("r1");
+			$("#phone").addClass(c);
 		}
-	}
-	
-	
-	
-	if($("input:checkbox[id='mainCheck']").is(":checked") == false){
+		
+		
+		
+	}else if($("input:checkbox[id='mainCheck']").is(":checked") == false){
 		alert("이용약관에 동의해주세요.")
 	}else if(idCheckResult==false){
 		alert("아이디 중복확인을 해주세요.")
@@ -53,6 +71,13 @@ $("#join_btn").click(function(){
 	else{
 		$("#joinForm").submit();
 		}
+		
+
+
+
+
+
+
 });	
 
 
@@ -80,7 +105,7 @@ var usernameTrim= $.trim(username);
 	            idCheckResult=true;
 	         }else{
 	            alert("이미 있는 ID입니다.");
-	            
+	            idCheckResult=false;
 	        
 	    }
 	
@@ -253,6 +278,15 @@ function emailCheck(){
 	
 
 
+
+
+$("#username").on("blur",function(){
+
+	idCheckResult=false;	
+});
+
+
+
 $("#password").on("blur",function(){
 	let message3 = "";
    var password = $("#password").val();
@@ -268,13 +302,15 @@ $("#password").on("blur",function(){
 	password = document.getElementById("password");
 	$("#password").removeClass("r1");
 	$("#password").addClass(c);
+	
 
 });
 
 
 
 $("#name").on("blur",function(){
-	var nameTrim= $.trim(name.value.length);
+	var name = $("#name");
+	var nameTrim= $.trim(name.val().length);
 	let c="";
 	
 
@@ -286,6 +322,7 @@ $("#name").on("blur",function(){
 	$("#name").addClass(c);
 
 });
+
 
 $("#nickName").on("blur",function(){
 	var nickNameTrim= $.trim(nickName.value.length);
@@ -328,6 +365,11 @@ function update_dtn(){
     		var nickName = $("#account-nickname").val(); 
     		var email = $("#account-email").val(); 
     		var phone = $("#account-phone").val(); 
+
+			var nameTrim= $.trim(name);
+			var nickNameTrim= $.trim(nickName);
+			var emailTrim= $.trim(email);
+			var phoneTrim= $.trim(phone);
     		
     		if(confirm("수정하시겠습니까?") == true){
     		
@@ -335,10 +377,10 @@ function update_dtn(){
     				type : 'POST',
     				url : '../member/memberUpdate',
     				data : {
-    					"name" : name,
-    					"nickName"	:nickName,
-    					"email"		:email,
-    					"phone"		:phone,
+    					"name" : nameTrim,
+    					"nickName"	:nickNameTrim,
+    					"email"		:emailTrim,
+    					"phone"		:phoneTrim,
     				},
 
     				dataType :'text',

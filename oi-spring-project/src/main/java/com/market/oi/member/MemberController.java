@@ -101,12 +101,13 @@ public class MemberController {
 	@PostMapping("memberJoin")
 	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
-		//		if(errors.hasErrors()) {
-		//			return "member/memberJoin";
-		//		}
+				if(errors.hasErrors()) {
+					System.out.println("일로가냐");
+					return "member/sign-up";
+				}
 
 		if(memberService.memberError(memberVO, errors)) {
-
+				System.out.println("에러");
 			return "member/sign-up";
 		}
 

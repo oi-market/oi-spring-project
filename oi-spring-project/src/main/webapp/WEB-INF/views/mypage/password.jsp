@@ -170,6 +170,7 @@ function passwordNewpw(){
 				
 		}else
 		
+			
 		$.ajax({
 			type : 'POST',
 			url : '../member/memberPWChange',
@@ -190,7 +191,7 @@ function passwordNewpw(){
 				}
 		    },
 			
-		    error:function(requeest, status, error){
+		    error:function(request, status, error){
 		    	alert(error);
 		    },
 

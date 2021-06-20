@@ -111,7 +111,7 @@
 						<button type="button" class="mybtn sign-in" onclick="idCheck()"
 							style="border: 1px solid black; margin-top: 7px; margin-bottom: 10px;">중복확인</button>
 						<div>비밀번호(8글자 이상 16글자 이하입니다)</div>
-						<form:password path="password" placeholder="비밀번호"
+						<form:password id="password" path="password" placeholder="비밀번호"
 							class="col-12 input--text" />
 						<form:errors path="password" cssClass="c1"></form:errors>
 						<h6 id="pwResult"></h6>
@@ -124,7 +124,7 @@
 						<div>이름</div>
 						<form:input id="name" path="name" placeholder="이름"
 							class="col-12 input--text" />
-						<form:errors path="name" cssClass="c1"></form:errors>
+						<form:errors path="name"></form:errors>
 
 						<div>별명</div>
 						<form:input id="nickName" path="nickName" placeholder="별명"
@@ -208,7 +208,7 @@
 
 	<!-- 이용약관 modal -->
 	<div class="modal fade" id="List1">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
@@ -218,7 +218,8 @@
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body">
+				<div class="modal-body"
+				style="overflow-x: hidden; width: 790px; height: 400px;">
 					<h6>
 						<spring:message code="signCheck1"></spring:message>
 					</h6>
@@ -233,7 +234,7 @@
 		</div>
 	</div>
 	<div class="modal fade" id="List2">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
@@ -244,7 +245,7 @@
 
 				<!-- Modal body -->
 				<div class="modal-body"
-					style="overflow-x: hidden; width: 490px; height: 150px;">
+					style="overflow-x: hidden; width: 790px; height: 400px;">
 					<h6>
 						<spring:message code="signCheck2"></spring:message>
 					</h6>

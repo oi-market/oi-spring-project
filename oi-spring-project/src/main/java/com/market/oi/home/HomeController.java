@@ -74,6 +74,8 @@ public class HomeController {
 	@GetMapping("mypage/modify")
 	public void getModify()throws Exception{
 	}
+	
+	
 
 
 	
