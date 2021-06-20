@@ -25,8 +25,8 @@
 	
 	<!-- 댓글 setInsert -->
 	<insert id="setInsert" parameterType="CommentsVO" useGeneratedKeys="true" keyProperty="num">
-		insert into comments(num, communityNum, writer, contents, location, ref, step, depth, regDate)
-		values(#{num}, #{communityNum}, #{writer}, #{contents}, #{location}, #{num}, #{step}, #{depth}, now())
+		insert into comments(num, communityNum, writer, contents, location, ref, step, depth, regDate, nickName)
+		values(#{num}, #{communityNum}, #{writer}, #{contents}, #{location}, #{num}, #{step}, #{depth}, now(), #{nickName})
 	</insert>
 	
 	<!-- 댓글 setDelete  -->

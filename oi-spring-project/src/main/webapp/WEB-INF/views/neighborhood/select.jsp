@@ -72,10 +72,10 @@
 						
                         <div class="info--photo">사진</div>
 	                        <div class="info--users">
-	                            <div class="info--user">${vo.writer}</div>
+	                            <div class="info--user">${vo.nickName}</div>
 	                            <div class="info--second-line">
 	                                <div class="info--location">
-	                                	${fn:substring(vo.location, start, end)}
+	                                	${cutLocation}
 	                                </div>
 	                                <div>&ensp;·&ensp;</div>
 	                                <div class="info--date">${vo.regDate}</div>
@@ -139,9 +139,9 @@
 		                                
 		                                    <div class="info--photo">사진</div>
 		                                    <div class="info--users">
-		                                        <div class="info--user">${comments.writer}</div>
+		                                        <div class="info--user">${comments.nickName}</div>
 		                                        <div class="info--second-line">
-		                                            <div class="info--location">${comments.location}</div>
+		                                            <div class="info--location">${cutLocation}</div>
 		                                            <div>&ensp;·&ensp;</div>
 		                                            <div class="info--date">${comments.regDate}</div>
 		                                        </div>

@@ -16,5 +16,6 @@ public class CommentsVO {
 	private Long ref;
 	private Long step;
 	private Long depth;
-
+	private String nickName;
+	
 }

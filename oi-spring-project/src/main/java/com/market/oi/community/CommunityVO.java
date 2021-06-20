@@ -16,6 +16,7 @@ public class CommunityVO {
 	private String location;
 	private Date regDate;
 	private Long like;
+	private String nickName;
 	
 	//category의 값 가져오기위함
 	private String category;

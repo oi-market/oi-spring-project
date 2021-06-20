@@ -87,10 +87,10 @@
 	                    
 	                    <div class="content__info">
                            <div class="info__left">
-                               <div class="info--user">${vo.writer}</div>
+                               <div class="info--user">${vo.nickName}</div>
                                <div>&ensp;·&ensp;</div>
                                <div class="info--location">
-                               		${fn:substring(vo.location, start, end)}
+                               		${cutLocation}
                                </div>
                            </div>
                            <div class="info--date">${vo.regDate}</div>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
  <header class="section section--second-header">
@@ -10,8 +10,9 @@
             <div class="inner--left toggle--small">
                 <div class="inner__dropdown">
                     <a href="#" class="dropbtn">
-                    	<!-- session에 있는 주소값 가져오기 -->              
-                        <sec:authentication property="principal.location"/>
+                    	<!-- session에 있는 주소값 가져오기            
+                        <sec:authentication property="principal.location"/>-->
+                        ${cutLocation}
                         <i class="bi bi-caret-right-fill"></i>
                     </a>
                     <div class="dropdown-content">

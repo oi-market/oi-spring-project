@@ -11,7 +11,7 @@
   		<if test="categoryNum != 0 ">
 			WHERE categoryNum=#{categoryNum}
 		</if> -->
-		
+			
 		SELECT COUNT(num)
 		FROM 
 		(SELECT * FROM community C WHERE C.contents
@@ -73,6 +73,7 @@
    			<result column="regDate" property="regDate"/>
    			<result column="like" property="like"/>
    			<result column="category" property="category"/>
+   			<result column="nickName" property="nickName"/>
    			
    			<collection property="file" javaType="java.util.List" ofType="CommunityfilesVO">
    				<id column="num" property="num"/>
@@ -85,8 +86,8 @@
 	
 	<!-- 커뮤니티 Insert -->
 	<insert id="setInsert" parameterType="CommunityVO" useGeneratedKeys="true" keyProperty="num">
-		insert into community (categoryNum, contents, writer, location)
-		values (#{categoryNum}, #{contents}, #{writer}, #{location})
+		insert into community (categoryNum, contents, writer, location, nickName)
+		values (#{categoryNum}, #{contents}, #{writer}, #{location}, #{nickName})
 	</insert>
 	
 	<!-- 커뮤니티 summerFile -->

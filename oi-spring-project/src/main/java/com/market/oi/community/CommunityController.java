@@ -35,13 +35,9 @@ public class CommunityController {
 	private String filePath;
 	
 	
-	//커뮤니티 List
-	@GetMapping("board")
-	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager, Authentication auth) throws Exception{
-		
-		System.out.println("search1 : "+communityPager.getSearch());
-		System.out.println("FilePath : "+filePath);
-		
+	
+	//주소자르는 메서드
+	public String cutLocation(Authentication auth) {
 		
 		//MemberVO가 UserDetail를 상속
 		//				<-	principal에서 꺼냄
@@ -77,10 +73,25 @@ public class CommunityController {
 		
 		String cutLocation = sessionMember.getLocation().substring(check1, check2);
 		
+		//******************************************************
+		
+		return cutLocation;
+	}
+	
+	
+	
+	//커뮤니티 List
+	@GetMapping("board")
+	public ModelAndView getList(ModelAndView mv, CommunityPager communityPager, Authentication auth) throws Exception{
+		
+		System.out.println("search1 : "+communityPager.getSearch());
+		System.out.println("FilePath : "+filePath);
+		
+		//주소 자르는 메서드
+		String cutLocation = cutLocation(auth);
+		
 		communityPager.setCutLocation(cutLocation);
 		System.out.println(communityPager.getCutLocation());
-		
-		//******************************************************
 		
 				
 		List<CommunityVO> ar = communityService.getList(communityPager);
@@ -96,9 +107,8 @@ public class CommunityController {
 			System.out.println("copyList : "+copy.get(i));
 			
 		}
-		
-		mv.addObject("start", check1);
-		mv.addObject("end", check2);
+
+		mv.addObject("cutLocation", cutLocation);
 
 		mv.addObject("count", copy);
 		
@@ -132,42 +142,17 @@ public class CommunityController {
 		
 		System.out.println("username : "+sessionMember.getUsername());
 		System.out.println("writer : "+communityVO.getWriter());
-		
-		
-		
-		//*****************  주소값 잘라서 보여주기  ******************
-		
-		int check1 = 0;
-		int check2 = 0;
+		System.out.println("nickName : "+communityVO.getNickName());
 
-		for(int i = 0; i < communityVO.getLocation().length(); i++) {
-
-			// charAt 함수로 문자열을 한글자씩 취득
-			System.out.println(communityVO.getLocation().charAt(i));
-			
-			if(communityVO.getLocation().charAt(i)==' ') {
-				if(check1 == 0) {
-					check1 = i+1;
-				} else if(check1 != 0 && check2 == 0) {
-					check2 = i;
-				}
-			}
-			
-		}
-		
-		System.out.println("check1 : "+check1);
-		System.out.println("check2 : "+check2);
-				
-		//******************************************************
-		
-		
+		//주소 자르는 메서드
+		String cutLocation = cutLocation(auth);	
 		
 		//comments select
 		List<CommentsVO> ar = commentsService.getList(commentsVO);
 		Long count = commentsService.getTotalCount(commentsVO);
 
-		mv.addObject("start", check1);
-		mv.addObject("end", check2);
+
+		mv.addObject("cutLocation", cutLocation);
 		
 		mv.addObject("count", count);
 		mv.addObject("vo", communityVO);
@@ -183,11 +168,15 @@ public class CommunityController {
 	
 	//커뮤니티 Insert
 	@GetMapping("insert")
-	public ModelAndView setInsert() throws Exception{
+	public ModelAndView setInsert(Authentication auth) throws Exception{
 		System.out.println("insert");
 		ModelAndView mv = new ModelAndView();
 		CommunityVO communityVO = new CommunityVO();
+
+		//주소 자르는 메서드
+		String cutLocation = cutLocation(auth);
 		
+		mv.addObject("cutLocation", cutLocation);
 		mv.addObject("vo", communityVO);
 		mv.setViewName("neighborhood/insert");
 
@@ -206,9 +195,11 @@ public class CommunityController {
 		
 		communityVO.setWriter(memberVO.getUsername());
 		communityVO.setLocation(memberVO.getLocation());
+		communityVO.setNickName(memberVO.getNickName());
 		
-		System.out.println("nicName : "+memberVO.getUsername());
+		System.out.println("writer : "+memberVO.getUsername());
 		System.out.println("location : "+memberVO.getLocation());
+		System.out.println("nickName : "+memberVO.getNickName());
 		
 		for(MultipartFile f : files) {
 			System.out.println(f.getOriginalFilename());
@@ -257,9 +248,14 @@ public class CommunityController {
 	
 	//커뮤니티 Update
 	@GetMapping("update")
-	public ModelAndView setUpdate(CommunityVO communityVO) throws Exception{
+	public ModelAndView setUpdate(CommunityVO communityVO, Authentication auth) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
+		
+		//주소 자르는 메서드
+		String cutLocation = cutLocation(auth);
+		
+		mv.addObject("cutLocation", cutLocation);
 		
 		//값 가져오기
 		communityVO = communityService.getSelect(communityVO);
@@ -281,10 +277,11 @@ public class CommunityController {
 		
 		communityVO.setWriter(memberVO.getUsername());
 		communityVO.setLocation(memberVO.getLocation());
+		communityVO.setNickName(memberVO.getNickName());
 		
 		System.out.println("nicName : "+memberVO.getUsername());
 		System.out.println("location : "+memberVO.getLocation());
-		
+		System.out.println("nickName : "+memberVO.getNickName());
 		
 		int result = communityService.setUpdate(communityVO);
 

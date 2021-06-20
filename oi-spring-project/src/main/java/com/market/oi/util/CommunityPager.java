@@ -20,7 +20,7 @@ public class CommunityPager {
 	private Long perPage;
 	
 	private Long categoryNum = 0L;
-	
+
 	private Long startRow;
 	
 	private Long startNum;
