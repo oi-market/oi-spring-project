@@ -1,0 +1,439 @@
+@charset "UTF-8";
+
+/* board  */
+
+.section--second-header{
+    border-bottom: 0px;
+    /* box-shadow : 0 0 5px #5c6267; */
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+header .inner--second{
+    background-color: #E5F3E6;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.inner--left{
+    display: flex;
+    margin : 10px 10px 10px 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.inner__dropdown{
+    
+    margin-right: 30px;
+    position: relative;
+    display: inline-block;
+}
+.inner__dropdown i{
+    display: inline-block;
+    transition: 300ms ease all; 
+    
+}
+
+
+.inner__right{
+    margin:10px 20px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inner__right a:first-child{
+    margin-right: 30px;
+}
+
+#search-form--village{
+    margin-right: 0px;
+}
+#search-form--village input[type=submit]{
+    display: none;
+}
+
+.inner__right .input--text{
+    /* width: inherit; */
+    height: 30px;
+}
+#toggle-btn--village{
+    border: none;
+    font-size: 30px;
+    background-color:#E5F3E6 ;
+    display: none;
+}
+
+
+
+.article .inner{
+    max-width:1030px ;
+    padding-top: 141px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-list{
+    background-color: #F8F9FA;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+   margin: 15px;
+   padding:20px;
+    align-items: flex-start;
+    box-sizing: border-box;
+   border-radius: 10px;
+}
+.post-list a{
+    color: #333;
+}
+.post-list:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 90px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15);
+    z-index: 1;
+    margin-top: 15px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: 450ms ease all; 
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 5px 12px 5px;
+    text-decoration: none;
+    display: block;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -webkit-border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    /* text-align: center; */
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: rgb(168, 168, 168)}
+  
+  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+  .show {
+    display: block;
+     opacity: 1;
+    }
+
+
+
+
+.post-list__header{
+    background-color: rgb(201, 202, 200);
+    display: inline-flex;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.content__info{
+    display: flex;
+    margin: 13px 0 8px 0;
+    padding-bottom: 10px;
+    color: #ccc;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+    justify-content: space-between;
+    width: 460px;
+}
+.info__left{
+    display: flex;
+}
+
+.footer--wrap{
+    display: flex;
+    
+}
+
+
+
+
+
+
+.paging-nav{
+    margin: 59px;
+}
+
+.paging-nav ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.paging-nav ul li{
+    padding: 10px;
+}
+
+.paging-nav li a{
+   text-decoration: none;
+   color: #3c4146;
+}
+.paging-nav li a:hover{
+ color: #ccc;
+} 
+
+
+
+/* select */
+
+.post:hover{
+    background-color:#F8F9FA; 
+}
+.content__info--post{
+    justify-content:left;
+    margin-top:0;
+    margin-bottom: 0;
+    padding-bottom: 5px;
+    position:relative
+}
+
+.content__info--post .info--photo img{
+	  width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 24px;
+}
+.content__info--post .info--user{
+    color:#515151;
+    margin:10px 5px 5px 5px;
+}
+.content__info--post .info--modify{
+    margin:5px;
+    position: absolute;
+    right: 0.4%;
+}
+.content__info--post .info--modify button{
+    border: none;
+    background-color: inherit;
+    font-size: 16px;
+}
+
+.info--second-line{
+    display: flex;
+    margin:5px;
+}
+.info--second-line div:first-child{
+    margin-right: 5px;
+}
+.post-list__content--post{
+    padding: 10px 0 30px 0;
+}
+.footer--wrap--post{
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    width:460px;
+    padding: 10px 0 10px 0;
+}
+.footer--wrap--post a{
+    display: flex;
+    align-items: center;
+}
+.footer--wrap--post i{
+   margin-right: 5px;
+   font-size: 20px;
+   display: block;
+}
+.footer--wrap--post div{
+    margin-right: 10px;
+}
+.comment-list{
+    margin-top:10px;
+}
+.comment{
+    margin-bottom: 20px;
+}
+.comment--header{
+    display: flex;
+    justify-content: space-around;
+}
+.comment-list .content__info{
+    border-bottom: 0px;
+    width: 420px;
+}
+.comment--modify{   
+    margin: 5px;
+}
+.comment--modify button{
+    border:none;
+    background-color: inherit;
+}
+.comment--modify .dropdown-content{
+    margin-top: 0;
+}
+
+.comment--body{
+    margin : 5px 0 10px 48px;
+}
+.comment--footer{
+    margin: 0 0 10px 48px;
+    color: #ccc;
+    
+}
+.comment-insert{
+/* display: flex;
+align-items: center; */
+position: relative;
+}
+.comment--input{
+    display: block;
+    border-radius: 20px;
+    width: 400px;
+     margin-left: 48px;
+   
+}
+.comment--input ~ a{
+    position: absolute;
+    top:8px;
+    right: 4%;
+   
+}
+.comment--footer button{
+    border: none;
+    background-color: inherit;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    padding-left: 0;
+}
+.comment-insert--reply{
+    display: none;
+}
+
+/* insert */
+
+
+
+.neighborhood-form{
+    
+    padding: 10px;
+    margin: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+    
+}
+.neighborhood-form__kinds{
+    margin: 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    
+   
+}
+
+.neighborhood-form__kinds:focus{
+    outline: tomato;
+} 
+
+.neighborhood-form .mybtn{
+    margin: 20px;
+    display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+.show {
+    display: block;
+     opacity: 1;
+    }
+/* media */
+
+@media (max-width:580px){
+ 
+    .inner--second{
+        height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        /* padding-top: 50px; */
+    }
+    .inner--left{
+        display: none;
+        padding-top:50px
+    }
+   .inner__right{
+        display: none;
+    }
+    .inner__right form{
+        margin-left: 50px;
+    }
+    header.section .inner--second{
+        min-height: 50px;
+        justify-content:flex-start;
+    }
+    #toggle-btn--village{
+        display: block;
+        position :absolute;
+        top :5px;
+        right: 20px;
+    }
+    .post-list{
+        width: 320px;
+    }
+    .content__info{
+        width: 280px;
+    }
+    .toggle--small.on{
+        display: flex;
+        /* flex-direction: column; */
+        margin: 10px;
+    }
+    .toggle--small.on a{
+        margin: 10px;
+    }
+    .dropdown-content{
+        width: 120px;
+    }
+
+    .footer--wrap.footer--wrap--post{
+        width: 280px;
+    }
+    .comment-list .content__info.content__info--post{
+        width: 280px;
+    }
+    .comment{
+        width: 280px;
+    }
+    .comment-insert{
+        width:280px;
+    }
+    .comment--input{
+        margin-left: 0px;
+        width:280px;
+    }
+}
