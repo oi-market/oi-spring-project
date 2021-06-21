@@ -5,8 +5,8 @@
 
 <mapper namespace="com.market.oi.myPage.MyPageMapper">
 
-	<select id="getList" parameterType="ProductVO" resultType="ProductVO">
-		select * from product where sale = 0
+	<select id="getList" parameterType="MemberVO" resultType="ProductVO">
+		select * from product where username=#{username} and sale = 0 
 	</select>
 	
 	<select id="getSellList" parameterType="ProductVO" resultType="ProductVO">
@@ -35,25 +35,26 @@
 		update product set sale=0 where num=#{num}
 	</update>
 	
+	<!-- 상품 삭제 -->
 	<delete id="setDelete" parameterType="ProductVO">
 		delete from product where num = #{num}
 	</delete>
 	
-	<select id="getBuyList" parameterType="ProductVO" resultType="ProductVO">
+	<select id="getBuyList" parameterType="MemberVO" resultType="ProductVO">
 	 	<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
 		SELECT P.* from product P left join ordercomplete O ON P.num = O.productNum 
-		WHERE buyer = (SELECT buyer FROM ordercomplete WHERE buyer='id3')
+		WHERE buyer = (SELECT buyer from ordercomplete where buyer=#{username})
 	</select>
 		
-	<select id="getMywish" parameterType="MyWishVO" resultType="MyWishVO">
+	<select id="getMywish" parameterType="MemberVO" resultType="MyWishVO">
 		<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
 		SELECT P.* from mywish P left join product M ON P.productNum = M.num
-		WHERE P.username = any (SELECT username FROM mywish WHERE username='id3')
+		WHERE P.username = any (SELECT username FROM mywish WHERE username=#{username})
 	</select>
 	
 	<!-- 관심목록 -->
 	<insert id="setWishInsert" parameterType="ProductVO">
-		insert into mywish (username, productNum, title, wish, sale) values ('id3', #{num}, #{title}, 1, #{sale})
+		insert into mywish (username, productNum, title, wish, sale) values (#{username}, #{num}, #{title}, 1, #{sale})
 	</insert>
 	
 	<delete id="setWishDelete" parameterType="MyWishVO">
@@ -69,4 +70,26 @@
 	<update id="likeDelete" parameterType="ProductVO">
 		update product set wish = wish-1 where num =#{num}
 	</update>
+	
+	<!-- 페이징 처리 -->
+	<select id="getTotalCount" resultType="java.lang.Long">
+		select count(num) from product
+	</select>
+	
+	<!-- 리뷰 -->
+	<select id="getReviewList" parameterType="ReviewVO" resultType="ReviewVO">
+		select * from review
+	</select>
+	
+	<select id="getReviewSelect" parameterType="ProductVO" resultType="ReviewVO">
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.productNum = (SELECT num FROM product WHERE num=#{num})
+	</select>
+	
+	<select id="getSeller" parameterType="ReviewVO" resultType="ReviewVO">
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller'
+	</select>
+	
+	<select id="getBuyer" parameterType="ReviewVO" resultType="ReviewVO">
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer'
+	</select>
 </mapper>

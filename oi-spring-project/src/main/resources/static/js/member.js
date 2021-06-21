@@ -10,15 +10,9 @@ var CheckNum;
 //회원가입 클릭
 $("#join_btn").click(function(){
 	//
-	if($("input:checkbox[id='mainCheck']").is(":checked") == false){
-		alert("이용약관에 동의해주세요.")
-	}
-	else if(isCertification==false){
-		alert("메일 인증이 되지않았습니다.")
-	}
-	else{
+	
 		$("#joinForm").submit();
-		}
+		
 });	
 
 //아이디 글자수
@@ -165,7 +159,7 @@ function sendMail(){
 
 //이메일 인증번호 확인
 
-function emailCheck(){
+/*function emailCheck(){
 	 var emailNum = $("#emailNum").val();
 	    if (emailNum == CheckNum) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
 			alert("인증성공");
@@ -174,7 +168,7 @@ function emailCheck(){
 	    	alert("인증실패");
 	    	isCertification = false;
 	    }
- };
+ };*/
 
 
 //아이디 찾기

@@ -14,12 +14,10 @@ class MyPageMapperTest {
 	@Autowired
 	private MyPageMapper myPageMapper;
 	
-	@Test
-	void test() {
-		ProductVO productVO = new ProductVO();
-		List<ProductVO> ar = myPageMapper.getList(productVO);
-		assertNotEquals(0, ar.size());
-		System.out.println(ar.size());
-	}
+	/*
+	 * @Test void test() { ProductVO productVO = new ProductVO(); List<ProductVO> ar
+	 * = myPageMapper.getList(productVO); assertNotEquals(0, ar.size());
+	 * System.out.println(ar.size()); }
+	 */
 
 }

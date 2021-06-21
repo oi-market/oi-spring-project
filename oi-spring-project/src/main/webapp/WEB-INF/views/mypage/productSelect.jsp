@@ -68,7 +68,19 @@
                         </div>              
                     </div>
                 </div>
-            </div>       
+            </div>
+            
+                         <c:forEach var="r" items="${review}">
+              <%--     <c:forEach var="s" items="${sell}"> --%>
+                    <div class="user-review">
+                        <div class="user-reivew-detail">
+                            <p class="review-name">${r.writer}</p>
+                            <p class="review-location">지역1 · ${r.regDate} </p>
+                            <p class="review-contents">${r.contents}</p>
+                        </div>
+                    </div>
+                    </c:forEach>
+             <%--       </c:forEach> --%>       
  
         <!-- FOOTER -->
        <c:import url="../template/footer.jsp"></c:import>

@@ -185,7 +185,18 @@
 
 
                 </div>
-                
+             <!-- 페이징 처리   
+                <div class="pager">
+                	<c:if test="${pager.pre}">
+						<li class=linePage><a href="./purchase-sell?curPage=${pager.startNum-1}">PREV</a></li>
+					</c:if>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="p">
+						<li class=linePage><a href="./purchase-sell?curPage=${p}">${p}</a></li>
+					</c:forEach>
+					<c:if test="${pager.next}">
+						<li class=linePage><a href="./purchase-sell?curPage=${pager.lastNum+1}">NEXT</a></li>
+					</c:if>  
+				</div> -->         
                 
             </div>
             

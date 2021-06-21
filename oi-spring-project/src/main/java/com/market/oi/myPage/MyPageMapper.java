@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.market.oi.member.MemberVO;
+import com.market.oi.util.MypagePager;
+
 @Mapper
 public interface MyPageMapper {
 
-	public List<ProductVO> getList(ProductVO productVO);
+	public List<ProductVO> getList(MemberVO memberVO);
 	
 	public List<ProductVO> getSellList(ProductVO productVO);
 	
@@ -25,7 +28,7 @@ public interface MyPageMapper {
 	
 	public List<ProductVO> getBuyList(ProductVO productVO) throws Exception;
 	
-	public List<MywishVO> getMywish(MywishVO mywishVO) throws Exception;
+	public List<MywishVO> getMywish(MemberVO memberVO) throws Exception;
 	
 	public int setWishInsert(ProductVO productVO) throws Exception;
 	
@@ -34,4 +37,14 @@ public interface MyPageMapper {
 	public int likeUpdate(ProductVO productVO) throws Exception;
 	
 	public int likeDelete(ProductVO productVO) throws Exception;
+	
+	public Long getTotalCount() throws Exception;
+	
+	public List<ReviewVO> getReviewList(ReviewVO reviewVO) throws Exception;
+	
+	public ReviewVO getReviewSelect(ReviewVO reviewVO) throws Exception;
+	
+	public List<ReviewVO> getSeller(ReviewVO reviewVO) throws Exception;
+	
+	public List<ReviewVO> getBuyer(ReviewVO reviewVO) throws Exception;
 }

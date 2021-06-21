@@ -119,10 +119,10 @@
 						<form:errors path="email"></form:errors>
 						<p>
 						<div>인증번호</div>
-						<form:input id="emailNum"  path="emailNum"  placeholder="인증번호" class="col-12 input--text"/>
+<%-- 						<form:input id="emailNum"  path="emailNum"  placeholder="인증번호" class="col-12 input--text"/>
 						<button type="button" class="emailCheck" onclick="emailCheck()"
 						style="border: 1px solid black;">인증확인</button>
-						<form:errors path="emailNum"></form:errors>
+						<form:errors path="emailNum"></form:errors> --%>
                         
                         <div>위치</div>
                         <input id="member_post" type="text" placeholder="우편번호" readonly class="col-12 input--text">

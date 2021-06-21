@@ -5,14 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.market.oi.member.MemberVO;
+import com.market.oi.util.MypagePager;
+
 @Service
 public class MyPageService {
 
 	@Autowired
 	private MyPageMapper myPageMapper;
 	
-	public List<ProductVO> getList(ProductVO productVO) throws Exception {
-		return myPageMapper.getList(productVO);
+	public List<ProductVO> getList(MemberVO memberVO) throws Exception {
+		/*
+		 * pager.makeRow(); long totalCount = myPageMapper.getTotalCount();
+		 * pager.makeNum(totalCount);
+		 */
+		
+		return myPageMapper.getList(memberVO);
 	}
 	
 	public List<ProductVO> getSellList(ProductVO productVO) throws Exception {
@@ -47,8 +55,8 @@ public class MyPageService {
 		return myPageMapper.getBuyList(productVO);
 	}
 	
-	public List<MywishVO> getMywish(MywishVO mywishVO) throws Exception {
-		return myPageMapper.getMywish(mywishVO);
+	public List<MywishVO> getMywish(MemberVO memberVO) throws Exception {
+		return myPageMapper.getMywish(memberVO);
 	}
 	
 	public int setWishInsert(ProductVO productVO) throws Exception {
@@ -65,5 +73,25 @@ public class MyPageService {
 	
 	public int likeDelete(ProductVO productVO) throws Exception {
 		return myPageMapper.likeDelete(productVO);
+	}
+	
+	public Long getTotalCount() throws Exception {
+		return myPageMapper.getTotalCount();				
+	}
+	
+	public List<ReviewVO> getReview(ReviewVO reviewVO) throws Exception {
+		return myPageMapper.getReviewList(reviewVO);
+	}
+	
+	public ReviewVO getReviewSelect(ReviewVO reviewVO) throws Exception {
+		return myPageMapper.getReviewSelect(reviewVO);
+	}
+	
+	public List<ReviewVO> getSeller(ReviewVO reviewVO) throws Exception {
+		return myPageMapper.getSeller(reviewVO);
+	}
+	
+	public List<ReviewVO> getBuyer(ReviewVO reviewVO) throws Exception {
+		return myPageMapper.getBuyer(reviewVO);
 	}
 }

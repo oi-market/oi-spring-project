@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 
 
@@ -92,14 +93,16 @@ public class MemberController {
 		//		if(errors.hasErrors()) {
 		//			return "member/memberJoin";
 		//		}
+		System.out.println(memberVO);
 
 		if(memberService.memberError(memberVO, errors)) {
-
+			System.out.println("에러");
 			return "member/sign-up";
+			
 		}
 
 		int result = memberService.memberJoin(memberVO, avatar);
-
+		System.out.println("성공");
 		return "redirect:../";
 	}
 	
@@ -121,6 +124,19 @@ public class MemberController {
 		System.out.println("GetLogin");
 		return "member/memberLogin";
 	}
+	
+	/*session 담아서 mypage에서 사용하기 위해 작성해놓은 코드 -혜민
+	@PostMapping("memberLogin")
+	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.getLogin(memberVO);
+		
+		session.setAttribute("member", memberVO);
+		System.out.println(session);
+		mv.setViewName("mypage/**");
+		
+		return mv;
+	}*/
 	
 	@GetMapping("loginFail")
 	public String loginFail()throws Exception{

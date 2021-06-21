@@ -34,15 +34,6 @@ public class HomeController {
 	}
 
 	
-	@GetMapping("mypage/review")
-	public void getreview()throws Exception{
-	}
-	@GetMapping("mypage/review-seller")
-	public void getreviewSeller()throws Exception{
-	}
-	@GetMapping("mypage/review-buyer")
-	public void getreviewBuyer()throws Exception{
-	}
 	@GetMapping("mypage/village")
 	public void getVillage()throws Exception{
 	}
