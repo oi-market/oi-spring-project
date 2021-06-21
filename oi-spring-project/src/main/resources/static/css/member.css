@@ -120,6 +120,12 @@ padding: 0 0 0 4px;
   padding-bottom: 48px;
   font-size: 14.4px;
 }
+.idCheck,
+.emailCheck,
+.sendMail,
+.findAdress{
+	margin: 5px 10px 10px 0;
+}
 
 
 /* modal */

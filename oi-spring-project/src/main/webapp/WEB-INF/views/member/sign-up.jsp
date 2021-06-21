@@ -40,8 +40,11 @@
      <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/member.css">
   
+  
 </head>
 <body>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APPKEY&libraries=services"></script>	
+ 
      <div class="body__container">
 
 
@@ -88,7 +91,7 @@
                     <div class="inputs" style="text-align: left;">
                         <div>아이디(6글자 이상 12글자 이하입니다)</div>
                         <form:input id="username" path="username" placeholder="아이디" class="col-12 input--text" aria-describedby="idHelp"/>
-                        <button type="button" class="idCheck" onclick="idCheck()"
+                        <button type="button" class="idCheck mybtn" onclick="idCheck()"
 						style="border: 1px solid black;">중복확인</button>
                         <div>비밀번호(8글자 이상 16글자 이하입니다)</div>
                         <form:password  path="password" placeholder="비밀번호" class="col-12 input--text"/>
@@ -114,30 +117,35 @@
                 		
                         <div>이메일</div>
                         <form:input id="email" path="email" placeholder="이메일" class="col-12 input--text"/>
-                        <button id="CheckMail" type="button" class="sendMail"
+                        <button id="CheckMail" type="button" class="sendMail mybtn"
 						onclick="sendMail()" style="border: 1px solid black;">인증번호받기</button>
 						<form:errors path="email"></form:errors>
 						<p>
 						<div>인증번호</div>
 						<form:input id="emailNum"  path="emailNum"  placeholder="인증번호" class="col-12 input--text"/>
-						<button type="button" class="emailCheck" onclick="emailCheck()"
+						<button type="button" class="emailCheck mybtn" onclick="emailCheck()"
 						style="border: 1px solid black;">인증확인</button>
 						<form:errors path="emailNum"></form:errors>
                         
                         <div>위치</div>
                         <input id="member_post" type="text" placeholder="우편번호" readonly class="col-12 input--text">
-                        <button type="button" class="btn btn-default" onclick="findAddr()"
+                        <button type="button" class="btn btn-default mybtn findAdress" onclick="findAddr()"
 							style="border: 1px solid black;">
 							<i class="fa fa-search"></i> 주소 찾기
 						</button>
 						
 						
 						<input class="form-control" id="member_addr" name="location"
-						type="text" placeholder="주소" readonly> <br>
+						type="text" placeholder="주소" > <br>
+						
 						<form:errors path="location"></form:errors>
 						
-                
-                        
+						
+						<!-- wgs84좌표계 x좌표-->
+                		<input class="input--text" type="hidden" id="wgs84X" name="wgs84X">
+						<!-- wgs84좌표계 y좌표-->
+                		<input class="input--text" type="hidden" id="wgs84Y" name="wgs84Y">
+                      
                         
                     </div>
                     
@@ -232,8 +240,9 @@
 		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/member.js"></script>
-		
-		
+
+
+
 		
 		
 		
