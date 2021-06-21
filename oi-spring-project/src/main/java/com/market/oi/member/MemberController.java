@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.market.oi.location.LocationVO;
+
 
 
 @Controller
@@ -87,7 +89,10 @@ public class MemberController {
 	}
 
 	@PostMapping("memberJoin")
-	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
+	public String memberJoin(@Valid MemberVO memberVO,
+									Errors errors,
+									MultipartFile avatar,
+									LocationVO locationVO)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
 		//		if(errors.hasErrors()) {
 		//			return "member/memberJoin";
@@ -98,7 +103,7 @@ public class MemberController {
 			return "member/sign-up";
 		}
 
-		int result = memberService.memberJoin(memberVO, avatar);
+		int result = memberService.memberJoin(memberVO, avatar, locationVO);
 
 		return "redirect:../";
 	}
