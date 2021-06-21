@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.market.oi.location.LocationMapper">
+
+
+
+	<select id="searchLocation" parameterType="LocationVO" resultType="LocationVO">
+		select * from location where location=#{location}
+	</select>
+
+    <insert id="setLocation" parameterType="MemberVO">
+		insert into location
+		values (#{location},#{wgs84X},#{wgs84Y})
+	</insert> 
+
+			<!-- resultMap 따로 아직 안만듬..!
+
+			만약 장소별로 멤버,커뮤니티,제품,코멘트 모아보려면
+			resultMap을 만들어  쉽게 가져올수 있음
+			 -->
+
+
+</mapper>
+		
+

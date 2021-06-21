@@ -13,7 +13,10 @@
 <!-- 		<typeAlias type="com.market.oi.board.BoardFileVO" alias="BoardFileVO"/>  -->
 		<typeAlias type="com.market.oi.board.qna.QnaVO" alias="QnaVO"/>
 		
+
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
+		
+		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO" />
 	</typeAliases>
 
 </configuration>
