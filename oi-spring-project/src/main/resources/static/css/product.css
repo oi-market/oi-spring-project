@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-.inner{
-    overflow: hidden;
-}
+
 
 
 /* header process */
@@ -459,7 +457,9 @@ header .inner--second{
 /* insert */
 
 
-
+.inner--insert{
+   overflow: hidden; 
+}
 
 
 .product-insert__body{

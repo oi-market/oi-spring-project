@@ -56,7 +56,7 @@
 
 
            <section class="section article article--product">
-         <div class="inner">
+         <div class="inner inner--insert">
 
      
              <div class="product-insert__body product-select__body">
