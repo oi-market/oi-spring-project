@@ -44,6 +44,8 @@
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
   
+  
+  
 </head>
 <body>
      <div class="body__container">
@@ -73,14 +75,19 @@
                             </div>
                              <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
 							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
-                            <img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image">
+
+
+   
 <!--      		             <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
                             <label for="account-image-input">업로드</label>  -->
                             <form action="../member/setImage" method="post"  enctype="multipart/form-data">
                             <input id="account-image-input" type="file" name="avatar">
-							<label for="account-image-input">사진올리기</label>
+							<label for="account-image-input">사진선택</label>
+							<button type="submit" class="btn" style="border: 1px solid #ebebeb;">업로드</button>
+							
 								
-                            <button type="submit">업로드</button>
+                          
+                            
                             </form>
                             
                             
@@ -146,6 +153,35 @@
      <script src="../js/myPage.js"></script>'
      <script type="text/javascript"></script>
 	<script type="text/javascript" src="../js/member.js"></script>
+
+
+
+<script type="text/javascript">
+
+$(function() {
+    $("#account-image-input").on('change', function(){
+        readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+          $('#account-image-preview').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
+}
+
+
+</script>
+
+
+
+
+
+
+
 
 </body>
 </html>
