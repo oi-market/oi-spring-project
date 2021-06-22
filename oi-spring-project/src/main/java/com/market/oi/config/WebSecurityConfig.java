@@ -58,6 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/qna/qnaSelect").permitAll()
 				.antMatchers("/qna/**").permitAll()
 //				.antMatchers("/qna/**").hasRole("ADMIN")
+				.antMatchers("/board/**").permitAll()				
 				.antMatchers("/member/memberProfile").hasAnyRole("ADMIN", "MEMBER")
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").permitAll()

@@ -71,9 +71,19 @@
                             <div class="account-inner-title">
                                 <p>프로필 이미지</p>
                             </div>
+                             <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
                             <img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image">
-                            <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
-                            <label for="account-image-input">업로드</label>
+<!--      		             <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
+                            <label for="account-image-input">업로드</label>  -->
+                            <form action="../member/setImage" method="post"  enctype="multipart/form-data">
+                            <input id="account-image-input" type="file" name="avatar">
+							<label for="account-image-input">사진올리기</label>
+								
+                            <button type="submit">업로드</button>
+                            </form>
+                            
+                            
                         </div>
                         <div class="account__bundle">
                             <div class="account-inner-title">

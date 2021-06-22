@@ -28,6 +28,14 @@ public interface MemberMapper {
 	
 	public int memberDelete(MemberVO memberVO);
 	
+	public int setJoinFile(MemberFileVO memberFileVO)throws Exception; //사진
+	
+	public MemberFileVO selectImage(MemberVO memberVO);
+	
+	public int delImage(MemberFileVO memberFileVO);
+	
+
+	
 
 	
 	

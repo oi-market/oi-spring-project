@@ -52,8 +52,13 @@ public class MemberController {
 
 
 	@GetMapping("memberPage")
-	public void memberPage(HttpSession session)throws Exception{
-		System.out.println("1111");
+	public void memberPage(Authentication authentication,Model model)throws Exception{
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUsername(userDetails.getUsername());
+		MemberFileVO imgName = memberService.selectImage(memberVO);
+		System.out.println(imgName);
+		 model.addAttribute("imgName", imgName.getFileName());
 
 	}
 
@@ -154,6 +159,8 @@ public class MemberController {
 	@GetMapping("memberLoginResult")
 	public String memberLoginResult()throws Exception{
 		System.out.println("Login 성공");
+		
+		
 		return "redirect:/";
 	}
 
@@ -261,6 +268,34 @@ public class MemberController {
 	}
 	
 	
+	
+	@PostMapping("setImage")
+	public String setImage(@Valid MemberVO memberVO,Errors errors, MultipartFile avatar,Authentication authentication) throws Exception{
+		
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		System.out.println(memberFileVO);
+		if(memberFileVO==null) {
+			int result1 = memberService.setImage(memberVO, avatar);
+			System.out.println(result1);
+		}else {
+			int result = memberService.delImage(memberFileVO);
+			int result1 = memberService.setImage(memberVO, avatar);
+			System.out.println(result1);
+		}
+		
+		
+		
+		return "redirect:../";
+	}
+	
+	
+	
+	
+	
+	
 	@GetMapping("memberDelete")
 	@ResponseBody
 	public String memberDelete(MemberVO memberVO ,Authentication authentication)throws Exception{
@@ -330,25 +365,15 @@ public class MemberController {
 		
 	}
 	
+	
+	
+	
+	
+
+	
  
 	
-//	public mv name(MemberVO memberVO, String pw1, String pw2) {
-//	
-//		mebervo. passwr = pasw{}
-//		if(membervo==true
-//				) {
-//			messgae 틀렷다
-//			if(pw1=pw2) {
-//				membervo.setpasw(pw1)
-//				membmervo.membersver.
-//				message 맞다.
-//				set
-//			}
-//		}
-//		mv.seta(message msg)
-//		mv.setview("")
-//		return mv;
-//	}
+
 
 
 }

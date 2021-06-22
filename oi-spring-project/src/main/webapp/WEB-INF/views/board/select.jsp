@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -46,17 +47,21 @@
      <div class="body__container">
 
 
-      
+	
+	
+	
+		
 
     
      <section class="section article article--product article--qna">
          <div class="inner">
 
             <div class="qna--header">
+            	<h3>제목 : ${vo.title}</h3>
                 커뮤니티 가이드라인( qna 제목 )
             </div>
             <div class="qna--answer">
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi porro fuga, iste veritatis earum, minus ducimus voluptatem magnam at quisquam rem eum, soluta molestias excepturi? Impedit quia soluta neque non.
+             <h3>Contents : ${vo.contents}</h3>
             </div>
             
 
@@ -64,12 +69,12 @@
 
 
 
-
+        <a href="./update?num=${vo.num}" id="writeBtn" class="mybtn mybtn--primary">Update</a>
             
             </div>
             
-            
-            
+
+	<a href="./${board}Delete?num=${vo.num}" id="writeBtn" class="mybtn mybtn--primary" onclick="if(!confirm('게시글을 삭제하시겠습니다?')){return false;}">Delete</a>
             
             
         

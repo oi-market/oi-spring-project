@@ -88,7 +88,7 @@
                         <p>
                             판매상품 n개
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewPurchase-sell?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
@@ -96,7 +96,7 @@
                         <p>
                             동네생활
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/village-list">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewVillage-list?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
@@ -104,7 +104,7 @@
                         <p>
                             받은 리뷰 n
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/review">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewReview?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>

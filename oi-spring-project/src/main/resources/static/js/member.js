@@ -18,40 +18,40 @@ $("#join_btn").click(function(){
 	var c="r";
 	
 	//
-	if(password==null ||password1==null|| name==null||nickName==null||phone==null||location==null){
+	if(password=="" ||password1==""|| name==""||nickName==""||phone==""||location==""){
 		
 		alert("빈칸을 입력해주시기바랍니다.")
-		if(password==null){
+		if(password==""){
 			 c = "r1";
 			password = document.getElementById("password");
 			$("#password").removeClass("r1");
 			$("#password").addClass(c);
 		}
-		if(password1==null){
+		if(password1==""){
 			 c = "r1";
 			password = document.getElementById("password1");
 			$("#password1").removeClass("r1");
 			$("#password1").addClass(c);
 		}
-		if(name==null){
+		if(name==""){
 			 c = "r1";
 			name = document.getElementById("name");
 			$("#name").removeClass("r1");
 			$("#name").addClass(c);
 		}
-		if(nickName==null){
+		if(nickName==""){
 			 c = "r1";
 			nickName = document.getElementById("nickName");
 			$("#nickName").removeClass("r1");
 			$("#nickName").addClass(c);
 		}
-		if(phone==null){
+		if(phone==""){
 			 c = "r1";
 			phone = document.getElementById("phone");
 			$("#phone").removeClass("r1");
 			$("#phone").addClass(c);
 		}
-		if(location==null){
+		if(location==""){
 			 c = "r1";
 			location = document.getElementById("location");
 			$("#location").removeClass("r1");

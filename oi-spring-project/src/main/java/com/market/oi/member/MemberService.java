@@ -3,6 +3,8 @@ package com.market.oi.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.tools.JavaFileManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,8 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.market.oi.util.FileManager;
 
 
 
@@ -27,15 +32,23 @@ public class MemberService implements UserDetailsService{
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private FileManager fileManager;
 	
 	//Login 메서드
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException  {
+		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUsername(username);
 		System.out.println(username);
+		
 		memberVO = memberMapper.memberLogin(memberVO);
+ 
+		
+	
 		System.out.println(memberVO);
+		
 		return memberVO;
 	}
 	
@@ -144,6 +157,42 @@ public class MemberService implements UserDetailsService{
 		
 		return memberMapper.memberDelete(memberVO);
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int setImage(MemberVO memberVO,MultipartFile avatar)throws Exception {
+		String filePath= "upload/member/";
+		
+				
+			String fileName= fileManager.save(avatar, filePath);
+			System.out.println(fileName);
+			MemberFileVO memberFileVO = new MemberFileVO();
+			memberFileVO.setFileName(fileName);
+			memberFileVO.setOgName(avatar.getOriginalFilename());
+			memberFileVO.setUsername(memberVO.getUsername());
+			int result = memberMapper.setJoinFile(memberFileVO);
+			
+			
+			
+		
+		return result;
+		
+	}
+	
+	public MemberFileVO selectImage(MemberVO memberVO)throws Exception{
+		return memberMapper.selectImage(memberVO);
+	}
+	
+	public int delImage(MemberFileVO checkMem)throws Exception{
+		String filePath= "upload/member/";
+		
+		fileManager.delete(filePath, checkMem.getFileName());
+		
+		return memberMapper.delImage(checkMem);
+	}
+	
+	
+	
+
 	
 
 

@@ -48,7 +48,21 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewPurchase-sell");
 		
-		System.out.println(memberVO);
+
+
+		
+		return mv;
+
+	}
+	
+	@GetMapping("viewPurchase-sell-soldout")
+	public ModelAndView getPurchasesSoldout(MemberVO memberVO)throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		memberVO=viewPageService.getUsername(memberVO);
+		mv.addObject("memberVO",memberVO);
+		mv.setViewName("viewPage/viewPurchase-sell-soldout");
+		
 
 		
 		return mv;
@@ -63,7 +77,6 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview");
 		
-		System.out.println(memberVO);
 
 		
 		return mv;
@@ -75,7 +88,7 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview-seller");
 		
-		System.out.println(memberVO);
+;
 
 		
 		return mv;
@@ -87,7 +100,6 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview-buyer");
 		
-		System.out.println(memberVO);
 
 		
 		return mv;
@@ -99,7 +111,7 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewVillage");
 		
-		System.out.println(memberVO);
+
 
 		
 		return mv;
@@ -111,7 +123,7 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewVillage-list");
 		
-		System.out.println(memberVO);
+
 
 		
 		return mv;
@@ -123,7 +135,7 @@ public class ViewPageController {
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewVillage-comment");
 		
-		System.out.println(memberVO);
+
 
 		
 		return mv;

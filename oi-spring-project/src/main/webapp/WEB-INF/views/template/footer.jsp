@@ -10,7 +10,7 @@
                     <span href="#" class="logo">oi-market</span>
                      <ul class="site-links site-links-important">
                         <li><a href="#">믿을 수 있는 중고 거래</a></li>
-                        <li><a href="#">자주 묻는 질문</a></li>
+                        <li><a href="${pageContext.request.contextPath}/qna/list">자주 묻는 질문</a></li>
                      </ul>
                      <ul class="site-links">
                         <li><a href="#">회사 소개</a></li>

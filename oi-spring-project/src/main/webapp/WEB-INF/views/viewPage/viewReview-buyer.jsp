@@ -66,20 +66,20 @@
                     <nav class="kinds-deal kinds-review">                    
                         <ul>
                             <li>
-                                <a href="${pageContext.request.contextPath}/mypage/review">
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview?username=${memberVO.username}">
                                    
                                     <div>전체 후기</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/mypage/review-seller">
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview-seller?username=${memberVO.username}">
                                    
                         
                                     <div>판매자 후기</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="${pageContext.request.contextPath}/mypage/review-buyer">
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview-buyer?username=${memberVO.username}">
                                    
                                     <div>구매자 후기</div>
                                 </a>

@@ -67,14 +67,26 @@
          <div class="inner">
 
             <div class="qna--header">
-                (board) 작성
+                ${board} 작성
             </div>
             <div class="qna--answer">
                 
-                <form method="post">
-                <textarea id="summernote" name="editordata"></textarea>
+                <form id="frm" action="./${board}Insert" method="post" enctype="multipart/form-data">
+                <div class="form-group"  style="line-height:0.5;">
+                
+                <div class="form-group">
+				<label for="title">Title:</label> <input type="text"
+					class="form-control myCheck" id="title" name="title">
+			</div>
+			
+				<label for="contents">Contents:</label>
+				<textarea id="summernote" name="contents"></textarea>
+			</div>
                 <button type="submit" class="mybtn mybtn--primary">글쓰기</button>
+                <a href="javascript:history.back();" class="btn btn-danger">취소</a>
                 </form>
+                
+                
                 
             </div>
             
@@ -106,6 +118,8 @@
       <script src="../js/main.js"></script>
      <script src="../js/second-header.js"></script>
      <script src="../js/board.js"></script>
+     
+     
 
 
 </body>

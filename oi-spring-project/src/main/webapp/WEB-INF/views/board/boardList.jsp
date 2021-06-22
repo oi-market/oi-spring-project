@@ -4,6 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
   <c:import url="../template/hm_import.jsp"></c:import>

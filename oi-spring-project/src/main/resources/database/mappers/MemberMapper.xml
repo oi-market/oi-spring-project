@@ -5,7 +5,7 @@
 
 <mapper namespace="com.market.oi.member.MemberMapper">
 
-	 	<resultMap type="MemberVO" id="memberLoginResult">
+	<resultMap type="MemberVO" id="memberLoginResult">
 			<id column="username" property="username"/>
 			<result column="password" property="password"/>
 			<result column="name" property="name"/>
@@ -13,12 +13,17 @@
 			<result column="nickName" property="nickName"/>
 			<result column="phone" property="phone"/>
 			<result column="location" property="location"/>
+			<association property="memberFileVO" javaType="MemberFileVO">
+			<result column="fileName" property="fileName"/>
+			<result column="ogName" property="ogName"/>
+			</association>
 			<collection property="roles" javaType="java.util.List" ofType="RoleVO">
 				<id column="roleNum" property="roleNum"/>
 				<result column="roleName" property="roleName"/>
 			</collection>
 		
 		</resultMap>
+
 
 
 
@@ -38,11 +43,13 @@
 		
 		<select id="memberLogin" parameterType="MemberVO" resultMap="memberLoginResult">
          
-         SELECT M.*, R.* 
+         SELECT M.*, R.* ,MF.*
 			FROM member M LEFT JOIN memberrole MR
 			ON M.username=MR.username
 			LEFT JOIN role R
-			ON MR.roleNum = R.roleNum
+			ON MR.roleNum = R.roleNum 
+			LEFT OUTER JOIN memberfiles MF
+			ON M.username=MF.username 
 			WHERE M.username=#{username}
       </select>
       
@@ -67,7 +74,22 @@
 	  </delete>
       
 
-      
+      	<insert id="setJoinFile" parameterType="MemberFileVO">
+			insert into memberfiles (username, fileName, ogName) 
+			values(#{username}, #{fileName}, #{ogName})
+		</insert>
+		
+		<delete id="delImage" parameterType="MemberFileVO">
+		delete FROM memberfiles WHERE username=#{username}
+	   </delete>
+	   
+
+		
+		<select id="selectImage" parameterType="MemberVO" resultType="MemberFileVO">
+			select * from memberfiles where username=#{username}
+		</select>
+		
+		
       
       
       

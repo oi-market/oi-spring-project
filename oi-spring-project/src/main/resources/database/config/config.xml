@@ -9,6 +9,7 @@
 		<typeAlias type="com.market.oi.test.TestVO" alias="TestVO" />
 		<typeAlias type="com.market.oi.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.market.oi.member.RoleVO" alias="RoleVO"/>
+		<typeAlias type="com.market.oi.member.MemberFileVO" alias="MemberFileVO"/>
 		<typeAlias type="com.market.oi.board.BoardVO" alias="BoardVO"/>
 		<typeAlias type="com.market.oi.board.qna.QnaVO" alias="QnaVO"/>
 		<typeAlias type="com.market.oi.board.notice.NoticeVO" alias="NoticeVO"/>
