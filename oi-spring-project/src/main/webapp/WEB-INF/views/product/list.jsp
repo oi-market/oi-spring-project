@@ -65,100 +65,24 @@
 
             <div class="product-list">
 
-
+		<c:forEach items="${list}" var="vo">
                 <a href="./select">
                     <div class="product">
                         <div class="product--header">
                             <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
+                            <div class="product--name">${vo.title}</div>
                         </div>
-                        <div class="product--location">대전 서구</div>
+                        <div class="product--location">${vo.location}</div>
                         <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
+                            <div class="product--amount">${vo.price}</div>
                             <div class="product--like">
                                 <i class="bi bi-suit-heart"></i>
-                                16</div>
+                                ${vo.like}</div>
                         </div>
                     </div>  
                 </a>
-                <a href="./select">
-                    <div class="product">
-                        <div class="product--header">
-                            <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
-                        </div>
-                        <div class="product--location">대전 서구</div>
-                        <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
-                            <div class="product--like">
-                                <i class="bi bi-suit-heart"></i>
-                                16</div>
-                        </div>
-                    </div>  
-                </a>
-                <a href="./select">
-                    <div class="product">
-                        <div class="product--header">
-                            <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
-                        </div>
-                        <div class="product--location">대전 서구</div>
-                        <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
-                            <div class="product--like">
-                                <i class="bi bi-suit-heart"></i>
-                                16</div>
-                        </div>
-                    </div>  
-                </a>
-                <a href="./select">
-                    <div class="product">
-                        <div class="product--header">
-                            <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
-                        </div>
-                        <div class="product--location">대전 서구</div>
-                        <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
-                            <div class="product--like">
-                                <i class="bi bi-suit-heart"></i>
-                                16</div>
-                        </div>
-                    </div>  
-                </a>
-                <a href="./select">
-                    <div class="product">
-                        <div class="product--header">
-                            <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
-                        </div>
-                        <div class="product--location">대전 서구</div>
-                        <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
-                            <div class="product--like">
-                                <i class="bi bi-suit-heart"></i>
-                                16</div>
-                        </div>
-                    </div>  
-                </a>
-                <a href="./select">
-                    <div class="product">
-                        <div class="product--header">
-                            <img class="product--image" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="대체텍스트">
-                            <div class="product--name">위닉스 제습기</div>
-                        </div>
-                        <div class="product--location">대전 서구</div>
-                        <div class="product--footer">
-                            <div class="product--amount">80,000원</div>
-                            <div class="product--like">
-                                <i class="bi bi-suit-heart"></i>
-                                16</div>
-                        </div>
-                    </div>  
-                </a>
-
-
-
+     </c:forEach>
+        
 
             </div>
 

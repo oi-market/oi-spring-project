@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 
 
@@ -10,10 +10,11 @@
             <div class="inner--left toggle--small">
                 <div class="inner__dropdown">
                     <a href="#" class="dropbtn">
-                        철산 1동<i class="bi bi-caret-right-fill"></i>
+                       <sec:authentication property="principal.location"/>
+                        <i class="bi bi-caret-right-fill"></i>
                     </a>
                     <div class="dropdown-content">
-                        <a href="#">동네 바꾸기</a>
+                        <a href="${pageContext.request.contextPath}/mypage/village">동네 바꾸기</a>
                     </div>
                 </div>
                 <div class="inner__dropdown inner__dropdown--category">
@@ -38,7 +39,7 @@
             </div>
             <div class="inner__right toggle--small">
                 
-                <a href="#">
+                <a href="${pageContext.request.contextPath}/product/insert">
                     <i class="bi bi-bag-check-fill"></i> 판매하기
                 </a>
 
