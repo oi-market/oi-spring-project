@@ -41,6 +41,17 @@
    		limit 0,10;
    	 
 	</select>
+	<select id="getProductSeparatedList" resultMap="ProductResult" parameterType="ProductVO">
+		
+			select *
+			from product P left join productFiles PF
+			on P.num=PF.productNum
+			where categoryNum=#{categoryNum}
+   		limit 0,10;
+   	 
+	</select>
+	
+	
 
 
 <!-- 	select A.*,PC.*
@@ -52,11 +63,7 @@
    		limit 0,10; -->
 
 
-
-<!-- 	<select id="get" parameterType="LocationVO" resultType="LocationVO">
-		select * from location where location=#{location}
-	</select>
-
+<!-- 
     <insert id="setLocation" parameterType="MemberVO">
 		insert into location
 		values (#{location},#{wgs84X},#{wgs84Y})
