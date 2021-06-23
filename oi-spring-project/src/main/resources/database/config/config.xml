@@ -7,14 +7,20 @@
 
 	<typeAliases>
 		<typeAlias type="com.market.oi.test.TestVO" alias="TestVO" />
-		
+
+		<typeAlias type="com.market.oi.myPage.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.market.oi.myPage.ProductfilesVO" alias="ProductfilesVO"/>
+		<typeAlias type="com.market.oi.myPage.OrdercompleteVO" alias="OrdercompleteVO"/>
+		<typeAlias type="com.market.oi.myPage.MywishVO" alias="MywishVO"/>
+		<typeAlias type="com.market.oi.myPage.ReviewVO" alias="ReviewVO"/>
+
 		<typeAlias type="com.market.oi.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.market.oi.member.RoleVO" alias="RoleVO"/>
 		<typeAlias type="com.market.oi.board.BoardVO" alias="BoardVO"/>
 <!-- 		<typeAlias type="com.market.oi.board.BoardFileVO" alias="BoardFileVO"/>  -->
-		<typeAlias type="com.market.oi.board.qna.QnaVO" alias="QnaVO"/>
-		
+		<typeAlias type="com.market.oi.board.qna.QnaVO" alias="QnaVO"/>		
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
+
 
 		<typeAlias type="com.market.oi.community.CommunityVO" alias="CommunityVO" />
 		<typeAlias type="com.market.oi.util.CommunityPager" alias="CommunityPager"/>
@@ -22,6 +28,9 @@
 		<typeAlias type="com.market.oi.community.comments.CommentsVO" alias="CommentsVO" />
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
+
+		<typeAlias type="com.market.oi.util.MypagePager" alias="MypagePager"/>
+
 
 	</typeAliases>
 

@@ -213,12 +213,16 @@ header .inner--second{
     padding-bottom: 5px;
     position:relative
 }
-.content__info--post .info--photo{
-    margin:10px;
+
+.content__info--post .info--photo img{
+	  width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 24px;
 }
 .content__info--post .info--user{
     color:#515151;
-    margin:5px;
+    margin:10px 5px 5px 5px;
 }
 .content__info--post .info--modify{
     margin:5px;

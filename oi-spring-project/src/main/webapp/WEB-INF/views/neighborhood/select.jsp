@@ -67,10 +67,8 @@
                     </div>
                     
                     <div class="content__info content__info--post">
-                    
 
-						
-                        <div class="info--photo">사진</div>
+                      <div class="info--photo">사진</div>
 	                        <div class="info--users">
 	                            <div class="info--user">${vo.nickName}</div>
 	                            <div class="info--second-line">
@@ -123,6 +121,7 @@
                     
                     
                     <div class="comment-list">
+
 						<c:if test="${comments ne null}">
 							<c:forEach items="${list}" var="comments">
 							
@@ -193,6 +192,7 @@
 		                        </div>
 	                        </c:forEach>
                         </c:if>
+
                         
                     
                     <!-- 댓글 -->

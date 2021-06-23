@@ -45,8 +45,6 @@ public class MemberVO implements UserDetails{
 	@NotEmpty(message="주소를 입력하시오")
 	private String location;
 	
-	@NotEmpty(message = "필수입력")
-	private String emailNum;
 	
 	private List<RoleVO> roles;
 
