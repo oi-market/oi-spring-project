@@ -86,3 +86,46 @@ amount.addEventListener('change',function(){
 amount.addEventListener('focus',function(){
     amount.value= '';
 });   
+
+
+/*
+let regBtn = document.getElementById('regBtn');
+regBtn.addEventListener('click',function(){
+	alert('전송연습');
+console.log(document.getElementById('product-title-input').value);
+console.log(document.getElementById('attachFileDiv').childNodes[2].childNodes[0].value);
+console.log(document.getElementById('amount-scale').value);
+console.log(document.getElementById('product-category-input').value);
+console.log(document.getElementById('product-contents-input').value);
+});
+*/
+
+
+//모든 input채워져야 넘어감
+let insertFrm = document.getElementById('insertFrm');
+let regBtn = document.getElementById('regBtn');
+regBtn.addEventListener('click',function(){
+	
+	if(!document.getElementById('attachFileDiv').childNodes[2]){
+		alert('사진을 넣어주세요!');
+	}
+	if(!document.getElementById('attachFileDiv').childNodes[2].childNodes[0]){
+		alert('사진을 넣어주세요!');
+	}
+	
+	if(	
+		(document.getElementById('product-title-input').value!="")&&
+		(document.getElementById('attachFileDiv').childNodes[2].childNodes[0].value!="")&&
+		(document.getElementById('amount-scale').value!="")&&
+		(document.getElementById('product-category-input').value!="")&&
+		(document.getElementById('product-contents-input').value!="")
+		
+	){
+		insertFrm.submit();
+		alert("상품 생성 성공");
+	}else{
+		alert("항목들을 모두 채워주십시오");
+	}
+});
+
+

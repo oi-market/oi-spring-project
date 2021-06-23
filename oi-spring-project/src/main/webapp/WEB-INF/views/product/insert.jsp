@@ -62,6 +62,7 @@
              <div class="product-insert__body product-select__body">
 
 
+					<form action="./insert" method="post" enctype="multipart/form-data" id="insertFrm">
 
                     <div class="insert--title">상품 등록하기</div>
 
@@ -78,7 +79,7 @@
                             <div class="preview-images"  id="attachFileDiv" >
                                  <img class="preview" id="product-image-preview" src="../img/needImg.png"  alt="profile_image">
                             </div>
-                            <input id="product-image-input" type="file" accept="image/*" onchange="loadImg(event,null)"> </input>
+                            <input id="product-image-input" type="file" accept="image/*" onchange="loadImg(event,null)">
                             <label id='label-button' for="product-image-input" onclick="attachFile.add()">업로드</label>
                             <p>* 상품 이미지는 640x640에 최적화 되어 있습니다.</p>
                             <p>- 이미지는 3장까지 등록 가능합니다.</p>
@@ -95,7 +96,7 @@
 
                         <div class="photo-inner__body">
                             
-                            <input type="text" class="input--text" placeholder="상품 제목을 입력해주세요">
+                            <input name="title" id="product-title-input" type="text" class="input--text" placeholder="상품 제목을 입력해주세요">
                             
                         </div>
                         
@@ -109,19 +110,19 @@
 
                         <div class="photo-inner__body">
                             
-                            <select>
-                                <option>디지털기기</option>
-                                <option>생활가전</option>
-                                <option>가구/인테리어</option>
-                                <option>유아동</option>
-                                <option>생활/가공식품</option>
-                                <option>스포츠/레저</option>
-                                <option>여성의류</option>
-                                <option>남성의류</option>
-                                <option>게임/취미</option>
-                                <option>뷰티/미용</option>
-                                <option>반려동물용품</option>
-                                <option>도서/티켓/음반</option>
+                            <select name="categoryNum" id="product-category-input">
+                                <option value="1">디지털기기</option>
+                                <option value="2">생활가전</option>
+                                <option value="3">가구/인테리어</option>
+                                <option value="4">유아동</option>
+                                <option value="5">생활/가공식품</option>
+                                <option value="6">스포츠/레저</option>
+                                <option value="7">여성의류</option>
+                                <option value="8">남성의류</option>
+                                <option value="9">게임/취미</option>
+                                <option value="10">뷰티/미용</option>
+                                <option value="11">반려동물용품</option>
+                                <option value="12">도서/티켓/음반</option>
                             
                       
 
@@ -141,7 +142,7 @@
                         <div class="photo-inner__body photo-inner__body--amount">
                             
                            
-                                <input id="amount-scale" type="text" class="input--text" placeholder="숫자만 적어주세요">
+                                <input name="price" id="amount-scale" type="text" class="input--text" placeholder="숫자만 적어주세요">
                                 <span>원</span>
                             
                         </div>
@@ -156,7 +157,7 @@
 
                         <div class="photo-inner__body photo-inner__body--description">
                             
-                            <input type="text" class="input--text" placeholder="상품 설명을 입력해주세요">
+                            <input name="contents" id="product-contents-input" type="text" class="input--text" placeholder="상품 설명을 입력해주세요">
                           
 
                         </div>
@@ -164,11 +165,11 @@
                     </div>
 
                    
-                        <button class="mybtn mybtn--primary regBtn">등록하기</button>
+                        <button type="button" class="mybtn mybtn--primary regBtn" id=regBtn>등록하기</button>
                     
 
 
-
+					</form>
 
 
 
