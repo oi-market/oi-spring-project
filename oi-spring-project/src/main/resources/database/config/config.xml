@@ -25,6 +25,12 @@
 
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
 
+		
+		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO"/>
+		<typeAlias type="com.market.oi.product.ProductVO" alias="ProductVO"/>
+		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="ProductFilesVO"/>
+
+
 
 		<typeAlias type="com.market.oi.community.CommunityVO" alias="CommunityVO" />
 		<typeAlias type="com.market.oi.util.CommunityPager" alias="CommunityPager"/>
@@ -34,6 +40,7 @@
 		<typeAlias type="java.lang.Long" alias="Long"/>
 
 		<typeAlias type="com.market.oi.util.MypagePager" alias="MypagePager"/>
+
 
 
 	</typeAliases>
