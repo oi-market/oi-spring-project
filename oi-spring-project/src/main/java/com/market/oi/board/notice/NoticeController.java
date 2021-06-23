@@ -1,4 +1,4 @@
-package com.market.oi.board.qna;
+package com.market.oi.board.notice;
 
 import java.util.List;
 
@@ -16,27 +16,29 @@ import com.market.oi.board.BoardVO;
 import com.market.oi.util.Pager;
 
 @Controller
-@RequestMapping("/qna/**")
-public class QnaController {
+@RequestMapping("/notice/**")
+public class NoticeController {
 	
 	@Autowired
-	private QnaService qnaService;
+	private NoticeService noticeService;
 	
 	@ModelAttribute("board")
 	public String getBoard() {
-		return "qna";
+		return "notice";
 	}
+	
+
 	
 	
 	
 	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
-		List<BoardVO> ar = qnaService.getList(pager);
+		List<BoardVO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		for(BoardVO boardVO :ar) {
-			QnaVO qnaVO = (QnaVO)boardVO;
-//			System.out.println(qnaVO.getDepth());
+			NoticeVO noticeVO = (NoticeVO)boardVO;
+//			System.out.println(noticeVO.getDepth());
 		}
 		return "board/list";
 	}
@@ -44,7 +46,7 @@ public class QnaController {
 	@GetMapping("select")
 	public ModelAndView getSelect(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		boardVO = qnaService.getSelect(boardVO);
+		boardVO = noticeService.getSelect(boardVO);
 		System.out.println(boardVO);
 		mv.addObject("vo", boardVO);
 		mv.setViewName("board/select");
@@ -58,9 +60,9 @@ public class QnaController {
 		return "board/insert";
 	}
 	
-	@PostMapping("qnaInsert")
+	@PostMapping("noticeInsert")
 	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
-		int result = qnaService.setInsert(boardVO, files);
+		int result = noticeService.setInsert(boardVO, files);
 		
 		return "redirect:./list";
 	}
@@ -69,9 +71,9 @@ public class QnaController {
 	public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("업데이트 전");
-		boardVO = qnaService.getSelect(boardVO);
+		boardVO = noticeService.getSelect(boardVO);
 		mv.addObject("vo", boardVO);
-		mv.addObject("board", "qna");
+		mv.addObject("board", "notice");
 		mv.setViewName("board/update");
 		
 		return mv;
@@ -80,7 +82,7 @@ public class QnaController {
 	@PostMapping("update")
 	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
 		
-		int result = qnaService.setUpdate(boardVO);
+		int result = noticeService.setUpdate(boardVO);
 		
 		if(result>0) {
 			
@@ -91,10 +93,10 @@ public class QnaController {
 	
 	
 	
-	@GetMapping("qnaDelete")
+	@GetMapping("noticeDelete")
 	public String setDelete(BoardVO boardVO)throws Exception{
 		System.out.println(boardVO);
-		int result = qnaService.setDelete(boardVO);
+		int result = noticeService.setDelete(boardVO);
 		
 		return "redirect:./list";
 	}

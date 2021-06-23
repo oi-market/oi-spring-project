@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.market.oi.board.qna.QnaMapper">
+<mapper namespace="com.market.oi.board.notice.NoticeMapper">
 
 
 
@@ -17,8 +17,8 @@
    		</sql>
    		
    		
-   		<select id="getList" resultType="QnaVO" parameterType="Pager">
-			select * from qna 
+   		<select id="getList" resultType="NoticeVO" parameterType="Pager">
+			select * from notice 
 			 <include refid="searcher"></include>
 			order by num desc
 			
@@ -27,20 +27,20 @@
    		</select>
    		
    		<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
-   			select count(num) from qna
+   			select count(num) from notice
    			<include refid="searcher"></include>
    		</select>
    		
    		
-   		<select id="getSelect" resultType="QnaVO" parameterType="BoardVO">
-			SELECT * from qna WHERE num=#{num}
+   		<select id="getSelect" resultType="NoticeVO" parameterType="BoardVO">
+			SELECT * from notice WHERE num=#{num}
    		</select>
    		
    		
  
 
    		<insert id="setInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
-   			insert into qna(
+   			insert into notice(
    							title
    						   ,contents
    						   )
@@ -53,11 +53,11 @@
    		
    		
    		<update id="setUpdate" parameterType="BoardVO">
-   			update qna set title=#{title}, contents=#{contents} where num=#{num}
+   			update notice set title=#{title}, contents=#{contents} where num=#{num}
    		</update>
    		
    		<delete id="setDelete" parameterType="BoardVO">
-   			delete from qna where num=#{num}
+   			delete from notice where num=#{num}
    		</delete>
 
 

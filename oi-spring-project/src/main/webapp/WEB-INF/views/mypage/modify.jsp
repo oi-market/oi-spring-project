@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -41,6 +44,8 @@
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
   
+  
+  
 </head>
 <body>
      <div class="body__container">
@@ -62,23 +67,33 @@
                 
                <div class="account-body">
                     
-
-                    <form method="post" action="#">
-
+<sec:authorize access="isAuthenticated()">
+ 
                         <div class="account__bundle">
                             <div class="account-inner-title">
                                 <p>프로필 이미지</p>
                             </div>
-                            <img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image">
-                            <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
-                            <label for="account-image-input">업로드</label>
+                             <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
+
+
+   
+<!--      		             <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
+                            <label for="account-image-input">업로드</label>  -->
+                            <form action="../member/setImage" method="post"  enctype="multipart/form-data">
+                            <input id="account-image-input" type="file" name="avatar">
+							<label for="account-image-input">사진선택</label>
+							<button type="submit" class="btn" style="border: 1px solid #ebebeb;">업로드</button>
+							<button type="button" class="btn" onclick="delImg()" style="border: 1px solid #ebebeb;">사진삭제</button>
+                            </form>
+                            
                         </div>
                         <div class="account__bundle">
                             <div class="account-inner-title">
                                 <p class="red-star">*</p>
                                 <label for="account-name">이름</label>
                             </div>
-                            <input id="account-name" class="input--text" type="text"> </input>
+                            <input id="account-name" class="input--text" type="text" name="name" value="<sec:authentication property="principal.name"/>"> </input>
                         </div>
 
                         <div class="account__bundle">
@@ -86,7 +101,7 @@
                                 <p class="red-star">*</p>
                                 <label for="account-nickname">닉네임</label>
                             </div>
-                            <input id="account-nickname" class="input--text" type="text"> </input>
+                            <input id="account-nickname" class="input--text" type="text" name="nickName" value="<sec:authentication property="principal.nickName"/>"> </input>
                         </div>
 
                         <div class="account__bundle">
@@ -94,23 +109,23 @@
                                 <p class="red-star">*</p>
                                 <label for="account-email">이메일</label>
                             </div>
-                            <input id="account-email" class="input--text" type="text"> </input>
+                            <input id="account-email" class="input--text" type="text" name="email" value="<sec:authentication property="principal.email"/>"> </input>
                         </div>
                         <div class="account__bundle">
                             <div class="account-inner-title">
                                 <p class="red-star">*</p>
                                 <label for="account-phone">휴대전화</label>
                             </div>
-                            <input id="account-phone" class="input--text" type="text"> </input>
+                            <input id="account-phone" class="input--text" type="text" name="phone" value="<sec:authentication property="principal.phone"/>"> </input>
                         </div>
 
                     
 
                    
                    
-                        <input class="mybtn passwordBtn" type="button" value="바꾸기"></input>
-                    </form>
-                    
+                        <input class="mybtn passwordBtn" type="button" onclick="update_dtn()" value="바꾸기"></input>
+
+                  </sec:authorize>  
                     
                 </div>
                 
@@ -131,7 +146,57 @@
 
      </div>
      <script src="../js/main.js"></script>
-     <script src="../js/myPage.js"></script>
+     <script src="../js/myPage.js"></script>'
+     <script type="text/javascript"></script>
+	<script type="text/javascript" src="../js/member.js"></script>
+
+
+
+<script type="text/javascript">
+
+$(function() {
+    $("#account-image-input").on('change', function(){
+        readURL(this);
+    });
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       reader.onload = function (e) {
+          $('#account-image-preview').attr('src', e.target.result);
+       }
+       reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function delImg(){
+	if(confirm("사진을 삭제하시겠습니까?") == true){
+	$.ajax({
+		type : 'POST',
+		url : '../member/delImage',
+		data : {
+			
+		},
+	
+		dataType :'text',
+
+		success : function(message) {
+		       alert(message);
+				location.href="../mypage/modify";
+		    },
+		    error:function(requeest, status, error){
+		    	alert(error);
+		    },
+	})
+}
+}
+</script>
+
+
+
+
+
+
 
 
 </body>

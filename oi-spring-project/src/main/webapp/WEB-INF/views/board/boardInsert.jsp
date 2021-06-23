@@ -26,7 +26,7 @@
 					class="form-control myCheck" id="title" name="title">
 			</div>
 
-			<div class="form-group">
+			<div class="form-group"  style="line-height:0.5;">
 				<label for="contents">Contents:</label>
 				<textarea id="summernote" name="contents"></textarea>
 			</div>

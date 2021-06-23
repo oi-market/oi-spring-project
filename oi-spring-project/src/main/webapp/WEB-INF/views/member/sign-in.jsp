@@ -73,7 +73,7 @@
                 </div>
 
               
-                <form action="./memberLogin" method="post" class="sign-in-frm row">
+                <form action="./sign-in" method="post" class="sign-in-frm row">
 
 
                          <div class="inputs">

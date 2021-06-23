@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class MemberVO implements UserDetails{
@@ -46,7 +49,11 @@ public class MemberVO implements UserDetails{
 	private String location;
 	
 	
+	
 	private List<RoleVO> roles;
+	
+	
+	private MemberFileVO memberFileVO;
 
 	
 	//role 저장

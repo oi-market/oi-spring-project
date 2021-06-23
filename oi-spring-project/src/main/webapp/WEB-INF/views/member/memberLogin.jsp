@@ -35,10 +35,10 @@
 		<h1>&nbsp;</h1>
 		<h1>&nbsp;</h1>
 
-		<h1>Login Page</h1>
+		<h1>Login Page123</h1>
 		<h3>&nbsp;</h3>
 		<h1>&nbsp;</h1>
-		<form action="./memberLogin" method="post">
+		<form action="./sign-in" method="post">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="아이디를 입력하시오."
 					id="username" name="username" style="width: 300px; height:50px; margin: 0 auto; ">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,74 +37,78 @@
     <link rel="stylesheet" href="../css/mainScss.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/board.css">
+    <link rel="stylesheet" href="../css/mypage.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
-  
-  
-    
-
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> 
-    <!-- jsp로 바꿀때 경로 신경쓰기 -->
-  
-  
   
 </head>
 <body>
      <div class="body__container">
 
-		<c:import url="../template/header.jsp"></c:import>
-      
 
-  <section class="section article article--product article--qna">
+       <!-- HEADER -->
+ <c:import url="../template/header.jsp"></c:import>  
+    
+     <section class="section mypage">
          <div class="inner">
+ 		<c:import url="../template/viewpage-nav.jsp"></c:import>
+           
 
-            <div class="qna--header">
-                ${board} 작성
-            </div> 	
-            <div class="qna--answer">
+            <div class="content">
                 
-                <form id="frm" action="./${board}Insert" method="post" enctype="multipart/form-data">
-                <div class="form-group"  style="line-height:0.5;">
+                <div class="content-header">
+                    <h1 class="page-name">내 동네 설정</h1>
+                </div>
                 
-                <div class="form-group">
-				<label for="title">Title:</label> <input type="text"
-					class="form-control myCheck" id="title" name="title">
-			</div>
-			
-				<label for="contents">Contents:</label>
-				<textarea id="summernote" name="contents"></textarea>
-			</div>
-                <button type="submit" class="mybtn mybtn--primary">글쓰기</button>
-                <a href="javascript:history.back();" class="btn btn-danger">취소</a>
-                </form>
-                
-                
-                
-            </div>
-            
+               <div class="content-description">
+                    
 
+                <div class="content-body">
+                    <div class="title-underline">
+                        <p>
+                            지금 내 동네
+                        </p>
+                    </div>
+                    <div class="on-sale">
+
+                       
+                        <div>
+                            (멤버에서 받아오는 동네)
+                            <!--${member.location}-->
+                        </div>
+                       
                   
+                    </div>
+                    <div class="title-underline">
+                        <p>
+                            동네 변경
+                        </p>
+                    </div>
+                    <!-- 반복문으로 최대 3개만 불러오기 -->
+                    <div class="on-sale">
 
+                        <!-- 1안 주소api 사용,,
+                        <input type="text" id="sample3_postcode" placeholder="우편번호">
+                        <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
+                        <input type="text" id="sample3_address" placeholder="주소"><br>
+                        <input type="text" id="sample3_detailAddress" placeholder="상세주소">
+                        <input type="text" id="sample3_extraAddress" placeholder="참고항목">
+                        <button> 동네 바꾸기 </button>
+                        -->
 
+                    
+                        <!-- 2안 지오로케이션 등 현재 위도 경도, 혹은 위치 활용해서 주소 뽑기,,-->
+                        <button> 현재 위치로 동네 바꾸기 </button>
 
-
-
-            
+        
+                    </div>
+                    
+                </div>
+                </div>
+                
             </div>
             
-            
-            
-            
-            
-        
+         </div>
      </section>
 
 
@@ -113,13 +117,9 @@
         <!-- FOOTER -->
         <c:import url="../template/footer.jsp"></c:import>
 
-
      </div>
-      <script src="../js/main.js"></script>
-     <script src="../js/second-header.js"></script>
-     <script src="../js/board.js"></script>
-     
-     
+     <script src="../js/main.js"></script>
+     <script src="../js/myPage.js"></script>
 
 
 </body>

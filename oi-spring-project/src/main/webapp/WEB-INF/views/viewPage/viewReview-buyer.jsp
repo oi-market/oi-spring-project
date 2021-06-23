@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+        
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -49,68 +47,58 @@
      <div class="body__container">
 
 
-       <!-- HEADER -->
-	<c:import url="../template/header.jsp"></c:import>     
+      
+	<c:import url="../template/header.jsp"></c:import>  
 
     
      <section class="section mypage">
          <div class="inner">
 
-           
- 		<c:import url="../template/mypage-nav.jsp"></c:import>
+ 		<c:import url="../template/viewpage-nav.jsp"></c:import>
 
-            <div class="content">
+           <div class="content">
                 
                 <div class="content-header">
-                    <h1 class="page-name">프로필</h1>
+                    <h1 class="page-name">후기</h1>
                 </div>
                 
-                <div class="content-description">
-                    <div class="user-name">
-                        <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
-							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
-                        <strong><sec:authentication property="principal.nickName"/></strong>
-  
-                    </div>
-                    <div class="user-info">
-                        <div class="star-rating">
-                            <span class="colored-star" style="width: 50%;">
-                            <!-- style로 별점 조정 -->
-                            <!-- score/5*100 =width(%) -->
-                            </span>
-                        </div>
-                        <p>2.5/5</p>
-                        <p>n명이 평가</p>
-                    </div>
+               <div class="content-description">
+                    <nav class="kinds-deal kinds-review">                    
+                        <ul>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview?username=${memberVO.username}">
+                                   
+                                    <div>전체 후기</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview-seller?username=${memberVO.username}">
+                                   
+                        
+                                    <div>판매자 후기</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="${pageContext.request.contextPath}/viewPage/viewReview-buyer?username=${memberVO.username}">
+                                   
+                                    <div>구매자 후기</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
 
                 </div>
 
                 <div class="content-body">
+
+
                     <div class="title-underline">
                         <p>
-                            판매상품 n개
+                            후기 n개
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
-                            <i class="bi bi-caret-right-fill"></i>
-                        </a>
                     </div>
-                    <div class="title-underline">
-                        <p>
-                            동네생활
-                        </p>
-                        <a href="${pageContext.request.contextPath}/mypage/village-list">
-                            <i class="bi bi-caret-right-fill"></i>
-                        </a>
-                    </div>
-                    <div>
-                        <p>
-                            받은 리뷰 n ${review.size()}
-                        </p>
-                        <a href="${pageContext.request.contextPath}/mypage/review">
-                            <i class="bi bi-caret-right-fill"></i>
-                        </a>
-                    </div>
-                    <!-- 반복문으로 최대 3개만 불러오기 -->
+                 
+                    
                     <div class="user-review">
                         <div class="user-reivew-detail">
                             <p class="review-name">이름1</p>
@@ -130,12 +118,13 @@
 
 
                     </div>
-
+         
+                    <!-- end of content-body -->
                 </div>
-
-
-            </div>
-      
+                
+                <!-- end of content -->
+            </div> 
+            
          </div>
      </section>
 
@@ -145,10 +134,11 @@
         <!-- FOOTER -->
        <c:import url="../template/footer.jsp"></c:import>
 
-
      </div>
      <script src="../js/main.js"></script>
      <script src="../js/myPage.js"></script>
 
+
 </body>
 </html>
+

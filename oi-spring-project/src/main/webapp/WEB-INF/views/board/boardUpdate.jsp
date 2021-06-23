@@ -23,7 +23,7 @@
       <input type="text" class="form-control" id="title" name="title" value="${vo.title}">
     </div>
     
-    <div class="form-group">
+    <div class="form-group" style="line-height:0.5;">
 				<label for="contents">Contents:</label>
 				<textarea id="summernote" name="contents">${vo.contents}</textarea>
 			</div>

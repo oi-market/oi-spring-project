@@ -74,12 +74,12 @@
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
-                            <span class="colored-star" style="width: 50%;">
+                            <span class="colored-star" style="width: ${scoreStar}%;">
                             <!-- style로 별점 조정 -->
                             <!-- score/5*100 =width(%) -->
                             </span>
                         </div>
-                        <p>2.5/5</p>
+                        <p>${Score}</p>
                         <p>n명이 평가</p>
                     </div>
 
@@ -104,7 +104,7 @@
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n ${review.size()}
+                            받은 리뷰 n
                         </p>
                         <a href="${pageContext.request.contextPath}/mypage/review">
                             <i class="bi bi-caret-right-fill"></i>

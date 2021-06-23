@@ -24,6 +24,22 @@ public interface MemberMapper {
 	
 	public int memberUpdatePW(MemberVO memberVO);
 	
+	public int memberUpdate(MemberVO memberVO);
+	
+	public int memberDelete(MemberVO memberVO);
+	
+	public int setJoinFile(MemberFileVO memberFileVO)throws Exception; //사진
+	
+	public MemberFileVO selectImage(MemberVO memberVO);
+	
+	public int delImage(MemberFileVO memberFileVO);
+	
+	public Double Score(MemberVO memberVO);
+	
+
+	
+
+	
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 

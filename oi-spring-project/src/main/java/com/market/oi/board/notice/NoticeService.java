@@ -1,4 +1,4 @@
-package com.market.oi.board.qna;
+package com.market.oi.board.notice;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import com.market.oi.board.BoardVO;
 import com.market.oi.util.Pager;
 
 @Service
-public class QnaService implements BoardService{
+public class NoticeService implements BoardService{
 	
 	@Autowired
-	private QnaMapper qnaMapper;
+	private NoticeMapper noticeMapper;
 	
 	
 
@@ -23,22 +23,22 @@ public class QnaService implements BoardService{
 		pager.makeRow();
 		System.out.println(pager.getSearch());
 		
-		pager.makeNum(qnaMapper.getTotalCount(pager));
+		pager.makeNum(noticeMapper.getTotalCount(pager));
 
-		System.out.println(qnaMapper.getTotalCount(pager));
-		return qnaMapper.getList(pager);
+		System.out.println(noticeMapper.getTotalCount(pager));
+		return noticeMapper.getList(pager);
 	}
 
 	@Override
 	public BoardVO getSelect(BoardVO boardVO) throws Exception {
 		
-		return qnaMapper.getSelect(boardVO);
+		return noticeMapper.getSelect(boardVO);
 	}
 
 	@Override
 	public int setInsert(BoardVO boardVO, MultipartFile[] files) throws Exception {
 		
-		int result = qnaMapper.setInsert(boardVO);
+		int result = noticeMapper.setInsert(boardVO);
 		
 		return result;
 	}
@@ -46,13 +46,13 @@ public class QnaService implements BoardService{
 	@Override
 	public int setUpdate(BoardVO boardVO) throws Exception {
 		
-		return qnaMapper.setUpdate(boardVO);
+		return noticeMapper.setUpdate(boardVO);
 	}
 
 	@Override
 	public int setDelete(BoardVO boardVO) throws Exception {
 		
-		return qnaMapper.setDelete(boardVO);
+		return noticeMapper.setDelete(boardVO);
 	}
 
 

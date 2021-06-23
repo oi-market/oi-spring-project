@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		   .antMatchers("/favicon/**")
 		   .antMatchers("/node/**")
 		   .antMatchers("/node_modules/**")
+		   .antMatchers("/upload/**")
 		   ;
 	}
 	
@@ -52,18 +53,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/notice/list", "/notice/select").permitAll()
-				.antMatchers("/notice/**").hasRole("ADMIN")
+				.antMatchers("/notice/**").permitAll()
+//				.antMatchers("/notice/**").hasRole("ADMIN")
 				.antMatchers("/qna/qnaList").permitAll()
 				.antMatchers("/qna/qnaSelect").permitAll()
 				.antMatchers("/qna/**").permitAll()
 //				.antMatchers("/qna/**").hasRole("ADMIN")
-				.antMatchers("/member/jusoAPI").hasRole("MEMBER")
+				.antMatchers("/board/**").permitAll()				
+				.antMatchers("/member/memberProfile").hasAnyRole("ADMIN", "MEMBER")
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").permitAll()
 //				.antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
+
+				.antMatchers("/viewPage/**").permitAll()
+
+
 				.antMatchers("/neighborhood/board").hasAnyRole("ADMIN", "MEMBER")
 				.antMatchers("/neighborhood/insert").hasAnyRole("ADMIN", "MEMBER")
 				.antMatchers("/neighborhood/**").permitAll()	
+
 				.antMatchers("/mypage/**").hasRole("MEMBER")
 				.anyRequest().authenticated()
 				.and()
@@ -72,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.passwordParameter("pw")
 				//로그인페이지를 따로 만들지 않아도 기본 내장된 폼으로 이동
 				//개발자가 만든 로그인폼을 사용하려면 다음과 같이 작성
-				.loginPage("/member/memberLogin")
+				.loginPage("/member/sign-in")
 				.defaultSuccessUrl("/member/memberLoginResult")
 				//Login 실패 처리
 				.failureUrl("/member/loginFail")

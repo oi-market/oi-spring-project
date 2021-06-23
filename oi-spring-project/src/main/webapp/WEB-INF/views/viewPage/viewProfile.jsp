@@ -57,7 +57,7 @@
          <div class="inner">
 
            
- 		<c:import url="../template/mypage-nav.jsp"></c:import>
+ 		<c:import url="../template/viewpage-nav.jsp"></c:import>
 
             <div class="content">
                 
@@ -69,17 +69,16 @@
                     <div class="user-name">
                         <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
 							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
-                        <strong><sec:authentication property="principal.nickName"/></strong>
-  
+                     <h1> ${memberVO.nickName} </h1>
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
-                            <span class="colored-star" style="width: 50%;">
+                            <span class="colored-star" style="width: ${scoreStar}%;">
                             <!-- style로 별점 조정 -->
                             <!-- score/5*100 =width(%) -->
                             </span>
                         </div>
-                        <p>2.5/5</p>
+                        <p>${score}</p>
                         <p>n명이 평가</p>
                     </div>
 
@@ -90,7 +89,7 @@
                         <p>
                             판매상품 n개
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewPurchase-sell?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
@@ -98,15 +97,15 @@
                         <p>
                             동네생활
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/village-list">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewVillage-list?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n ${review.size()}
+                            받은 리뷰 n
                         </p>
-                        <a href="${pageContext.request.contextPath}/mypage/review">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewReview?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
                         </a>
                     </div>
