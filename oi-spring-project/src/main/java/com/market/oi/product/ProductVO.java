@@ -3,6 +3,8 @@ package com.market.oi.product;
 import java.sql.Date;
 import java.util.List;
 
+import com.market.oi.member.MemberVO;
+
 import lombok.Data;
 
 @Data
@@ -22,5 +24,5 @@ public class ProductVO {
 	
 	
 	private List<ProductFilesVO> productFiles;
-	
+	private List<MemberVO> members;
 }

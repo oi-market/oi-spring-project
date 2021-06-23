@@ -103,6 +103,12 @@ public class ProductService {
 	}
 	
 	
+	public ProductVO getProductSelect(ProductVO productVO)throws Exception{
+		return productMapper.getProductSelect(productVO);
+	}
+	
+	
+	
 	
 
 	

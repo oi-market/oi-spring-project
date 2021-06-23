@@ -9,5 +9,5 @@ public interface ProductMapper {
 
 	public List<ProductVO> getProductList()throws Exception;
 	public List<ProductVO> getProductSeparatedList(ProductVO productVO)throws Exception;
-	
+	public ProductVO getProductSelect(ProductVO productVO)throws Exception;
 }

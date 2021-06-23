@@ -27,7 +27,11 @@ public class ProductController {
 		model.addAttribute("list", ar);
 	}
 	
-	
+	@GetMapping("product/select")
+	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
+		productVO=productService.getProductSelect(productVO);
+		model.addAttribute("vo",productVO);
+	}
 	
 	
 	

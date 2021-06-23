@@ -244,6 +244,16 @@ header .inner--second{
 
 /* select */
 
+.buttons--modify{
+    display: flex;
+    justify-content: flex-end;
+    position:absolute;
+  
+}
+.buttons--modify button{
+    margin-left: 10px;
+}
+
 .product-select__body{
     border-top: 1px solid #333;
     display: flex;
@@ -650,6 +660,9 @@ header .inner--second{
     .article--product .inner{
         max-width:757.5px;
     }
+       .buttons--modify{
+        right:4%;
+    }
 }
 @media (max-width:772px){
     .article--product .inner{
@@ -669,6 +682,9 @@ header .inner--second{
     }
     .body--right .product--amount{
         text-align: center;
+    }
+       .buttons--modify{
+        right:6%;
     }
 
 }
@@ -690,6 +706,9 @@ header .inner--second{
     .mybtn.chatBtn{
         width: 100px;
    
+    }
+       .buttons--modify{
+        right:8%;
     }
 
 }

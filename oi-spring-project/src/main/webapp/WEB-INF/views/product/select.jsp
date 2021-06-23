@@ -61,7 +61,11 @@
 
      
            
-
+				 <div class="buttons--modify">
+                   <button class="mybtn">상품 수정</button>
+                   <button class="mybtn">상품 삭제</button>
+               </div>
+				
                
                 <div class="product-select__body">
 
@@ -89,19 +93,18 @@
 
 
                     <div class="body--right">
-                        
-                        <strong class="product--name">나이키SB 후리스</strong>
-                        <strong class="product--amount">40,000원</strong>
+                        <strong class="product--name">${vo.title}</strong>
+                        <strong class="product--amount">${vo.price}원</strong>
                         <p>남성의류</p>
                         <div class="product-info">
                             <div class="product--like">
-                                <i class="bi bi-suit-heart-fill"></i> 0
+                                <i class="bi bi-suit-heart-fill"></i> ${vo.like}
                             </div>
                             <div class="product--hit">
-                                <i class="bi bi-eye-fill"></i> 10
+                                <i class="bi bi-eye-fill"></i> ${vo.hit}
                             </div>
                             <div class="product--date">
-                                <i class="bi bi-clock-fill"></i> 11분전
+                                <i class="bi bi-clock-fill"></i> ${vo.regDate}
                             </div>
                         </div>
 
@@ -113,10 +116,10 @@
                                     </div>
                                     <div class="user--namebox">
                                         <div class="user--name">
-                                            우아
+                                             ${vo.members[0].username}
                                         </div>
                                         <div class="user--location">
-                                            구로동
+                                            ${vo.location}
                                         </div>
                                     </div>
                                 </div>
@@ -132,18 +135,8 @@
                         </a>
 
                         <div class="product--description">
-                            
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                            나이키 sb 정품입니다. 매장 가서 직접 샀습니다. 상태 자부합니다 아껴 입었습니다.
-                        </div>
+                            ${vo.contents}
+                                                    </div>
 
 
                         <div class="product--buttons">

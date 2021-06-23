@@ -84,9 +84,7 @@ public class HomeController {
 	public void getVillageInsert()throws Exception{
 	}
 	
-	@GetMapping("product/select")
-	public void getProductSelect()throws Exception{
-	}
+
 	@GetMapping("product/insert")
 	public void getProductInsert()throws Exception{
 	}
