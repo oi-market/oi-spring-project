@@ -34,11 +34,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
-
-
-
-
 @Controller
 @RequestMapping("/member/**")
 public class MemberController {
@@ -106,6 +101,7 @@ public class MemberController {
 	@PostMapping("memberJoin")
 	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
+
 				if(errors.hasErrors()) {
 					System.out.println("일로가냐");
 					return "member/sign-up";
@@ -113,11 +109,13 @@ public class MemberController {
 
 		if(memberService.memberError(memberVO, errors)) {
 				System.out.println("에러");
+
 			return "member/sign-up";
+			
 		}
 
 		int result = memberService.memberJoin(memberVO, avatar);
-
+		System.out.println("성공");
 		return "redirect:../";
 	}
 	
@@ -139,6 +137,19 @@ public class MemberController {
 		System.out.println("GetLogin");
 		return "member/memberLogin";
 	}
+	
+	/*session 담아서 mypage에서 사용하기 위해 작성해놓은 코드 -혜민
+	@PostMapping("memberLogin")
+	public ModelAndView memberLogin(MemberVO memberVO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		memberVO = memberService.getLogin(memberVO);
+		
+		session.setAttribute("member", memberVO);
+		System.out.println(session);
+		mv.setViewName("mypage/**");
+		
+		return mv;
+	}*/
 	
 	@GetMapping("loginFail")
 	public String loginFail()throws Exception{

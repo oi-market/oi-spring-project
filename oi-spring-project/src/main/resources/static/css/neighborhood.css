@@ -308,12 +308,14 @@ position: relative;
      margin-left: 48px;
    
 }
-.comment--input ~ a{
+.comment--input ~ button{
     position: absolute;
     top:8px;
     right: 4%;
-   
+    border:none;
+    background-color:inherit;  
 }
+
 .comment--footer button{
     border: none;
     background-color: inherit;

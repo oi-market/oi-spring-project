@@ -146,6 +146,7 @@
 						<form:errors path="email"></form:errors>
 
 						<div>인증번호</div>
+
 						<form:input id="emailNum" path="emailNum" placeholder="인증번호"
 							class="col-12 input--text" />
 						<button type="button" class="mybtn sign-in" onclick="emailCheck()"
@@ -157,6 +158,7 @@
 							class="col-12 input--text">
 						<button type="button" class="mybtn sign-in" onclick="findAddr()"
 							style="border: 1px solid black; margin-top: 7px; margin-bottom: 10px;">
+
 							<i class="fa fa-search"></i> 주소 찾기
 						</button>
 

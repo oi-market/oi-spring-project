@@ -68,7 +68,7 @@
           
            
            
-           <form class="neighborhood-form" action="./communityInsert" method="post" enctype="multipart/form-data">
+           <form class="neighborhood-form" action="./insert" method="post" enctype="multipart/form-data">
 	
              
                 
@@ -82,16 +82,8 @@
                         <option value="6" >기타</option>
                     </select>
                    
-            
-                    
-
-                    <textarea  id="summernote" name="editordasta"></textarea>
-
-
-
-
-
-                    
+                    <textarea  id="summernote" name="contents" name="editordasta"></textarea>
+              
                     <button class="mybtn" type="submit">글쓰기</button>
                     
             
