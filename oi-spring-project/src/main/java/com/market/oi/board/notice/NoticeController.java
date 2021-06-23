@@ -31,7 +31,7 @@ public class NoticeController {
 	
 	
 	
-	@GetMapping("noticeList")
+	@GetMapping("list")
 	public String getList(Pager pager, Model model)throws Exception{
 		List<BoardVO> ar = noticeService.getList(pager);
 		model.addAttribute("list", ar);
@@ -40,46 +40,46 @@ public class NoticeController {
 			NoticeVO noticeVO = (NoticeVO)boardVO;
 //			System.out.println(noticeVO.getDepth());
 		}
-		return "board/boardList";
+		return "board/list";
 	}
 	
-	@GetMapping("noticeSelect")
+	@GetMapping("select")
 	public ModelAndView getSelect(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardVO = noticeService.getSelect(boardVO);
 		System.out.println(boardVO);
 		mv.addObject("vo", boardVO);
-		mv.setViewName("board/boardSelect");
+		mv.setViewName("board/select");
 		return mv;
 	}	
 	
-	@GetMapping("noticeInsert")
+	@GetMapping("insert")
 	public String setInsert(Model model)throws Exception{
 		model.addAttribute("vo", new BoardVO());
 		model.addAttribute("action", "insert");
-		return "board/boardInsert";
+		return "board/insert";
 	}
 	
 	@PostMapping("noticeInsert")
 	public String setInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
 		int result = noticeService.setInsert(boardVO, files);
 		
-		return "redirect:./noticeList";
+		return "redirect:./list";
 	}
 
-	@GetMapping("noticeUpdate")
+	@GetMapping("update")
 	public ModelAndView setUpdate(BoardVO boardVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("업데이트 전");
 		boardVO = noticeService.getSelect(boardVO);
 		mv.addObject("vo", boardVO);
 		mv.addObject("board", "notice");
-		mv.setViewName("board/boardUpdate");
+		mv.setViewName("board/update");
 		
 		return mv;
 	}
 	
-	@PostMapping("noticeUpdate")
+	@PostMapping("update")
 	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
 		
 		int result = noticeService.setUpdate(boardVO);
@@ -88,7 +88,7 @@ public class NoticeController {
 			
 		}
 		
-		return "redirect:./noticeList";	
+		return "redirect:./list";	
 	}
 	
 	
@@ -98,7 +98,7 @@ public class NoticeController {
 		System.out.println(boardVO);
 		int result = noticeService.setDelete(boardVO);
 		
-		return "redirect:./noticeList";
+		return "redirect:./list";
 	}
 
 }

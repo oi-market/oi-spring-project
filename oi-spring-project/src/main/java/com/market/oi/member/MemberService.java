@@ -191,7 +191,10 @@ public class MemberService implements UserDetailsService{
 	}
 	
 	
-	
+	public Double Score(MemberVO memberVO) {
+		
+		return memberMapper.Score(memberVO);
+	}
 
 	
 

@@ -51,6 +51,7 @@ public class MemberVO implements UserDetails{
 	@NotEmpty(message = "필수입력")
 	private String emailNum;
 	
+	
 	private List<RoleVO> roles;
 	
 	

@@ -74,12 +74,12 @@
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
-                            <span class="colored-star" style="width: 50%;">
+                            <span class="colored-star" style="width: ${scoreStar}%;">
                             <!-- style로 별점 조정 -->
                             <!-- score/5*100 =width(%) -->
                             </span>
                         </div>
-                        <p>2.5/5</p>
+                        <p>${Score}</p>
                         <p>n명이 평가</p>
                     </div>
 

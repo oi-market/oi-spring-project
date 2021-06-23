@@ -34,6 +34,8 @@ public interface MemberMapper {
 	
 	public int delImage(MemberFileVO memberFileVO);
 	
+	public Double Score(MemberVO memberVO);
+	
 
 	
 

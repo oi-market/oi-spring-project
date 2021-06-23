@@ -48,7 +48,7 @@
 
 
 	
-	
+			<c:import url="../template/header.jsp"></c:import>
 	
 		
 
@@ -58,7 +58,7 @@
 
             <div class="qna--header">
             	<h3>제목 : ${vo.title}</h3>
-                커뮤니티 가이드라인( qna 제목 )
+                
             </div>
             <div class="qna--answer">
              <h3>Contents : ${vo.contents}</h3>
@@ -70,11 +70,11 @@
 
 
         <a href="./update?num=${vo.num}" id="writeBtn" class="mybtn mybtn--primary">Update</a>
+        <a href="./${board}Delete?num=${vo.num}" id="deleteBtn" class="btn btn-danger" onclick="if(!confirm('게시글을 삭제하시겠습니다?')){return false;}">Delete</a>
             
             </div>
             
 
-	<a href="./${board}Delete?num=${vo.num}" id="writeBtn" class="mybtn mybtn--primary" onclick="if(!confirm('게시글을 삭제하시겠습니다?')){return false;}">Delete</a>
             
             
         

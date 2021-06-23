@@ -34,6 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		   .antMatchers("/favicon/**")
 		   .antMatchers("/node/**")
 		   .antMatchers("/node_modules/**")
+		   .antMatchers("/upload/**")
 		   ;
 	}
 	

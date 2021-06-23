@@ -67,17 +67,18 @@
                 
                 <div class="content-description">
                     <div class="user-name">
-                        <div class="user-picture">유저 사진</div>
+                        <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
                      <h1> ${memberVO.nickName} </h1>
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
-                            <span class="colored-star" style="width: 50%;">
+                            <span class="colored-star" style="width: ${scoreStar}%;">
                             <!-- style로 별점 조정 -->
                             <!-- score/5*100 =width(%) -->
                             </span>
                         </div>
-                        <p>2.5/5</p>
+                        <p>${score}</p>
                         <p>n명이 평가</p>
                     </div>
 

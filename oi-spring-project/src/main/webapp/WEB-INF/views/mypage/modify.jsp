@@ -84,12 +84,8 @@
                             <input id="account-image-input" type="file" name="avatar">
 							<label for="account-image-input">사진선택</label>
 							<button type="submit" class="btn" style="border: 1px solid #ebebeb;">업로드</button>
-							
-								
-                          
-                            
+							<button type="button" class="btn" onclick="delImg()" style="border: 1px solid #ebebeb;">사진삭제</button>
                             </form>
-                            
                             
                         </div>
                         <div class="account__bundle">
@@ -173,7 +169,27 @@ function readURL(input) {
     }
 }
 
+function delImg(){
+	if(confirm("사진을 삭제하시겠습니까?") == true){
+	$.ajax({
+		type : 'POST',
+		url : '../member/delImage',
+		data : {
+			
+		},
+	
+		dataType :'text',
 
+		success : function(message) {
+		       alert(message);
+				location.href="../mypage/modify";
+		    },
+		    error:function(requeest, status, error){
+		    	alert(error);
+		    },
+	})
+}
+}
 </script>
 
 

@@ -90,6 +90,11 @@
 		</select>
 		
 		
+		<select id="Score" parameterType="MemberVO" resultType="double" >
+			select avg(score) from oi.review where reciver = #{username}
+		</select>
+		
+		
       
       
       

@@ -60,7 +60,7 @@
 <body>
      <div class="body__container">
 
-
+		<c:import url="../template/header.jsp"></c:import>
       
 
   <section class="section article article--product article--qna">
@@ -68,7 +68,7 @@
 
             <div class="qna--header">
                 ${board} 작성
-            </div>
+            </div> 	
             <div class="qna--answer">
                 
                 <form id="frm" action="./${board}Insert" method="post" enctype="multipart/form-data">

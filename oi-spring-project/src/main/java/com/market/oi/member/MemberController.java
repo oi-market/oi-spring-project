@@ -288,7 +288,27 @@ public class MemberController {
 		
 		
 		
-		return "redirect:../";
+		return "mypage/modify";
+	}
+	
+	@PostMapping("delImage")
+	@ResponseBody
+	public String delImage(MemberVO memberVO,Authentication authentication)throws Exception{
+		String message= "";
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		if(memberFileVO==null) {
+			message="삭제할 사진이없습니다.";
+		}else {
+			
+			int result = memberService.delImage(memberFileVO);
+			message="사진이 삭제되었습니다.";
+		}
+		
+		
+		return message;
 	}
 	
 
@@ -367,8 +387,34 @@ public class MemberController {
 	}
 	
 	
-	
-	
+	@GetMapping("testPage")
+	public void testPage(MemberVO memberVO,Authentication authentication,Model model)throws Exception {
+		
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+		Double score = memberService.Score(memberVO);
+		
+		if(score==null) {
+			score= 0.0;
+		}
+		score =( Math.round(score * 100) / 100.0);
+		
+		if(memberFileVO!=null) {
+			model.addAttribute("imgName", memberFileVO.getFileName());
+		}
+		
+		System.out.println(score);
+		int change = 20;
+		double scoreStar = change*score;
+		System.out.println(score);
+		model.addAttribute("Score",score);
+		model.addAttribute("scoreStar",scoreStar);
+
+		
+	}
 	
 
 	

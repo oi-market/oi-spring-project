@@ -112,12 +112,17 @@ header .inner--second{
     right: 5%;
     bottom: 8%;
 }
+#deleteBtn{
+    position: absolute;
+    right: 5%;
+    bottom: 2%;
+}
 
 
 /* board select */
 
 .article--qna .inner{
-   margin : 0 auto;
+   margin : 81px auto 0 auto;
    overflow: hidden;
    min-height: 700px;
 

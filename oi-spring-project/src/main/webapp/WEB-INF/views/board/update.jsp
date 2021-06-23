@@ -73,7 +73,7 @@
 <body>
 	<div class="body__container">
 
-
+		<c:import url="../template/header.jsp"></c:import>
 
 
 		<section class="section article article--product article--qna">
