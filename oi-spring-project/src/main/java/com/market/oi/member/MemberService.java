@@ -130,7 +130,9 @@ public class MemberService implements UserDetailsService{
 		return  memberMapper.getUsername(memberVO);
 		
 	}
-//	public MemberVO getLogin(MemberVO memberVO)throws Exception{
-//	return memberMapper.getLogin(memberVO);
-//}
+    
+	/*
+	 * public MemberVO getLogin(MemberVO memberVO)throws Exception{ return
+	 * memberMapper.memberLogin(memberVO); }
+	 */
 }
