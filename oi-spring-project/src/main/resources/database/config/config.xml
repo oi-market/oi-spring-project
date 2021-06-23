@@ -27,8 +27,8 @@
 
 		
 		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO"/>
-		<typeAlias type="com.market.oi.product.ProductVO" alias="ProductVO"/>
-		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="ProductFilesVO"/>
+		<typeAlias type="com.market.oi.product.ProductVO" alias="wProductVO"/>
+		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="wProductFilesVO"/>
 
 
 
