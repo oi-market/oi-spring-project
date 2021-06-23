@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.market.oi.chat.ChatMapper">
+
+	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
+		<choose>
+			<!-- check == 1 : 판매자 -->
+			<when test="check == 1">
+				select * from product
+				where num in (select productNum from chat
+				where sellerID = #{username})
+			</when>
+			
+			<!-- check == 1 : 구매자 -->
+			<when test="check == 2">
+				select * from product
+				where num in (select productNum from chat
+				where buyerID = #{username})
+			</when>
+		</choose>
+	</select>
+	
+	<select id="getBuyerList" parameterType="ChatVO" resultType="ChatVO">
+		SELECT chat.buyerID FROM chat
+		WHERE sellerID = #{sellerID}
+		GROUP BY chat.buyerID
+	</select>
+	
+	<select id="getChatList" parameterType="ChatVO" resultType="ChatVO">
+		SELECT * FROM chat
+		WHERE buyerID = #{buyerID}
+		ORDER BY regDate asc
+	</select>
+	
+	<insert id="setChatInsert" parameterType="ChatVO">
+		insert into chat(productNum, sellerID, buyerID, contents, productTitle, sellerName, buyerName)
+		VALUES(#{productNum}, #{sellerID}, #{buyerID}, #{contents}, #{productTitle}, #{sellerName}, #{buyerName})
+	</insert>
+	
+	<delete id="setChatDelete" parameterType="ChatVO">
+		DELETE FROM chat WHERE productNum = #{productNum}
+	</delete>
+
+</mapper>
