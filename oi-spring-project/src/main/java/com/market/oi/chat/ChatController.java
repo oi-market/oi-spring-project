@@ -45,26 +45,26 @@ public class ChatController {
 	}
 	
 	
-	@GetMapping("BuyerList")
-	public ModelAndView getBuyerList(ChatVO chatVO, Authentication auth) throws Exception {
-		
-		//session => memberVO
-		UserDetails user = (UserDetails)auth.getPrincipal();
-		MemberVO sessionMember = (MemberVO)user;
-		
-		ModelAndView mv = new ModelAndView();
-		
-		chatVO.setSellerID(sessionMember.getUsername());
-		System.out.println("SellerID : "+sessionMember.getUsername());
-		
-		List<ChatVO> ar = chatService.getBuyerList(chatVO);
-		
-		mv.addObject("list", ar);
-		mv.setViewName("chat/BuyerList");
-		
-		return mv;
-		
-	}
+//	@GetMapping("chatList")
+//	public ModelAndView getBuyerList(ChatVO chatVO, Authentication auth) throws Exception {
+//		
+//		//session => memberVO
+//		UserDetails user = (UserDetails)auth.getPrincipal();
+//		MemberVO sessionMember = (MemberVO)user;
+//		
+//		ModelAndView mv = new ModelAndView();
+//		
+//		chatVO.setSellerID(sessionMember.getUsername());
+//		System.out.println("SellerID : "+sessionMember.getUsername());
+//		
+//		List<ChatVO> ar = chatService.getBuyerList(chatVO);
+//		
+//		mv.addObject("list", ar);
+//		mv.setViewName("chat/chatList");
+//		
+//		return mv;
+//		
+//	}
 	
 	
 	@GetMapping("chatList")
@@ -76,12 +76,16 @@ public class ChatController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		chatVO.setSellerID(sessionMember.getUsername());
+		System.out.println("SellerID : "+sessionMember.getUsername());
 		chatVO.setBuyerID(sessionMember.getUsername());
 		System.out.println("BuyerID : "+sessionMember.getUsername());
 		
-		List<ChatVO> ar = chatService.getChatList(chatVO);
+		List<ChatVO> buyerAr = chatService.getBuyerList(chatVO);
+		List<ChatVO> chatAr = chatService.getChatList(chatVO);
 		
-		mv.addObject("list", ar);
+		mv.addObject("buyerList", buyerAr);
+		mv.addObject("chatList", chatAr);
 		mv.setViewName("chat/chatList");
 		
 		return mv;

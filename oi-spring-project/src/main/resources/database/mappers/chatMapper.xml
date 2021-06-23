@@ -25,9 +25,9 @@
 	</select>
 	
 	<select id="getBuyerList" parameterType="ChatVO" resultType="ChatVO">
-		SELECT chat.buyerID FROM chat
+		SELECT chat.buyerName FROM chat
 		WHERE sellerID = #{sellerID}
-		GROUP BY chat.buyerID
+		GROUP BY chat.buyerName
 	</select>
 	
 	<select id="getChatList" parameterType="ChatVO" resultType="ChatVO">

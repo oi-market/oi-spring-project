@@ -42,10 +42,9 @@
     <link rel="stylesheet" href="../css/neighborhood.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
-
-<meta charset="UTF-8">
 </head>
 <body>
+
 	<div class="body__container">
 	
 		<!-- HEADER -->
@@ -54,13 +53,12 @@
 		<section class="section article">
 			<div class="inner">
 			
-				<!-- button -->
-				<c:forEach items="${list}" var="vo" varStatus="i">
+				<c:forEach items="${buyerList}" var="vo" varStatus="i">
 				
 					<div class="post-list">
 	
-		                <a href="./chatList?productNum=${vo.num}">
-		                    <div> ${vo.title} </div>
+		                <a href="#">
+		                    <div> ${vo.buyerName} </div>
 		                </a>
 	                
 	            	</div>
@@ -75,6 +73,6 @@
         <c:import url="../template/footer.jsp"></c:import>
 	</div>
 	<script src="../js/main.js"></script>
-	
+
 </body>
 </html>
