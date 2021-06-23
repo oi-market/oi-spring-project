@@ -40,6 +40,10 @@
     <link rel="stylesheet" href="../css/mypage.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
+    
+    <!-- Font Awesome icons (free version)-->
+	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   
 </head>
 <body>
@@ -114,28 +118,35 @@
 
                     <div class="on-sale">
 
-                         <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
-						<c:forEach var="i" begin="0" end="1">
-                        <div class="product">
+                        <c:forEach var="vo" items="${wish}" varStatus="true">
+                      <div class="product">
+
+							<!-- 즐겨찾기의 데이터들만 채워진 빨간 하트 -->
+                            <c:if test="${vo.wish eq 1}">
+                            <span style="color:red; text-align: center;"><button class="fas fa-heart fa-lg"></button></span>  
+                            </c:if>
                             <div>
-                                사진
+                                <a href="./productSelect?num=${vo.num}">사진</a>
                             </div>
+
                             <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
+                                <p class="review-name">${vo.title}</p>
+                                <p class="review-location">${p.location} · ${p.regDate} </p>
+                                <p>가격</p>
                             </div>
-                            <div>
-<%--                   db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
-                                <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
+
+                            <div class="inner__dropdown">
+
+                                <button type="button" class="dropdown">
                                     <i class="bi bi-three-dots"></i>
                                 </button>
+
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
+                                    <a href="./setWishDelete?productNum=${vo.productNum}">관심목록 해제</a>
                                 </div>
+
                             </div>
+
                         </div>
                         </c:forEach>
                         
@@ -217,7 +228,34 @@
      </div>
      <script src="../js/main.js"></script>
      <script src="../js/myPage.js"></script>
+     <script type="text/javascript">
+   //상품 옆 (...)메뉴 드롭다운
 
+     const btn = document.querySelectorAll(".inner__dropdown");
+     const dropbtn = document.querySelectorAll(".dropdown-content");
+
+
+     for(let i=0; i<btn.length;i++){
+
+         btn[i].addEventListener('click',function(){
+           // dropbtn[i].classList.toggle("show");
+           dropbtn[i].classList.add("show");
+         })
+     }
+
+
+     window.onclick = function(event) {
+       if (!event.target.closest('.dropdown')) {
+         
+         for (let i = 0; i < dropbtn.length; i++) {
+           if (dropbtn[i].classList.contains('show')) {
+             dropbtn[i].classList.remove('show');
+
+           }
+         }
+       }
+     }
+     </script>
 
 </body>
 </html>

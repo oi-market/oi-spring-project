@@ -16,13 +16,19 @@
  <a href="${pageContext.request.contextPath}/member/memberLogin" type="button" class="btn btn-primary">로그인페이지</a>
 <a href="${pageContext.request.contextPath}/member/memberJoinCheck" type="button" class="btn btn-primary">회원가입</a>
 <a href="${pageContext.request.contextPath}/member/memberLogout" type="button" class="btn btn-primary">로그아웃</a>
+<a href="${pageContext.request.contextPath}/notice/noticeList" type="button" class="btn btn-primary">notice</a>
+<a href="${pageContext.request.contextPath}/qna/qnaList" type="button" class="btn btn-primary">qna</a>
+<a href="${pageContext.request.contextPath}/member/memberProfile" type="button" class="btn btn-primary">프로필</a>
 <div class="container">
 		<h1>
 			<!-- 로그인 상태 또는 사용자가 익명사용자 -->
 			<sec:authorize access="isAuthenticated()">
 				로그인 성공 상태
 				<sec:authentication property="principal.username"/>님 환영
-			<sec:authentication property="principal.name"/>님 환영
+			<sec:authentication property="principal.name"/>님 환영<p>
+			<img id="account-image-preview" src="../upload/member/${checkMem}" alt="profile_image">
+
+		
 			</sec:authorize>
 			<!-- 로그인 하지 않은 상태 -->
 			<sec:authorize access="!isAuthenticated()">

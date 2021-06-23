@@ -25,7 +25,7 @@
 								<sec:authorize access="hasRole('ROLE_ADMIN')">	
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
-								<a href="#" class="mybtn sign-in">마이페이지</a>
+
 								<a href="${pageContext.request.contextPath}/member/memberLogout" type="button" class="mybtn sign-in">로그아웃</a>
 								</sec:authorize>
 
@@ -34,11 +34,13 @@
                                 <input id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
                                 <input type="submit" value="submit">
                             </form>
+                            <sec:authorize access="isAuthenticated()">
                             <ul class="sub-menu">
                                 <li><a href="#">채팅</a></li>
                                 <li><a href="${pageContext.request.contextPath}/mypage/profile">나의 오이</a></li>
                                 <li><a href="#">판매하기</a></li>
                             </ul>
+                            </sec:authorize>
                         </div>
 
                         <div id="toggle-btn">Header Menu Toggle Button</div>

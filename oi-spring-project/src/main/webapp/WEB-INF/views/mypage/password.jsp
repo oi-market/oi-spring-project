@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-         <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+	<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -91,7 +94,7 @@
                             <input id="new-password-confirm" type="password"> </input>
                         </div>
                    
-                        <input class="mybtn passwordBtn" type="button" value="바꾸기"></input>
+                        <input class="mybtn passwordBtn" type="button" onclick="passwordNewpw()" value="바꾸기"></input>
                     </form>
                     
                     
@@ -104,14 +107,42 @@
                 <form method="POST" action="#">
                     <div class="password-body delete-body">
                         <label for="deleteID">모든 정보가 삭제됩니다</label>
-                        <input id="deleteID" class="mybtn passwordBtn" type="button" value="계정 삭제"></input>
+                        <input data-toggle="modal" data-target="#deleteID"  class="mybtn passwordBtn" type="button" value="계정 삭제"></input>
                     </div>
                 </form>
             </div>
-            
          </div>
      </section>
 
+  <!-- The Modal -->
+  <div class="modal fade" id="deleteID">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">계정 삭제</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+        <label>패스워드를 입력하시오</label><p>
+         <input id="passwordCheck" name="password" type="password">
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        	<button type="button" class="btn btn-primary" onclick="usernameDelete()">계정삭제</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
 
 
      
@@ -119,10 +150,64 @@
         <!-- FOOTER -->
         <c:import url="../template/footer.jsp"></c:import>
 
-     </div>
+
      <script src="../js/main.js"></script>
      <script src="../js/myPage.js"></script>
+	<script type="text/javascript" src="../js/member.js"></script>
 
+<script type="text/javascript">
+
+function passwordNewpw(){
+	var origin_password = $("#origin-password").val();
+	var newPassword = $("#new-password").val();
+	var newPassword_confirm = $("#new-password-confirm").val();
+	
+	var newPasswordTrim= $.trim(newPassword);
+	if(confirm("정말 변경하시겠습니까?") == true){
+
+		if(newPasswordTrim.length>17||newPasswordTrim.length<7||newPasswordTrim==null){
+			alert( "패스워드는 8글자 이상 16글자 이하입니다.");
+				
+		}else
+		
+			
+		$.ajax({
+			type : 'POST',
+			url : '../member/memberPWChange',
+			data : {
+				"password" : origin_password,
+				"newPW1" : newPassword,
+				"newPW2" : newPassword_confirm,
+				
+			},
+
+			dataType :'text',
+			
+			success : function(data) {
+		       
+				alert(data);
+				if(data=="비밀번호가 변경되었습니다. 다시 로그인해주세요."){
+				location.href="../member/memberLogout"
+				}
+		    },
+			
+		    error:function(request, status, error){
+		    	alert(error);
+		    },
+
+			
+
+		});
+		
+	
+	}else{
+		return;
+	}
+	
+		
+}
+
+</script>
 
 </body>
 </html>

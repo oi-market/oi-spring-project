@@ -21,8 +21,11 @@ public class QnaService implements BoardService{
 	@Override
 	public List<BoardVO> getList(Pager pager) throws Exception {
 		pager.makeRow();
+		System.out.println(pager.getSearch());
 		
 		pager.makeNum(qnaMapper.getTotalCount(pager));
+
+		System.out.println(qnaMapper.getTotalCount(pager));
 		return qnaMapper.getList(pager);
 	}
 
@@ -42,14 +45,14 @@ public class QnaService implements BoardService{
 
 	@Override
 	public int setUpdate(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return qnaMapper.setUpdate(boardVO);
 	}
 
 	@Override
 	public int setDelete(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return qnaMapper.setDelete(boardVO);
 	}
 
 

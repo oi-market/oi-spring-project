@@ -15,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class MemberVO implements UserDetails{
@@ -45,10 +48,12 @@ public class MemberVO implements UserDetails{
 	@NotEmpty(message="주소를 입력하시오")
 	private String location;
 	
-	@NotEmpty(message = "필수입력")
-	private String emailNum;
+	
 	
 	private List<RoleVO> roles;
+	
+	
+	private MemberFileVO memberFileVO;
 
 	
 	//role 저장

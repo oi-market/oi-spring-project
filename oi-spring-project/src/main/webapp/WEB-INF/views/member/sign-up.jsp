@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-      <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <c:import url="../template/hm_import.jsp"></c:import>
+
     <meta charset="UTF-8">
     <title>회원가입| 오이마켓</title>
 
@@ -30,6 +34,19 @@
     <meta property="twitter:description" content="중고, 중고거래, 오이마켓">
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
+  
+    <style type="text/css">
+.r1 {
+	border: 1px solid red;
+}
+
+.r2{
+
+	border: 1px solid blue;
+}
+
+</style>
+  
   
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
     <link rel="icon" href="./favicon.ico">
@@ -61,6 +78,8 @@
     </header>
 
 
+       
+       
 
         
 
@@ -79,11 +98,7 @@
                 </div>
                 
                 
-                
-                
-				
-
-              
+                  
 
                 <form:form modelAttribute="memberVO" id="joinForm"
 				action="./memberJoin" method="post">
@@ -91,20 +106,20 @@
                     <div class="inputs" style="text-align: left;">
                         <div>아이디(6글자 이상 12글자 이하입니다)</div>
                         <form:input id="username" path="username" placeholder="아이디" class="col-12 input--text" aria-describedby="idHelp"/>
-                        <button type="button" class="idCheck mybtn" onclick="idCheck()"
+                        <button type="button" class="idCheck mybtn sign-in" onclick="idCheck()"
 						style="border: 1px solid black;">중복확인</button>
                         <div>비밀번호(8글자 이상 16글자 이하입니다)</div>
-                        <form:password  path="password" placeholder="비밀번호" class="col-12 input--text"/>
-                        <h4 id="pwResult"></h4>
+                        <form:password id="password" path="password" placeholder="비밀번호" class="col-12 input--text"/>
+                      	<form:errors path="password" cssClass="c1"></form:errors>
+                        <h6 id="pwResult"></h6>
                         
-                        <div>비밀번호 확인</div>
-						<form:errors id="password" path="password" class="form-control is-invalid"></form:errors>
-                        <form:password  placeholder="비밀번호 확인" class="col-12 input--text" id="password1" path="password1"/>
-                        <h6 id="pwResult2"></h6>
+              		      <div>비밀번호 확인</div>
+					              	<form:password placeholder="비밀번호 확인" class="col-12 input--text" id="password1" path="password1" />
+				              		<h6 id="pwResult2"></h6>
                         
                         <div>이름</div>
                         <form:input  id="name" path="name" placeholder="이름" class="col-12 input--text"/>
-						<form:errors path="name" cssClass="c1"></form:errors>
+						<form:errors path="name"></form:errors>
 				
                         <div>별명</div>
                         <form:input id="nickName" path="nickName" placeholder="별명" class="col-12 input--text"/>
@@ -117,27 +132,37 @@
                 		
                         <div>이메일</div>
                         <form:input id="email" path="email" placeholder="이메일" class="col-12 input--text"/>
-                        <button id="CheckMail" type="button" class="sendMail mybtn"
+                        <button id="CheckMail" type="button" class="sendMail mybtn sign-in"
 						onclick="sendMail()" style="border: 1px solid black;">인증번호받기</button>
 						<form:errors path="email"></form:errors>
-						<p>
+
+                      
+                      
 						<div>인증번호</div>
+
 						<form:input id="emailNum"  path="emailNum"  placeholder="인증번호" class="col-12 input--text"/>
-						<button type="button" class="emailCheck mybtn" onclick="emailCheck()"
+						<button type="button" class="emailCheck mybtn sign-in" onclick="emailCheck()"
 						style="border: 1px solid black;">인증확인</button>
 						<form:errors path="emailNum"></form:errors>
                         
                         <div>위치</div>
                         <input id="member_post" type="text" placeholder="우편번호" readonly class="col-12 input--text">
-                        <button type="button" class="btn btn-default mybtn findAdress" onclick="findAddr()"
+                        <button type="button" class="btn btn-default mybtn findAdress sign-in" onclick="findAddr()"
 							style="border: 1px solid black;">
+
+
+					
+				
+	
+
 							<i class="fa fa-search"></i> 주소 찾기
 						</button>
-						
-						
+
+
 						<input class="form-control" id="member_addr" name="location"
-						type="text" placeholder="주소" > <br>
-						
+
+                      
+							type="text" placeholder="주소" readonly> <br>
 						<form:errors path="location"></form:errors>
 						
 						
@@ -155,7 +180,10 @@
                             <a href="#List1" data-toggle="modal">이용약관</a> 및 <a href="#List2" data-toggle="modal">개인정보 처리 방침</a>에 동의
                         </label>
                     </div>
-                    
+              
+
+                  
+                  
                     
                     
                     <div class="buttons d-grid">
@@ -172,66 +200,81 @@
                 </div>
 
 
+              				
+				
+              
+              
+              
+              
+              
+              
 
             </div>  
         </section>
       
 
 
-     </div>
+    
 
-  <!-- 이용약관 modal -->
-  <div class="modal fade" id="List1">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h6 class="modal-title" >이용약관</h6>
-          <button type="button" class="close" data-dismiss="modal">×</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          Modal body..
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="List2">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h6 class="modal-title">개인정보 처리 방침</h6>
-          <button type="button" class="close" data-dismiss="modal">×</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body" style="overflow-x:hidden; width:490px; height:150px;">
-          Modal body..
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
 
+	</div>
+
+	<!-- 이용약관 modal -->
+	<div class="modal fade" id="List1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h6 class="modal-title">이용약관</h6>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body"
+				style="overflow-x: hidden; width: 790px; height: 400px;">
+					<h6>
+						<spring:message code="signCheck1"></spring:message>
+					</h6>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="List2">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h6 class="modal-title">개인정보 처리 방침</h6>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body"
+					style="overflow-x: hidden; width: 790px; height: 400px;">
+					<h6>
+						<spring:message code="signCheck2"></spring:message>
+					</h6>
+				</div>
+
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
         
      
-     
-     
+ 
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
@@ -243,8 +286,5 @@
 
 
 
-		
-		
-		
 </body>
 </html>

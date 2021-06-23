@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>마이페이지 |오이마켓</title>
 
@@ -64,9 +67,10 @@
                 
                 <div class="content-description">
                     <div class="user-name">
-                        <div class="user-picture">유저 사진</div>
-                        <strong>유저 이름</strong>
-                        <a class="mybtn--secondary" type="button" href="#">프로필 수정</a>
+                        <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
+                        <strong><sec:authentication property="principal.nickName"/></strong>
+  
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
@@ -100,7 +104,7 @@
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n
+                            받은 리뷰 n ${review.size()}
                         </p>
                         <a href="${pageContext.request.contextPath}/mypage/review">
                             <i class="bi bi-caret-right-fill"></i>

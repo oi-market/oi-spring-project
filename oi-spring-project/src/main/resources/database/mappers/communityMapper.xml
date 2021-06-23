@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.market.oi.community.CommunityMapper">
+	
+	<!-- 커뮤니티 getTotalCount -->
+	<select id="getTotalCount" parameterType="CommunityPager" resultType="Long">
+  		<!-- select count(num) from community
+  		<if test="categoryNum != 0 ">
+			WHERE categoryNum=#{categoryNum}
+		</if> -->
+			
+		SELECT COUNT(num)
+		FROM 
+		(SELECT * FROM community C WHERE C.contents
+		LIKE concat('%', #{search}, '%')) S
+		WHERE S.location LIKE concat('%', #{cutLocation}, '%')
+  		<if test="categoryNum != 0 ">
+			AND categoryNum=#{categoryNum}
+		</if>
+		
+  	</select>
+	
+	<!-- 커뮤니티 List -->
+	<select id="getList" parameterType="CommunityPager" resultType="CommunityVO">		
+		
+		<!--  SELECT C.*, CA.category
+		FROM community C LEFT JOIN communityCategory CA
+		ON C.categoryNum = CA.num
+		<if test="categoryNum != 0 ">
+			WHERE C.categoryNum=#{categoryNum}
+		</if>
+		
+		order by num desc
+		limit #{startRow}, #{perPage} -->
+		<!-- limit 시작index번호(0부터시작), 갯수 --> 
+		
+		SELECT CA.category, S.*
+		FROM (SELECT * FROM community C WHERE C.contents
+		LIKE concat('%', #{search}, '%'))S LEFT JOIN communityCategory CA
+		ON S.categoryNum = CA.num	 
+		WHERE S.location LIKE concat('%', #{cutLocation}, '%')
+		<if test="categoryNum != 0 ">
+			AND S.categoryNum=#{categoryNum}
+		</if>
+		
+		order by num desc
+		limit #{startRow}, #{perPage}
+		
+	</select>
+	
+	
+	<!-- 커뮤니티 Select -->
+	<!-- num을 보내서 select -->
+	<select id="getSelect" parameterType="CommunityVO" resultMap="selectResult">
+		SELECT CM.*, CF.* from
+		(SELECT C.*, CA.category
+		FROM community C LEFT JOIN communityCategory CA
+		ON C.categoryNum = CA.num
+		WHERE C.num=#{num}) CM left join communityfiles CF
+		on CM.num = CF.communityNum
+		WHERE CM.num=#{num}
+	</select>
+	
+	<resultMap type="CommunityVO" id="selectResult">
+   			<id column="num" property="num"/>
+   			<result column="categoryNum" property="categoryNum"/>
+   			<result column="contents" property="contents"/>
+   			<result column="writer" property="writer"/>
+   			<result column="location" property="location"/>
+   			<result column="regDate" property="regDate"/>
+   			<result column="like" property="like"/>
+   			<result column="category" property="category"/>
+   			<result column="nickName" property="nickName"/>
+   			
+   			<collection property="file" javaType="java.util.List" ofType="CommunityfilesVO">
+   				<id column="num" property="num"/>
+   				<result column="communityNum" property="communityNum"/>
+   				<result column="fileName" property="fileName"/>
+   				<result column="ogName" property="ogName"/>
+   			</collection>
+   	</resultMap>
+	
+	
+	<!-- 커뮤니티 Insert -->
+	<insert id="setInsert" parameterType="CommunityVO" useGeneratedKeys="true" keyProperty="num">
+		insert into community (categoryNum, contents, writer, location, nickName)
+		values (#{categoryNum}, #{contents}, #{writer}, #{location}, #{nickName})
+	</insert>
+	
+	<!-- 커뮤니티 summerFile -->
+	<insert id="setFileInsert" parameterType="CommunityfilesVO">
+   		insert into communityfiles (communityNum, fileName, ogName)
+   		values (#{num}, #{fileName}, #{ogName})
+   	</insert>
+
+	<delete id="setFileDelete" parameterType="CommunityfilesVO">
+		delete communityfiles where num=#{num}
+	</delete>
+	
+	<select id="getFileSelect" parameterType="CommunityfilesVO" resultType="CommunityfilesVO">
+		select * from communityfiles where num=#{num}
+	</select> 
+	
+	
+	<!-- 커뮤니티 Delete -->
+	<delete id="setDelete" parameterType="CommunityVO">
+		delete from community where num = #{num}
+	</delete>
+	
+	
+	<!-- 커뮤니티 Update -->
+	<update id="setUpdate" parameterType="CommunityVO">
+		update community set categoryNum = #{categoryNum}, contents = #{contents}, writer = #{writer}, location = #{location}, regDate = now() 
+		where num = #{num}
+	</update>
+	
+	
+	<!-- 좋아요 수 Update -->
+	
+	
+</mapper>

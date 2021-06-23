@@ -8,5 +8,7 @@ public class MemberFileVO {
 	
 	private String username;
 	private String fileName;
-	private String oriName;
+	private String ogName;
+	
+
 }

@@ -1,5 +1,7 @@
 package com.market.oi.home;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,32 +35,7 @@ public class HomeController {
 	public void getProfile()throws Exception{
 	}
 
-	@GetMapping("mypage/purchase-wish")
-	public void getPurchaseWish()throws Exception{
-	}
-	@GetMapping("mypage/purchase-wish-village")
-	public void getPurchaseWishVillage()throws Exception{
-	}
-	@GetMapping("mypage/purchase-sell")
-	public void getPurchasesell()throws Exception{
-		
-	}
-	@GetMapping("mypage/purchase-sell-soldout")
-	public void getPurchasesSoldout()throws Exception{
-		
-	}
-	@GetMapping("mypage/purchase-buy")
-	public void getPurchaseBuy()throws Exception{
-	}
-	@GetMapping("mypage/review")
-	public void getreview()throws Exception{
-	}
-	@GetMapping("mypage/review-seller")
-	public void getreviewSeller()throws Exception{
-	}
-	@GetMapping("mypage/review-buyer")
-	public void getreviewBuyer()throws Exception{
-	}
+	
 	@GetMapping("mypage/village")
 	public void getVillage()throws Exception{
 	}
@@ -74,6 +51,7 @@ public class HomeController {
 	@GetMapping("mypage/modify")
 	public void getModify()throws Exception{
 	}
+
 	@GetMapping("neighborhood/board")
 	public void getVillageBoard()throws Exception{
 	}
@@ -95,6 +73,8 @@ public class HomeController {
 	@GetMapping("board/list")
 	public void getBoardList()throws Exception{
 	}
+
+
 
 	
 

@@ -3,6 +3,8 @@ package com.market.oi.member;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.tools.JavaFileManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,11 +12,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.market.oi.location.LocationMapper;
 import com.market.oi.location.LocationVO;
+import com.market.oi.util.FileManager;
+
 
 
 
@@ -31,15 +37,23 @@ public class MemberService implements UserDetailsService{
 	@Autowired
 	private LocationMapper locationMapper;
 	
+	@Autowired
+	private FileManager fileManager;
 	
 	//Login 메서드
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException  {
+		
 		MemberVO memberVO = new MemberVO();
 		memberVO.setUsername(username);
 		System.out.println(username);
+		
 		memberVO = memberMapper.memberLogin(memberVO);
+ 
+		
+	
 		System.out.println(memberVO);
+		
 		return memberVO;
 	}
 	
@@ -89,6 +103,7 @@ public class MemberService implements UserDetailsService{
 		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 		 
 		//b. 사용자 계정 활성화
+		 
 
 		
 		//0. Location Table 저장
@@ -139,12 +154,73 @@ public class MemberService implements UserDetailsService{
 		
 	}
 	
+	
 	public MemberVO idCheck(MemberVO memberVO)throws Exception{
 		
 		return  memberMapper.getUsername(memberVO);
 		
 	}
+
+	
+	public int memberUpdate(MemberVO memberVO)throws Exception{
+		
+		
+		return memberMapper.memberUpdate(memberVO);
+		
+	}
+	
+	public int memberDelete(MemberVO memberVO)throws Exception{
+		
+		return memberMapper.memberDelete(memberVO);
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public int setImage(MemberVO memberVO,MultipartFile avatar)throws Exception {
+		String filePath= "upload/member/";
+		
+				
+			String fileName= fileManager.save(avatar, filePath);
+			System.out.println(fileName);
+			MemberFileVO memberFileVO = new MemberFileVO();
+			memberFileVO.setFileName(fileName);
+			memberFileVO.setOgName(avatar.getOriginalFilename());
+			memberFileVO.setUsername(memberVO.getUsername());
+			int result = memberMapper.setJoinFile(memberFileVO);
+			
+			
+			
+		
+		return result;
+		
+	}
+	
+	public MemberFileVO selectImage(MemberVO memberVO)throws Exception{
+		return memberMapper.selectImage(memberVO);
+	}
+	
+	public int delImage(MemberFileVO checkMem)throws Exception{
+		String filePath= "upload/member/";
+		
+		fileManager.delete(filePath, checkMem.getFileName());
+		
+		return memberMapper.delImage(checkMem);
+	}
+	
+	
+	public Double Score(MemberVO memberVO) {
+		
+		return memberMapper.Score(memberVO);
+	}
+
+	
+
+
+	
+	
 //	public MemberVO getLogin(MemberVO memberVO)throws Exception{
 //	return memberMapper.getLogin(memberVO);
 //}
+  
+
+
 }

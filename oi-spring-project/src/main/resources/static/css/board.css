@@ -266,6 +266,11 @@ header .inner--second{
     object-fit: cover;
     vertical-align: middle;
 }
+#deleteBtn{
+    position: absolute;
+    right: 5%;
+    bottom: 2%;
+}
 
 .prev,
 .next {
@@ -337,6 +342,11 @@ header .inner--second{
 
 
 
+.article--qna .inner{
+   margin : 81px auto 0 auto;
+   overflow: hidden;
+   min-height: 700px;
+
 
 .body--right{
     display: flex;
@@ -361,7 +371,10 @@ header .inner--second{
     font-size: 15px;
     color: rgb(141, 141, 141);
 }
-.body--right .product-info{
+
+.body--right .product-info,
+.qna--answer form{
+
     display: flex;
     min-width: 280px;
     align-items: center;
