@@ -71,7 +71,15 @@
 
  					<div class="body--left">
                         <div class="slide-show">
-                            <div class="mySlides fades">
+                        
+                        	<c:forEach items="${vo.productFiles}" var="file">
+                           <div class="mySlides fades">
+                                <img src="../resources/upload/images${file.thumbnail}" alt="상품 이미지">
+                               <%--  <p>${vo.productFiles}</p> --%>
+                            </div>
+                        	</c:forEach>
+                        
+                          <!--   <div class="mySlides fades">
                                 <img src="https://media.bunjang.co.kr/product/156571078_1_1623496614_w856.jpg" alt="">
                             </div>
                             <div class="mySlides fades">
@@ -79,15 +87,18 @@
                             </div>
                             <div class="mySlides fades">
                                 <img src="https://media.bunjang.co.kr/product/151861946_2_1618902287_w856.jpg" alt="">
-                            </div>
+                            </div> -->
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
                         </div>
                         
                         <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
+                        
+                        <c:forEach items="${vo.productFiles}" var="file" varStatus="status">
+                        	
+                            <span class="dot" onclick="currentSlide(${status.count})" title="${file.productNum}"></span>
+                        
+                            </c:forEach>
                         </div>
                     </div>
 

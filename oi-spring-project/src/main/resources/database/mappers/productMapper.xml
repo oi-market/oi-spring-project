@@ -19,7 +19,7 @@
  	<result property="like" column="like"></result>
  	
  	<collection property="productFiles" javaType="java.util.List" ofType="ProductFilesVO">
- 		<id property="num" column="num"/>
+ 		<id property="fileNum" column="fileNum"/>
  		<result property="productNum" column="productNum"/>
  		<result property="thumbnail" column="thumbnail"/>
  		<result property="fileName" column="fileName"/>
@@ -43,7 +43,7 @@
  	<result property="like" column="like"></result>
  	
  	<collection property="productFiles" javaType="java.util.List" ofType="ProductFilesVO">
- 		<id property="num" column="num"/>
+ 		<id property="fileNum" column="fileNum"/>
  		<result property="productNum" column="productNum"/>
  		<result property="thumbnail" column="thumbnail"/>
  		<result property="fileName" column="fileName"/>
@@ -80,11 +80,12 @@
 	</select>
 	<select id="getProductSeparatedList" parameterType="ProductVO" resultMap="ProductResult">
 		
-			SELECT P.*,PF.*
+			       
+        	SELECT P.*,PF.*
 			from product P left join productFiles PF
 			on P.num=PF.productNum
+             where categoryNum=#{categoryNum}
              group by p.num
-			where categoryNum=#{categoryNum}
 			 order by num desc
    		limit 0,12;
    	 
