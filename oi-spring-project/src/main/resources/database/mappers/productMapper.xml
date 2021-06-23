@@ -69,19 +69,24 @@
 
 	<select id="getProductList" resultMap="ProductResult">
 		
-			select *
+		
+		
+			SELECT P.*,PF.*
 			from product P left join productFiles PF
 			on P.num=PF.productNum
-   		limit 0,10;
-   	 
+             group by p.num
+            order by num desc
+   		limit 0,12;
 	</select>
 	<select id="getProductSeparatedList" parameterType="ProductVO" resultMap="ProductResult">
 		
-			select *
+			SELECT P.*,PF.*
 			from product P left join productFiles PF
 			on P.num=PF.productNum
+             group by p.num
 			where categoryNum=#{categoryNum}
-   		limit 0,10;
+			 order by num desc
+   		limit 0,12;
    	 
 	</select>
 	
@@ -95,6 +100,35 @@
    		where A.num=#{num}
 	</select>
 
+	<select id="getProductNum" resultType="java.lang.Integer">
+		SELECT AUTO_INCREMENT
+
+		FROM information_schema.tables
+
+		WHERE table_name = 'product'
+
+		AND table_schema = DATABASE( ) ;
+		
+	</select>
+
+
+
+ 
+    <insert id="setProductInsert" parameterType="ProductVO" >
+		insert into product (title,categoryNum,price,contents,sale,username,location)
+					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location})
+	</insert> 
+ 
+	<insert id="setFileInsert" parameterType="ProductFilesVO">
+
+	insert into ProductFiles (productNum,thumbnail,fileName,ogName)
+				 values(#{productNum},#{thumbnail},#{fileName},#{ogName})
+									
+	</insert>
+	
+	
+	
+	
 
 <!-- 	select A.*,PC.*
 		from 
@@ -105,16 +139,7 @@
    		limit 0,10; -->
 
 
-<!-- 
-    <insert id="setLocation" parameterType="MemberVO">
-		insert into location
-		values (#{location},#{wgs84X},#{wgs84Y})
-	</insert> 
- -->
-		
-		
-		<!-- select insert ,  (delete, update) -->
-		
+
 		
 
 </mapper>

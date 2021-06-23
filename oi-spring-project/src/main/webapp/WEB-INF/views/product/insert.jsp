@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -163,6 +164,13 @@
                         </div>
                         
                     </div>
+
+
+						<input type="hidden" name="username" value=<sec:authentication property="principal.username"/>>
+						
+						<input type="hidden" name="location" value=<sec:authentication property="principal.location"/>>
+						
+						
 
                    
                         <button type="button" class="mybtn mybtn--primary regBtn" id=regBtn>등록하기</button>

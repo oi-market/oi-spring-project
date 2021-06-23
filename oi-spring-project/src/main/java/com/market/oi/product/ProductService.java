@@ -2,14 +2,19 @@ package com.market.oi.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.market.oi.location.LocationMapper;
 import com.market.oi.location.LocationVO;
 import com.market.oi.member.MemberVO;
+import com.market.oi.util.ProductFileManager;
+
 
 @Service
 public class ProductService {
@@ -18,6 +23,49 @@ public class ProductService {
 	ProductMapper productMapper;
 	@Autowired
 	LocationMapper locationMapper;
+	@Autowired
+	private ProductFileManager fileManager;
+	@Autowired
+	private HttpServletRequest request;
+	
+	
+	public int setProductInsert(ProductVO productVO,MultipartFile[] files)throws Exception{
+		
+		int result = productMapper.setProductInsert(productVO);
+		
+		productVO.setNum(productMapper.getProductNum()-1);
+		System.out.println(productVO);
+		System.out.println(productVO.getNum());
+		
+		//productVO에 들어간 ,, 오토인크리먼트를불러와야된다 ,,,
+		
+		
+		for(MultipartFile mf: files) {
+			
+			ProductFilesVO productFileVO = new ProductFilesVO();
+			String fileName = fileManager.uploadFile( mf,request);	
+			
+			//오토 인크리먼트 된걸 여기 넣어줘야함
+			productFileVO.setProductNum(productVO.getNum());
+			productFileVO.setThumbnail(fileName);
+			String uuidFileName = fileName.substring(0, 12) + fileName.substring(14);
+			
+			productFileVO.setFileName(uuidFileName);
+			productFileVO.setOgName(mf.getOriginalFilename());
+			productMapper.setFileInsert(productFileVO);
+						
+		}
+		
+		
+		
+		return 0;
+	}
+
+	public ProductVO getProductSelect(ProductVO productVO)throws Exception{
+		return productMapper.getProductSelect(productVO);
+	}
+	
+	
 	
 	public List<ProductVO> getProductList(Authentication auth)throws Exception{
 		
@@ -101,16 +149,6 @@ public class ProductService {
 		
 		return ar;
 	}
-	
-	
-	public ProductVO getProductSelect(ProductVO productVO)throws Exception{
-		return productMapper.getProductSelect(productVO);
-	}
-	
-	
-	
-	
-
 	
 	
 	

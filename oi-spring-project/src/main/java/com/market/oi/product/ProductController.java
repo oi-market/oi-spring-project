@@ -7,6 +7,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class ProductController {
@@ -31,6 +33,14 @@ public class ProductController {
 	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
 		productVO=productService.getProductSelect(productVO);
 		model.addAttribute("vo",productVO);
+	}
+	@GetMapping("product/insert")
+	public void getProductInsert()throws Exception{
+	}
+	@PostMapping("product/insert")
+	public String getProductInsertPost(ProductVO productVO,MultipartFile[] files)throws Exception{
+		int result =productService.setProductInsert(productVO, files);
+		return "redirect:./list";
 	}
 	
 	

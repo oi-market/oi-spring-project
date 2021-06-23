@@ -85,9 +85,7 @@ public class HomeController {
 	}
 	
 
-	@GetMapping("product/insert")
-	public void getProductInsert()throws Exception{
-	}
+
 	@GetMapping("board/insert")
 	public void getBoardInsert()throws Exception{
 	}
