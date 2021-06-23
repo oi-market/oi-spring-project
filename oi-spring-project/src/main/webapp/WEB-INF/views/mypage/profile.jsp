@@ -100,7 +100,7 @@
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n
+                            받은 리뷰 n ${review.size()}
                         </p>
                         <a href="${pageContext.request.contextPath}/mypage/review">
                             <i class="bi bi-caret-right-fill"></i>

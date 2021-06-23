@@ -104,7 +104,7 @@
                       <div class="product">
 
                             <div>
-                                사진
+                                 <a href="./productSelect?num=${vo.num}">사진</a>
                             </div>
 
                             <div class="product-description">
@@ -120,7 +120,8 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./productDelete?num=${vo.num}">삭제</a>
+                                	<a href="./reviewInsert?num=${vo.num}">리뷰 작성</a>
+                                    <a href="./productDelete?num=${vo.num}">삭제</a> 
                                 </div>
 
                             </div>

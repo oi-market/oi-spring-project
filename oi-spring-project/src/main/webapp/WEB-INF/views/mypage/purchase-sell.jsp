@@ -135,7 +135,7 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./soldoutUpdate?num=${vo.num}">거래완료로 변경</a>
+                                    <a href="./soldoutUpdate?num=${vo.num}">거래완료로 변경</a> 
                                     <a href="./productUpdate?num=${vo.num}">게시글 수정</a>
                                     <a href="./setWishInsert?num=${vo.num}">관심상품 추가</a>
                                     <a href="./productDelete?num=${vo.num}">삭제</a>

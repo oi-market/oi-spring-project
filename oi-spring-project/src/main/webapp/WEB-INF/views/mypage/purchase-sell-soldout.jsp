@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/mypage.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
   
 </head>
@@ -113,9 +114,9 @@
 
                         <c:forEach var="vo" items="${sell}" varStatus="true">
 						<div class="product">
-
+					                          
                             <div>
-                                사진
+                                 <a href="./productSelect?num=${vo.num}">사진</a>
                             </div>
 
                             <div class="product-description">
@@ -133,6 +134,7 @@
                                 <div id="on-sale-dropdown" class="dropdown-content">
                                	 	<a href="./sellUpdate?num=${vo.num}">판매중 변경</a>
                                     <a href="./productUpdate?num=${vo.num}">게시글 수정</a>
+                                    <a href="./reviewInsert?num=${vo.num}">리뷰 작성</a>
                                     <a href="./productDelete?num=${vo.num}">삭제</a>
                                 </div>
 

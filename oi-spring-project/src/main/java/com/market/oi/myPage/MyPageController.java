@@ -30,15 +30,11 @@ public class MyPageController {
 		MemberVO memberVO = (MemberVO)user;
 				
 		//내가 구매한 상품 list
-		List<ProductVO> list = myPageService.getBuyList(productVO);
+		List<ProductVO> list = myPageService.getBuyList(memberVO);
 		mv.addObject("order", list);
-		mv.addObject("vo", productVO);
-		
+		mv.addObject("vo", productVO);		
 		mv.setViewName("mypage/purchase-buy");
-		
-		System.out.println("buy 로그인:"+memberVO);
-		System.out.println(list.size());
-		
+				
 		return mv;
 	}
 	
@@ -55,16 +51,18 @@ public class MyPageController {
 		mv.addObject("vo", productVO);	
 		mv.setViewName("mypage/purchase-sell");
 
-		System.out.println("로그인:"+memberVO);
-		System.out.println(ar.size());
 		return mv;
 	}
 	
 	@GetMapping("mypage/purchase-sell-soldout")
-	public ModelAndView getsoldList(ProductVO productVO) throws Exception {
+	public ModelAndView getsoldList(ProductVO productVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
+		
 		//내가 판매하는 상품 중 판매완료된 것 list
-		List<ProductVO> ar = myPageService.getSellList(productVO);		
+		List<ProductVO> ar = myPageService.getSellList(memberVO);		
 		mv.addObject("sell", ar);
 		mv.addObject("vo", productVO);
 		mv.setViewName("mypage/purchase-sell-soldout");
@@ -82,11 +80,11 @@ public class MyPageController {
 		
 		//나의 관심 list
 		List<MywishVO> wish = myPageService.getMywish(memberVO);
-		System.out.println("로그인: "+memberVO);
 		mv.addObject("wish", wish);
 		mv.addObject("vo", mywishVO);
-		mv.setViewName("mypage/purchase-wish");
 		
+		mv.setViewName("mypage/purchase-wish");		
+
 		return mv;
 	}
 	
@@ -121,10 +119,12 @@ public class MyPageController {
 	//관심상품 해제
 	@GetMapping("mypage/setWishDelete")
 	public String setWishDelete(MywishVO mywishVO, ProductVO productVO) throws Exception {
-		//int result = myPageService.likeDelete(productVO);
+		//상품 테이블의 like -1
+		int delete = myPageService.likeDelete(mywishVO);		
+		System.out.println("like-1 성공");
 		
-	    int result = myPageService.setWishDelete(mywishVO);		
-			
+	    //관심상품 데이터 삭제
+		int result = myPageService.setWishDelete(mywishVO);					
 		System.out.println("삭제 성공");
 		
 		return "redirect:purchase-wish";
@@ -188,10 +188,13 @@ public class MyPageController {
 	
 	//리뷰 리스트
 	@GetMapping("mypage/review")
-	public ModelAndView getReviewList(ReviewVO reviewVO) throws Exception {
-		ModelAndView mv = new ModelAndView();		
+	public ModelAndView getReviewList(ReviewVO reviewVO, Authentication auth) throws Exception {
+		ModelAndView mv = new ModelAndView();			
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
 	
-		List<ReviewVO> review = myPageService.getReview(reviewVO);
+		List<ReviewVO> review = myPageService.getReview(memberVO);
 		mv.addObject("review", review);
 		mv.addObject("vo", reviewVO);
 		
@@ -226,5 +229,22 @@ public class MyPageController {
 		mv.setViewName("mypage/review-buyer");
 
 		return mv;
+	}
+	
+	//리뷰 작성 페이지
+	@GetMapping("mypage/reviewInsert")
+	public String setReview(Authentication auth) throws Exception {
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
+		
+		return "mypage/reviewInsert";
+	}
+	
+	@PostMapping("mypage/reviewInsert")
+	public String setReview(ReviewVO reviewVO) throws Exception {
+		int result = myPageService.setReview(reviewVO);
+				
+		return "redirect:review";
 	}
 }

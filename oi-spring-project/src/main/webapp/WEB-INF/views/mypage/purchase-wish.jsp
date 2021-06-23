@@ -126,12 +126,12 @@
                             <span style="color:red; text-align: center;"><button class="fas fa-heart fa-lg"></button></span>  
                             </c:if>
                             <div>
-                                사진
+                                <a href="./productSelect?num=${vo.num}">사진</a>
                             </div>
 
                             <div class="product-description">
                                 <p class="review-name">${vo.title}</p>
-                                <p class="review-location">지역 · 날짜 </p>
+                                <p class="review-location">${p.location} · ${p.regDate} </p>
                                 <p>가격</p>
                             </div>
 

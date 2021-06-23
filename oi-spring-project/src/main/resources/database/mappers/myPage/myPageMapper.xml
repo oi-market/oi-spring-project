@@ -5,22 +5,32 @@
 
 <mapper namespace="com.market.oi.myPage.MyPageMapper">
 
+	<!-- 판매완료 된 상품 리스트 -->
 	<select id="getList" parameterType="MemberVO" resultType="ProductVO">
 		select * from product where username=#{username} and sale = 0 
 	</select>
 	
-	<select id="getSellList" parameterType="ProductVO" resultType="ProductVO">
-		select * from product where sale = 1
+	<!-- 판매중인 상품 리스트 -->
+	<select id="getSellList" parameterType="MemberVO" resultType="ProductVO">
+		select * from product where username=#{username} and sale = 1
 	</select>
 	
+	<!-- 상품 리스트(정보 뿌려주기 위한 용도) -->
+	<select id="getInfoList" parameterType="MemberVO" resultType="ProductVO">
+		SELECT P.* FROM product P inner JOIN mywish M ON P.num = M.productNum WHERE M.username = #{username}
+	</select>
+		
+	<!-- 상품 상세정보 select -->
 	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
 		select * from product where num = #{num}
 	</select>
 	
+	<!-- hit update -->
 	<update id="setHitUpdate" parameterType="ProductVO">
 		update product set hit = hit+1 where num = #{num}
 	</update>
 	
+	<!-- 상품정보 수정 -->
 	<update id="setUpdate" parameterType="ProductVO">
 		update product set title=#{title}, price=#{price}, contents=#{contents} where num = #{num}
 	</update>
@@ -40,23 +50,24 @@
 		delete from product where num = #{num}
 	</delete>
 	
+	<!-- 내가 구매한 상품 -->
 	<select id="getBuyList" parameterType="MemberVO" resultType="ProductVO">
-	 	<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
 		SELECT P.* from product P left join ordercomplete O ON P.num = O.productNum 
-		WHERE buyer = (SELECT buyer from ordercomplete where buyer=#{username})
+		WHERE buyer = #{username}
 	</select>
-		
+	
+	<!-- 내 관심 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultType="MyWishVO">
-		<!-- 로그인했을 때의 아이디를 받아올 예정! 수정 필요 -->
 		SELECT P.* from mywish P left join product M ON P.productNum = M.num
 		WHERE P.username = any (SELECT username FROM mywish WHERE username=#{username})
 	</select>
 	
-	<!-- 관심목록 -->
+	<!-- 관심 상품 추가 -->
 	<insert id="setWishInsert" parameterType="ProductVO">
 		insert into mywish (username, productNum, title, wish, sale) values (#{username}, #{num}, #{title}, 1, #{sale})
 	</insert>
 	
+	<!-- 관심 상품 삭제 -->  
 	<delete id="setWishDelete" parameterType="MyWishVO">
 		delete from mywish where productNum = #{productNum}
 	</delete>
@@ -67,8 +78,8 @@
 	</update>
 	
 	<!-- 관심 해제 -->
-	<update id="likeDelete" parameterType="ProductVO">
-		update product set wish = wish-1 where num =#{num}
+	<update id="likeDelete" parameterType="MywishVO">
+		update product set wish = wish-1 where num = (select productNum from mywish where productNum = #{productNum})
 	</update>
 	
 	<!-- 페이징 처리 -->
@@ -76,20 +87,29 @@
 		select count(num) from product
 	</select>
 	
-	<!-- 리뷰 -->
-	<select id="getReviewList" parameterType="ReviewVO" resultType="ReviewVO">
+	<!-- 리뷰 리스트 -->
+	<select id="getReviewList" parameterType="MemberVO" resultType="ReviewVO">
 		select * from review
 	</select>
 	
+	<!-- 상품 클릭 시 상품에 관한 리뷰 -->
 	<select id="getReviewSelect" parameterType="ProductVO" resultType="ReviewVO">
 		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.productNum = (SELECT num FROM product WHERE num=#{num})
 	</select>
 	
+	<!-- 판매자 리뷰 -->
 	<select id="getSeller" parameterType="ReviewVO" resultType="ReviewVO">
 		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller'
 	</select>
 	
+	<!-- 구매자 리뷰 -->
 	<select id="getBuyer" parameterType="ReviewVO" resultType="ReviewVO">
 		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer'
 	</select>
+	
+	<!-- 리뷰 작성 -->
+	<insert id="setReview" parameterType="ReviewVO">
+		insert into review (num, productNum, writer, reciver, contents, regDate, score, writerPosition) values
+		(#{num}, #{productNum}, #{writer}, #{reciver}, #{contents}, now() , #{score}, #{writerPosition})
+	</insert>
 </mapper>
