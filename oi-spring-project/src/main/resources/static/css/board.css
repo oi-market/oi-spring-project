@@ -140,6 +140,11 @@ header .inner--second{
     line-height: 20px;
     margin: 0 auto;
 }
+
+
+
+
+
 .qna--answer form{
     display: flex;
     flex-direction: column;
