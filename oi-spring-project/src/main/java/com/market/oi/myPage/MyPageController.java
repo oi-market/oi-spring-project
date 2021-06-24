@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.member.MemberFileVO;
+import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.MypagePager;
 
@@ -21,6 +23,9 @@ public class MyPageController {
 
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@GetMapping("mypage/purchase-buy")
 	public ModelAndView getbuyList(ProductVO productVO, Authentication auth) throws Exception {
@@ -247,4 +252,61 @@ public class MyPageController {
 				
 		return "redirect:review";
 	}
+	
+	
+	@GetMapping("mypage/modify")
+	public void getModify(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
+		
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+//		Double score = memberService.Score(memberVO);
+//		
+//		if(score==null) {
+//			score= 0.0;
+//		}
+//		score =( Math.round(score * 100) / 100.0);
+		
+		if(memberFileVO!=null) {
+			model.addAttribute("imgName", memberFileVO.getFileName());
+		}
+		
+//		System.out.println(score);
+//		int change = 20;
+//		double scoreStar = change*score;
+//		System.out.println(score);
+//		model.addAttribute("Score",score);
+//		model.addAttribute("scoreStar",scoreStar);
+
+	}
+	
+	@GetMapping("mypage/profile")
+	public void getProfile(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
+		
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		System.out.println(memberVO);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+		Double score = memberService.Score(memberVO);
+		
+		if(score==null) {
+			score= 0.0;
+		}
+		score =( Math.round(score * 100) / 100.0);
+		
+		if(memberFileVO!=null) {
+			model.addAttribute("imgName", memberFileVO.getFileName());
+		}
+		
+		System.out.println(score);
+		int change = 20;
+		double scoreStar = change*score;
+		System.out.println(score);
+		model.addAttribute("Score",score);
+		model.addAttribute("scoreStar",scoreStar);
+	}
+	
 }

@@ -231,7 +231,7 @@ function sendMail(){
 
 //이메일 인증번호 확인
 
-/*function emailCheck(){
+function emailCheck(){
 	 var emailNum = $("#emailNum").val();
 	    if (emailNum == CheckNum) {   //인증 키 값을 비교를 위해 텍스트인풋과 벨류를 비교
 			alert("인증성공");
@@ -241,7 +241,7 @@ function sendMail(){
 	    	alert("인증실패");
 	    	isCertification = false;
 	    }
- };*/
+ };
 
 
 //아이디 찾기

@@ -31,9 +31,7 @@ public class HomeController {
 	@GetMapping("member/find-pw")
 	public void getFindPw()throws Exception{
 	}
-	@GetMapping("mypage/profile")
-	public void getProfile()throws Exception{
-	}
+	
 
 	
 	@GetMapping("mypage/village")
@@ -48,9 +46,7 @@ public class HomeController {
 	@GetMapping("mypage/password")
 	public void getSetPassword()throws Exception{
 	}
-	@GetMapping("mypage/modify")
-	public void getModify()throws Exception{
-	}
+	
 
 	@GetMapping("neighborhood/board")
 	public void getVillageBoard()throws Exception{

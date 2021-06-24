@@ -80,10 +80,10 @@
    
 <!--      		             <input id="account-image-input" type="file" accept="image/*" onchange="loadImg(event)"> </input>
                             <label for="account-image-input">업로드</label>  -->
-                            <form action="../member/setImage" method="post"  enctype="multipart/form-data">
+                            <form id="uploadForm">
                             <input id="account-image-input" type="file" name="avatar">
 							<label for="account-image-input">사진선택</label>
-							<button type="submit" class="btn" style="border: 1px solid #ebebeb;">업로드</button>
+							<button type="button" class="btn" onclick="uploadImg()"style="border: 1px solid #ebebeb;">업로드</button>
 							<button type="button" class="btn" onclick="delImg()" style="border: 1px solid #ebebeb;">사진삭제</button>
                             </form>
                             
@@ -154,6 +154,9 @@
 
 <script type="text/javascript">
 
+
+
+
 $(function() {
     $("#account-image-input").on('change', function(){
         readURL(this);
@@ -167,6 +170,7 @@ function readURL(input) {
        }
        reader.readAsDataURL(input.files[0]);
     }
+    
 }
 
 function delImg(){
@@ -190,6 +194,32 @@ function delImg(){
 	})
 }
 }
+
+
+function uploadImg(){
+	var form = $('#uploadForm')[0];
+	var formData = new FormData(form);
+
+	$.ajax({
+		type:"post",
+		enctype:'multipart/form-data',
+	    url:'../member/setImage',
+	    data:formData,
+	    dataType :'text',
+	    processData:false,
+	    contentType:false,
+	    cache:false,
+	    success : function(message) {
+		       alert(message);
+				location.href="../mypage/modify";
+		    },
+	    error:function(e){
+	        alert("error : ", e);
+	    },
+	});
+	
+}
+
 </script>
 
 

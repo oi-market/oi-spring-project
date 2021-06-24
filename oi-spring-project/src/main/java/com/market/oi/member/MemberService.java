@@ -164,7 +164,7 @@ public class MemberService implements UserDetailsService{
 		String filePath= "upload/member/";
 		
 				
-			String fileName= fileManager.save(avatar, filePath);
+			String fileName= fileManager.memberSave(avatar, filePath);
 			System.out.println(fileName);
 			MemberFileVO memberFileVO = new MemberFileVO();
 			memberFileVO.setFileName(fileName);
