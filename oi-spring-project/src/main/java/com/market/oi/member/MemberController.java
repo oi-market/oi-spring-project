@@ -297,7 +297,7 @@ public class MemberController {
 			int result1 = memberService.setImage(memberVO, avatar);
 			System.out.println(result1);
 		}
-		String message="업로드 되었습니다.";
+		String message="업로드 되었습니다.";	
 		System.out.println(message);
 		return message;
 	}
