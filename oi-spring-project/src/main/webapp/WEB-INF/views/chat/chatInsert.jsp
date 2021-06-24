@@ -23,7 +23,7 @@
 	<div class="chat-select-body">
 	
 		<div class="">
-			<img alt="" src="" class="">
+			<img alt="쪽지보내기" src="../img/chat-insert.png" class="chat-insert-img">
 		</div>
 		
 		<div class="">
@@ -35,9 +35,10 @@
 				<input type="hidden" id="sellerName" name="sellerName" value="${param.sellerName}">
 				<input type="hidden" id="buyerName" name="buyerName" value="${param.buyerName}">
 			
-				<textarea  id="contents" name="contents" name="contents"></textarea>
+				<textarea  id="contents" name="contents" class="chat-insert-contents" name="contents"></textarea>
 				<br>
-				<button class="mybtn" type="submit" id="btn">쪽지보내기</button>
+				<input class="mybtn chat-send-button" id="btn" type="image" src="../img/chat-send-button.png" alt="보내기">
+				<!-- <button class="mybtn chat-send-button" id="btn" type="submit" ></button> -->
 				
 			</form>
 	

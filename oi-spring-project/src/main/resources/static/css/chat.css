@@ -29,8 +29,8 @@
 	}
 	
 	.buyer-profile{
-		width:80px;
-		height:80px;
+		width:50px;
+		height:50px;
 		border-radius: 50%;
 		background-color:#BDECB6;
 		margin-bottom:3%;
@@ -43,6 +43,7 @@
 		padding-top:2%;
 		padding-left:5%;
 		overflow: auto;
+		font-size: 11pt;
 	}
 	
 	.send-img{
@@ -56,7 +57,7 @@
 	}
 	
 	.chat-img{
-		width:5%;
+		width:4%;
 		height: auto;
 	}
 	
@@ -96,6 +97,31 @@
 		height: auto;
 		margin-left: 82%;
 		margin-top: 10%;
+	}
+	
+	
+	/* ==================================*/
+	/* chat Select css */
+	
+	.chat-insert-img{
+		width:40%;
+		height: auto;
+		margin-left:2%;
+		background-color:white;
+		border-radius: 10px;
+	}
+	
+	.chat-insert-contents{
+		width: 80%;
+		height: 150px;
+		margin-left:2%;
+		margin-top: 2%;
+	}
+	
+	.chat-send-button{
+		width: 20%;
+		margin-top: 3%;
+		margin-left: 33%;
 	}
 	
 	
