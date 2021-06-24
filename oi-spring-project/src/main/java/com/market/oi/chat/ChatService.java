@@ -12,27 +12,35 @@ public class ChatService {
 	private ChatMapper chatMapper;
 	
 	//Product List
-	public List<ChatVO> getProductList(ProductVO productVO) throws Exception{
+	public List<ChatVO> getProductList(ProductVO productVO) throws Exception {
 		return chatMapper.getProductList(productVO);
 	}
 	
-	//Buyer List
-	public List<ChatVO> getBuyerList(ChatVO chatVO) throws Exception{
+	//문의자 List
+	public List<ChatVO> getBuyerList(ChatVO chatVO) throws Exception {
+		
+		System.out.println("sellerID : "+chatVO.getSellerID());
+		
 		return chatMapper.getBuyerList(chatVO);
 	}
 	
-	//Chat List
-	public List<ChatVO> getChatList(ChatVO chatVO) throws Exception{
+	//쪽지 List
+	public List<ChatVO> getChatList(ChatVO chatVO) throws Exception {
 		return chatMapper.getChatList(chatVO);
 	}
 	
-	//Chat insert
-	public int setChatInsert(ChatVO chatVO) throws Exception{
+	//쪽지 Select
+	public ChatVO getChatSelect(ChatVO chatVO) throws Exception {
+		return chatMapper.getChatSelect(chatVO);
+	}
+	
+	//쪽지 insert
+	public int setChatInsert(ChatVO chatVO) throws Exception {
 		return chatMapper.setChatInsert(chatVO);
 	}
 	
-	//Chat delete
-	public int setChatDelete(ChatVO chatVO) throws Exception{
+	//쪽지 delete
+	public int setChatDelete(ChatVO chatVO) throws Exception {
 		return chatMapper.setChatDelete(chatVO);
 	}
 	

@@ -25,20 +25,26 @@
 	</select>
 	
 	<select id="getBuyerList" parameterType="ChatVO" resultType="ChatVO">
-		SELECT chat.buyerName FROM chat
-		WHERE sellerID = #{sellerID}
+		SELECT chat.buyerName, chat.buyerID FROM chat
+		WHERE sellerID = #{sellerID} AND productNum = #{productNum}
 		GROUP BY chat.buyerName
 	</select>
 	
 	<select id="getChatList" parameterType="ChatVO" resultType="ChatVO">
 		SELECT * FROM chat
-		WHERE buyerID = #{buyerID}
-		ORDER BY regDate asc
+		WHERE buyerID = #{buyerID} AND productNum = #{productNum}
+		ORDER BY regDate desc
+	</select>
+	
+	
+	<select id="getChatSelect" parameterType="ChatVO" resultType="ChatVO">
+		SELECT * FROM chat
+		WHERE num = #{num}
 	</select>
 	
 	<insert id="setChatInsert" parameterType="ChatVO">
-		insert into chat(productNum, sellerID, buyerID, contents, productTitle, sellerName, buyerName)
-		VALUES(#{productNum}, #{sellerID}, #{buyerID}, #{contents}, #{productTitle}, #{sellerName}, #{buyerName})
+		insert into chat(productNum, sellerID, buyerID, contents, sellerName, buyerName, senderID, receiverID)
+		VALUES(#{productNum}, #{sellerID}, #{buyerID}, #{contents}, #{sellerName}, #{buyerName}, #{senderID}, #{receiverID})
 	</insert>
 	
 	<delete id="setChatDelete" parameterType="ChatVO">

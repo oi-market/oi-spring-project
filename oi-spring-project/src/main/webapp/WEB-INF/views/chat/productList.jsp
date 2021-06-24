@@ -55,17 +55,24 @@
 			<div class="inner">
 			
 				<!-- button -->
+
 				<c:forEach items="${list}" var="vo" varStatus="i">
-				
+					
 					<div class="post-list">
 	
 		                <a href="./chatList?productNum=${vo.num}">
+		                	<div></div>
 		                    <div> ${vo.title} </div>
 		                </a>
 	                
 	            	</div>
 				
 				</c:forEach>
+
+				
+				<c:if test="${list.size() eq 0}">
+				<img alt="no-chat" src="../img/no-chat.png" style="width:40%; height: auto;">
+				</c:if>
 				
 			</div>
 		</section>

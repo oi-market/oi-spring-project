@@ -16,6 +16,8 @@ public class ChatVO {
 	private String productTitle;
 	private String sellerName;
 	private String buyerName;
+	private String senderID;
+	private String receiverID;
 	
 	//비교 변수 : 기본값 1 : 판매자
 	private int check = 1;

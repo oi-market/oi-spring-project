@@ -37,34 +37,15 @@ public class ChatController {
 		
 		List<ChatVO> ar = chatService.getProductList(productVO);
 		
+		System.out.println("ar : "+ar.size());
+		
 		mv.addObject("list", ar);
 		mv.setViewName("chat/productList");
 		
 		return mv;
 		
 	}
-	
-	
-//	@GetMapping("chatList")
-//	public ModelAndView getBuyerList(ChatVO chatVO, Authentication auth) throws Exception {
-//		
-//		//session => memberVO
-//		UserDetails user = (UserDetails)auth.getPrincipal();
-//		MemberVO sessionMember = (MemberVO)user;
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		chatVO.setSellerID(sessionMember.getUsername());
-//		System.out.println("SellerID : "+sessionMember.getUsername());
-//		
-//		List<ChatVO> ar = chatService.getBuyerList(chatVO);
-//		
-//		mv.addObject("list", ar);
-//		mv.setViewName("chat/chatList");
-//		
-//		return mv;
-//		
-//	}
+
 	
 	
 	@GetMapping("chatList")
@@ -78,15 +59,40 @@ public class ChatController {
 		
 		chatVO.setSellerID(sessionMember.getUsername());
 		System.out.println("SellerID : "+sessionMember.getUsername());
-		chatVO.setBuyerID(sessionMember.getUsername());
-		System.out.println("BuyerID : "+sessionMember.getUsername());
+		//chatVO.setBuyerID("username2");
+		System.out.println("BuyerID : "+chatVO.getBuyerID());
+		System.out.println("productNum : "+chatVO.getProductNum());
 		
 		List<ChatVO> buyerAr = chatService.getBuyerList(chatVO);
 		List<ChatVO> chatAr = chatService.getChatList(chatVO);
 		
+		System.out.println("buyerAr : "+buyerAr.size());
+		System.out.println("chatAr : "+chatAr.size());
+		
 		mv.addObject("buyerList", buyerAr);
 		mv.addObject("chatList", chatAr);
+		mv.addObject("username", sessionMember.getUsername());
 		mv.setViewName("chat/chatList");
+		
+		return mv;
+		
+	}
+	
+	
+	@GetMapping("chatSelect")
+	public ModelAndView getChatSelect(ChatVO chatVO, Authentication auth) throws Exception {
+		
+		//session => memberVO
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMember = (MemberVO)user;
+		
+		ModelAndView mv = new ModelAndView();
+		
+		chatVO = chatService.getChatSelect(chatVO);
+		
+		mv.addObject("vo", chatVO);
+		mv.addObject("username", sessionMember.getUsername());
+		mv.setViewName("chat/chatSelect");
 		
 		return mv;
 		
@@ -109,12 +115,24 @@ public class ChatController {
 	@PostMapping("chatInsert")
 	public String setChatInsert(ChatVO chatVO, Authentication auth, Model model) throws Exception {
 		
+		System.out.println("insert start");
+		
 		//session => memberVO
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMember = (MemberVO)user;
 		
-		chatVO.setBuyerID(sessionMember.getUsername());
-		chatVO.setBuyerName(sessionMember.getNickName());
+		chatVO.setSenderID(sessionMember.getUsername());
+		
+		System.out.println("senderID : "+chatVO.getSenderID());
+		
+		//값 비교 : buyer, seller
+		if(chatVO.getBuyerID().equals(sessionMember.getUsername())) {
+			chatVO.setReceiverID(chatVO.getSellerID());
+		} else{
+			chatVO.setReceiverID(chatVO.getBuyerID());
+		}
+		
+		System.out.println("receiverID : "+chatVO.getReceiverID());
 		
 		String message = "쪽지를 보내는데 실패했습니다!";
 		String path = "./productList";
@@ -128,7 +146,7 @@ public class ChatController {
 		model.addAttribute("path", path);
 		model.addAttribute("msg", message);
 		
-		return "common/communityResult";
+		return "chat/chatInsert";
 	}
 	
 	

@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>쪽지|오이마켓</title>
+    <title>쪽지보관함|오이마켓</title>
 
     <meta name="author" content="wook">
     <meta name="description" content="오이마켓">
@@ -39,32 +39,64 @@
     <link rel="stylesheet" href="../css/mainScss.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/neighborhood.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/chat.css">
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
 </head>
 <body>
 
-	<div class="body__container">
+	<div class="body__container body-div">
 	
 		<!-- HEADER -->
     	<c:import url="../template/header.jsp"></c:import>
-	
-		<section class="section article">
+		
+		<section class="section article section-div">
 			<div class="inner">
 			
-				<c:forEach items="${buyerList}" var="vo" varStatus="i">
+				<div class="buyer-list-div">
+					<c:forEach items="${buyerList}" var="vo" varStatus="i">
+			            <div style="margin-bottom: 8%;">
+			
+			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}">
+			                	
+			                	<div class="buyer-profile">
+		
+			                    </div>
+			                
+			                    <div>
+			                        ${vo.buyerName}
+			                    </div>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
 				
-					<div class="post-list">
-	
-		                <a href="#">
-		                    <div> ${vo.buyerName} </div>
-		                </a>
-	                
-	            	</div>
 				
-				</c:forEach>
+				<div class="chat-list-div">
+					<c:if test="${chatList.size() eq 0}">
+						<img alt="send" src="../img/chat-select.png" class="send-img">
+					</c:if>
 				
+				
+					<c:forEach items="${chatList}" var="chat" varStatus="i">
+			            <div class="margin-down">
+			
+			                <a href="#" onclick="window.open('./chatSelect?num=${chat.num}','new','scrollbars=yes, resizable=no width=400 height=300, left=400,top=100');return false">
+			                    <div>
+			                        <c:if test="${chat.senderID == username}">
+			                        	<img alt="send" src="../img/chat-receive.png" class="chat-img">
+			                        </c:if>
+			                        <c:if test="${chat.senderID != username}">
+			                        	<img alt="receive" src="../img/chat-send.png" class="chat-img">
+			                        </c:if>
+			                        ${chat.contents}
+			                    </div>
+							</a>
+							
+						</div>
+					</c:forEach>
+				</div>
+			
 			</div>
 		</section>
 		<br><br>
