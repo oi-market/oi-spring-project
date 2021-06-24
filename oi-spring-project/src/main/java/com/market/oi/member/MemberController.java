@@ -288,6 +288,7 @@ public class MemberController {
 	
 	
 	@PostMapping("setImage")
+	@ResponseBody
 	public String setImage(@Valid MemberVO memberVO,Errors errors, MultipartFile avatar,Authentication authentication) throws Exception{
 		
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -303,10 +304,9 @@ public class MemberController {
 			int result1 = memberService.setImage(memberVO, avatar);
 			System.out.println(result1);
 		}
-		
-		
-		
-		return "mypage/modify";
+		String message="업로드 되었습니다.";	
+		System.out.println(message);
+		return message;
 	}
 	
 	@PostMapping("delImage")

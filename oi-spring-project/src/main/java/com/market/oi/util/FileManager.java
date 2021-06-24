@@ -63,5 +63,29 @@ public class FileManager {
 		
 		return fileName;
 	}
+	
+	public String memberSave(MultipartFile multipartFile, String filePath)throws Exception{
+		
+		String path="static";
+		ClassPathResource classPathResource = new ClassPathResource(path);
+		File file = new File(classPathResource.getFile(), filePath);
+		
+		System.out.println(file.getAbsolutePath());
+
+		System.out.println(file.getPath());
+
+		
+		if(!file.exists()) {
+			file.mkdirs();
+		}
+		
+		String fileName = UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
+		
+		file = new File(file, fileName);
+
+		multipartFile.transferTo(file);
+
+		return fileName;
+	}
 }
 
