@@ -25,4 +25,7 @@ public class ProductVO {
 	
 	private List<ProductFilesVO> productFiles;
 	private List<MemberVO> members;
+	
+	//쪽지 판매자와 구매자를 비교하기 위한 변수 : db에 값 안들어감!
+	private Integer check = 1;
 }

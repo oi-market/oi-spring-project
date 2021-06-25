@@ -16,10 +16,9 @@ public class ProductVO {
 	private Timestamp regDate;
 	private String username;
 	private String location;
-	private Long hit;
 	private Long like;
+	private Long hit;
 	
-	//비교 변수 : 기본값 1 : 판매자
-	private int check = 1;
+	private Integer check;
 	
 }

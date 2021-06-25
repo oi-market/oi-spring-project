@@ -38,7 +38,7 @@
 		<typeAlias type="com.market.oi.community.comments.CommentsVO" alias="CommentsVO" />
 		
 		<typeAlias type="com.market.oi.chat.ChatVO" alias="ChatVO" />
-		<typeAlias type="com.market.oi.chat.ProductVO" alias="ProductVO" />
+		<typeAlias type="com.market.oi.chat.ProductVO" alias="cProductVO" />
 		
 		<typeAlias type="java.lang.Long" alias="Long"/>
 

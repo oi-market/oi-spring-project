@@ -6,7 +6,7 @@
 
 <mapper namespace="com.market.oi.chat.ChatMapper">
 
-	<select id="getProductList" parameterType="ProductVO" resultType="ProductVO">
+	<select id="getProductList" parameterType="cProductVO" resultType="cProductVO">
 		<choose>
 			<!-- check == 1 : 판매자 -->
 			<when test="check == 1">

@@ -31,7 +31,10 @@ public class ChatController {
 		ModelAndView mv = new ModelAndView();
 		
 		productVO.setUsername(sessionMember.getUsername());
+
 		System.out.println("username : "+sessionMember.getUsername());
+		System.out.println("productVO : "+productVO);
+		
 		
 		List<ChatVO> ar = chatService.getProductList(productVO);
 		

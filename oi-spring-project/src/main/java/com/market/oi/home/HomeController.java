@@ -48,15 +48,16 @@ public class HomeController {
 	}
 	
 
-	@GetMapping("neighborhood/board")
-	public void getVillageBoard()throws Exception{
-	}
-	@GetMapping("neighborhood/select")
-	public void getVillageSelect()throws Exception{
-	}
-	@GetMapping("neighborhood/insert")
-	public void getVillageInsert()throws Exception{
-	}
+	//있으면 neighborhood 안나옴
+//	@GetMapping("neighborhood/board")
+//	public void getVillageBoard()throws Exception{
+//	}
+//	@GetMapping("neighborhood/select")
+//	public void getVillageSelect()throws Exception{
+//	}
+//	@GetMapping("neighborhood/insert")
+//	public void getVillageInsert()throws Exception{
+//	}
 	
 
 

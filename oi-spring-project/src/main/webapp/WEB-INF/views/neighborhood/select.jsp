@@ -164,8 +164,7 @@
 		                                
 		                            </div>
 															
-		                            <div class="comment--body" <c:if test="${comments.depth>1}">style="margin-left:17%"</c:if>
-		                            >	                            
+		                            <div class="comment--body" <c:if test="${comments.depth>1}">style="margin-left:11%"</c:if>>	                            
 		                                ${comments.contents}      
 		                            </div>
 		                            
