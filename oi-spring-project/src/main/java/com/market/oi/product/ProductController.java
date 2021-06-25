@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.market.oi.member.MemberVO;
+
 @Controller
 public class ProductController {
 
@@ -18,17 +20,15 @@ public class ProductController {
 	
 	
 	@GetMapping("product/list")
-	public void getProductList(Model model,Authentication auth)throws Exception{
-		List<ProductVO> ar = productService.getProductList(auth);		
+	public void getProductList(Model model,Authentication auth,MemberVO memberVO)throws Exception{
+		List<ProductVO> ar = productService.getProductList(auth,memberVO);		
 		model.addAttribute("list", ar);
 	}
-	
 	@GetMapping("product/separatedList")
 	public void getProductSeparatedList(Model model,Authentication auth,ProductVO productVO)throws Exception{
 		List<ProductVO> ar = productService.getProductSeparatedList(auth, productVO);		
 		model.addAttribute("list", ar);
 	}
-	
 	@GetMapping("product/select")
 	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
 		productVO=productService.getProductSelect(productVO);

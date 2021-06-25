@@ -21,6 +21,8 @@ public class ProductVO {
 	private String location;
 	private long hit;
 	private long like;
+	private Double wgs84X;
+	private Double wgs84Y;
 	
 	
 	private List<ProductFilesVO> productFiles;

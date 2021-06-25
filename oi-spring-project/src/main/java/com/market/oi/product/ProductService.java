@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.market.oi.location.LocationMapper;
 import com.market.oi.location.LocationVO;
 import com.market.oi.member.MemberVO;
+import com.market.oi.util.Pager;
 import com.market.oi.util.ProductFileManager;
 
 
@@ -30,7 +31,34 @@ public class ProductService {
 	private HttpServletRequest request;
 	
 	
+	public int setDeleteProduct(ProductFilesVO productFilesVO,ProductVO productVO)throws Exception{
+		
+		int result=productMapper.setDeleteProduct(productVO);
+		result=productMapper.setDeleteFile(productFilesVO);
+		
+//		파라미터를 멀로 넘길까 ,, 둘다 productㅖPk로 넘기면 디비는 해결,,
+		List<ProductFilesVO> ar = productMapper.getFileSelect(productFilesVO);
+		
+		for(ProductFilesVO vo : ar) {
+			
+			fileManager.deleteFile(vo.getFileName(), request);
+		}
+		
+			
+		
+		
+		
+		
+		
+		return result;
+	}
+	
+	
+	
+	
 	public int setProductInsert(ProductVO productVO,MultipartFile[] files)throws Exception{
+		
+
 		
 		int result = productMapper.setProductInsert(productVO);
 		
@@ -59,7 +87,7 @@ public class ProductService {
 		
 		
 		
-		return 0;
+		return result;
 	}
 
 	public ProductVO getProductSelect(ProductVO productVO)throws Exception{
@@ -68,66 +96,54 @@ public class ProductService {
 	
 	
 	
-	public List<ProductVO> getProductList(Authentication auth)throws Exception{
+	public List<ProductVO> getProductList(Authentication auth,MemberVO memberVO)throws Exception{
 		
-		List<ProductVO> ar = productMapper.getProductList();
-		//ar은 db에 있는 모든 제품을 가져옴
 		
-		//거리에 따라 비교해야겠지
-		Double distance=0.0;
-		
+
 		//로그인 한 멤버의 location을 가져옴
-		
 		UserDetails user = (UserDetails)auth.getPrincipal();
-		MemberVO sessionMember = (MemberVO)user;
-		
-		LocationVO memberLocationVO = new LocationVO();
-		memberLocationVO.setLocation(sessionMember.getLocation());
-		memberLocationVO = locationMapper.searchLocation(memberLocationVO);
-		Double x1 = memberLocationVO.getWgs84X();
-		Double y1 = memberLocationVO.getWgs84Y();
-		
-		//반복문을 돌려 리스트 안의 vo 즉 각각의 상품과 멤버와의 거리를 비교해 일정 거리 이상일 경우 리스트에서 제거 
-		
-		Iterator<ProductVO> iter = ar.iterator();
-			while(iter.hasNext()) {
-				
-				ProductVO productVO = iter.next();
-				LocationVO productLocationVO = new LocationVO();
-				productLocationVO.setLocation(productVO.getLocation());
-				productLocationVO = locationMapper.searchLocation(productLocationVO);
-				Double x2 = productLocationVO.getWgs84X();
-				Double y2 = productLocationVO.getWgs84Y();
-				
-				distance = this.getDistance(x2, y2, x1, y1);
-				
-				
-				
-				if(distance > 50) iter.remove();
-					
-				}
-
-
+		memberVO = (MemberVO)user;
 		
 		
+		//ar은 db에 있는 모든 제품을 가져옴
+		List<ProductVO> ar = productMapper.getProductList(memberVO);
 //		
-//		for(ProductVO vo : ar) {
-//			LocationVO productLocationVO = new LocationVO();
-//			productLocationVO.setLocation(vo.getLocation());
-//			productLocationVO = locationMapper.searchLocation(productLocationVO);
-//			Double x2 = productLocationVO.getWgs84X();
-//			Double y2 = productLocationVO.getWgs84Y();
-//			
-//			distance = this.getDistance(x2, y2, x1, y1);
-//			
-//			//50km 이상일 경우 제거, 50을 파라미터로 위에서 변수로 받으면 거리 기준 바꾸기 가능할듯
-//			if(distance > 50) {
-//				ar.remove(vo);
-//			}
-//			
-//		}
-//		checkForComodification에러 발생
+//		//거리에 따라 비교해야겠지
+//		Double distance=0.0;
 //		
+//		//로그인 한 멤버의 location을 가져옴
+//		UserDetails user = (UserDetails)auth.getPrincipal();
+//		MemberVO sessionMember = (MemberVO)user;
+//		
+//		LocationVO memberLocationVO = new LocationVO();
+//		memberLocationVO.setLocation(sessionMember.getLocation());
+//		memberLocationVO = locationMapper.searchLocation(memberLocationVO);
+//		Double x1 = memberLocationVO.getWgs84X();
+//		Double y1 = memberLocationVO.getWgs84Y();
+//		
+//		//반복문을 돌려 리스트 안의 vo 즉 각각의 상품과 멤버와의 거리를 비교해 일정 거리 이상일 경우 리스트에서 제거 
+//		
+//		Iterator<ProductVO> iter = ar.iterator();
+//			while(iter.hasNext()) {
+//				
+//				ProductVO productVO = iter.next();
+//				LocationVO productLocationVO = new LocationVO();
+//				productLocationVO.setLocation(productVO.getLocation());
+//				productLocationVO = locationMapper.searchLocation(productLocationVO);
+//				Double x2 = productLocationVO.getWgs84X();
+//				Double y2 = productLocationVO.getWgs84Y();
+//				
+//				distance = this.getDistance(x2, y2, x1, y1);
+//				
+//				
+//				
+//				if(distance > 50) iter.remove();
+//					
+//				}
+//
+//			
+//			
+		
 		
 		return ar;
 	}
@@ -142,7 +158,6 @@ public class ProductService {
 		Double distance=0.0;
 		
 		//로그인 한 멤버의 location을 가져옴
-		
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMember = (MemberVO)user;
 		
@@ -153,7 +168,10 @@ public class ProductService {
 		Double y1 = memberLocationVO.getWgs84Y();
 		
 		//반복문을 돌려 리스트 안의 vo 즉 각각의 상품과 멤버와의 거리를 비교해 일정 거리 이상일 경우 리스트에서 제거 
-		for(ProductVO vo : ar) {
+		Iterator<ProductVO> iter = ar.iterator();
+		while(iter.hasNext()) {
+			
+			ProductVO vo = iter.next();
 			LocationVO productLocationVO = new LocationVO();
 			productLocationVO.setLocation(vo.getLocation());
 			productLocationVO = locationMapper.searchLocation(productLocationVO);
@@ -162,12 +180,11 @@ public class ProductService {
 			
 			distance = this.getDistance(x2, y2, x1, y1);
 			
-			//50km 이상일 경우 제거, 50을 파라미터로 위에서 변수로 받으면 거리 기준 바꾸기 가능할듯
-			if(distance > 50) {
-				ar.remove(vo);
-			}
 			
-		}
+			
+			if(distance > 50) iter.remove();
+				
+			}
 		
 		
 		

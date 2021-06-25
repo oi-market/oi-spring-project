@@ -13,6 +13,8 @@
 			<result column="nickName" property="nickName"/>
 			<result column="phone" property="phone"/>
 			<result column="location" property="location"/>
+			<result column="wgs84X" property="wgs84X"/>
+			<result column="wgs84Y" property="wgs84Y"/>
 			<association property="memberFileVO" javaType="MemberFileVO">
 			<result column="fileName" property="fileName"/>
 			<result column="ogName" property="ogName"/>
@@ -28,8 +30,8 @@
 
 
 		<insert id="memberJoin" parameterType="MemberVO">
-			insert into member (username, password, name, email, phone, location,nickName)
-			values (#{username}, #{password}, #{name}, #{email}, #{phone},#{location},#{nickName})
+			insert into member (username, password, name, nickName, email, phone, location, wgs84X, wgs84Y)
+			values (#{username}, #{password}, #{name}, #{nickName}, #{email}, #{phone}, #{location}, #{wgs84X}, #{wgs84Y})
 		</insert> 
 
 		<select id="getUsername" parameterType="MemberVO" resultType="MemberVO">

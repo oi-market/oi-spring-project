@@ -67,16 +67,20 @@
 
 
 
-	<select id="getProductList" resultMap="ProductResult">
+	<select id="getProductList" resultMap="ProductResult" parameterType="MemberVO">
 		
 		
 		
-			SELECT P.*,PF.*
-			from product P left join productFiles PF
-			on P.num=PF.productNum
-             group by p.num
-            order by num desc
-   		limit 0,12;
+			SELECT Pr.*,PF.*
+			from product Pr left join productFiles PF
+			on Pr.num=PF.productNum
+		
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{wgs84X},#{wgs84Y})<50]]>
+            
+            
+				group by Pr.num
+            order by num desc;
+   		
 	</select>
 	<select id="getProductSeparatedList" parameterType="wProductVO" resultMap="ProductResult">
 		
@@ -114,11 +118,14 @@
 
 
 
+
+
+
  
     <insert id="setProductInsert" parameterType="wProductVO" >
-		insert into product (title,categoryNum,price,contents,sale,username,location)
-					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location})
-	</insert> 
+		insert into product (title,categoryNum,price,contents,sale,username,location,wgs84X,wgs84Y)
+					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location},#{wgs84X},#{wgs84Y})
+	</insert> 	
  
 	<insert id="setFileInsert" parameterType="wProductFilesVO">
 
@@ -128,7 +135,31 @@
 	</insert>
 	
 	
+	<delete id="setDeleteProduct" parameterType="wProductVO">
+		  delete from product
+  		where num=#{num};
+	</delete>
+	<delete id="setDeleteFile" parameterType="wProductFilesVO">
+		  delete from productFiles
+  		where productNum=#{productNum};
+	</delete>
 	
+	
+	
+		<update id="setHitUpdate" parameterType="wProductVO">
+
+		update product set hit=hit+1 where num=#{num}
+
+	</update>
+
+
+	<update id="setUpdate" parameterType="wproductVO">
+		update product set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where productNum=#{productNum};
+	</select>
 	
 
 <!-- 	select A.*,PC.*

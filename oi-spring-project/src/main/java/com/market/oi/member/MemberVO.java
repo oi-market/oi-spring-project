@@ -51,6 +51,9 @@ public class MemberVO implements UserDetails{
 	@NotEmpty
 	private String emailNum;
 	
+	private Double wgs84X;
+	private Double wgs84Y;
+	
 	
 	private List<RoleVO> roles;
 	

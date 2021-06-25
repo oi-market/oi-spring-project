@@ -103,8 +103,8 @@ public class MemberController {
 	@PostMapping("memberJoin")
 	public String memberJoin(@Valid MemberVO memberVO,
 									Errors errors,
-									MultipartFile avatar,
-									LocationVO locationVO)throws Exception{
+									MultipartFile avatar
+									)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
 
 				if(errors.hasErrors()) {
@@ -120,7 +120,7 @@ public class MemberController {
 		}
 
 
-		int result = memberService.memberJoin(memberVO, avatar, locationVO);
+		int result = memberService.memberJoin(memberVO, avatar);
 		System.out.println("성공");
 
 		return "redirect:../";
