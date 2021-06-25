@@ -54,13 +54,18 @@
 			<div class="inner">
 			
 				<div class="buyer-list-div">
+				
+			                    
+			                	
 					<c:forEach items="${buyerList}" var="vo" varStatus="i">
 			            <div class="buyer-div">
 			
 			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}&check=${param.check}&sellerID=${vo.sellerID}">
 			                	
-			                	<div class="buyer-profile">
-		
+			                	<!-- 프로필 이미지 변경부분 !!!! -->
+			                	<div>
+									<c:if test="${imgName eq null}"><img class="buyer-profile" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+									<c:if test="${imgName ne null}"><img class="buyer-profile" id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>	
 			                    </div>
 			                
 			                    <div>

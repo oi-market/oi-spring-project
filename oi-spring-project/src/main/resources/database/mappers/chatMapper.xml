@@ -6,7 +6,7 @@
 
 <mapper namespace="com.market.oi.chat.ChatMapper">
 
-	<select id="getProductList" parameterType="cProductVO" resultType="cProductVO">
+	<select id="getProductList" parameterType="wProductVO" resultType="wProductVO">
 		<choose>
 			<!-- check == 1 : 판매자 -->
 			<when test="check == 1">
@@ -16,11 +16,13 @@
 			</when>
 			
 			<!-- check == 1 : 구매자 -->
-			<when test="check == 2">
+			<!-- <when test="check == 2"> -->
+			
+			<otherwise>
 				select * from product
 				where num in (select productNum from chat
 				where buyerID = #{username})
-			</when>
+			</otherwise>
 		</choose>
 	</select>
 	

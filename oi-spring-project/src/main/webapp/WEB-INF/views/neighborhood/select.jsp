@@ -68,7 +68,13 @@
                     
                     <div class="content__info content__info--post">
 
-                      <div class="info--photo">사진</div>
+
+					  <!-- 프로필 이미지 변경부분!! -->
+						
+                      <div>
+                      	<c:if test="${imgName eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+					  	<c:if test="${imgName ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>	
+                      </div>
 	                        <div class="info--users">
 	                            <div class="info--user">${vo.nickName}</div>
 	                            <div class="info--second-line">
@@ -109,13 +115,10 @@
                     <div class="post-list__footer post-list__footer--post">
                             <div class="footer--wrap footer--wrap--post">
                                 
-                                <!--<a href="#">
-                                    <i class="bi bi-emoji-smile"></i>
-                                    <div class="post-list--like">공감하기 3</div>
-                                </a>-->
                                 <a href="#">
                                     <div class="post-list--comment">댓글 ${count}</div>
                                 </a>
+                                
                             </div>
                     </div>
                     
@@ -132,11 +135,16 @@
 		                                	
 		                                	<c:if test="${comments.depth>1}">
 		                                		<img alt="enter-arrow" src="../img/nei-reply.png"
-														style="width:5%; height: 50%" />
+														style="width:5%; height: 50%; margin-right:5%; " />
 		                                	</c:if>
 
-		                                
-		                                    <div class="info--photo">사진</div>
+		                                	
+		                                	<!-- 프로필 이미지 변경부분!! -->
+		                                	
+		                                    <div>
+		                                    	<c:if test="${imgName eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+					  							<c:if test="${imgName ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>	
+		                                    </div>
 		                                    <div class="info--users">
 		                                        <div class="info--user">${comments.nickName}</div>
 		                                        <div class="info--second-line">

@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.member.MemberFileVO;
+import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
+import com.market.oi.product.ProductVO;
 
 @Controller
 @RequestMapping("/chat/**")
@@ -20,6 +23,9 @@ public class ChatController {
 
 	@Autowired
 	private ChatService chatService;
+	
+	@Autowired
+	private MemberService memberService; 
 	
 	@GetMapping("productList")
 	public ModelAndView getProductList(ProductVO productVO, ChatVO chatVO, Authentication auth) throws Exception {
@@ -51,11 +57,20 @@ public class ChatController {
 	
 	
 	@GetMapping("chatList")
-	public ModelAndView getChatList(ChatVO chatVO, Authentication auth) throws Exception {
+	public ModelAndView getChatList(ChatVO chatVO, Authentication auth, Model model) throws Exception {
 		
 		//session => memberVO
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMember = (MemberVO)user;
+		
+		//======================================
+		//프로필 이미지 변경부분!
+		MemberVO memberVO = new MemberVO();
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+		if(memberFileVO!=null) {
+			model.addAttribute("imgName", memberFileVO.getFileName());
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		
