@@ -25,15 +25,24 @@
 
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
 
+		
+		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO"/>
+		<typeAlias type="com.market.oi.product.ProductVO" alias="wProductVO"/>
+		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="wProductFilesVO"/>
+
+
 
 		<typeAlias type="com.market.oi.community.CommunityVO" alias="CommunityVO" />
 		<typeAlias type="com.market.oi.util.CommunityPager" alias="CommunityPager"/>
 		<typeAlias type="com.market.oi.community.CommunityfilesVO" alias="CommunityfilesVO"/>
 		<typeAlias type="com.market.oi.community.comments.CommentsVO" alias="CommentsVO" />
 		
+		<typeAlias type="com.market.oi.chat.ChatVO" alias="ChatVO" />
+		
 		<typeAlias type="java.lang.Long" alias="Long"/>
 
 		<typeAlias type="com.market.oi.util.MypagePager" alias="MypagePager"/>
+
 
 
 	</typeAliases>

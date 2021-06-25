@@ -32,6 +32,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
+import com.market.oi.location.LocationVO;
+
 
 
 @Controller
@@ -99,7 +101,10 @@ public class MemberController {
 	}
 
 	@PostMapping("memberJoin")
-	public String memberJoin(@Valid MemberVO memberVO, Errors errors ,MultipartFile avatar)throws Exception{
+	public String memberJoin(@Valid MemberVO memberVO,
+									Errors errors,
+									MultipartFile avatar,
+									LocationVO locationVO)throws Exception{
 		System.out.println("Join Process" + memberVO.getName().length());
 
 				if(errors.hasErrors()) {
@@ -114,8 +119,10 @@ public class MemberController {
 			
 		}
 
-		int result = memberService.memberJoin(memberVO, avatar);
+
+		int result = memberService.memberJoin(memberVO, avatar, locationVO);
 		System.out.println("성공");
+
 		return "redirect:../";
 	}
 	

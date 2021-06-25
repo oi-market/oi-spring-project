@@ -59,19 +59,17 @@
      <section class="section article article--product">
          <div class="inner">
 
-            <!-- 
+            
            
             
- -->
-         
- 	
+
             <div class="product-list">
 
 		<c:forEach items="${list}" var="vo">
                 <a href="./select?num=${vo.num}">
                     <div class="product">
                         <div class="product--header">
-                            <img class="product--image" src="../resources/upload/images${vo.productFiles[0].thumbnail}" alt="대체텍스트">
+   <img class="product--image" src="../resources/upload/images${vo.productFiles[0].thumbnail}" alt="대체텍스트">
                             <div class="product--name">${vo.title}</div>
                         </div>
                         <div class="product--location">${vo.location}</div>

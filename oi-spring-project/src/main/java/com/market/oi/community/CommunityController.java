@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.market.oi.community.comments.CommentsService;
 import com.market.oi.community.comments.CommentsVO;
+import com.market.oi.member.MemberFileVO;
+import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.CommunityPager;
 
@@ -30,6 +32,9 @@ public class CommunityController {
 	
 	@Autowired
 	private CommentsService commentsService; 
+	
+	@Autowired
+	private MemberService memberService;
 	
 	//@Value("${community.filePath}")
 	private String filePath;
@@ -125,7 +130,7 @@ public class CommunityController {
 	
 	//커뮤니티 Select
 	@GetMapping("select")
-	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO, Authentication auth) throws Exception{
+	public ModelAndView getSelect(CommunityVO communityVO, CommentsVO commentsVO, Authentication auth, Model model) throws Exception{
 		
 		System.out.println("select");
 	
@@ -134,11 +139,23 @@ public class CommunityController {
 		communityVO = communityService.getSelect(communityVO);
 		
 		
+		//======================================
+		//프로필 이미지 변경부분!
+		
 		//MemberVO가 UserDetail를 상속
 		//				<-	principal에서 꺼냄
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		//꺼낸 걸 memberVO로 변환해서 넣음
 		MemberVO sessionMember = (MemberVO)user;
+		
+		MemberVO memberVO = new MemberVO();
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+		if(memberFileVO!=null) {
+			model.addAttribute("imgName", memberFileVO.getFileName());
+		}
+		
+		
 		
 		System.out.println("username : "+sessionMember.getUsername());
 		System.out.println("writer : "+communityVO.getWriter());

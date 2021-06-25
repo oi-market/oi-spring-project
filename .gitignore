@@ -165,7 +165,8 @@ $RECYCLE.BIN/
 
 
 bin/
- oi-spring-project/src/main/resources/application.properties
+
+oi-spring-project/src/main/resources/application.properties
 
 oi-spring-project/src/main/resources/application.properties
 

@@ -162,6 +162,22 @@ $("#password1").on("blur",function(){
 
 	
 
+
+
+//지오코딩
+var geocoder = new kakao.maps.services.Geocoder();
+
+var callback = function(result, status) {
+    if (status === kakao.maps.services.Status.OK) {
+        console.log(result);
+	document.getElementById('wgs84X').value=result[0].x;
+	document.getElementById('wgs84Y').value=result[0].y;
+	
+    }
+};
+
+
+
 // 주소찾기 api
 function findAddr(){
 	new daum.Postcode({
@@ -177,14 +193,20 @@ function findAddr(){
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('member_post').value = data.zonecode;
             if(roadAddr !== ''){
-                document.getElementById("member_addr").value = roadAddr;
-            } 
+                document.getElementById("member_addr").value = roadAddr;           	
+				geocoder.addressSearch(roadAddr, callback);
+			} 
             else if(jibunAddr !== ''){
                 document.getElementById("member_addr").value = jibunAddr;
+				geocoder.addressSearch(jibunAddr, callback);
             }
         }
     }).open();
 }
+
+
+
+
 
 
 

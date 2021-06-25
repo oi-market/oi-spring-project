@@ -48,24 +48,19 @@ public class HomeController {
 	}
 	
 
-	@GetMapping("neighborhood/board")
-	public void getVillageBoard()throws Exception{
-	}
-	@GetMapping("neighborhood/select")
-	public void getVillageSelect()throws Exception{
-	}
-	@GetMapping("neighborhood/insert")
-	public void getVillageInsert()throws Exception{
-	}
-	@GetMapping("product/list")
-	public void getProductList()throws Exception{
-	}
-	@GetMapping("product/select")
-	public void getProductSelect()throws Exception{
-	}
-	@GetMapping("product/insert")
-	public void getProductInsert()throws Exception{
-	}
+	//있으면 neighborhood 안나옴
+//	@GetMapping("neighborhood/board")
+//	public void getVillageBoard()throws Exception{
+//	}
+//	@GetMapping("neighborhood/select")
+//	public void getVillageSelect()throws Exception{
+//	}
+//	@GetMapping("neighborhood/insert")
+//	public void getVillageInsert()throws Exception{
+//	}
+	
+
+
 	@GetMapping("board/insert")
 	public void getBoardInsert()throws Exception{
 	}
