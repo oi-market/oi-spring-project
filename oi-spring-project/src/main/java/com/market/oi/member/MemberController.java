@@ -434,11 +434,17 @@ public class MemberController {
 		
 	}
 	
-
+	
 	
  
-	
-
+	@PostMapping("radiusUpdate")
+	public String memberUpdateRadius(MemberVO memberVO , Authentication authentication) throws Exception{
+		
+		int result = memberService.memberUpdateRadius(memberVO, authentication);
+		
+		
+		return "redirect:../mypage/village";
+	}
 
 
 }

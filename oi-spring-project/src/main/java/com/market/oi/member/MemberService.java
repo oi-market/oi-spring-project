@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.tools.JavaFileManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -212,7 +213,18 @@ public class MemberService implements UserDetailsService{
 		return memberMapper.Score(memberVO);
 	}
 
+	public int memberUpdateRadius(MemberVO memberVO,Authentication auth)throws Exception{
 	
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+			
+		memberVO.setUsername(sessionMemberVO.getUsername());
+		int result =memberMapper.memberUpdateRadius(memberVO);
+		sessionMemberVO.setRadius(memberVO.getRadius());
+		
+		return result;
+	}
 
 
 	

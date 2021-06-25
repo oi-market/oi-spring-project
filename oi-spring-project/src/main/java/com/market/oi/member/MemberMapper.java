@@ -36,7 +36,7 @@ public interface MemberMapper {
 	
 	public Double Score(MemberVO memberVO);
 	
-
+	public int memberUpdateRadius(MemberVO memberVO);
 	
 
 	

@@ -75,7 +75,7 @@
 			from product Pr left join productFiles PF
 			on Pr.num=PF.productNum
 		
-		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{wgs84X},#{wgs84Y})<50]]>
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{wgs84X},#{wgs84Y})<#{radius}]]>
             
             
 				group by Pr.num

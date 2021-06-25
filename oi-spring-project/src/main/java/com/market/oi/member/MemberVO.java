@@ -53,6 +53,7 @@ public class MemberVO implements UserDetails{
 	
 	private Double wgs84X;
 	private Double wgs84Y;
+	private Long radius;
 	
 	
 	private List<RoleVO> roles;
