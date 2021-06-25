@@ -13,6 +13,9 @@
 			<result column="nickName" property="nickName"/>
 			<result column="phone" property="phone"/>
 			<result column="location" property="location"/>
+			<result column="wgs84X" property="wgs84X"/>
+			<result column="wgs84Y" property="wgs84Y"/>
+			<result column="radius" property="radius"/>
 			<association property="memberFileVO" javaType="MemberFileVO">
 			<result column="fileName" property="fileName"/>
 			<result column="ogName" property="ogName"/>
@@ -28,8 +31,8 @@
 
 
 		<insert id="memberJoin" parameterType="MemberVO">
-			insert into member (username, password, name, email, phone, location,nickName)
-			values (#{username}, #{password}, #{name}, #{email}, #{phone},#{location},#{nickName})
+			insert into member (username, password, name, nickName, email, phone, location, wgs84X, wgs84Y, radius)
+			values (#{username}, #{password}, #{name}, #{nickName}, #{email}, #{phone}, #{location}, #{wgs84X}, #{wgs84Y},50)
 		</insert> 
 
 		<select id="getUsername" parameterType="MemberVO" resultType="MemberVO">
@@ -69,6 +72,7 @@
       update member set name=#{name},nickName=#{nickName},email=#{email},phone=#{phone} where username=#{username}      
       </update>
       
+      
       <delete id="memberDelete" parameterType="MemberVO">
 		delete from member where username=#{username}
 	  </delete>
@@ -96,9 +100,15 @@
 		
 		
       
+      <update id="memberUpdateRadius" parameterType="MemberVO">
+      		update member set radius=#{radius} where username=#{username}      
+      </update>
       
       
-
+      <update id="memberUpdateLocation" parameterType="MemberVO">
+      		update member set location=#{location},wgs84X=#{wgs84X},wgs84Y=#{wgs84Y} where username=#{username}      
+      </update>
+      
 
 
 </mapper>

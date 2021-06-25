@@ -167,9 +167,10 @@
 
 
 						<input type="hidden" name="username" value=<sec:authentication property="principal.username"/>>
-						
 						<input type="hidden" name="location" value=<sec:authentication property="principal.location"/>>
-						
+						<input type="hidden" name="wgs84X" value=<sec:authentication property="principal.wgs84X"/>>
+						<input type="hidden" name="wgs84Y" value=<sec:authentication property="principal.wgs84Y"/>>
+					
 						
 
                    

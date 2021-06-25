@@ -92,8 +92,41 @@
 
 
 
+<%-- 
+
+  <!-- 페이지 밑 번호로 이동할수 있는 블럭  -->
+ <div class="container d-flex justify-content-center">
+  <ul class="pagination">
+  
+  
+    <li class="page-item">
+    	<a class="page-link pager" th:if="${pager.pre}" href="#" th:title="${pager.startNum-1}">Previous</a>
+    <!--  th:href="@{./list(curPage=${pager.startNum}-1)}"-->
+    	<span class="page-link" th:unless="${pager.pre}">Previous</span>
+    </li>
+    
+    
+    <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum,pager.lastNum)}">
+    <a class="page-link pager" th:text="${i}" href="#" th:title="${i}">1</a>
+    <!-- th:href="@{./list(curPage=${i})}" -->
+    </li>
+    
+    
+    
+    <li class="page-item" th:if="${pager.next}">
+    <a class="page-link pager" href="#"  th:title="${pager.lastNum+1}">Next</a>
+    </li>
+    <!--  th:href="@{./list(curPage=${pager.lastNum}+1)}" -->
+  </ul>
+</div>
+  
+ --%>
+
+
 
             <div class="paging-nav">
+            
+            
                 <ul>
                     <li>
                         <a href="#">
@@ -127,6 +160,8 @@
                     </li>
    
                 </ul>
+                
+                
             </div>
           </div>
             

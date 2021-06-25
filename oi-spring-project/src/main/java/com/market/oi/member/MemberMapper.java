@@ -36,9 +36,9 @@ public interface MemberMapper {
 	
 	public Double Score(MemberVO memberVO);
 	
-
+	public int memberUpdateRadius(MemberVO memberVO);
 	
-
+	public int memberUpdateLocation(MemberVO memberVO);
 	
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;

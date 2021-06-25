@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.tools.JavaFileManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -93,23 +94,23 @@ public class MemberService implements UserDetailsService{
 	
 	
 	@Transactional(rollbackFor = Exception.class)
-	public int memberJoin(MemberVO memberVO, MultipartFile multipartFile,LocationVO locationVO)throws Exception{
+	public int memberJoin(MemberVO memberVO, MultipartFile multipartFile)throws Exception{
 		//0. 사전 작업
 		//a. password 암호화
 		System.out.println(memberVO);
-		System.out.println(locationVO.getLocation());
-		System.out.println(locationVO.getWgs84X());
-		System.out.println(locationVO.getWgs84Y());
+//		System.out.println(locationVO.getLocation());
+//		System.out.println(locationVO.getWgs84X());
+//		System.out.println(locationVO.getWgs84Y());
 		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
 		 
 		//b. 사용자 계정 활성화
 		 
 
-		
-		//0. Location Table 저장
-		if(locationMapper.searchLocation(locationVO)==null) {
-			int result=locationMapper.setLocation(locationVO);
-		 }
+//		
+//		//0. Location Table 저장
+//		if(locationMapper.searchLocation(locationVO)==null) {
+//			int result=locationMapper.setLocation(locationVO);
+//		 }
 		 
 		
 		//1. Member Table 저장
@@ -212,7 +213,32 @@ public class MemberService implements UserDetailsService{
 		return memberMapper.Score(memberVO);
 	}
 
+	public int memberUpdateRadius(MemberVO memberVO,Authentication auth)throws Exception{
+		
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+		
+		memberVO.setUsername(sessionMemberVO.getUsername());
+		int result =memberMapper.memberUpdateRadius(memberVO);
+		sessionMemberVO.setRadius(memberVO.getRadius());
+		
+		return result;
+	}
+	public int memberUpdateLocation(MemberVO memberVO,Authentication auth)throws Exception{
 	
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+			
+		memberVO.setUsername(sessionMemberVO.getUsername());
+		int result =memberMapper.memberUpdateLocation(memberVO);
+		sessionMemberVO.setLocation(memberVO.getLocation());
+		sessionMemberVO.setWgs84X(memberVO.getWgs84X());
+		sessionMemberVO.setWgs84Y(memberVO.getWgs84Y());
+		
+		return result;
+	}
 
 
 	

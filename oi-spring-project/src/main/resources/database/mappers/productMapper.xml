@@ -67,29 +67,26 @@
 
 
 
-	<select id="getProductList" resultMap="ProductResult">
+	<select id="getProductList" resultMap="ProductSelectResult" parameterType="java.util.Map">
+			
 		
 		
+			SELECT Pr.*,PF.*
+			from product Pr left join productFiles PF
+			on Pr.num=PF.productNum
 		
-			SELECT P.*,PF.*
-			from product P left join productFiles PF
-			on P.num=PF.productNum
-             group by p.num
+			
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
+            
+            
+				<if test="#{product}!=null">
+				 and  Pr.categoryNum=#{product.categoryNum}
+				 </if> 
+			group by Pr.num
             order by num desc
-   		limit 0,12;
+   		
 	</select>
-	<select id="getProductSeparatedList" parameterType="wProductVO" resultMap="ProductResult">
-		
-			       
-        	SELECT P.*,PF.*
-			from product P left join productFiles PF
-			on P.num=PF.productNum
-             where categoryNum=#{categoryNum}
-             group by p.num
-			 order by num desc
-   		limit 0,12;
-   	 
-	</select>
+	
 	
 	<select id="getProductSelect" parameterType="wProductVO" resultMap="ProductSelectResult">
 		select A.*,M.*
@@ -114,11 +111,14 @@
 
 
 
+
+
+
  
     <insert id="setProductInsert" parameterType="wProductVO" >
-		insert into product (title,categoryNum,price,contents,sale,username,location)
-					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location})
-	</insert> 
+		insert into product (title,categoryNum,price,contents,sale,username,location,wgs84X,wgs84Y)
+					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location},#{wgs84X},#{wgs84Y})
+	</insert> 	
  
 	<insert id="setFileInsert" parameterType="wProductFilesVO">
 
@@ -128,7 +128,31 @@
 	</insert>
 	
 	
+	<delete id="setDeleteProduct" parameterType="wProductVO">
+		  delete from product
+  		where num=#{num};
+	</delete>
+	<delete id="setDeleteFile" parameterType="wProductFilesVO">
+		  delete from productFiles
+  		where productNum=#{productNum};
+	</delete>
 	
+	
+	
+		<update id="setHitUpdate" parameterType="wProductVO">
+
+		update product set hit=hit+1 where num=#{num}
+
+	</update>
+
+
+	<update id="setUpdate" parameterType="wproductVO">
+		update product set title=#{title}, contents=#{contents} where num=#{num}
+	</update>
+	
+	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where productNum=#{productNum};
+	</select>
 	
 
 <!-- 	select A.*,PC.*
