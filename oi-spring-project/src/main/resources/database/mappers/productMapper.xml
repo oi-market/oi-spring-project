@@ -67,33 +67,26 @@
 
 
 
-	<select id="getProductList" resultMap="ProductResult" parameterType="MemberVO">
-		
+	<select id="getProductList" resultMap="ProductSelectResult" parameterType="java.util.Map">
+			
 		
 		
 			SELECT Pr.*,PF.*
 			from product Pr left join productFiles PF
 			on Pr.num=PF.productNum
 		
-		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{wgs84X},#{wgs84Y})<#{radius}]]>
+			
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
             
             
-				group by Pr.num
-            order by num desc;
+				<if test="#{product}!=null">
+				 and  Pr.categoryNum=#{product.categoryNum}
+				 </if> 
+			group by Pr.num
+            order by num desc
    		
 	</select>
-	<select id="getProductSeparatedList" parameterType="wProductVO" resultMap="ProductResult">
-		
-			       
-        	SELECT P.*,PF.*
-			from product P left join productFiles PF
-			on P.num=PF.productNum
-             where categoryNum=#{categoryNum}
-             group by p.num
-			 order by num desc
-   		limit 0,12;
-   	 
-	</select>
+	
 	
 	<select id="getProductSelect" parameterType="wProductVO" resultMap="ProductSelectResult">
 		select A.*,M.*

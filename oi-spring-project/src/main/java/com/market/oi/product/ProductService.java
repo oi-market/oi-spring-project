@@ -1,7 +1,9 @@
 package com.market.oi.product;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.market.oi.location.LocationMapper;
-import com.market.oi.location.LocationVO;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.Pager;
 import com.market.oi.util.ProductFileManager;
@@ -43,12 +44,6 @@ public class ProductService {
 			
 			fileManager.deleteFile(vo.getFileName(), request);
 		}
-		
-			
-		
-		
-		
-		
 		
 		return result;
 	}
@@ -96,7 +91,10 @@ public class ProductService {
 	
 	
 	
-	public List<ProductVO> getProductList(Authentication auth,MemberVO memberVO)throws Exception{
+	public List<ProductVO> getProductList(Authentication auth,
+											MemberVO memberVO,
+											Pager pager,
+											ProductVO productVO)throws Exception{
 		
 		
 
@@ -104,9 +102,25 @@ public class ProductService {
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		memberVO = (MemberVO)user;
 		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member",memberVO);
+		map.put("pager",pager);
+		
+		System.out.println(productVO.getCategoryNum());
+		
+		if(productVO.getCategoryNum()==null || productVO.getCategoryNum()==0) {
+			productVO.setCategoryNum(0);
+		}
+		
+		map.put("product",productVO);
+		
+		
+		List<ProductVO> ar = productMapper.getProductList(map);
+		
+		System.out.println(productVO.getCategoryNum());
+		
 		
 		//ar은 db에 있는 모든 제품을 가져옴
-		List<ProductVO> ar = productMapper.getProductList(memberVO);
 //		
 //		//거리에 따라 비교해야겠지
 //		Double distance=0.0;
@@ -149,47 +163,6 @@ public class ProductService {
 	}
 	
 	
-	public List<ProductVO> getProductSeparatedList(Authentication auth, ProductVO productVO)throws Exception{
-		
-		List<ProductVO> ar = productMapper.getProductSeparatedList(productVO);
-		//ar은 db에 있는 모든 제품을 가져옴
-		
-		//거리에 따라 비교해야겠지
-		Double distance=0.0;
-		
-		//로그인 한 멤버의 location을 가져옴
-		UserDetails user = (UserDetails)auth.getPrincipal();
-		MemberVO sessionMember = (MemberVO)user;
-		
-		LocationVO memberLocationVO = new LocationVO();
-		memberLocationVO.setLocation(sessionMember.getLocation());
-		memberLocationVO = locationMapper.searchLocation(memberLocationVO);
-		Double x1 = memberLocationVO.getWgs84X();
-		Double y1 = memberLocationVO.getWgs84Y();
-		
-		//반복문을 돌려 리스트 안의 vo 즉 각각의 상품과 멤버와의 거리를 비교해 일정 거리 이상일 경우 리스트에서 제거 
-		Iterator<ProductVO> iter = ar.iterator();
-		while(iter.hasNext()) {
-			
-			ProductVO vo = iter.next();
-			LocationVO productLocationVO = new LocationVO();
-			productLocationVO.setLocation(vo.getLocation());
-			productLocationVO = locationMapper.searchLocation(productLocationVO);
-			Double x2 = productLocationVO.getWgs84X();
-			Double y2 = productLocationVO.getWgs84Y();
-			
-			distance = this.getDistance(x2, y2, x1, y1);
-			
-			
-			
-			if(distance > 50) iter.remove();
-				
-			}
-		
-		
-		
-		return ar;
-	}
 	
 	
 	

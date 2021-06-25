@@ -12,7 +12,7 @@ public class ProductVO {
 
 	private long num;
 	private String title;
-	private Integer categoryNum;
+	private Integer categoryNum=0;
 	private String price;
 	private String contents;
 	private int sale;
@@ -27,4 +27,18 @@ public class ProductVO {
 	
 	private List<ProductFilesVO> productFiles;
 	private List<MemberVO> members;
+	
+	
+	public Integer getCategoryNum() {
+		
+		if(this.categoryNum==null || this.categoryNum==0) {
+			this.categoryNum=0;
+		}
+		
+		return categoryNum;
+	}
+
+
+	
+	
 }
