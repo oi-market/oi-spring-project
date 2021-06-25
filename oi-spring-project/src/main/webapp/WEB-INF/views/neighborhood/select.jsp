@@ -147,18 +147,19 @@
 		                                    </div>
 		                                </div>
 		                                
-
-		                                <div class="comment--modify inner__dropdown"> 
-		                                    
-		                                    <button class="dropbtn">
-		                                        <i class="bi bi-three-dots-vertical"></i>
-		                                    </button>
-		
-		                                    <div class="dropdown-content">
-		                                        <a href="../comments/commentsDelete?num=${comments.num}">삭제</a>
-		                                    </div>
-		                                
-		                                </div>
+										<c:if test="${comments.writer eq session}">
+			                                <div class="comment--modify inner__dropdown"> 
+			                                    
+			                                    <button class="dropbtn">
+			                                        <i class="bi bi-three-dots-vertical"></i>
+			                                    </button>
+			
+			                                    <div class="dropdown-content">
+			                                        <a href="../comments/commentsDelete?num=${comments.num}">삭제</a>
+			                                    </div>
+			                                
+			                                </div>
+		                                </c:if>
 
 		                                
 		                            </div>

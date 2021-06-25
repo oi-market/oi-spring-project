@@ -1,0 +1,139 @@
+@charset "UTF-8";
+
+	/* chat List css */
+	
+	.body-div{
+		background-color:#BDECB6;
+		padding-top:7%;	
+	}
+	
+	.section-div{
+		background-color:white;
+		width: 80%;
+		height:400px;
+		margin-left:10%;
+		padding: 2%;
+		border-radius: 2em;
+	}
+	
+	.buyer-list-div{
+		width:20%;
+		float:left;
+		border-right: 3px dashed #BDECB6;
+		overflow: auto;
+		height:350px;
+	}
+	
+	.buyer-list-div a{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.buyer-profile{
+		width:60px;
+		height:60px;
+		border-radius: 50%;
+		background-color:#BDECB6;
+		margin-bottom:5%;
+	}
+	
+	.chat-list-div{
+		width:80%;
+		height:350px;
+		float:right;
+		padding-top:2%;
+		padding-left:5%;
+		overflow: auto;
+		font-size: 11pt;
+	}
+	
+	.send-img{
+		width:40%;
+		height: auto;
+		margin-left:30%;
+	}
+	
+	.margin-down{
+		margin-bottom:2%;
+	}
+	
+	.chat-img{
+		width:4%;
+		height: auto;
+	}
+	
+	.buyer-div{
+		margin-bottom: 15%;
+	}
+	
+	/*product List*/
+	.sellBuy-button-display{
+		display:flex;
+	}
+	
+	
+	/* ==================================*/
+	/* chat Select css */
+	
+	.chat-select-body{
+		padding: 2%;
+	}
+	
+	.chat-check-img{
+		background-color:white;
+		width:40%;
+		height:auto;
+		display:inline-block;
+		margin-bottom: 2%;
+		border-radius: 10px;
+	}
+	
+	.chat-send-re-img{
+		width:70%;
+		height: auto;
+		margin-left:10%;
+	}
+	
+	.select-contents{
+		background-color:white;
+		width:90%;
+		height: auto;
+		border-radius: 10px;
+		padding: 5%;
+	}
+	
+	.chat-re-button{
+		width:20%;
+		height: auto;
+		margin-left: 82%;
+		margin-top: 10%;
+	}
+	
+	
+	/* ==================================*/
+	/* chat Select css */
+	
+	.chat-insert-img{
+		width:40%;
+		height: auto;
+		margin-left:2%;
+		background-color:white;
+		border-radius: 10px;
+	}
+	
+	.chat-insert-contents{
+		width: 80%;
+		height: 150px;
+		margin-left:2%;
+		margin-top: 2%;
+	}
+	
+	.chat-send-button{
+		width: 20%;
+		margin-top: 3%;
+		margin-left: 33%;
+	}
+	
+	
