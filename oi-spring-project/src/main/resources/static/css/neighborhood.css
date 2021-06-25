@@ -203,6 +203,12 @@ header .inner--second{
 
 /* select */
 
+.select-img-size{
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+}
+
 .post:hover{
     background-color:#F8F9FA; 
 }
@@ -215,7 +221,7 @@ header .inner--second{
 }
 
 .content__info--post .info--photo img{
-	  width: 45px;
+	width: 45px;
     height: 45px;
     object-fit: cover;
     border-radius: 24px;
