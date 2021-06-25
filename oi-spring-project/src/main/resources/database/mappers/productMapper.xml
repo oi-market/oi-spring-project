@@ -79,7 +79,7 @@
 		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
             
             
-				<if test="#{product}!=null">
+				<if test="product != null">
 				 and  Pr.categoryNum=#{product.categoryNum}
 				 </if> 
 			group by Pr.num
