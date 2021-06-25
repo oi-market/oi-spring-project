@@ -108,16 +108,16 @@ public class ProductService {
 		
 		System.out.println(productVO.getCategoryNum());
 		
-		if(productVO.getCategoryNum()==null || productVO.getCategoryNum()==0) {
-			productVO.setCategoryNum(0);
+		if(productVO.getCategoryNum()==0){
+			productVO= null;
 		}
-		
+		System.out.println(productVO==null);
 		map.put("product",productVO);
 		
 		
 		List<ProductVO> ar = productMapper.getProductList(map);
 		
-		System.out.println(productVO.getCategoryNum());
+		
 		
 		
 		//ar은 db에 있는 모든 제품을 가져옴
