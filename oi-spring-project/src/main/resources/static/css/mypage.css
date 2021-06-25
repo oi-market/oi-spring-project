@@ -573,5 +573,14 @@ margin-bottom: 60px;
 #radius--input + button{
 	margin-top:10px;
 	width:150px;
+}
+.findAdress{
+	margin:10px;
+	display:inline;
+}
+
+.findAdress+input[type="submit"]{
+	display:inline;
+	height:35px;
 	
 }

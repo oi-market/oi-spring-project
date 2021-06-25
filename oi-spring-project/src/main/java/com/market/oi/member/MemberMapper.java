@@ -38,7 +38,7 @@ public interface MemberMapper {
 	
 	public int memberUpdateRadius(MemberVO memberVO);
 	
-
+	public int memberUpdateLocation(MemberVO memberVO);
 	
 	
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;

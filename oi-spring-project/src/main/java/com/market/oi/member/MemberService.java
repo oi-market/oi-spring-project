@@ -214,14 +214,28 @@ public class MemberService implements UserDetailsService{
 	}
 
 	public int memberUpdateRadius(MemberVO memberVO,Authentication auth)throws Exception{
+		
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+		
+		memberVO.setUsername(sessionMemberVO.getUsername());
+		int result =memberMapper.memberUpdateRadius(memberVO);
+		sessionMemberVO.setRadius(memberVO.getRadius());
+		
+		return result;
+	}
+	public int memberUpdateLocation(MemberVO memberVO,Authentication auth)throws Exception{
 	
 		
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMemberVO = (MemberVO)user;
 			
 		memberVO.setUsername(sessionMemberVO.getUsername());
-		int result =memberMapper.memberUpdateRadius(memberVO);
-		sessionMemberVO.setRadius(memberVO.getRadius());
+		int result =memberMapper.memberUpdateLocation(memberVO);
+		sessionMemberVO.setLocation(memberVO.getLocation());
+		sessionMemberVO.setWgs84X(memberVO.getWgs84X());
+		sessionMemberVO.setWgs84Y(memberVO.getWgs84Y());
 		
 		return result;
 	}

@@ -72,9 +72,6 @@
       update member set name=#{name},nickName=#{nickName},email=#{email},phone=#{phone} where username=#{username}      
       </update>
       
-       <update id="memberUpdateRadius" parameterType="MemberVO">
-      update member set radius=#{radius} where username=#{username}      
-      </update>
       
       <delete id="memberDelete" parameterType="MemberVO">
 		delete from member where username=#{username}
@@ -103,9 +100,15 @@
 		
 		
       
+      <update id="memberUpdateRadius" parameterType="MemberVO">
+      		update member set radius=#{radius} where username=#{username}      
+      </update>
       
       
-
+      <update id="memberUpdateLocation" parameterType="MemberVO">
+      		update member set location=#{location},wgs84X=#{wgs84X},wgs84Y=#{wgs84Y} where username=#{username}      
+      </update>
+      
 
 
 </mapper>

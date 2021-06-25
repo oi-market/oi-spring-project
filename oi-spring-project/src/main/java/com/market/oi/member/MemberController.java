@@ -445,6 +445,19 @@ public class MemberController {
 		
 		return "redirect:../mypage/village";
 	}
-
-
+	
+	@PostMapping("loacationUpdate")
+	public String memberUpdateLocation(MemberVO memberVO , Authentication authentication) throws Exception{
+		
+		int result = memberService.memberUpdateLocation(memberVO, authentication);
+		
+		
+		return "redirect:../mypage/village";
+	}
+	
+	
+	
+	
+	
+	
 }
