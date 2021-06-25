@@ -22,7 +22,7 @@ public class ChatController {
 	private ChatService chatService;
 	
 	@GetMapping("productList")
-	public ModelAndView getProductList(ProductVO productVO, Authentication auth) throws Exception {
+	public ModelAndView getProductList(ProductVO productVO, ChatVO chatVO, Authentication auth) throws Exception {
 		
 		//session => memberVO
 		UserDetails user = (UserDetails)auth.getPrincipal();
@@ -30,9 +30,7 @@ public class ChatController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		//chatVO.setBuyerID(sessionMember.getUsername());
 		productVO.setUsername(sessionMember.getUsername());
-		//System.out.println("BuyerID : "+sessionMember.getUsername());
 		System.out.println("username : "+sessionMember.getUsername());
 		
 		List<ChatVO> ar = chatService.getProductList(productVO);
@@ -40,6 +38,7 @@ public class ChatController {
 		System.out.println("ar : "+ar.size());
 		
 		mv.addObject("list", ar);
+		mv.addObject("chat", chatVO);
 		mv.setViewName("chat/productList");
 		
 		return mv;
@@ -57,8 +56,13 @@ public class ChatController {
 		
 		ModelAndView mv = new ModelAndView();
 		
+		if(chatVO.getCheck() == null) {
+			chatVO.setCheck(1);
+		}
+		
 		if(chatVO.getCheck() == 1) {
 			chatVO.setSellerID(sessionMember.getUsername());
+			System.out.println("sellerID :"+sessionMember.getUsername());
 		} else{
 			chatVO.setBuyerID(sessionMember.getUsername());
 			System.out.println("productNum : "+chatVO.getProductNum());
@@ -67,7 +71,6 @@ public class ChatController {
 		
 		System.out.println("check : "+chatVO.getCheck());
 		System.out.println("productNum : "+chatVO.getProductNum());
-		//System.out.println("SellerID : ");
 		System.out.println("BuyerID : "+chatVO.getBuyerID());
 		System.out.println("productNum : "+chatVO.getProductNum());
 		

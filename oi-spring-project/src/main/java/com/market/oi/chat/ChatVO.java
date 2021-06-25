@@ -19,7 +19,7 @@ public class ChatVO {
 	private String senderID;
 	private String receiverID;
 	
-	//비교 변수 : 기본값 1 : 판매자
-	private int check = 1;
+	//비교 변수 : 기본값 1 : 판매자 : null값을 받을 수 있게 레퍼런스 타입으로!
+	private Integer check = 1;
 
 }

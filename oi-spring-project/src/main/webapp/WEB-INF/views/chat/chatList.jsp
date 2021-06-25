@@ -57,13 +57,14 @@
 					<c:forEach items="${buyerList}" var="vo" varStatus="i">
 			            <div class="buyer-div">
 			
-			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}">
+			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}&check=${param.check}&sellerID=${vo.sellerID}">
 			                	
 			                	<div class="buyer-profile">
 		
 			                    </div>
 			                
 			                    <div>
+			                    	<c:if test="${param.check == 0}">${vo.buyerName}</c:if>
 			                    	<c:if test="${param.check == 1}">${vo.buyerName}</c:if>
 			                        <c:if test="${param.check == 2}">${vo.sellerName}</c:if>
 			                    </div>

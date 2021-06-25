@@ -26,7 +26,12 @@
 	
 	<select id="getBuyerList" parameterType="ChatVO" resultType="ChatVO">
 		SELECT * FROM chat
-		WHERE sellerID = #{sellerID} AND productNum = #{productNum} AND buyerID =#{buyerID}
+		WHERE sellerID = #{sellerID} AND productNum = #{productNum}
+		<choose>
+			<when test="check == 2">
+				AND buyerID =#{buyerID}
+			</when>
+		</choose>
 		GROUP BY chat.buyerName
 	</select>
 	
