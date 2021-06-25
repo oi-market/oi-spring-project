@@ -79,7 +79,7 @@
 
 				
 				<c:if test="${list.size() eq 0}">
-				<img alt="no-chat" src="../img/no-chat.png" style="width:40%; height: auto;">
+				<img alt="no-chat" src="../img/no-chat.png" style="width:30%; height: auto;">
 				</c:if>
 				
 			</div>
