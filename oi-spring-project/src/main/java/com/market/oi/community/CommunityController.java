@@ -192,7 +192,7 @@ public class CommunityController {
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		//꺼낸 걸 memberVO로 변환해서 넣음
 		MemberVO memberVO = (MemberVO)user;
-		
+		System.out.println(memberVO);
 		communityVO.setWriter(memberVO.getUsername());
 		communityVO.setLocation(memberVO.getLocation());
 		communityVO.setNickName(memberVO.getNickName());

@@ -7,7 +7,7 @@
 <head>
 <c:import url="../template/hm_import.jsp"></c:import>
 <meta charset="UTF-8">
-<title>마이페이지 |오이마켓</title>
+<title>${board}게시판 |오이마켓</title>
 
 <meta name="author" content="wook">
 <meta name="description" content="오이마켓">
@@ -67,8 +67,8 @@
   
  					
 					<form id="frm" action="./list" class="form-inline">
-						<input type="text" class="input--text" name="search" 
-							value="${pager.search}" placeholder="질문을 검색하세요!">
+						<input type="text" class="input--text"  name="search" 
+							 placeholder="질문을 검색하세요!">
 							<input type="hidden" name="curPage" value="1" id="curPage">
 						<div class="input-group-append">
 							<button type="submit"><i class="bi bi-search"></i></button>

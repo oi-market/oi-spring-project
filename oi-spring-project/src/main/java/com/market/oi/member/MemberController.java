@@ -283,7 +283,9 @@ public class MemberController {
 	@PostMapping("setImage")
 	@ResponseBody
 	public String setImage(@Valid MemberVO memberVO,Errors errors, MultipartFile avatar,Authentication authentication) throws Exception{
-		
+		if(avatar.getSize()==0) {
+			return "파일이없습니다.";
+		}
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
 		System.out.println(memberVO);
