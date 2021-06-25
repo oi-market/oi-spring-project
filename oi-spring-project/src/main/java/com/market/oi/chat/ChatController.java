@@ -57,9 +57,17 @@ public class ChatController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		chatVO.setSellerID(sessionMember.getUsername());
-		System.out.println("SellerID : "+sessionMember.getUsername());
-		//chatVO.setBuyerID("username2");
+		if(chatVO.getCheck() == 1) {
+			chatVO.setSellerID(sessionMember.getUsername());
+		} else{
+			chatVO.setBuyerID(sessionMember.getUsername());
+			System.out.println("productNum : "+chatVO.getProductNum());
+			System.out.println("sellerID :"+chatVO.getSellerID());
+		}
+		
+		System.out.println("check : "+chatVO.getCheck());
+		System.out.println("productNum : "+chatVO.getProductNum());
+		//System.out.println("SellerID : ");
 		System.out.println("BuyerID : "+chatVO.getBuyerID());
 		System.out.println("productNum : "+chatVO.getProductNum());
 		

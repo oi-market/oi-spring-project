@@ -55,7 +55,7 @@
 			
 				<div class="buyer-list-div">
 					<c:forEach items="${buyerList}" var="vo" varStatus="i">
-			            <div style="margin-bottom: 8%;">
+			            <div class="buyer-div">
 			
 			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}">
 			                	
@@ -64,7 +64,8 @@
 			                    </div>
 			                
 			                    <div>
-			                        ${vo.buyerName}
+			                    	<c:if test="${param.check == 1}">${vo.buyerName}</c:if>
+			                        <c:if test="${param.check == 2}">${vo.sellerName}</c:if>
 			                    </div>
 							</a>
 						</div>

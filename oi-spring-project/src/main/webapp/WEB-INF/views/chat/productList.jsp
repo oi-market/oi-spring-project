@@ -55,12 +55,20 @@
 			<div class="inner">
 			
 				<!-- button -->
+				<div class="">
+					<a href="./productList?check=1">
+						<img alt="판매" src="../img/chat-sell-button.png" style="width:100px;">
+					</a>
+					<a href="./productList?check=2">
+						<img alt="구매" src="../img/chat-buy-button.png" style="width:100px;">
+					</a>
+				</div>
 
 				<c:forEach items="${list}" var="vo" varStatus="i">
 					
 					<div class="post-list">
-	
-		                <a href="./chatList?productNum=${vo.num}">
+						
+		                <a href="./chatList?productNum=${vo.num}&check=${param.check}&sellerID=${vo.username}">
 		                	<div></div>
 		                    <div> ${vo.title} </div>
 		                </a>
