@@ -62,9 +62,14 @@
      
            
 				 <div class="buttons--modify">
-                   <button class="mybtn">상품 수정</button>
-                   <button class="mybtn">상품 삭제</button>
+                   <button class="mybtn" >상품 수정</button>
+                   <button class="mybtn" id="delBtn">상품 삭제</button>
                </div>
+               
+               <form action="./delete" id="delfrm" method="post">
+				<input type="hidden" name="num" value="${vo.num}">
+				<input type="hidden" name="productNum" value="${vo.num}">
+			</form>
 				
                
                 <div class="product-select__body">

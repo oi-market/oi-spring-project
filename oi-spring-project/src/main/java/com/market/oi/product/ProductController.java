@@ -52,6 +52,11 @@ public class ProductController {
 		return "redirect:./list";
 	}
 	
+	@PostMapping("product/delete")
+	public String getProductDelete(ProductVO productVO,ProductFilesVO productFilesVO)throws Exception{
+		int result = productService.setDeleteProduct(productFilesVO, productVO);
+		return "redirect:./list";
+	}
 	
 	
 	

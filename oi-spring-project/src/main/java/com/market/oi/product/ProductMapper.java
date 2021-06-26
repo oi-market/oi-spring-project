@@ -12,7 +12,6 @@ public interface ProductMapper {
 
 	public List<ProductVO> getProductList(Map<String, Object> map)throws Exception;
 	public Long getTotalCount(Map<String, Object> map)throws Exception;
-	public List<ProductVO> getProductSeparatedList(ProductVO productVO)throws Exception;
 	public ProductVO getProductSelect(ProductVO productVO)throws Exception;
 	public int getProductNum()throws Exception;
 	public int setProductInsert(ProductVO productVO)throws Exception;

@@ -148,11 +148,11 @@
 	
 	<delete id="setDeleteProduct" parameterType="wProductVO">
 		  delete from product
-  		where num=#{num};
+  		where num=#{num}
 	</delete>
 	<delete id="setDeleteFile" parameterType="wProductFilesVO">
 		  delete from productFiles
-  		where productNum=#{productNum};
+  		where productNum=#{productNum}
 	</delete>
 	
 	
@@ -169,7 +169,7 @@
 	</update>
 	
 	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
-		select * from productFiles where productNum=#{productNum};
+		select * from productFiles where productNum=#{productNum}
 	</select>
 	
 

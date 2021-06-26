@@ -33,15 +33,18 @@ public class ProductService {
 	
 	public int setDeleteProduct(ProductFilesVO productFilesVO,ProductVO productVO)throws Exception{
 		
+	
+		List<ProductFilesVO> ar = productMapper.getFileSelect(productFilesVO);
 		int result=productMapper.setDeleteProduct(productVO);
 		result=productMapper.setDeleteFile(productFilesVO);
+	
 		
 //		파라미터를 멀로 넘길까 ,, 둘다 productㅖPk로 넘기면 디비는 해결,,
-		List<ProductFilesVO> ar = productMapper.getFileSelect(productFilesVO);
-		
-		for(ProductFilesVO vo : ar) {
+
 			
-			fileManager.deleteFile(vo.getFileName(), request);
+		for(ProductFilesVO vo : ar) {
+		
+			fileManager.deleteFile(vo.getThumbnail(), request);
 		}
 		
 		return result;

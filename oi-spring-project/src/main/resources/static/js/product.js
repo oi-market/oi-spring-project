@@ -1,3 +1,23 @@
+
+let delBtn = document.getElementById('delBtn');
+let delfrm = document.getElementById('delfrm');
+
+delBtn.addEventListener('click',function(){
+	
+	
+	let result = confirm("지우시겠습니까!");
+		
+
+		if(result==true){
+			delfrm.submit();
+		}else{
+			alert("삭제하지 않습니다.")
+		}
+		
+});
+
+
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -24,3 +44,4 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
 }
+
