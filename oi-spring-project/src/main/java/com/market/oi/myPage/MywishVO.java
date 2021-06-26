@@ -10,6 +10,5 @@ public class MywishVO {
 	private Long productNum;
 	private String title;
 	private int wish;
-	private int sale;
 	
 }

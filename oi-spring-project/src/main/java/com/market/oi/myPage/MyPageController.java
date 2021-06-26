@@ -77,16 +77,16 @@ public class MyPageController {
 	
 	
 	@GetMapping("mypage/purchase-wish")
-	public ModelAndView getwishList(MywishVO mywishVO,Authentication auth) throws Exception {
+	public ModelAndView getwishList(PWishVO pwishVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();		
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 		
-		//나의 관심 list
-		List<MywishVO> wish = myPageService.getMywish(memberVO);
-		mv.addObject("wish", wish);
-		mv.addObject("vo", mywishVO);
+		// 나의 관심 list		
+		List<PWishVO> list = myPageService.getMywish(memberVO);
+		mv.addObject("list", list);
+		mv.addObject("vo", pwishVO);
 		
 		mv.setViewName("mypage/purchase-wish");		
 
@@ -238,16 +238,20 @@ public class MyPageController {
 	
 	//리뷰 작성 페이지
 	@GetMapping("mypage/reviewInsert")
-	public String setReview(Authentication auth) throws Exception {
-		//session 받아오기
-		UserDetails user = (UserDetails)auth.getPrincipal();
-		MemberVO memberVO = (MemberVO)user;
+	public ModelAndView setReview(ModelAndView mv, ProductVO productVO) throws Exception {	
+		productVO = myPageService.reviewInsert(productVO);	
+		mv.addObject("vo", productVO);
+		mv.setViewName("mypage/reviewInsert");
 		
-		return "mypage/reviewInsert";
+		return mv;
 	}
 	
 	@PostMapping("mypage/reviewInsert")
-	public String setReview(ReviewVO reviewVO) throws Exception {
+	public String setReview(Authentication authentication, MemberVO memberVO, ReviewVO reviewVO) throws Exception {
+		//session 받아오기
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
 		int result = myPageService.setReview(reviewVO);
 				
 		return "redirect:review";
@@ -283,7 +287,7 @@ public class MyPageController {
 	}
 	
 	@GetMapping("mypage/profile")
-	public void getProfile(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
+	public ModelAndView getProfile(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
 		
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
@@ -307,6 +311,17 @@ public class MyPageController {
 		System.out.println(score);
 		model.addAttribute("Score",score);
 		model.addAttribute("scoreStar",scoreStar);
+		
+		/* 내가 받은 리뷰 띄워주기 */
+		ReviewVO reviewVO = new ReviewVO();
+		ModelAndView mv = new ModelAndView();
+		List<ReviewVO> my = myPageService.getMyReview(memberVO);
+		mv.addObject("my", my);
+		mv.addObject("vo", reviewVO);		
+		mv.setViewName("mypage/profile");
+		
+		return mv;
+		
 	}
 	
 }

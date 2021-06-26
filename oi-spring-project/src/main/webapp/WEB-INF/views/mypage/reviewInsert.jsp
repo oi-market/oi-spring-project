@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+ <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,20 +65,22 @@
 
 <div class="container">
 	<form id="form" action="./reviewInsert" method="post">
-		
+
+			<sec:authorize access="isAuthenticated()">	
 				<div class="form-group">
-					<label for="writer">작성자</label> 
-					<input type="text" id="writer" name="writer">
+					<label for="writer"></label> 
+					<input type="hidden" id="writer" name="writer" value="<sec:authentication property="principal.username"/>">
 				</div>
-				
+			</sec:authorize>		
+						
 				<div class="form-group">
-					<label for="writer">num</label> 
-					<input type="text" id="productNum" name="productNum">
+					<label for="writer"></label> 
+					<input type="hidden"  id="productNum" name="productNum" value="${vo.num}">
 				</div>
 				
 				<div class="form-group">
 					<label for="writer">reciver</label> 
-					<input type="text" id="reciver" name="reciver">
+					<input type="text" id="reciver" name="reciver" value="${vo.username}">
 				</div>
 	
 				<div class="form-group">
