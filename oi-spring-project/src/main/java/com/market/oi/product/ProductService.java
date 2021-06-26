@@ -1,7 +1,6 @@
 package com.market.oi.product;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -89,6 +88,25 @@ public class ProductService {
 		return productMapper.getProductSelect(productVO);
 	}
 	
+	public Long getTotalCount(Authentication auth,
+							MemberVO memberVO,
+							Pager pager
+							,ProductVO productVO)throws Exception{
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		memberVO = (MemberVO)user;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member",memberVO);
+		map.put("pager",pager);
+		if(productVO.getCategoryNum()==0){
+			productVO= null;
+		}
+		map.put("product",productVO);
+		
+		return productMapper.getTotalCount(map);
+
+	}
 	
 	
 	public List<ProductVO> getProductList(Authentication auth,
@@ -96,23 +114,24 @@ public class ProductService {
 											Pager pager,
 											ProductVO productVO)throws Exception{
 		
-		
+		pager.makeRow();
+		pager.makeNum(getTotalCount(auth, memberVO, pager, productVO));
+		pager.setPerPage(12L);
 
 		//로그인 한 멤버의 location을 가져옴
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		memberVO = (MemberVO)user;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member",memberVO);
-		map.put("pager",pager);
-		
-		System.out.println(productVO.getCategoryNum());
-		
 		if(productVO.getCategoryNum()==0){
 			productVO= null;
 		}
-		System.out.println(productVO==null);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member",memberVO);
+		map.put("pager",pager);
 		map.put("product",productVO);
+		
+		
 		
 		
 		List<ProductVO> ar = productMapper.getProductList(map);

@@ -64,6 +64,23 @@
  </resultMap>
  
 
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="java.lang.Long" >
+		
+		
+			SELECT count(*)
+			from product Pr left join productFiles PF
+			on Pr.num=PF.productNum
+		
+			
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
+                      
+				<if test="product != null">
+				 and  Pr.categoryNum=#{product.categoryNum}
+				 </if> 
+				 
+			 order by num desc
+	
+	</select>
 
 
 
@@ -84,6 +101,7 @@
 				 </if> 
 			group by Pr.num
             order by num desc
+            limit #{pager.startRow},#{pager.perPage}
    		
 	</select>
 	

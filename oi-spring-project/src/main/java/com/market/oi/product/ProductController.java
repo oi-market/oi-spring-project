@@ -29,6 +29,14 @@ public class ProductController {
 												)throws Exception{
 		List<ProductVO> ar = productService.getProductList(auth, memberVO, pager, productVO);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		
+		if(productVO.getCategoryNum()==0){
+			productVO= null;
+		}
+		model.addAttribute("productVO", productVO);
+		
 	}
 		@GetMapping("product/select")
 	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
