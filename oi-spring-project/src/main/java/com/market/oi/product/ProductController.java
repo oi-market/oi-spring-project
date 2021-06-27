@@ -71,7 +71,6 @@ public class ProductController {
 	}
 	
 	
-	
 	@PostMapping("product/fileDelete")
 	public String getProductFileDelete(ProductFilesVO productFilesVO)throws Exception{
 		
@@ -82,5 +81,14 @@ public class ProductController {
 		String rtn = "redirect:./update?num="+productFilesVO.getProductNum();
 		return rtn;
 	}
+	
+	@PostMapping("product/setWish")
+	public String setWish(ProductVO productVO, Authentication auth)throws Exception{
+		
+		int result = productService.setWish(productVO, auth);
+		String rst = "redirect:./select?num="+productVO.getNum();
+		return rst;
+	}
+	
 	
 }

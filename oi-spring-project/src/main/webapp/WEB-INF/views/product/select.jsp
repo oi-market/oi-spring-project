@@ -71,6 +71,10 @@
 				<input type="hidden" name="productNum" value="${vo.num}">
 				</form>
 				
+               <form action="./setWish" id="wishFrm" method="post">
+				<input type="hidden" name="num" value="${vo.num}">
+				</form>
+				
 				
 	
 				
@@ -150,7 +154,7 @@
 
 
                         <div class="product--buttons">
-                            <button class="mybtn zzimBtn">
+                            <button class="mybtn zzimBtn" id="wishBtn">
                                 <i class="bi bi-suit-heart-fill"></i> 찜 
                             </button>
                             <button class="mybtn chatBtn">

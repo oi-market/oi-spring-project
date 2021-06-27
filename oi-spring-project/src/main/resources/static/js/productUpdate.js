@@ -32,7 +32,26 @@ let updateFrm = document.getElementById('updateFrm');
 
 
 updateBtn.addEventListener('click',function(){
-	updateFrm.submit();
+	
+	if(!document.getElementById('attachFileDiv').childNodes[2]){
+		alert('사진을 넣어주세요!');
+	}
+	if(!document.getElementById('attachFileDiv').childNodes[2].childNodes[0]){
+		alert('사진을 넣어주세요!');
+	}
+	
+	if(	
+		(document.getElementById('product-title-input').value!="")&&
+		(document.getElementById('attachFileDiv').childNodes[2].childNodes[0].value!="")&&
+		(document.getElementById('amount-scale').value!="")&&
+		(document.getElementById('product-category-input').value!="")&&
+		(document.getElementById('product-contents-input').value!="")
+		
+	){
+		updateFrm.submit();
+		alert("상품 생성 성공");
+	}else{
+		alert("항목들을 모두 채워주십시오");
+	}
 });
-
 

@@ -178,7 +178,21 @@ public class ProductService {
 	}
 
 	
-	
+	public int setWish(ProductVO productVO,Authentication auth)throws Exception{
+		
+		productVO = productMapper.getProductSelect(productVO);
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+		
+		//위시리스트에 내 아이디를 넘기기 위해 productVO에 내 아이디 담음
+		productVO.setUsername(sessionMemberVO.getUsername());
+		
+		System.out.println(productVO);
+		
+		return productMapper.setWish(productVO);
+		
+		
+	}
 	
 	
 }
