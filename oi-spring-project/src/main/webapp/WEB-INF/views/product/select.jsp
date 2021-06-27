@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -61,21 +62,27 @@
 
      
            
-				 <div class="buttons--modify">
+				<div class="buttons--modify">
 				   <a class="mybtn" href="./update?num=${vo.num}">상품수정</a>
                    <button class="mybtn" id="delBtn">상품 삭제</button>
                </div>
                
                <form action="./delete" id="delfrm" method="post">
-				<input type="hidden" name="num" value="${vo.num}">
-				<input type="hidden" name="productNum" value="${vo.num}">
+					<input type="hidden" name="num" value="${vo.num}">
+					<input type="hidden" name="productNum" value="${vo.num}">
 				</form>
 				
                <form action="./setWish" id="wishFrm" method="post">
-				<input type="hidden" name="num" value="${vo.num}">
+					<input type="hidden" name="num" value="${vo.num}">
 				</form>
 				
-				
+				<form action="../chat/chatInsert" method="get" id="chatFrm">
+					<input type="hidden" name="productNum" value="${vo.num}">
+					<input type="hidden" name="sellerID" value="${vo.members[0].username}">
+					<input type="hidden" name="sellerName" value="${vo.members[0].nickName}">
+					<input type="hidden" name="buyerID" value=<sec:authentication property="principal.username"/>>
+					<input type="hidden" name="buyerName" value=<sec:authentication property="principal.nickName"/>>			
+				</form>
 	
 				
                
@@ -130,7 +137,7 @@
                                     </div>
                                     <div class="user--namebox">
                                         <div class="user--name">
-                                             ${vo.members[0].username}
+                                             ${vo.members[0].nickName}
                                         </div>
                                         <div class="user--location">
                                             ${vo.location}
@@ -157,7 +164,7 @@
                             <button class="mybtn zzimBtn" id="wishBtn">
                                 <i class="bi bi-suit-heart-fill"></i> 찜 
                             </button>
-                            <button class="mybtn chatBtn">
+                            <button class="mybtn chatBtn" id="chatBtn">
                                 채팅하기
                             </button>
                         </div>

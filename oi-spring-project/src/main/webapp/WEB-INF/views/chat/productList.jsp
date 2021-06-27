@@ -41,6 +41,8 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="../css/neighborhood.css">
     <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/chat.css">
+    
     <!-- jsp로 바꿀때 경로 신경쓰기 -->
 
 <meta charset="UTF-8">
@@ -66,14 +68,14 @@
 
 				<c:forEach items="${list}" var="vo" varStatus="i">
 					
-					<div class="post-list">
+		           <a href="./chatList?productNum=${vo.num}&check=${param.check}&sellerID=${vo.username}">
+						<div class="post-list">
 						
-		                <a href="./chatList?productNum=${vo.num}&check=${param.check}&sellerID=${vo.username}">
-		                	<div></div>
-		                    <div> ${vo.title} </div>
-		                </a>
+		                	
+		                    <div id="chatList"> ${vo.title} </div>
 	                
-	            	</div>
+	            		</div>
+		           </a>
 				
 				</c:forEach>
 

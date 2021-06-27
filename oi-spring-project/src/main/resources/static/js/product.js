@@ -3,7 +3,8 @@ let delBtn = document.getElementById('delBtn');
 let delfrm = document.getElementById('delfrm');
 let wishBtn = document.getElementById('wishBtn');
 let wishFrm = document.getElementById('wishFrm');
-
+let chatBtn = document.getElementById('chatBtn');
+let chatFrm = document.getElementById('chatFrm');
 
 delBtn.addEventListener('click',function(){	
 	let result = confirm('지우시겠습니까!');
@@ -21,6 +22,10 @@ wishBtn.addEventListener('click',function(){
 		}else{
 			alert('추가하지 않았습니다.')
 		}
+});
+
+chatBtn.addEventListener('click',function(){
+	chatFrm.submit();
 });
 
 
