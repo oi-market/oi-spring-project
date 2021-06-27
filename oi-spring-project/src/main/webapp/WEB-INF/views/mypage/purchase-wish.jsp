@@ -118,21 +118,21 @@
 
                     <div class="on-sale">
 
-                        <c:forEach var="vo" items="${wish}" varStatus="true">
+                        <c:forEach var="vo" items="${list}" varStatus="true">
                       <div class="product">
 
-							<!-- 즐겨찾기의 데이터들만 채워진 빨간 하트 -->
-                            <c:if test="${vo.wish eq 1}">
+							<!-- 즐겨찾기의 데이터들만 채워진 빨간 하트 
+                            <c:if test="${vo.mywishVO.wish eq 1}">
                             <span style="color:red; text-align: center;"><button class="fas fa-heart fa-lg"></button></span>  
-                            </c:if>
+                            </c:if> -->
                             <div>
-                                <a href="./productSelect?num=${vo.num}">사진</a>
+                                <a href="./productSelect?num=${vo.productVO.num}">사진</a>
                             </div>
 
                             <div class="product-description">
-                                <p class="review-name">${vo.title}</p>
-                                <p class="review-location">${p.location} · ${p.regDate} </p>
-                                <p>가격</p>
+                                <p class="review-name">${vo.productVO.title}</p>
+                                <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate} </p>
+                                <p>${vo.productVO.price}</p>
                             </div>
 
                             <div class="inner__dropdown">
@@ -142,7 +142,7 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./setWishDelete?productNum=${vo.productNum}">관심목록 해제</a>
+                                    <a href="./setWishDelete?productNum=${vo.mywishVO.productNum}">관심목록 해제</a>
                                 </div>
 
                             </div>

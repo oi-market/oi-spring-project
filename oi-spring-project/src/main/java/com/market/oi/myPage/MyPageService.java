@@ -27,8 +27,8 @@ public class MyPageService {
 		return myPageMapper.getSellList(memberVO);
 	}
 	
-	public ProductVO getInfoList(MemberVO memberVO) throws Exception {
-		return myPageMapper.getInfoList(memberVO);
+	public List<PWishVO> getMywish(MemberVO memberVO) throws Exception {
+		return myPageMapper.getMywish(memberVO);
 	}
 	
 	public int setHitUpdate(ProductVO productVO) throws Exception {
@@ -59,10 +59,6 @@ public class MyPageService {
 		return myPageMapper.getBuyList(memberVO);
 	}
 	
-	public List<MywishVO> getMywish(MemberVO memberVO) throws Exception {
-		return myPageMapper.getMywish(memberVO);
-	}
-	
 	public int setWishInsert(ProductVO productVO) throws Exception {
 		return myPageMapper.setWishInsert(productVO);
 	}
@@ -87,6 +83,10 @@ public class MyPageService {
 		return myPageMapper.getReviewList(memberVO);
 	}
 	
+	public List<ReviewVO> getMyReview(MemberVO memberVO) throws Exception{
+		return myPageMapper.getMyReview(memberVO);
+	}
+	
 	public ReviewVO getReviewSelect(ReviewVO reviewVO) throws Exception {
 		return myPageMapper.getReviewSelect(reviewVO);
 	}
@@ -101,6 +101,10 @@ public class MyPageService {
 	
 	public int setReview(ReviewVO reviewVO) throws Exception {
 		return myPageMapper.setReview(reviewVO);
+	}
+	
+	public ProductVO reviewInsert(ProductVO productVO) throws Exception {
+		return myPageMapper.reviewInsert(productVO);
 	}
 	
 }

@@ -32,6 +32,7 @@ attachFile = {
         file.type = 'file';
         file.name = 'files';
         file.id = 'fileField' + o.idx;
+		file.accept = 'image/*';
         file.setAttribute('onchange',`loadImg(event,${o.idx})`);
         // file.style.display = 'none';
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
          <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+         <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -73,12 +74,40 @@
 
                        
                         <div>
-                            (멤버에서 받아오는 동네)
-                            <!--${member.location}-->
+                             <sec:authentication property="principal.location"/>
                         </div>
                        
                   
                     </div>
+                    
+                    
+                    <div class="title-underline">
+                        <p>
+                            현재 위치 근처 물건 보기
+                        </p>
+                    </div>
+                    <div class="on-sale">
+
+                       
+                        <div>
+                        
+								<form action="../member/radiusUpdate" method="post">
+                        		<p>현재 거리 :   <sec:authentication property="principal.radius"/>KM </p>
+								<select name="radius" id="radius--input">
+									<option value="10">10KM</option>
+									<option value="30">30KM</option>
+									<option value="50" selected="selected">50KM</option>
+									<option value="70">70KM</option>
+								</select>      
+								<button type="submit">거리 설정</button>                      
+								</form>
+
+                        </div>
+                       
+                  
+                    </div>
+                    
+                    
                     <div class="title-underline">
                         <p>
                             동네 변경
@@ -87,19 +116,24 @@
                     <!-- 반복문으로 최대 3개만 불러오기 -->
                     <div class="on-sale">
 
-                        <!-- 1안 주소api 사용,,
-                        <input type="text" id="sample3_postcode" placeholder="우편번호">
-                        <input type="button" onclick="sample3_execDaumPostcode()" value="우편번호 찾기"><br>
-                        <input type="text" id="sample3_address" placeholder="주소"><br>
-                        <input type="text" id="sample3_detailAddress" placeholder="상세주소">
-                        <input type="text" id="sample3_extraAddress" placeholder="참고항목">
-                        <button> 동네 바꾸기 </button>
-                        -->
+                       
+                      
+						
+						<form action="../member/loacationUpdate" method="post" id="addressUpdateFrm">
+                       
 
-                    
-                        <!-- 2안 지오로케이션 등 현재 위도 경도, 혹은 위치 활용해서 주소 뽑기,,-->
-                        <button> 현재 위치로 동네 바꾸기 </button>
+	
+                        <input id="member_post" type="hidden" placeholder="우편번호" readonly class="col-12 input--text">
+						<input class="form-control" id="member_addr" name="location" type="text" placeholder="주소" readonly>
+						<input class="input--text" type="hidden" id="wgs84X" name="wgs84X">
+			    		<input class="input--text" type="hidden" id="wgs84Y" name="wgs84Y">
+                        <button type="button" class="btn btn-default mybtn findAdress sign-in" onclick="findAddr()"
+							style="border: 1px solid black;">
 
+							<i class="fa fa-search"></i> 주소 찾기
+						</button>
+                    	<input type="submit" class="mybtn" value="주소 바꾸기">
+                       </form>
         
                     </div>
                     
@@ -119,7 +153,10 @@
 
      </div>
      <script src="../js/main.js"></script>
+     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APPKEY&libraries=services"></script>
      <script src="../js/myPage.js"></script>
+
 
 
 </body>

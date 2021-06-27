@@ -14,7 +14,7 @@ public interface MyPageMapper {
 	
 	public List<ProductVO> getSellList(MemberVO memberVO);
 	
-	public ProductVO getInfoList(MemberVO memberVO);
+	public List<PWishVO> getMywish(MemberVO memberVO);
 	
 	public int setHitUpdate(ProductVO productVO) throws Exception;
 	
@@ -30,8 +30,6 @@ public interface MyPageMapper {
 	
 	public List<ProductVO> getBuyList(MemberVO memberVO) throws Exception;
 	
-	public List<MywishVO> getMywish(MemberVO memberVO) throws Exception;
-	
 	public int setWishInsert(ProductVO productVO) throws Exception;
 	
 	public int setWishDelete(MywishVO mywishVO) throws Exception;
@@ -44,6 +42,8 @@ public interface MyPageMapper {
 	
 	public List<ReviewVO> getReviewList(MemberVO memberVO) throws Exception;
 	
+	public List<ReviewVO> getMyReview(MemberVO memberVO) throws Exception;
+	
 	public ReviewVO getReviewSelect(ReviewVO reviewVO) throws Exception;
 	
 	public List<ReviewVO> getSeller(ReviewVO reviewVO) throws Exception;
@@ -51,4 +51,6 @@ public interface MyPageMapper {
 	public List<ReviewVO> getBuyer(ReviewVO reviewVO) throws Exception;
 	
 	public int setReview(ReviewVO reviewVO) throws Exception;
+	
+	public ProductVO reviewInsert(ProductVO productVO) throws Exception;
 }

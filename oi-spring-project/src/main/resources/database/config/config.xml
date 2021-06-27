@@ -13,6 +13,7 @@
 		<typeAlias type="com.market.oi.myPage.OrdercompleteVO" alias="OrdercompleteVO"/>
 		<typeAlias type="com.market.oi.myPage.MywishVO" alias="MywishVO"/>
 		<typeAlias type="com.market.oi.myPage.ReviewVO" alias="ReviewVO"/>
+		<typeAlias type="com.market.oi.myPage.PWishVO" alias="PWishVO"/>
 
 		<typeAlias type="com.market.oi.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.market.oi.member.RoleVO" alias="RoleVO"/>
