@@ -1,7 +1,6 @@
 package com.market.oi.product;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -34,21 +33,49 @@ public class ProductService {
 	
 	public int setDeleteProduct(ProductFilesVO productFilesVO,ProductVO productVO)throws Exception{
 		
+	
+		List<ProductFilesVO> ar = productMapper.getFileSelect(productFilesVO);
 		int result=productMapper.setDeleteProduct(productVO);
 		result=productMapper.setDeleteFile(productFilesVO);
+	
 		
 //		파라미터를 멀로 넘길까 ,, 둘다 productㅖPk로 넘기면 디비는 해결,,
-		List<ProductFilesVO> ar = productMapper.getFileSelect(productFilesVO);
-		
-		for(ProductFilesVO vo : ar) {
+
 			
-			fileManager.deleteFile(vo.getFileName(), request);
+		for(ProductFilesVO vo : ar) {
+		
+			fileManager.deleteFile(vo.getThumbnail(), request);
 		}
 		
 		return result;
 	}
 	
-	
+	public int setProductUpdate(ProductVO productVO,MultipartFile[] files)throws Exception{
+		
+		int result = productMapper.setProductUpdate(productVO);
+		
+		if(files!=null) {
+			System.out.println(files);
+			for(MultipartFile mf: files) {
+						
+						ProductFilesVO productFileVO = new ProductFilesVO();
+						String fileName = fileManager.uploadFile( mf,request);	
+						
+						//오토 인크리먼트 된걸 여기 넣어줘야함
+						productFileVO.setProductNum(productVO.getNum());
+						productFileVO.setThumbnail(fileName);
+						String uuidFileName = fileName.substring(0, 12) + fileName.substring(14);
+						
+						productFileVO.setFileName(uuidFileName);
+						productFileVO.setOgName(mf.getOriginalFilename());
+						productMapper.setFileInsert(productFileVO);
+									
+					}
+		}
+			
+		
+		return result;
+	}
 	
 	
 	public int setProductInsert(ProductVO productVO,MultipartFile[] files)throws Exception{
@@ -89,6 +116,25 @@ public class ProductService {
 		return productMapper.getProductSelect(productVO);
 	}
 	
+	public Long getTotalCount(Authentication auth,
+							MemberVO memberVO,
+							Pager pager
+							,ProductVO productVO)throws Exception{
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		memberVO = (MemberVO)user;
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member",memberVO);
+		map.put("pager",pager);
+		if(productVO.getCategoryNum()==0){
+			productVO= null;
+		}
+		map.put("product",productVO);
+		
+		return productMapper.getTotalCount(map);
+
+	}
 	
 	
 	public List<ProductVO> getProductList(Authentication auth,
@@ -96,94 +142,57 @@ public class ProductService {
 											Pager pager,
 											ProductVO productVO)throws Exception{
 		
-		
+		pager.makeRow();
+		pager.makeNum(getTotalCount(auth, memberVO, pager, productVO));
+		pager.setPerPage(12L);
 
 		//로그인 한 멤버의 location을 가져옴
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		memberVO = (MemberVO)user;
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("member",memberVO);
-		map.put("pager",pager);
-		
-		System.out.println(productVO.getCategoryNum());
-		
 		if(productVO.getCategoryNum()==0){
 			productVO= null;
 		}
-		System.out.println(productVO==null);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("member",memberVO);
+		map.put("pager",pager);
 		map.put("product",productVO);
 		
 		
+		
+		
 		List<ProductVO> ar = productMapper.getProductList(map);
-		
-		
-		
-		
-		//ar은 db에 있는 모든 제품을 가져옴
-//		
-//		//거리에 따라 비교해야겠지
-//		Double distance=0.0;
-//		
-//		//로그인 한 멤버의 location을 가져옴
-//		UserDetails user = (UserDetails)auth.getPrincipal();
-//		MemberVO sessionMember = (MemberVO)user;
-//		
-//		LocationVO memberLocationVO = new LocationVO();
-//		memberLocationVO.setLocation(sessionMember.getLocation());
-//		memberLocationVO = locationMapper.searchLocation(memberLocationVO);
-//		Double x1 = memberLocationVO.getWgs84X();
-//		Double y1 = memberLocationVO.getWgs84Y();
-//		
-//		//반복문을 돌려 리스트 안의 vo 즉 각각의 상품과 멤버와의 거리를 비교해 일정 거리 이상일 경우 리스트에서 제거 
-//		
-//		Iterator<ProductVO> iter = ar.iterator();
-//			while(iter.hasNext()) {
-//				
-//				ProductVO productVO = iter.next();
-//				LocationVO productLocationVO = new LocationVO();
-//				productLocationVO.setLocation(productVO.getLocation());
-//				productLocationVO = locationMapper.searchLocation(productLocationVO);
-//				Double x2 = productLocationVO.getWgs84X();
-//				Double y2 = productLocationVO.getWgs84Y();
-//				
-//				distance = this.getDistance(x2, y2, x1, y1);
-//				
-//				
-//				
-//				if(distance > 50) iter.remove();
-//					
-//				}
-//
-//			
-//			
-		
-		
+			
 		return ar;
 	}
 	
 	
-	
-	
-	
-	
-	public Double deg2rad(Double deg) {
-		return deg * (Math.PI/180);
+	public ProductFilesVO getFileSelectFromFileNum(ProductFilesVO productFilesVO)throws Exception{
+		return productMapper.getFileSelectFromFileNum(productFilesVO);
 	}
-	
-	//wgs84좌표계에서 거리를 km로 변환
-	public Double getDistance(Double lat1,Double lng1,Double lat2,Double lng2) {
+	public int setDeleteFileOne(ProductFilesVO productFilesVO)throws Exception{
+		fileManager.deleteFile(productFilesVO.getThumbnail(), request);
 		
-		Double R = 6371.0;
-		Double dLat = deg2rad(lat2-lat1);  // deg2rad below
-		Double dLon = deg2rad(lng2-lng1);
-		Double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon/2) * Math.sin(dLon/2);
-		Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-	    Double d = R * c; // Distance in km
-		    return d;
+		return productMapper.setDeleteFileOne(productFilesVO);
 	}
+
 	
-	
+	public int setWish(ProductVO productVO,Authentication auth)throws Exception{
+		
+		productVO = productMapper.getProductSelect(productVO);
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemberVO = (MemberVO)user;
+		
+		//위시리스트에 내 아이디를 넘기기 위해 productVO에 내 아이디 담음
+		productVO.setUsername(sessionMemberVO.getUsername());
+		
+		System.out.println(productVO);
+		
+		return productMapper.setWish(productVO);
+		
+		
+	}
 	
 	
 }

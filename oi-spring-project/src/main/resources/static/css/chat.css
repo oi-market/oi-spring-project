@@ -4,14 +4,16 @@
 	
 	.body-div{
 		background-color:#BDECB6;
-		padding-top:7%;	
+		
+		margin-top:81px;	
+		
 	}
 	
 	.section-div{
 		background-color:white;
 		width: 80%;
 		height:400px;
-		margin-left:10%;
+		margin: 60px auto;
 		padding: 2%;
 		border-radius: 2em;
 	}
@@ -78,9 +80,10 @@
 	/* chat Select css */
 	
 	.chat-select-body{
+		margin-top: 80px;
 		padding: 2%;
 	}
-	
+/* 	
 	.chat-check-img{
 		background-color:white;
 		width:40%;
@@ -88,7 +91,7 @@
 		display:inline-block;
 		margin-bottom: 2%;
 		border-radius: 10px;
-	}
+	} */
 	
 	.chat-send-re-img{
 		width:70%;
@@ -115,25 +118,38 @@
 	/* ==================================*/
 	/* chat Select css */
 	
+	/* .img--wraper{
+		width: 100px;
+	} */
+
 	.chat-insert-img{
-		width:40%;
-		height: auto;
-		margin-left:2%;
+		width: 100px;
+		margin: 10px auto;
+		display: block;
 		background-color:white;
 		border-radius: 10px;
-	}
+	} 
 	
 	.chat-insert-contents{
+		border: none;
+		border-radius: 5px;
+		display: block;
 		width: 80%;
 		height: 150px;
-		margin-left:2%;
-		margin-top: 2%;
+		resize: none;
+		margin: 15px auto;
 	}
 	
-	.chat-send-button{
-		width: 20%;
-		margin-top: 3%;
-		margin-left: 33%;
-	}
+	 .chat-send-button{
+		display: flex;
+		width: 100px;
+		margin: 10px auto;
+	} 
 	
+	
+	
+	
+	#chatList{
+	color: #333;
+	}
 	

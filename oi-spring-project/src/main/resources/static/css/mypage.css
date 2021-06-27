@@ -170,6 +170,9 @@
 .user-picture + strong{
     margin :7px 0;
 }
+.user-name strong{
+    margin :7px 0;
+}
 
 .mybtn--secondary{
     color:#333;

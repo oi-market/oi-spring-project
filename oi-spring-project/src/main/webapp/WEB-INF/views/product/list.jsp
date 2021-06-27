@@ -79,7 +79,7 @@
                             <div class="product--amount">${vo.price}</div>
                             <div class="product--like">
                                 <i class="bi bi-suit-heart"></i>
-                                ${vo.like}</div>
+                                ${vo.wish}</div>
                         </div>
                     </div>  
                 </a>
@@ -120,44 +120,83 @@
   </ul>
 </div>
   
+  
+  
+  
  --%>
-
 
 
             <div class="paging-nav">
             
             
                 <ul>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-chevron-left"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            1
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            2
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            3
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            4
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-chevron-right"></i>
-                        </a>
-                    </li>
+                
+                	
+                
+                	<c:if test="${pager.pre}">                	
+                		<c:choose>
+                	
+                			<c:when test="${empty productVO}">
+			                    <li>
+			                        <a href="./list?curPage=${pager.startNum-1}">
+			                            <i class="bi bi-chevron-left"></i>
+			                        </a>
+			                    </li>
+                   			 </c:when>
+                    
+                			<c:when test="${not empty productVO}">
+			                    <li>
+			                        <a href="./list?categoryNum=${productVO.categoryNum}&curPage=${pager.startNum-1}">
+			                            <i class="bi bi-chevron-left"></i>
+			                        </a>
+			                    </li>
+                    		</c:when>
+                    
+                	    </c:choose>
+                    </c:if>
+                    
+                    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+                  	  <c:choose>
+                    	<c:when test="${empty productVO}">
+		                    <li>
+		                        <a href="./list?curPage=${i}">
+		                            ${i}
+		                        </a>
+		                    </li>
+                    	</c:when>
+                    	
+                    	<c:when test="${not empty productVO}">
+		                    <li>
+		                        <a href="./list?categoryNum=${productVO.categoryNum}&curPage=${i}">
+		                            ${i}
+		                        </a>
+		                    </li>
+                    	</c:when>
+                    	
+                    </c:choose>
+                   </c:forEach>
+                    
+                 <c:if test="${pager.next}">
+                 	<c:choose>
+	                 	<c:when test="${empty productVO}">
+		                    <li>
+		                        <a href="./list?curPage=${pager.lastNum+1}">
+		                            <i class="bi bi-chevron-right"></i>
+		                        </a>
+		                    </li>
+		                </c:when>
+		                
+	                 	<c:when test="${not empty productVO}">
+		                    <li>
+		                        <a href="./list?categoryNum=${productVO.categoryNum}&curPage=${pager.lastNum+1}">
+		                            <i class="bi bi-chevron-right"></i>
+		                        </a>
+		                    </li>
+		                </c:when>
+	                </c:choose>
+  				</c:if>
+   
+   				
    
                 </ul>
                 

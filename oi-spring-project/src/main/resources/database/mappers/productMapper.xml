@@ -6,28 +6,7 @@
 <mapper namespace="com.market.oi.product.ProductMapper">
 
 	 
- <resultMap type="wProductVO" id="ProductResult">
- 	<id property="num" column="num"></id>
- 	<result property="title" column="title"></result>
- 	<result property="categoryNum" column="categoryNum"></result>
- 	<result property="price" column="price"></result>
- 	<result property="contents" column="contents"></result>
- 	<result property="sale" column="sale"></result>
- 	<result property="regDate" column="regDate"></result>
- 	<result property="location" column="location"></result>
- 	<result property="hit" column="hit"></result>
- 	<result property="like" column="like"></result>
- 	
- 	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
- 		<id property="fileNum" column="fileNum"/>
- 		<result property="productNum" column="productNum"/>
- 		<result property="thumbnail" column="thumbnail"/>
- 		<result property="fileName" column="fileName"/>
- 		<result property="ogName" column="ogName"/>
- 	</collection>
- 
- 
- </resultMap>
+
  
  
  <resultMap type="wProductVO" id="ProductSelectResult">
@@ -40,7 +19,7 @@
  	<result property="regDate" column="regDate"></result>
  	<result property="location" column="location"></result>
  	<result property="hit" column="hit"></result>
- 	<result property="like" column="like"></result>
+ 	<result property="wish" column="wish"></result>
  	
  	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
  		<id property="fileNum" column="fileNum"/>
@@ -59,11 +38,63 @@
  		<result property="phone" column="phone"/>
  		<result property="location" column="location"/>
  	</collection>
+ </resultMap>
  
- 
+  <resultMap type="wProductVO" id="SelectCategoryResult">
+ 	<id property="num" column="num"></id>
+ 	<result property="title" column="title"></result>
+ 	<result property="categoryNum" column="categoryNum"></result>
+ 	<result property="price" column="price"></result>
+ 	<result property="contents" column="contents"></result>
+ 	<result property="sale" column="sale"></result>
+ 	<result property="regDate" column="regDate"></result>
+ 	<result property="location" column="location"></result>
+ 	<result property="hit" column="hit"></result>
+ 	<result property="wish" column="wish"></result>
+ 	
+ 	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
+ 		<id property="fileNum" column="fileNum"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="thumbnail" column="thumbnail"/>
+ 		<result property="fileName" column="fileName"/>
+ 		<result property="ogName" column="ogName"/>
+ 	</collection>
+ 	
+ 	<collection property="members" javaType="java.util.List" ofType="MemberVO">
+ 		<id property="username" column="username"/>
+ 		<result property="password" column="password"/>
+ 		<result property="name" column="name"/>
+ 		<result property="nickName" column="nickName"/>
+ 		<result property="email" column="email"/>
+ 		<result property="phone" column="phone"/>
+ 		<result property="location" column="location"/>
+ 	</collection>
+ 	
+ 	<collection property="productCategories" javaType="java.util.List" ofType="ProductCategoryVO">
+ 		<id property="categoryNumPK" column="categoryNumPK"/>
+ 		<result property="category" column="category"/>
+ 	</collection>
+ 	
  </resultMap>
  
 
+	<select id="getTotalCount" parameterType="java.util.Map" resultType="java.lang.Long" >
+		
+		
+			SELECT count(*)
+			from product Pr left join productFiles PF
+			on Pr.num=PF.productNum
+		
+			
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
+                      
+				<if test="product != null">
+				 and  Pr.categoryNum=#{product.categoryNum}
+				 </if> 
+				 
+			 order by num desc
+	
+	</select>
 
 
 
@@ -84,17 +115,20 @@
 				 </if> 
 			group by Pr.num
             order by num desc
+            limit #{pager.startRow},#{pager.perPage}
    		
 	</select>
 	
 	
-	<select id="getProductSelect" parameterType="wProductVO" resultMap="ProductSelectResult">
-		select A.*,M.*
+	<select id="getProductSelect" parameterType="wProductVO" resultMap="SelectCategoryResult">
+	select *
 		from 
 			(select *
-			from product P left join productFiles PF
-			on P.num=PF.productNum) as A left join member M
-   		on A.username =  M.username
+			from (SELECT * from product left join productCategory
+				on product.categoryNum=productCategory.categoryNumPK
+				)P left join productFiles PF
+				on P.num=PF.productNum) as A left join member M
+				on A.username =  M.username
    		where A.num=#{num}
 	</select>
 
@@ -130,11 +164,11 @@
 	
 	<delete id="setDeleteProduct" parameterType="wProductVO">
 		  delete from product
-  		where num=#{num};
+  		where num=#{num}
 	</delete>
 	<delete id="setDeleteFile" parameterType="wProductFilesVO">
 		  delete from productFiles
-  		where productNum=#{productNum};
+  		where productNum=#{productNum}
 	</delete>
 	
 	
@@ -146,24 +180,30 @@
 	</update>
 
 
-	<update id="setUpdate" parameterType="wproductVO">
-		update product set title=#{title}, contents=#{contents} where num=#{num}
+	<update id="setProductUpdate" parameterType="wproductVO">
+		update product set title=#{title},categoryNum=#{categoryNum},price=#{price},contents=#{contents} where num=#{num}
 	</update>
 	
 	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
-		select * from productFiles where productNum=#{productNum};
+		select * from productFiles where productNum=#{productNum}
 	</select>
 	
+	
+	<select id="getFileSelectFromFileNum" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where fileNum=#{fileNum}
+	</select>
+	<delete id="setDeleteFileOne" parameterType="wProductFilesVO">
+		  delete from productFiles
+  		where fileNum=#{fileNum}
+	</delete>
+	
 
-<!-- 	select A.*,PC.*
-		from 
-			(select *
-			from product P left join productFiles PF
-			on P.num=PF.productNum) as A left join productCategory PC
-   		on A.categoryNum = PC.categoryNum
-   		limit 0,10; -->
+	<insert id="setWish"  parameterType="WproductVO" >
 
-
+	insert into MyWish (username,productNum,amount)
+				 values(#{username},#{num},#{price})
+									
+	</insert>
 
 		
 

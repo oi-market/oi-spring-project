@@ -29,6 +29,14 @@ public class ProductController {
 												)throws Exception{
 		List<ProductVO> ar = productService.getProductList(auth, memberVO, pager, productVO);
 		model.addAttribute("list", ar);
+		model.addAttribute("pager", pager);
+		
+		
+		if(productVO.getCategoryNum()==0){
+			productVO= null;
+		}
+		model.addAttribute("productVO", productVO);
+		
 	}
 		@GetMapping("product/select")
 	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
@@ -44,7 +52,43 @@ public class ProductController {
 		return "redirect:./list";
 	}
 	
+	@PostMapping("product/delete")
+	public String getProductDelete(ProductVO productVO,ProductFilesVO productFilesVO)throws Exception{
+		int result = productService.setDeleteProduct(productFilesVO, productVO);
+		return "redirect:./list";
+	}
 	
+	
+	@GetMapping("product/update")
+	public void getProductUpdate(ProductVO productVO,Model model)throws Exception{
+		productVO = productService.getProductSelect(productVO);
+		model.addAttribute("vo", productVO);
+	}
+	@PostMapping("product/update")
+	public String setProductUpdate(ProductVO productVO,MultipartFile[] files)throws Exception{
+		int result = productService.setProductUpdate(productVO, files);
+		return "redirect:./list";
+	}
+	
+	
+	@PostMapping("product/fileDelete")
+	public String getProductFileDelete(ProductFilesVO productFilesVO)throws Exception{
+		
+		productFilesVO = productService.getFileSelectFromFileNum(productFilesVO);
+		int result = productService.setDeleteFileOne(productFilesVO);
+		
+		
+		String rtn = "redirect:./update?num="+productFilesVO.getProductNum();
+		return rtn;
+	}
+	
+	@PostMapping("product/setWish")
+	public String setWish(ProductVO productVO, Authentication auth)throws Exception{
+		
+		int result = productService.setWish(productVO, auth);
+		String rst = "redirect:./select?num="+productVO.getNum();
+		return rst;
+	}
 	
 	
 }
