@@ -27,6 +27,7 @@ public class ProductVO {
 	
 	private List<ProductFilesVO> productFiles;
 	private List<MemberVO> members;
+	private List<ProductCategoryVO> productCategories;
 	
 
 	

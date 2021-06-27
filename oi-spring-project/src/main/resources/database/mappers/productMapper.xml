@@ -6,28 +6,7 @@
 <mapper namespace="com.market.oi.product.ProductMapper">
 
 	 
- <resultMap type="wProductVO" id="ProductResult">
- 	<id property="num" column="num"></id>
- 	<result property="title" column="title"></result>
- 	<result property="categoryNum" column="categoryNum"></result>
- 	<result property="price" column="price"></result>
- 	<result property="contents" column="contents"></result>
- 	<result property="sale" column="sale"></result>
- 	<result property="regDate" column="regDate"></result>
- 	<result property="location" column="location"></result>
- 	<result property="hit" column="hit"></result>
- 	<result property="like" column="like"></result>
- 	
- 	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
- 		<id property="fileNum" column="fileNum"/>
- 		<result property="productNum" column="productNum"/>
- 		<result property="thumbnail" column="thumbnail"/>
- 		<result property="fileName" column="fileName"/>
- 		<result property="ogName" column="ogName"/>
- 	</collection>
- 
- 
- </resultMap>
+
  
  
  <resultMap type="wProductVO" id="ProductSelectResult">
@@ -59,8 +38,43 @@
  		<result property="phone" column="phone"/>
  		<result property="location" column="location"/>
  	</collection>
+ </resultMap>
  
- 
+  <resultMap type="wProductVO" id="SelectCategoryResult">
+ 	<id property="num" column="num"></id>
+ 	<result property="title" column="title"></result>
+ 	<result property="categoryNum" column="categoryNum"></result>
+ 	<result property="price" column="price"></result>
+ 	<result property="contents" column="contents"></result>
+ 	<result property="sale" column="sale"></result>
+ 	<result property="regDate" column="regDate"></result>
+ 	<result property="location" column="location"></result>
+ 	<result property="hit" column="hit"></result>
+ 	<result property="like" column="like"></result>
+ 	
+ 	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
+ 		<id property="fileNum" column="fileNum"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="thumbnail" column="thumbnail"/>
+ 		<result property="fileName" column="fileName"/>
+ 		<result property="ogName" column="ogName"/>
+ 	</collection>
+ 	
+ 	<collection property="members" javaType="java.util.List" ofType="MemberVO">
+ 		<id property="username" column="username"/>
+ 		<result property="password" column="password"/>
+ 		<result property="name" column="name"/>
+ 		<result property="nickName" column="nickName"/>
+ 		<result property="email" column="email"/>
+ 		<result property="phone" column="phone"/>
+ 		<result property="location" column="location"/>
+ 	</collection>
+ 	
+ 	<collection property="productCategories" javaType="java.util.List" ofType="ProductCategoryVO">
+ 		<id property="categoryNumPK" column="categoryNumPK"/>
+ 		<result property="category" column="category"/>
+ 	</collection>
+ 	
  </resultMap>
  
 
@@ -106,13 +120,15 @@
 	</select>
 	
 	
-	<select id="getProductSelect" parameterType="wProductVO" resultMap="ProductSelectResult">
-		select A.*,M.*
+	<select id="getProductSelect" parameterType="wProductVO" resultMap="SelectCategoryResult">
+	select *
 		from 
 			(select *
-			from product P left join productFiles PF
-			on P.num=PF.productNum) as A left join member M
-   		on A.username =  M.username
+			from (SELECT * from product left join productCategory
+				on product.categoryNum=productCategory.categoryNumPK
+				)P left join productFiles PF
+				on P.num=PF.productNum) as A left join member M
+				on A.username =  M.username
    		where A.num=#{num}
 	</select>
 

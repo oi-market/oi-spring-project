@@ -105,7 +105,7 @@
                     <div class="body--right">
                         <strong class="product--name">${vo.title}</strong>
                         <strong class="product--amount">${vo.price}원</strong>
-                        <p>남성의류</p>
+                        <p>${vo.productCategories[0].category}</p>
                         <div class="product-info">
                             <div class="product--like">
                                 <i class="bi bi-suit-heart-fill"></i> ${vo.like}
