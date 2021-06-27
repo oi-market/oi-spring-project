@@ -119,7 +119,7 @@
                         <p>${vo.productCategories[0].category}</p>
                         <div class="product-info">
                             <div class="product--like">
-                                <i class="bi bi-suit-heart-fill"></i> ${vo.like}
+                                <i class="bi bi-suit-heart-fill"></i> ${vo.wish}
                             </div>
                             <div class="product--hit">
                                 <i class="bi bi-eye-fill"></i> ${vo.hit}

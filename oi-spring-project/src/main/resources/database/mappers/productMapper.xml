@@ -19,7 +19,7 @@
  	<result property="regDate" column="regDate"></result>
  	<result property="location" column="location"></result>
  	<result property="hit" column="hit"></result>
- 	<result property="like" column="like"></result>
+ 	<result property="wish" column="wish"></result>
  	
  	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
  		<id property="fileNum" column="fileNum"/>
@@ -50,7 +50,7 @@
  	<result property="regDate" column="regDate"></result>
  	<result property="location" column="location"></result>
  	<result property="hit" column="hit"></result>
- 	<result property="like" column="like"></result>
+ 	<result property="wish" column="wish"></result>
  	
  	<collection property="productFiles" javaType="java.util.List" ofType="wProductFilesVO">
  		<id property="fileNum" column="fileNum"/>

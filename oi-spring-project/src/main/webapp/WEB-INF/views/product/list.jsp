@@ -79,7 +79,7 @@
                             <div class="product--amount">${vo.price}</div>
                             <div class="product--like">
                                 <i class="bi bi-suit-heart"></i>
-                                ${vo.like}</div>
+                                ${vo.wish}</div>
                         </div>
                     </div>  
                 </a>

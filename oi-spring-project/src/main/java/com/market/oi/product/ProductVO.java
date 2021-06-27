@@ -20,7 +20,7 @@ public class ProductVO {
 	private String username;
 	private String location;
 	private long hit;
-	private long like;
+	private long wish;
 	private Double wgs84X;
 	private Double wgs84Y;
 	
