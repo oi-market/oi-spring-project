@@ -20,4 +20,7 @@ public interface ProductMapper {
 	public int setDeleteProduct(ProductVO productVO)throws Exception;
 	public int setDeleteFile(ProductFilesVO productFilesVO)throws Exception;
 	public List<ProductFilesVO> getFileSelect(ProductFilesVO productFilesVO)throws Exception;
+	public ProductFilesVO getFileSelectFromFileNum(ProductFilesVO productFilesVO)throws Exception;
+	public int setDeleteFileOne(ProductFilesVO productFilesVO)throws Exception;
+	public int setProductUpdate(ProductVO productVO)throws Exception;
 }

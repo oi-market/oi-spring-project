@@ -164,13 +164,22 @@
 	</update>
 
 
-	<update id="setUpdate" parameterType="wproductVO">
-		update product set title=#{title}, contents=#{contents} where num=#{num}
+	<update id="setProductUpdate" parameterType="wproductVO">
+		update product set title=#{title},categoryNum=#{categoryNum},price=#{price},contents=#{contents} where num=#{num}
 	</update>
 	
 	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
 		select * from productFiles where productNum=#{productNum}
 	</select>
+	
+	
+	<select id="getFileSelectFromFileNum" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where fileNum=#{fileNum}
+	</select>
+	<delete id="setDeleteFileOne" parameterType="wProductFilesVO">
+		  delete from productFiles
+  		where fileNum=#{fileNum}
+	</delete>
 	
 
 <!-- 	select A.*,PC.*

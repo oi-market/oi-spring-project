@@ -59,5 +59,28 @@ public class ProductController {
 	}
 	
 	
+	@GetMapping("product/update")
+	public void getProductUpdate(ProductVO productVO,Model model)throws Exception{
+		productVO = productService.getProductSelect(productVO);
+		model.addAttribute("vo", productVO);
+	}
+	@PostMapping("product/update")
+	public String setProductUpdate(ProductVO productVO,MultipartFile[] files)throws Exception{
+		int result = productService.setProductUpdate(productVO, files);
+		return "redirect:./list";
+	}
+	
+	
+	
+	@PostMapping("product/fileDelete")
+	public String getProductFileDelete(ProductFilesVO productFilesVO)throws Exception{
+		
+		productFilesVO = productService.getFileSelectFromFileNum(productFilesVO);
+		int result = productService.setDeleteFileOne(productFilesVO);
+		
+		
+		String rtn = "redirect:./update?num="+productFilesVO.getProductNum();
+		return rtn;
+	}
 	
 }

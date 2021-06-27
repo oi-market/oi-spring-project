@@ -62,14 +62,17 @@
      
            
 				 <div class="buttons--modify">
-                   <button class="mybtn" >상품 수정</button>
+				   <a class="mybtn" href="./update?num=${vo.num}">상품수정</a>
                    <button class="mybtn" id="delBtn">상품 삭제</button>
                </div>
                
                <form action="./delete" id="delfrm" method="post">
 				<input type="hidden" name="num" value="${vo.num}">
 				<input type="hidden" name="productNum" value="${vo.num}">
-			</form>
+				</form>
+				
+				
+	
 				
                
                 <div class="product-select__body">
@@ -84,15 +87,6 @@
                             </div>
                         	</c:forEach>
                         
-                          <!--   <div class="mySlides fades">
-                                <img src="https://media.bunjang.co.kr/product/156571078_1_1623496614_w856.jpg" alt="">
-                            </div>
-                            <div class="mySlides fades">
-                                <img src="https://media.bunjang.co.kr/product/151861946_1_1618902287_w856.jpg" alt="">
-                            </div>
-                            <div class="mySlides fades">
-                                <img src="https://media.bunjang.co.kr/product/151861946_2_1618902287_w856.jpg" alt="">
-                            </div> -->
                             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="next" onclick="plusSlides(1)">&#10095;</a>
                         </div>
