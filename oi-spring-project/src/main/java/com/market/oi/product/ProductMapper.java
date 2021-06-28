@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.market.oi.myPage.MywishVO;
+
 
 
 @Mapper
@@ -24,5 +26,8 @@ public interface ProductMapper {
 	public int setDeleteFileOne(ProductFilesVO productFilesVO)throws Exception;
 	public int setProductUpdate(ProductVO productVO)throws Exception;
 	public int setWish(ProductVO productVO)throws Exception;
+	public int setHitUpdate(ProductVO productVO) throws Exception;
+	public int setWishUp(ProductVO productVO) throws Exception;
+	public long getWishExist(ProductVO productVO)throws Exception;
 	
 }
