@@ -143,7 +143,7 @@
                                         <div class="user--name">
                                              ${vo.members[0].nickName}
                                         </div>
-                                        <div class="user--location">
+                                        <div class="user--location product--location">
                                             ${vo.location}
                                         </div>
                                     </div>
@@ -202,6 +202,7 @@
      <script src="../js/main.js"></script>
      <script src="../js/second-header.js"></script>
      <script src="../js/product.js"></script>
+      <script src="../js/cuttingLocation.js"></script>
 
 
 </body>

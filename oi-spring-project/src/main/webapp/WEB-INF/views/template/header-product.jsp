@@ -10,7 +10,9 @@
             <div class="inner--left toggle--small">
                 <div class="inner__dropdown">
                     <a href="#" class="dropbtn">
-                       <sec:authentication property="principal.location"/>
+                    	<span class="product--location">
+                       		<sec:authentication property="principal.location"/>
+                     	</span>
                         <i class="bi bi-caret-right-fill"></i>
                     </a>
                     <div class="dropdown-content">

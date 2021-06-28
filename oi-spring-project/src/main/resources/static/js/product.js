@@ -6,23 +6,7 @@ let wishFrm = document.getElementById('wishFrm');
 let chatBtn = document.getElementById('chatBtn');
 let chatFrm = document.getElementById('chatFrm');
 
-delBtn.addEventListener('click',function(){	
-	let result = confirm('지우시겠습니까!');
-		if(result==true){
-			delfrm.submit();
-		}else{
-			alert('삭제하지 않습니다.')
-		}
-});
 
-wishBtn.addEventListener('click',function(){	
-	let result = confirm('위시리스트에 추가하시겠습니까?');
-		if(result==true){
-			wishFrm.submit();
-		}else{
-			alert('추가하지 않았습니다.')
-		}
-});
 
 chatBtn.addEventListener('click',function(){
 	chatFrm.submit();
@@ -57,5 +41,24 @@ function showSlides(n) {
   dots[slideIndex-1].className += ' active';
 }
 
+
+
+	delBtn.addEventListener('click',function(){	
+	let result = confirm('지우시겠습니까!');
+		if(result==true){
+			delfrm.submit();
+		}else{
+			alert('삭제하지 않습니다.')
+		}
+});
+
+wishBtn.addEventListener('click',function(){	
+	let result = confirm('위시리스트에 추가하시겠습니까?');
+		if(result==true){
+			wishFrm.submit();
+		}else{
+			alert('추가하지 않았습니다.')
+		}
+});
 
 

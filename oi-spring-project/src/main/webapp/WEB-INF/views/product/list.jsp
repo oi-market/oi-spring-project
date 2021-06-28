@@ -216,6 +216,7 @@
      </div>
      <script src="../js/main.js"></script>
      <script src="../js/second-header.js"></script>
+     <script src="../js/cuttingLocation.js"></script>
 
 
 
@@ -223,6 +224,7 @@
 
      
  
+
 
     
 
