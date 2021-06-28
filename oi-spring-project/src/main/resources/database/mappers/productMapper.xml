@@ -77,49 +77,35 @@
  	
  </resultMap>
  
+ 
 
 	<select id="getTotalCount" parameterType="java.util.Map" resultType="java.lang.Long" >
-		
-		
-			SELECT count(*)
+				SELECT count(*)
 			from product Pr left join productFiles PF
 			on Pr.num=PF.productNum
-		
-			
-		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
-                      
+		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>                     
 				<if test="product != null">
 				 and  Pr.categoryNum=#{product.categoryNum}
-				 </if> 
-				 
-			 order by num desc
-	
+				 </if> 				 
+			 order by num desc	
 	</select>
 
-
-
 	<select id="getProductList" resultMap="ProductSelectResult" parameterType="java.util.Map">
-			
-		
-		
-			SELECT Pr.*,PF.*
+				SELECT Pr.*,PF.*
 			from product Pr left join productFiles PF
 			on Pr.num=PF.productNum
-		
-			
-		<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
-            
-            
-				<if test="product != null">
+			<![CDATA[where distance_between(Pr.wgs84X,Pr.wgs84Y,#{member.wgs84X},#{member.wgs84Y})<#{member.radius}]]>
+   				<if test="product != null">
 				 and  Pr.categoryNum=#{product.categoryNum}
+				 </if> 
+				<if test="pager.search != null">
+					and Pr.title like concat('%',#{pager.search},'%')
 				 </if> 
 			group by Pr.num
             order by num desc
-            limit #{pager.startRow},#{pager.perPage}
-   		
+            limit #{pager.startRow},#{pager.perPage} 		
 	</select>
-	
-	
+		
 	<select id="getProductSelect" parameterType="wProductVO" resultMap="SelectCategoryResult">
 	select *
 		from 
@@ -142,70 +128,67 @@
 		AND table_schema = DATABASE( ) ;
 		
 	</select>
+	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where productNum=#{productNum}
+	</select>
+	
+	<select id="getFileSelectFromFileNum" parameterType="wProductFilesVO" resultType="wProductFilesVO">
+		select * from productFiles where fileNum=#{fileNum}
+	</select>
+
+	<select id="getWishExist" parameterType="wProductVO" resultType="java.lang.Long">
+		select count(*) from MyWish
+		where username=#{username} and productNum=#{num}
+	</select>
 
 
-
-
-
-
- 
     <insert id="setProductInsert" parameterType="wProductVO" >
 		insert into product (title,categoryNum,price,contents,sale,username,location,wgs84X,wgs84Y)
 					values 	(#{title},#{categoryNum},#{price},#{contents},1,#{username},#{location},#{wgs84X},#{wgs84Y})
-	</insert> 	
- 
+	</insert> 
+		
 	<insert id="setFileInsert" parameterType="wProductFilesVO">
-
 	insert into ProductFiles (productNum,thumbnail,fileName,ogName)
-				 values(#{productNum},#{thumbnail},#{fileName},#{ogName})
-									
+				 values(#{productNum},#{thumbnail},#{fileName},#{ogName})									
 	</insert>
+	
+	<insert id="setWish"  parameterType="WproductVO" >
+	insert into MyWish (username,productNum,amount)
+				 values(#{username},#{num},#{price})								
+	</insert>
+	
+	
+	
+	
+	<update id="setHitUpdate" parameterType="wProductVO">
+		update product set hit=hit+1 where num=#{num}
+	</update>
+	
+	<update id="setWishUp" parameterType="wProductVO">
+		update product set wish=wish+1 where num=#{num}
+	</update>
+	
+	<update id="setProductUpdate" parameterType="wproductVO">
+		update product set title=#{title},categoryNum=#{categoryNum},price=#{price},contents=#{contents} where num=#{num}
+	</update>
+	
+	
 	
 	
 	<delete id="setDeleteProduct" parameterType="wProductVO">
 		  delete from product
   		where num=#{num}
 	</delete>
+	
 	<delete id="setDeleteFile" parameterType="wProductFilesVO">
 		  delete from productFiles
   		where productNum=#{productNum}
 	</delete>
 	
-	
-	
-		<update id="setHitUpdate" parameterType="wProductVO">
-
-		update product set hit=hit+1 where num=#{num}
-
-	</update>
-
-
-	<update id="setProductUpdate" parameterType="wproductVO">
-		update product set title=#{title},categoryNum=#{categoryNum},price=#{price},contents=#{contents} where num=#{num}
-	</update>
-	
-	<select id="getFileSelect" parameterType="wProductFilesVO" resultType="wProductFilesVO">
-		select * from productFiles where productNum=#{productNum}
-	</select>
-	
-	
-	<select id="getFileSelectFromFileNum" parameterType="wProductFilesVO" resultType="wProductFilesVO">
-		select * from productFiles where fileNum=#{fileNum}
-	</select>
 	<delete id="setDeleteFileOne" parameterType="wProductFilesVO">
 		  delete from productFiles
   		where fileNum=#{fileNum}
 	</delete>
-	
-
-	<insert id="setWish"  parameterType="WproductVO" >
-
-	insert into MyWish (username,productNum,amount)
-				 values(#{username},#{num},#{price})
-									
-	</insert>
-
-		
 
 </mapper>
 		

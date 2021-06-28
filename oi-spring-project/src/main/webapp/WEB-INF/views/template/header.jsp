@@ -30,8 +30,8 @@
 								</sec:authorize>
 
                             </div>
-                            <form id="search-form" action="#" method="POST">
-                                <input id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
+                            <form id="search-form" action="${pageContext.request.contextPath}/product/list" method="get">
+                                <input name="search" id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
                                 <input type="submit" value="submit">
                             </form>
                             <sec:authorize access="isAuthenticated()">
