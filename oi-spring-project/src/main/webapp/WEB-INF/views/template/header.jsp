@@ -10,7 +10,7 @@
                             </div>
                             <ul class="main-menu toggle">
                                 <li><a href="${pageContext.request.contextPath}/neighborhood/board">동네 생활</a></li>
-                                <li><a href="${pageContext.request.contextPath}/product/list">내 근처</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/list">근처 물품</a></li>
                             </ul>
                         </div>
 
@@ -38,7 +38,7 @@
                             <ul class="sub-menu">
                                 <li><a href="${pageContext.request.contextPath}/chat/productList">쪽지</a></li>
                                 <li><a href="${pageContext.request.contextPath}/mypage/profile">나의 오이</a></li>
-                                <li><a href="#">판매하기</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/insert">판매하기</a></li>
                             </ul>
                             </sec:authorize>
                         </div>

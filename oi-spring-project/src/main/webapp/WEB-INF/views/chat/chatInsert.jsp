@@ -49,7 +49,7 @@
 </head>
 <body>
 
-   <c:import url="../template/header.jsp"></c:import>
+  
 	<div class="chat-select-body">
 	
 		<div class="">
@@ -66,8 +66,9 @@
 				<input type="hidden" id="buyerName" name="buyerName" value="${param.buyerName}">
 			
 				<textarea  id="contents" name="contents" class="chat-insert-contents" name="contents"></textarea>
-				<br>
-				<input class="mybtn chat-send-button" id="btn" type="image" src="../img/chat-send-button.png" alt="보내기">
+				
+				
+				<input class="chat-send-button" id="btn" type="image" src="../img/chat-send-button.png" alt="보내기">
 				<!-- <button class="mybtn chat-send-button" id="btn" type="submit" ></button> -->
 				
 			</form>

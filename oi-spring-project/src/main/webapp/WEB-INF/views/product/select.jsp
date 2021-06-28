@@ -80,16 +80,7 @@
 					<input type="hidden" name="num" value="${vo.num}">
 				</form>
 				
-				<form action="../chat/chatInsert" method="get" id="chatFrm">
-					<input type="hidden" name="productNum" value="${vo.num}">
-					<input type="hidden" name="sellerID" value="${vo.members[0].username}">
-					<input type="hidden" name="sellerName" value="${vo.members[0].nickName}">
-					<input type="hidden" name="buyerID" value=<sec:authentication property="principal.username"/>>
-					<input type="hidden" name="buyerName" value=<sec:authentication property="principal.nickName"/>>			
-				</form>
-	
-				
-               
+	            
                 <div class="product-select__body">
 
  					<div class="body--left">
@@ -168,9 +159,8 @@
                             <button class="mybtn zzimBtn" id="wishBtn">
                                 <i class="bi bi-suit-heart-fill"></i> 찜 
                             </button>
-                            <button class="mybtn chatBtn" id="chatBtn">
-                                채팅하기
-                            </button>
+                            
+                     <a  href="#" class="mybtn chatBtn" id="chatBtn" onclick="window.open('../chat/chatInsert?productNum=${vo.num}&sellerID=${vo.members[0].username}&sellerName=${vo.members[0].nickName}&buyerID=<sec:authentication property="principal.username"/>&buyerName=<sec:authentication property="principal.nickName"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">채팅하기</a>
                         </div>
                     </div>
 

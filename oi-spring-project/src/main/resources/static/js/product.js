@@ -3,14 +3,9 @@ let delBtn = document.getElementById('delBtn');
 let delfrm = document.getElementById('delfrm');
 let wishBtn = document.getElementById('wishBtn');
 let wishFrm = document.getElementById('wishFrm');
-let chatBtn = document.getElementById('chatBtn');
-let chatFrm = document.getElementById('chatFrm');
 
 
 
-chatBtn.addEventListener('click',function(){
-	chatFrm.submit();
-});
 
 
 
