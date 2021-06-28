@@ -61,11 +61,15 @@
          <div class="inner">
 
      
-           
+			
+     
+          	<c:if test="${sessionId eq vo.members[0].username}">
 				<div class="buttons--modify">
 				   <a class="mybtn" href="./update?num=${vo.num}">상품수정</a>
                    <button class="mybtn" id="delBtn">상품 삭제</button>
                </div>
+           </c:if>
+               
                
                <form action="./delete" id="delfrm" method="post">
 					<input type="hidden" name="num" value="${vo.num}">

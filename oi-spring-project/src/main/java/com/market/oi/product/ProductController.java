@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,8 @@ public class ProductController {
 							ProductVO productVO
 												)throws Exception{
 		List<ProductVO> ar = productService.getProductList(auth, memberVO, pager, productVO);
+		
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
@@ -39,8 +42,13 @@ public class ProductController {
 		
 	}
 		@GetMapping("product/select")
-	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
+	public void getProductSelect(Model model,ProductVO productVO,Authentication auth)throws Exception{
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMember = (MemberVO)user;
+		
+		
 		productVO=productService.getProductSelect(productVO);
+		model.addAttribute("sessionId", sessionMember.getUsername());
 		model.addAttribute("vo",productVO);
 	}
 	@GetMapping("product/insert")
