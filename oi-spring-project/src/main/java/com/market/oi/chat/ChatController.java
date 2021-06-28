@@ -1,5 +1,6 @@
 package com.market.oi.chat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,14 +64,7 @@ public class ChatController {
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMember = (MemberVO)user;
 		
-		//======================================
-		//프로필 이미지 변경부분!
-		MemberVO memberVO = new MemberVO();
-		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
 		
-		if(memberFileVO!=null) {
-			model.addAttribute("imgName", memberFileVO.getFileName());
-		}
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -92,12 +86,35 @@ public class ChatController {
 		System.out.println("BuyerID : "+chatVO.getBuyerID());
 		System.out.println("productNum : "+chatVO.getProductNum());
 		
-		List<ChatVO> buyerAr = chatService.getBuyerList(chatVO);
+		List<ChatVO>buyerAr = chatService.getBuyerList(chatVO);
+		 System.out.println(buyerAr);
+		 
+		//======================================
+			//프로필 이미지 변경부분!
+			
+			List<MemberFileVO> chatFileList = new ArrayList<MemberFileVO>();
+			System.out.println(buyerAr.size());
+
+			for(int i =0; i<buyerAr.size(); i++) {
+				MemberFileVO memberFileVO = new MemberFileVO();
+				memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
+				chatFileList.add(memberFileVO);
+				
+			}
+			System.out.println(chatFileList);
+			
+			
+		//////////////////////////////
+		 /*
+		 for(int i = 0; i<buyerAr.size(); i++) {
+			 String strYear = buyerAr.get(i).get("buyuerID").toString();
+		 }
+		 */
 		List<ChatVO> chatAr = chatService.getChatList(chatVO);
 		
 		System.out.println("buyerAr : "+buyerAr.size());
 		System.out.println("chatAr : "+chatAr.size());
-		
+		mv.addObject("imgList",chatFileList);
 		mv.addObject("buyerList", buyerAr);
 		mv.addObject("chatList", chatAr);
 		mv.addObject("username", sessionMember.getUsername());

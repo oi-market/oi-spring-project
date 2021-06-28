@@ -60,7 +60,7 @@
   
 </head>
 <body>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APPKEY&libraries=services"></script>	
+	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d58b4a3149fa76e3f33c4a03c9252a9d&libraries=services"></script>
  
      <div class="body__container">
 
@@ -277,13 +277,7 @@
  
 	<script
 		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="../js/member.js"></script>
-	
 
 
 
