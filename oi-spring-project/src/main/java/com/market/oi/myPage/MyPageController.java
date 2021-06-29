@@ -304,14 +304,25 @@ public class MyPageController {
 		if(memberFileVO!=null) {
 			model.addAttribute("imgName", memberFileVO.getFileName());
 		}
+		Long countScore = memberService.countScore(memberVO);
+		Long countProduct  = memberService.countProduct(memberVO);
 		
+		if(countScore==null) {
+			countScore=0L;
+		}
+		if(countProduct==null) {
+			countProduct=0L;
+		}
+		System.out.println(countScore);
+		System.out.println(countProduct);
 		System.out.println(score);
 		int change = 20;
 		double scoreStar = change*score;
 		System.out.println(score);
 		model.addAttribute("Score",score);
 		model.addAttribute("scoreStar",scoreStar);
-		
+		model.addAttribute("countScore",countScore);
+		model.addAttribute("countProduct",countProduct);
 		/* 내가 받은 리뷰 띄워주기 */
 		ReviewVO reviewVO = new ReviewVO();
 		ModelAndView mv = new ModelAndView();
@@ -320,6 +331,7 @@ public class MyPageController {
 		mv.addObject("vo", reviewVO);		
 		mv.setViewName("mypage/profile");
 		
+
 		return mv;
 		
 	}
