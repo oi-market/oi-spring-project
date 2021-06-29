@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-
+<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
     <title>쪽지보관함|오이마켓</title>
 
@@ -55,11 +55,13 @@
 			
 				<div class="buyer-list-div">
 				
-			                    
+			                    <div class="dropdown">
+
 			                	
 					<c:forEach items="${buyerList}" var="vo" varStatus="i">
 					
 			            <div class="buyer-div">
+			            
    							 						 
 			                <a href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}&check=${param.check}&sellerID=${vo.sellerID}">
 			                	

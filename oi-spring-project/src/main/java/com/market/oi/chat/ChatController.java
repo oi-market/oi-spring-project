@@ -65,13 +65,12 @@ public class ChatController {
 		MemberVO sessionMember = (MemberVO)user;
 		
 		
-		
 		ModelAndView mv = new ModelAndView();
 		
 		if(chatVO.getCheck() == null) {
 			chatVO.setCheck(1);
 		}
-		
+		int setCheck = chatVO.getCheck();
 		if(chatVO.getCheck() == 1) {
 			chatVO.setSellerID(sessionMember.getUsername());
 			System.out.println("sellerID :"+sessionMember.getUsername());
@@ -88,19 +87,31 @@ public class ChatController {
 		
 		List<ChatVO>buyerAr = chatService.getBuyerList(chatVO);
 		 System.out.println(buyerAr);
-		 
+		
 		//======================================
 			//프로필 이미지 변경부분!
 			
 			List<MemberFileVO> chatFileList = new ArrayList<MemberFileVO>();
 			System.out.println(buyerAr.size());
-
-			for(int i =0; i<buyerAr.size(); i++) {
-				MemberFileVO memberFileVO = new MemberFileVO();
-				memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
-				chatFileList.add(memberFileVO);
+			if(setCheck == 1) {
+				for(int i =0; i<buyerAr.size(); i++) {
+					MemberFileVO memberFileVO = new MemberFileVO();
+					buyerAr.get(i).setCheck(1);
+					memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
+					chatFileList.add(memberFileVO);
+					
+				}
+			}else {
+				for(int i =0; i<buyerAr.size(); i++) {
+					MemberFileVO memberFileVO = new MemberFileVO();
+					buyerAr.get(i).setCheck(2);
+					memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
+					chatFileList.add(memberFileVO);
+					
+				}
 				
 			}
+			
 			System.out.println(chatFileList);
 			
 			
