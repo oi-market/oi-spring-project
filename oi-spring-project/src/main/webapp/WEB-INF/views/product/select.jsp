@@ -124,7 +124,7 @@
                             </div>
                         </div>
 
-                        <a href="">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.members[0].username}">
                             <div class="product--user-info">
                                 <div class="user__left">
                                     <div class="user--photo">
