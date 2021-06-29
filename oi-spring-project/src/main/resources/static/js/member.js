@@ -378,20 +378,14 @@ $("#phone").on("blur",function(){
 
 });
 
-    $( "#phone").on("blur keyup", function() {
-      $(phone).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
+    $( "#account-phone").on("blur keyup", function() {
+      $(account-phone).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
    });
-function  handlerNum(){
- E = window.event;
- if(E.keyCode >47 && E.keyCode <58){   
-  if(E.keyCode == 48){
-   if(document.eduReg.ATTENDANT.value == "" ) E.returnValue=false;
-   else return;
-   }else return;
- }else{
-  E.returnValue=false;
- }
-}
+
+
+
+
+
 
 function inputPhoneNumber(obj) {
    
@@ -423,7 +417,9 @@ function inputPhoneNumber(obj) {
 }
 
 
-/////////////////////////////////
+
+
+
 
 
 //회원정보수정

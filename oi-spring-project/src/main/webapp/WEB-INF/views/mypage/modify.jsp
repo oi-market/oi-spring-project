@@ -116,7 +116,8 @@
                                 <p class="red-star">*</p>
                                 <label for="account-phone">휴대전화</label>
                             </div>
-                            <input id="account-phone" class="input--text" type="text" name="phone" value="<sec:authentication property="principal.phone"/>"> </input>
+                            <input id="account-phone" class="input--text" type="text" maxlength="13" name="phone" onKeyup="inputPhoneNumber(this);" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" value="<sec:authentication property="principal.phone"/>"> </input>
+						
                         </div>
 
                     
@@ -146,7 +147,7 @@
 
      </div>
      <script src="../js/main.js"></script>
-     <script src="../js/myPage.js"></script>'
+     <script src="../js/myPage.js"></script>
      <script type="text/javascript"></script>
 	<script type="text/javascript" src="../js/member.js"></script>
 

@@ -126,7 +126,7 @@
                         <form:errors path="nickName"></form:errors>
                         
                         <div>전화번호</div>
-                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text" type="tell" onKeyup="inputPhoneNumber(this);" onkeypress='handlerNum();' maxlength="13" />
+                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text"  onKeyup="inputPhoneNumber(this);" maxlength="13"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                 		<form:errors path="phone"></form:errors>     
                 		
                 		
