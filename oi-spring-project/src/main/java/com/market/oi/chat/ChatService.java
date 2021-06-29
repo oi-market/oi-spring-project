@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.market.oi.member.MemberFileVO;
 import com.market.oi.product.ProductVO;
 
 
@@ -17,6 +18,7 @@ public class ChatService {
 	
 	//Product List
 	public List<ChatVO> getProductList(ProductVO productVO) throws Exception {
+		System.out.println("프로덕트"+productVO);
 		return chatMapper.getProductList(productVO);
 	}
 	
@@ -24,6 +26,7 @@ public class ChatService {
 	public List<ChatVO> getBuyerList(ChatVO chatVO) throws Exception {
 		
 		System.out.println("sellerID : "+chatVO.getSellerID());
+		System.out.println("결과값"+chatVO);
 		
 		return chatMapper.getBuyerList(chatVO);
 	}
@@ -48,6 +51,9 @@ public class ChatService {
 		return chatMapper.setChatDelete(chatVO);
 	}
 	
+	public MemberFileVO getBuyerFileList(ChatVO chatVO) throws Exception {
+		return chatMapper.getBuyerFileList(chatVO);
+	}
 	
 	
 }

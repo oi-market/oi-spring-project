@@ -3,6 +3,8 @@ package com.market.oi.chat;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+
+import com.market.oi.member.MemberFileVO;
 import com.market.oi.product.ProductVO;
 
 @Mapper
@@ -25,6 +27,8 @@ public interface ChatMapper {
 	
 	// 쪽지 delete
 	public int setChatDelete(ChatVO chatVO) throws Exception;
+	
+	public MemberFileVO getBuyerFileList(ChatVO chatVO) throws Exception;
 	
 }
  

@@ -6,7 +6,7 @@
 <head>
 <c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
-    <title>로그인 | 오이마켓</title>
+    <title>비밀번호 찾기 | 오이마켓</title>
 
     <meta name="author" content="wook">
     <meta name="description" content="GitHub practice project">

@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>마이페이지 |오이마켓</title>
+<title>${board}글수정 |오이마켓</title>
 
 <meta name="author" content="wook">
 <meta name="description" content="오이마켓">

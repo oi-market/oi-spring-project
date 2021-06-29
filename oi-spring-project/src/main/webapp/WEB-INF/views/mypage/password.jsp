@@ -8,7 +8,7 @@
 <head>
 	<c:import url="../template/hm_import.jsp"></c:import>
     <meta charset="UTF-8">
-    <title>마이페이지 |오이마켓</title>
+    <title>비밀번호 변경  |오이마켓</title>
 
     <meta name="author" content="wook">
     <meta name="description" content="오이마켓">
