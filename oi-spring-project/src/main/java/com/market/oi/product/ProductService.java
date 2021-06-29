@@ -140,14 +140,14 @@ public class ProductService {
 	
 	
 	public List<ProductVO> getProductList(Authentication auth,
-											MemberVO memberVO,
-											Pager pager,
-											ProductVO productVO)throws Exception{
+			MemberVO memberVO,
+			Pager pager,
+			ProductVO productVO)throws Exception{
 		
 		pager.makeRow();
 		pager.makeNum(getTotalCount(auth, memberVO, pager, productVO));
 		pager.setPerPage(12L);
-
+		
 		//로그인 한 멤버의 location을 가져옴
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		memberVO = (MemberVO)user;
@@ -165,7 +165,12 @@ public class ProductService {
 		
 		
 		List<ProductVO> ar = productMapper.getProductList(map);
-			
+		
+		return ar;
+	}
+	
+	public List<ProductVO> getPopularList()throws Exception{
+		List<ProductVO> ar = productMapper.getPopularList();		
 		return ar;
 	}
 	

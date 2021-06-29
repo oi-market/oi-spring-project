@@ -105,6 +105,17 @@
             order by num desc
             limit #{pager.startRow},#{pager.perPage} 		
 	</select>
+	
+	<select id="getPopularList" resultMap="ProductSelectResult">
+	
+			SELECT Pr.*,PF.*
+			from product Pr left join productFiles PF
+			on Pr.num=PF.productNum
+			group by Pr.num
+            order by Pr.wish desc
+            limit 0,8
+            		
+	</select>
 		
 	<select id="getProductSelect" parameterType="wProductVO" resultMap="SelectCategoryResult">
 	select *
