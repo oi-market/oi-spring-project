@@ -5,24 +5,46 @@
 
 <mapper namespace="com.market.oi.myPage.MyPageMapper">
 
+	 <resultMap type="ProductVO" id="product">
+ 		<id property="num" column="num"></id>
+ 		<result property="title" column="title"></result>
+ 		<result property="categoryNum" column="categoryNum"></result>
+ 		<result property="price" column="price"></result>
+ 		<result property="contents" column="contents"></result>
+ 		<result property="sale" column="sale"></result>
+ 		<result property="regDate" column="regDate"></result>
+ 		<result property="location" column="location"></result>
+ 		<result property="hit" column="hit"></result>
+ 		<result property="wish" column="wish"></result>
+ 	 </resultMap>	 
+ 	<resultMap type="ProductfilesVO" id="ProductfilesMap">
+ 		<id property="fileNum" column="fileNum"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="thumbnail" column="thumbnail"/>
+ 		<result property="fileName" column="fileName"/>
+ 		<result property="ogName" column="ogName"/>
+ 	</resultMap> 	 
+ 	<resultMap type="PFileVO" id="PFileMap">
+		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
+		<collection property="productVO" resultMap="product"/>
+	</resultMap>
+ 
 	<!-- 판매완료 된 상품 리스트 -->
-	<select id="getList" parameterType="MemberVO" resultType="ProductVO">
-		select * from product where username=#{username} and sale = 0 
+	<select id="getList" parameterType="MemberVO" resultMap="PFileMap">
+		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where P.username=#{username} and P.sale = 1
 	</select>
 	
 	<!-- 판매중인 상품 리스트 -->
-	<select id="getSellList" parameterType="MemberVO" resultType="ProductVO">
-		select * from product where username=#{username} and sale = 1
+	<select id="getSellList" parameterType="MemberVO" resultMap="PFileMap">
+		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where username=#{username} and P.sale = 0
 	</select>
 	
 	<resultMap type="MywishVO" id="MywishMap">
 		<id column="num" property="num"/>
 		<result column="username" property="username"/>
 		<result column="productNum" property="productNum"/>
-		<result column="title" property="title"/>
-		<result column="wish" property="wish"/>
-	</resultMap>
-	
+		<result column="amount" property="amount"/>
+	</resultMap>	
 	<resultMap type="ProductVO" id="ProductMap">
 		<id column="num" property="num"/>
 		<result column="title" property="title"/>
@@ -36,30 +58,32 @@
 		<result column="hit" property="hit"/>
 		<result column="wish" property="wish"/>
 	</resultMap>
-	
+	<resultMap type="ProductfilesVO" id="PFMap">
+ 		<id property="fileNum" column="fileNum"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="thumbnail" column="thumbnail"/>
+ 		<result property="fileName" column="fileName"/>
+ 		<result property="ogName" column="ogName"/>
+ 	</resultMap> 
 	<resultMap type="PWishVO" id="PWishMap">
+	<collection property="productfilesVO" resultMap="PFMap"/>
 		<collection property="mywishVO" resultMap="MywishMap"/>		
 		<collection property="productVO" resultMap="ProductMap"/>
 	</resultMap>
 	
 	<!-- 관심 상품 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultMap="PWishMap">
-		SELECT P.* FROM product P inner JOIN mywish M ON P.num = M.productNum WHERE M.username = #{username}
+		SELECT P.* FROM product P inner JOIN mywish M ON P.num = M.productNum LEFT JOIN productfiles PF ON P.num = PF.fileNum WHERE M.username = #{username}
 	</select>
-	
+ 
 	<!-- 상품 상세정보 select -->
-	<select id="getSelect" parameterType="ProductVO" resultType="ProductVO">
-		select * from product where num = #{num}
+	<select id="getSelect" parameterType="ProductVO" resultMap="PFileMap">
+		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where P.num = #{num}
 	</select>
-	
+		
 	<!-- hit update -->
 	<update id="setHitUpdate" parameterType="ProductVO">
 		update product set hit = hit+1 where num = #{num}
-	</update>
-	
-	<!-- 상품정보 수정 -->
-	<update id="setUpdate" parameterType="ProductVO">
-		update product set title=#{title}, price=#{price}, contents=#{contents} where num = #{num}
 	</update>
 	
 	<!-- 판매완료로 변경 -->
@@ -77,15 +101,46 @@
 		delete from product where num = #{num}
 	</delete>
 	
+	<resultMap type="ProductVO" id="oproduct">
+ 		<id property="num" column="num"></id>
+ 		<result property="title" column="title"></result>
+ 		<result property="categoryNum" column="categoryNum"></result>
+ 		<result property="price" column="price"></result>
+ 		<result property="contents" column="contents"></result>
+ 		<result property="sale" column="sale"></result>
+ 		<result property="regDate" column="regDate"></result>
+ 		<result property="location" column="location"></result>
+ 		<result property="hit" column="hit"></result>
+ 		<result property="wish" column="wish"></result>
+ 	 </resultMap>	 
+ 	<resultMap type="ProductfilesVO" id="Productfiles">
+ 		<id property="fileNum" column="fileNum"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="thumbnail" column="thumbnail"/>
+ 		<result property="fileName" column="fileName"/>
+ 		<result property="ogName" column="ogName"/>
+ 	</resultMap> 
+ 	<resultMap type="OrderCompleteVO" id="OrderCompleteMap">
+ 		<id property="num" column="num"/>
+ 		<result property="seller" column="seller"/>
+ 		<result property="buyer" column="buyer"/>
+ 		<result property="productNum" column="productNum"/>
+ 	</resultMap>   	
+ 	<resultMap type="OrderPFileVO" id="OrderPFileMap">
+		<collection property="productfilesVO" resultMap="Productfiles"/>		
+		<collection property="productVO" resultMap="oproduct"/>
+		<collection property="ordercompleteVO" resultMap="OrderCompleteMap"/>
+	</resultMap>
+	
 	<!-- 내가 구매한 상품 -->
-	<select id="getBuyList" parameterType="MemberVO" resultType="ProductVO">
-		SELECT P.* from product P left join ordercomplete O ON P.num = O.productNum 
-		WHERE buyer = #{username}
+	<select id="getBuyList" parameterType="MemberVO" resultMap="OrderPFileMap">
+		select P.*, O.* from product P left join ordercomplete O on P.num = O.productNum LEFT JOIN productfiles PF ON P.num = PF.fileNum
+		 WHERE O.buyer = #{username}
 	</select>
 	
 	<!-- 관심 상품 추가 -->
 	<insert id="setWishInsert" parameterType="ProductVO">
-		insert into mywish (username, productNum, title, wish) values (#{username}, #{num}, #{title}, 1)
+		insert into mywish (username, productNum, amount) values (#{username}, #{num}, #{amount})
 	</insert>
 	
 	<!-- 관심 상품 삭제 -->  
@@ -103,10 +158,10 @@
 		update product set wish = wish-1 where num = (select productNum from mywish where productNum = #{productNum})
 	</update>
 	
-	<!-- 페이징 처리 -->
+	<!-- 페이징 처리 
 	<select id="getTotalCount" resultType="java.lang.Long">
 		select count(num) from product
-	</select>
+	</select> -->
 	
 	<!-- 리뷰 리스트 -->
 	<select id="getReviewList" parameterType="MemberVO" resultType="ReviewVO">
@@ -125,7 +180,7 @@
 	
 	<!-- 판매자 리뷰 -->
 	<select id="getSeller" parameterType="ReviewVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller'
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller' 
 	</select>
 	
 	<!-- 구매자 리뷰 -->
@@ -144,4 +199,8 @@
 		select P.*, O.* from product P left join ordercomplete O on P.num = O.productNum where P.num = #{num}
 	</select>
 	
+	<!-- 내가 쓴 동네 글 -->
+	<select id="getVillage" parameterType="MemberVO" resultType="CommunityVO">
+		select * from community where writer = #{username}
+	</select>
 </mapper>

@@ -3,9 +3,9 @@ package com.market.oi.myPage;
 import lombok.Data;
 
 @Data
-public class PWishVO {
+public class OrderPFileVO {
 
-	private MywishVO mywishVO;
 	private ProductVO productVO;
 	private ProductfilesVO productfilesVO;
+	private OrdercompleteVO ordercompleteVO;
 }

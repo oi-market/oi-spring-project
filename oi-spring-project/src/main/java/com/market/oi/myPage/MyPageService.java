@@ -1,10 +1,15 @@
 package com.market.oi.myPage;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.market.oi.community.CommunityVO;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.MypagePager;
 
@@ -14,21 +19,20 @@ public class MyPageService {
 	@Autowired
 	private MyPageMapper myPageMapper;
 	
-	public List<ProductVO> getList(MemberVO memberVO) throws Exception {
-		/*
-		 * pager.makeRow(); long totalCount = myPageMapper.getTotalCount();
-		 * pager.makeNum(totalCount);
-		 */
-		
+	public List<PFileVO> getList(MemberVO memberVO) throws Exception {
 		return myPageMapper.getList(memberVO);
 	}
 	
-	public List<ProductVO> getSellList(MemberVO memberVO) throws Exception {
+	public List<PFileVO> getSellList(MemberVO memberVO) throws Exception {
 		return myPageMapper.getSellList(memberVO);
 	}
 	
 	public List<PWishVO> getMywish(MemberVO memberVO) throws Exception {
 		return myPageMapper.getMywish(memberVO);
+	}
+	
+	public List<OrderPFileVO> getBuyList(MemberVO memberVO) throws Exception {
+		return myPageMapper.getBuyList(memberVO);
 	}
 	
 	public int setHitUpdate(ProductVO productVO) throws Exception {
@@ -37,10 +41,6 @@ public class MyPageService {
 	
 	public ProductVO getSelect(ProductVO productVO) throws Exception {
 		return myPageMapper.getSelect(productVO);
-	}
-	
-	public int setUpdate(ProductVO productVO) throws Exception {
-		return myPageMapper.setUpdate(productVO);
 	}
 	
 	public int soldoutUpdate(ProductVO productVO) throws Exception {
@@ -53,10 +53,6 @@ public class MyPageService {
 	
 	public int setDelete(ProductVO productVO) throws Exception {
 		return myPageMapper.setDelete(productVO);
-	}
-	
-	public List<ProductVO> getBuyList(MemberVO memberVO) throws Exception {
-		return myPageMapper.getBuyList(memberVO);
 	}
 	
 	public int setWishInsert(ProductVO productVO) throws Exception {
@@ -105,6 +101,10 @@ public class MyPageService {
 	
 	public ProductVO reviewInsert(ProductVO productVO) throws Exception {
 		return myPageMapper.reviewInsert(productVO);
+	}
+	
+	public List<CommunityVO> getVillage(MemberVO memberVO) throws Exception {
+		return myPageMapper.getVillage(memberVO);
 	}
 	
 }
