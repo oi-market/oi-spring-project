@@ -75,7 +75,7 @@ public class MyPageService {
 		return myPageMapper.getTotalCount();				
 	}
 	
-	public List<ReviewVO> getReview(MemberVO memberVO) throws Exception {
+	public List<ReviewVO> getReviewList(MemberVO memberVO) throws Exception {
 		return myPageMapper.getReviewList(memberVO);
 	}
 	
@@ -87,12 +87,12 @@ public class MyPageService {
 		return myPageMapper.getReviewSelect(reviewVO);
 	}
 	
-	public List<ReviewVO> getSeller(ReviewVO reviewVO) throws Exception {
-		return myPageMapper.getSeller(reviewVO);
+	public List<ReviewVO> getSeller(MemberVO memberVO) throws Exception {
+		return myPageMapper.getSeller(memberVO);
 	}
 	
-	public List<ReviewVO> getBuyer(ReviewVO reviewVO) throws Exception {
-		return myPageMapper.getBuyer(reviewVO);
+	public List<ReviewVO> getBuyer(MemberVO memberVO) throws Exception {
+		return myPageMapper.getBuyer(memberVO);
 	}
 	
 	public int setReview(ReviewVO reviewVO) throws Exception {
@@ -105,6 +105,18 @@ public class MyPageService {
 	
 	public List<CommunityVO> getVillage(MemberVO memberVO) throws Exception {
 		return myPageMapper.getVillage(memberVO);
+	}
+	
+	public Long countReview(MemberVO memberVO) throws Exception{
+		return myPageMapper.countReview(memberVO);
+	}
+	
+	public Long countSeller(MemberVO memberVO) throws Exception {
+		return myPageMapper.countSeller(memberVO);
+	}
+	
+	public Long countBuyer(MemberVO memberVO) throws Exception {
+		return myPageMapper.countBuyer(memberVO);
 	}
 	
 }

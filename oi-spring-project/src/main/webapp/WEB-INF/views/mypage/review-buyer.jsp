@@ -94,7 +94,7 @@
 
                     <div class="title-underline">
                         <p>
-                            후기 n개
+                            후기 ${countBuyer}개
                         </p>
                     </div>
                  

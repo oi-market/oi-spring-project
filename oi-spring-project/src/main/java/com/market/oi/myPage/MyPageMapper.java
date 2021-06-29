@@ -46,13 +46,19 @@ public interface MyPageMapper {
 	
 	public ReviewVO getReviewSelect(ReviewVO reviewVO) throws Exception;
 	
-	public List<ReviewVO> getSeller(ReviewVO reviewVO) throws Exception;
+	public List<ReviewVO> getSeller(MemberVO memberVO) throws Exception;
 	
-	public List<ReviewVO> getBuyer(ReviewVO reviewVO) throws Exception;
+	public List<ReviewVO> getBuyer(MemberVO memberVO) throws Exception;
 	
 	public int setReview(ReviewVO reviewVO) throws Exception;
 	
 	public ProductVO reviewInsert(ProductVO productVO) throws Exception;
 	
 	public List<CommunityVO> getVillage(MemberVO memberVO) throws Exception;
+	
+	public Long countReview(MemberVO memberVO);
+	
+	public Long countSeller(MemberVO memberVO);
+	
+	public Long countBuyer(MemberVO memberVO);
 }
