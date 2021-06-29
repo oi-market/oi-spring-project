@@ -117,7 +117,7 @@
 					                          
                             <div>
                                 <a href="../product/select?num=${vo.productVO.num}">
-                                	 <img class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                	 <img id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
                                 </a>
                             </div>
 

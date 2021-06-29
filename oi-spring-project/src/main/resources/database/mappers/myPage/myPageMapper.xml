@@ -86,13 +86,13 @@
 		update product set hit = hit+1 where num = #{num}
 	</update>
 	
-	<!-- 판매완료로 변경 -->
-	<update id="soldoutUpdate" parameterType="ProductVO">
+	<!-- 판매중 변경 -->
+	<update id="sellUpdate" parameterType="ProductVO">
 		update product set sale=1 where num=#{num}
 	</update>
 	
-	<!-- 거래중으로 변경 -->
-	<update id="sellUpdate" parameterType="ProductVO">
+	<!-- 거래완료로 변경 -->
+	<update id="soldoutUpdate" parameterType="ProductVO">
 		update product set sale=0 where num=#{num}
 	</update>
 	

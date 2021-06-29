@@ -95,7 +95,6 @@ public class MyPageController {
 	}
 	
 	//판매완료 변경
-	//product 테이블의 sale 부분 1(판매완료)로 변경
 	@GetMapping("mypage/soldoutUpdate")
 	public String soldoutUpdate(ProductVO productVO) throws Exception {
 		int result = myPageService.soldoutUpdate(productVO);		
@@ -156,13 +155,6 @@ public class MyPageController {
 		
 		productVO = myPageService.getSelect(productVO);		
 		mv.addObject("vo", productVO);
-				
-		/*
-		 * //상품 선택 시 리뷰도 함께 
-		 * ReviewVO reviewVO = new ReviewVO(); 
-		 * reviewVO = myPageService.getReviewSelect(reviewVO); 
-		 * mv.addObject("vo", reviewVO);
-		 */
 		
 		mv.setViewName("mypage/productSelect");
 		
@@ -177,10 +169,12 @@ public class MyPageController {
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 	
-		List<ReviewVO> review = myPageService.getReview(memberVO);
+		Long countReview  = myPageService.countReview(memberVO);
+		mv.addObject("countReview", countReview);
+		
+		List<ReviewVO> review = myPageService.getReviewList(memberVO);
 		mv.addObject("review", review);
 		mv.addObject("vo", reviewVO);
-		
 		mv.setViewName("mypage/review");
 		
 		return mv;
@@ -188,13 +182,18 @@ public class MyPageController {
 	
 	//판매자 작성 리뷰
 	@GetMapping("mypage/review-seller")
-	public ModelAndView getreviewSeller(ReviewVO reviewVO)throws Exception{
+	public ModelAndView getreviewSeller(ReviewVO reviewVO, Authentication auth)throws Exception{
 		ModelAndView mv = new ModelAndView();		
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
 		
-		List<ReviewVO> seller = myPageService.getSeller(reviewVO);
+		Long countSeller  = myPageService.countSeller(memberVO);
+		mv.addObject("countSeller", countSeller);
+		
+		List<ReviewVO> seller = myPageService.getSeller(memberVO);
 		mv.addObject("seller", seller);
-		mv.addObject("vo", reviewVO);
-		
+		mv.addObject("vo", reviewVO);		
 		mv.setViewName("mypage/review-seller");
 		
 		return mv;
@@ -202,13 +201,18 @@ public class MyPageController {
 	
 	//구매자 작성 리뷰
 	@GetMapping("mypage/review-buyer")
-	public ModelAndView getreviewBuyer(ReviewVO reviewVO) throws Exception{
+	public ModelAndView getreviewBuyer(ReviewVO reviewVO, Authentication auth) throws Exception{
 		ModelAndView mv = new ModelAndView();		
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
 		
-		List<ReviewVO> buyer = myPageService.getBuyer(reviewVO);
+		Long countBuyer  = myPageService.countBuyer(memberVO);
+		mv.addObject("countBuyer", countBuyer);
+		
+		List<ReviewVO> buyer = myPageService.getBuyer(memberVO);
 		mv.addObject("buyer", buyer);
-		mv.addObject("vo", reviewVO);
-		
+		mv.addObject("vo", reviewVO);	
 		mv.setViewName("mypage/review-buyer");
 
 		return mv;
@@ -301,6 +305,7 @@ public class MyPageController {
 		model.addAttribute("scoreStar",scoreStar);
 		model.addAttribute("countScore",countScore);
 		model.addAttribute("countProduct",countProduct);
+		
 		/* 내가 받은 리뷰 띄워주기 */
 		ReviewVO reviewVO = new ReviewVO();
 		ModelAndView mv = new ModelAndView();

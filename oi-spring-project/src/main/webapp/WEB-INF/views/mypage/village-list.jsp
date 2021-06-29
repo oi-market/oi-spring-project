@@ -63,7 +63,7 @@
                 <c:forEach var="vo" items="${list}" varStatus="true">
                  <div class="village-body">
                     
-                     <a href="#" class="post-bundle">
+                     <a href="../neighborhood/select?categoryNum=${vo.categoryNum}&&num=${vo.num}&&communityNum=${vo.num}" class="post-bundle">
                          <div class="post--category">
                              같이해요
                          </div>
