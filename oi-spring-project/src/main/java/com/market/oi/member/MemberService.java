@@ -51,7 +51,7 @@ public class MemberService implements UserDetailsService{
 		
 		memberVO = memberMapper.memberLogin(memberVO);
  
-		
+		System.out.println(memberVO.getAuthorities());
 	
 		System.out.println(memberVO);
 		
