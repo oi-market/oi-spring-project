@@ -141,99 +141,26 @@
             </div>
 
             <div class="popular-product__list">
-                <div class="product">
-                    <a href="#">
-                    <div class="productImgBox">
-                        <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                    </div>
-                    <div class="productName">위닉스 제습기</div>
-                    <div class="productAmount">80,000</div>
-                    <div class="productLocation">대전 서구</div>
-                    <div class="productLike">관심16</div>
-                    </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
-                <div class="product">
-                    <a href="#">
-                        <div class="productImgBox">
-                            <img class="productImg" src="https://dnvefa72aowie.cloudfront.net/origin/article/202105/0eaaee503ca4789c5af2aaaa3b2fa241d9f867affd453b97e96b34fb847bcce5.webp?q=82&s=300x300&t=crop" alt="">
-                        </div>
-                        <div class="productName">위닉스 제습기</div>
-                        <div class="productAmount">80,000</div>
-                        <div class="productLocation">대전 서구</div>
-                        <div class="productLike">관심16</div>
-                        </a>
-                </div>
+            
+            	<c:forEach items="${list}" var="vo">
+	                <div class="product">
+	                    <a href="./product/select?num=${vo.num}">
+	                    <div class="productImgBox">
+	                        <img class="productImg" src="../resources/upload/images${vo.productFiles[0].thumbnail}" alt="${vo.title}">
+	                    </div>
+	                    <div class="productName">${vo.title}</div>
+	                    <div class="productAmount">${vo.price}</div>
+	                    <div class="productLocation">${vo.location}</div>
+	                    <div class="productLike">관심${vo.wish}</div>
+	                    </a>
+	                </div>
+                </c:forEach>
+              
             </div>
 
 
             <div class="moreProduct">
-                <a href="#">더보기</a>
+                <a href="${pageContext.request.contextPath}/product/list">더보기</a>
             </div>
           
             

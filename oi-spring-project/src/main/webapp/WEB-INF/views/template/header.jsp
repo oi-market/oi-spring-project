@@ -10,7 +10,7 @@
                             </div>
                             <ul class="main-menu toggle">
                                 <li><a href="${pageContext.request.contextPath}/neighborhood/board">동네 생활</a></li>
-                                <li><a href="${pageContext.request.contextPath}/product/list">내 근처</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/list">근처 물품</a></li>
                             </ul>
                         </div>
 
@@ -30,15 +30,15 @@
 								</sec:authorize>
 
                             </div>
-                            <form id="search-form" action="#" method="POST">
-                                <input id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
+                            <form id="search-form" action="${pageContext.request.contextPath}/product/list" method="get">
+                                <input name="search" id="search" type="text" class="input--text" placeholder="물품명을 검색해보세요!">
                                 <input type="submit" value="submit">
                             </form>
                             <sec:authorize access="isAuthenticated()">
                             <ul class="sub-menu">
                                 <li><a href="${pageContext.request.contextPath}/chat/productList">쪽지</a></li>
                                 <li><a href="${pageContext.request.contextPath}/mypage/profile">나의 오이</a></li>
-                                <li><a href="#">판매하기</a></li>
+                                <li><a href="${pageContext.request.contextPath}/product/insert">판매하기</a></li>
                             </ul>
                             </sec:authorize>
                         </div>

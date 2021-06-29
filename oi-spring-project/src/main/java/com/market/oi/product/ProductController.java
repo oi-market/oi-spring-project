@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.market.oi.member.MemberFileVO;
+import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.Pager;
 
@@ -17,7 +20,10 @@ import com.market.oi.util.Pager;
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
+	@Autowired
+	private MemberService memberService;
+	
 	
 	
 	@GetMapping("product/list")
@@ -25,9 +31,10 @@ public class ProductController {
 							Authentication auth,
 							MemberVO memberVO,
 							Pager pager,
-							ProductVO productVO
-												)throws Exception{
+							ProductVO productVO)throws Exception{
 		List<ProductVO> ar = productService.getProductList(auth, memberVO, pager, productVO);
+		
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("pager", pager);
 		
@@ -39,9 +46,24 @@ public class ProductController {
 		
 	}
 		@GetMapping("product/select")
-	public void getProductSelect(Model model,ProductVO productVO)throws Exception{
+	public void getProductSelect(Model model,ProductVO productVO,Authentication auth)throws Exception{
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMember = (MemberVO)user;
 		productVO=productService.getProductSelect(productVO);
+		MemberVO memberVO =productVO.getMembers().get(0);
+		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		
+
+		Double score = memberService.Score(memberVO);
+		if(score==null) score= 0.0;
+		score =( Math.round(score * 100) / 100.0);
+		double scoreStar = 20*score;
+		
+		
+		if(memberFileVO!=null) model.addAttribute("imgName", memberFileVO.getFileName());
+		model.addAttribute("sessionId", sessionMember.getUsername());
 		model.addAttribute("vo",productVO);
+		model.addAttribute("scoreStar",scoreStar);
 	}
 	@GetMapping("product/insert")
 	public void getProductInsert()throws Exception{

@@ -605,7 +605,10 @@ header .inner--second{
     display: block;
    
 }
-
+#chatBtn{
+	text-align: center;
+    line-height: 37px;
+}
 /* media */
 
 @media (max-width:580px){

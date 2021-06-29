@@ -81,6 +81,7 @@ attachFile = {
 let amount = document.getElementById('amount-scale');
 amount.addEventListener('change',function(){
     
+    amount.value= amount.value.toString().replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
     amount.value= amount.value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     
 });

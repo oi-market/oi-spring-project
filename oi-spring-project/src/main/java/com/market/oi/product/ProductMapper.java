@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface ProductMapper {
 
 	public List<ProductVO> getProductList(Map<String, Object> map)throws Exception;
+	public List<ProductVO> getPopularList()throws Exception;
 	public Long getTotalCount(Map<String, Object> map)throws Exception;
 	public ProductVO getProductSelect(ProductVO productVO)throws Exception;
 	public int getProductNum()throws Exception;
@@ -24,5 +25,8 @@ public interface ProductMapper {
 	public int setDeleteFileOne(ProductFilesVO productFilesVO)throws Exception;
 	public int setProductUpdate(ProductVO productVO)throws Exception;
 	public int setWish(ProductVO productVO)throws Exception;
+	public int setHitUpdate(ProductVO productVO) throws Exception;
+	public int setWishUp(ProductVO productVO) throws Exception;
+	public long getWishExist(ProductVO productVO)throws Exception;
 	
 }

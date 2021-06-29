@@ -61,11 +61,15 @@
          <div class="inner">
 
      
-           
+			
+     
+          	<c:if test="${sessionId eq vo.members[0].username}">
 				<div class="buttons--modify">
 				   <a class="mybtn" href="./update?num=${vo.num}">상품수정</a>
                    <button class="mybtn" id="delBtn">상품 삭제</button>
                </div>
+           </c:if>
+               
                
                <form action="./delete" id="delfrm" method="post">
 					<input type="hidden" name="num" value="${vo.num}">
@@ -76,16 +80,7 @@
 					<input type="hidden" name="num" value="${vo.num}">
 				</form>
 				
-				<form action="../chat/chatInsert" method="get" id="chatFrm">
-					<input type="hidden" name="productNum" value="${vo.num}">
-					<input type="hidden" name="sellerID" value="${vo.members[0].username}">
-					<input type="hidden" name="sellerName" value="${vo.members[0].nickName}">
-					<input type="hidden" name="buyerID" value=<sec:authentication property="principal.username"/>>
-					<input type="hidden" name="buyerName" value=<sec:authentication property="principal.nickName"/>>			
-				</form>
-	
-				
-               
+	            
                 <div class="product-select__body">
 
  					<div class="body--left">
@@ -129,24 +124,25 @@
                             </div>
                         </div>
 
-                        <a href="">
+                        <a href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.members[0].username}">
                             <div class="product--user-info">
                                 <div class="user__left">
                                     <div class="user--photo">
-                                        <img src="../img/default-user-picture.png">
+                                        <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+										<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
                                     </div>
                                     <div class="user--namebox">
                                         <div class="user--name">
                                              ${vo.members[0].nickName}
                                         </div>
-                                        <div class="user--location">
+                                        <div class="user--location product--location">
                                             ${vo.location}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user--score">
                                     <div class="star-rating">
-                                        <span class="colored-star" style="width: 50%;">
+                                        <span class="colored-star" style="width:${scoreStar}%;">
                                         <!-- style로 별점 조정 -->
                                         <!-- score/5*100 =width(%) -->
                                         </span>
@@ -164,9 +160,8 @@
                             <button class="mybtn zzimBtn" id="wishBtn">
                                 <i class="bi bi-suit-heart-fill"></i> 찜 
                             </button>
-                            <button class="mybtn chatBtn" id="chatBtn">
-                                채팅하기
-                            </button>
+                            
+                     <a  href="#" class="mybtn chatBtn" id="chatBtn" onclick="window.open('../chat/chatInsert?productNum=${vo.num}&sellerID=${vo.members[0].username}&sellerName=${vo.members[0].nickName}&buyerID=<sec:authentication property="principal.username"/>&buyerName=<sec:authentication property="principal.nickName"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">채팅하기</a>
                         </div>
                     </div>
 
@@ -198,6 +193,7 @@
      <script src="../js/main.js"></script>
      <script src="../js/second-header.js"></script>
      <script src="../js/product.js"></script>
+      <script src="../js/cuttingLocation.js"></script>
 
 
 </body>
