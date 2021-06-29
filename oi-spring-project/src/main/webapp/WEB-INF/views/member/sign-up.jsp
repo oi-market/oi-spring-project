@@ -35,17 +35,8 @@
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
   
-    <style type="text/css">
-.r1 {
-	border: 1px solid red;
-}
 
-.r2{
 
-	border: 1px solid blue;
-}
-
-</style>
   
   
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
@@ -56,7 +47,16 @@
        <link rel="stylesheet" href="../css/mainScss.css">
      <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/member.css">
-  
+    <style type="text/css">
+.r1 {
+	border: 1px solid red;
+}
+
+.r2{
+
+	border: 1px solid blue;
+}
+  </style>
   
 </head>
 <body>
@@ -126,7 +126,7 @@
                         <form:errors path="nickName"></form:errors>
                         
                         <div>전화번호</div>
-                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text"/>
+                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text" type="tell" onKeyup="inputPhoneNumber(this);" onkeypress='handlerNum();' maxlength="13" />
                 		<form:errors path="phone"></form:errors>     
                 		
                 		

@@ -34,8 +34,7 @@ public class ViewPageController {
 
 	@GetMapping("viewProfile")
 	public void viewProfile(MemberVO memberVO,Model model) throws Exception{
-
-
+		System.out.println(memberVO);
 		memberVO=viewPageService.getUsername(memberVO);
 		
 		System.out.println(memberVO);

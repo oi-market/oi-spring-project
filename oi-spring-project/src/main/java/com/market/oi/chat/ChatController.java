@@ -122,7 +122,6 @@ public class ChatController {
 		 }
 		 */
 		List<ChatVO> chatAr = chatService.getChatList(chatVO);
-		
 		System.out.println("buyerAr : "+buyerAr.size());
 		System.out.println("chatAr : "+chatAr.size());
 		mv.addObject("imgList",chatFileList);
