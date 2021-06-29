@@ -128,7 +128,8 @@
                             <div class="product--user-info">
                                 <div class="user__left">
                                     <div class="user--photo">
-                                        <img src="../img/default-user-picture.png">
+                                        <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+										<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
                                     </div>
                                     <div class="user--namebox">
                                         <div class="user--name">
@@ -141,7 +142,7 @@
                                 </div>
                                 <div class="user--score">
                                     <div class="star-rating">
-                                        <span class="colored-star" style="width: 50%;">
+                                        <span class="colored-star" style="width:${scoreStar}%;">
                                         <!-- style로 별점 조정 -->
                                         <!-- score/5*100 =width(%) -->
                                         </span>
