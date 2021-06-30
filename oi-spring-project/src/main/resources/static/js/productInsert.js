@@ -108,16 +108,16 @@ let insertFrm = document.getElementById('insertFrm');
 let regBtn = document.getElementById('regBtn');
 regBtn.addEventListener('click',function(){
 	
-	if(!document.getElementById('attachFileDiv').childNodes[2]){
+	if(!document.getElementById('attachFileDiv').children[0]){
 		alert('사진을 넣어주세요!');
 	}
-	if(!document.getElementById('attachFileDiv').childNodes[2].childNodes[0]){
+	if(!document.getElementById('attachFileDiv').children[0].children[0]){
 		alert('사진을 넣어주세요!');
 	}
 	
 	if(	
 		(document.getElementById('product-title-input').value!="")&&
-		(document.getElementById('attachFileDiv').childNodes[2].childNodes[0].value!="")&&
+		(document.getElementById('attachFileDiv').children[0].children[0].value!="")&&
 		(document.getElementById('amount-scale').value!="")&&
 		(document.getElementById('product-category-input').value!="")&&
 		(document.getElementById('product-contents-input').value!="")
