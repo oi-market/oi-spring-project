@@ -76,7 +76,7 @@
                         	<%-- </c:if> --%>
                          </div>
                          <div class="post--small-service">
-                             <div class="like">댓글 3개</div>
+                             <%-- <div class="like">댓글 ${countComments}개</div> --%>
                              <div class="comment">좋아요 ${vo.like}개</div>
                          </div>
                      </a>

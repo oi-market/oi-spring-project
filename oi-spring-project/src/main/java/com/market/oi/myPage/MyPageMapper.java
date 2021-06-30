@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.market.oi.community.CommunityVO;
+import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.MypagePager;
 
@@ -61,4 +62,6 @@ public interface MyPageMapper {
 	public Long countSeller(MemberVO memberVO);
 	
 	public Long countBuyer(MemberVO memberVO);
+	
+	public Long countComments(CommentsVO commentsVO);
 }

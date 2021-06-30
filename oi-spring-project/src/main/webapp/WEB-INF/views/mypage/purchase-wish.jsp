@@ -140,7 +140,7 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./setWishDelete?productNum=${vo.mywishVO.productNum}">관심목록 해제</a>
+                                    <a href="./setWishDelete?productNum=${vo.productVO.num}">관심목록 해제</a>                                   
                                 </div>
 
                             </div>

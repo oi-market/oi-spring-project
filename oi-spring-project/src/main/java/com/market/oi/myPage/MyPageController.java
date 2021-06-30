@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.community.CommunityService;
 import com.market.oi.community.CommunityVO;
+import com.market.oi.community.comments.CommentsService;
+import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
@@ -27,6 +30,9 @@ public class MyPageController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private CommentsService commentsService;
 	
 	@GetMapping("mypage/purchase-buy")
 	public ModelAndView getbuyList(OrderPFileVO orderPFileVO, Authentication auth) throws Exception {
@@ -326,10 +332,15 @@ public class MyPageController {
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 				
-		//내가 구매한 상품 list
 		List<CommunityVO> list = myPageService.getVillage(memberVO);
 		mv.addObject("list", list);
 		mv.addObject("vo", communityVO);		
+		
+		CommentsVO commentsVO = new CommentsVO();
+		Long countComments = commentsService.getTotalCount(commentsVO);
+		mv.addObject("countComments", countComments);
+		System.out.println(countComments);
+		
 		mv.setViewName("mypage/village-list");
 				
 		return mv;
