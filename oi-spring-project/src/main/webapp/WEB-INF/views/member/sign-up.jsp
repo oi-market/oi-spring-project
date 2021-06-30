@@ -35,17 +35,7 @@
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
   
-    <style type="text/css">
-.r1 {
-	border: 1px solid red;
-}
 
-.r2{
-
-	border: 1px solid blue;
-}
-
-</style>
   
   
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
@@ -57,7 +47,17 @@
      <link rel="stylesheet" href="../css/main.css">
         <link rel="stylesheet" href="../css/member.css">
   
-  
+      <style type="text/css">
+.r1 {
+	border: 1px solid red;
+}
+
+.r2{
+
+	border: 1px solid blue;
+}
+
+</style>
 </head>
 <body>
 	 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d58b4a3149fa76e3f33c4a03c9252a9d&libraries=services"></script>
