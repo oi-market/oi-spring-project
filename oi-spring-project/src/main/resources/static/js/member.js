@@ -405,7 +405,10 @@ function update_dtn(){
 			var phoneTrim= $.trim(phone);
     		
     		if(confirm("수정하시겠습니까?") == true){
-    		
+    		if(nameTrim==""|| nickNameTrim==""||emailTrim==""||phoneTrim==""){
+		
+				alert("빈칸을 입력해주시기바랍니다.")
+			}else{
     			$.ajax({
     				type : 'POST',
     				url : '../member/memberUpdate',
@@ -430,6 +433,7 @@ function update_dtn(){
     				
 
     			});
+				}
     		}else{
     			return;
     		}
