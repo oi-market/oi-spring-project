@@ -120,10 +120,6 @@
 		update product set sale=1 where num=#{num}
 	</update>
 	
-	<!-- 거래완료로 변경 -->
-	<update id="soldoutUpdate" parameterType="ProductVO">
-		update product set sale=1 where num=#{num}
-	</update>
 	
 	<!-- 상품 삭제 -->
 	<delete id="setDelete" parameterType="ProductVO">
@@ -238,7 +234,7 @@ on R.communityNum=COM.num order by num desc
 		select * from community
 		where communityNum in
 		(select C.communityNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer})
-
+	</select>
 	<!-- 내가 쓴 동네 글 -->
 	<select id="getVillage" parameterType="MemberVO" resultType="CommunityVO">
 		select * from community where writer = #{username}
