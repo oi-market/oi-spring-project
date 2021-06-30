@@ -64,21 +64,17 @@
                
                
    <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${comment}" varStatus="true"> --%>
-						<c:forEach var="i" begin="0" end="2">
+						<c:forEach items="${comment}" var="vo" begin="0" end="2">
                 <div class="comment-bundle">
-                
-                    <a href="#" class="post-bundle">
+               
+                    <a href=" ${pageContext.request.contextPath}/neighborhood/select?categoryNum=${vo.communityVO.categoryNum}&&num=${vo.communityNum}&&communityNum=${vo.communityNum}" class="post-bundle">
                     
                         <p class="post--content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-                            deleniti nostrum doloremque tenetur excepturi,
-                            repellendus distinctio inventore,
-                            repellat corporis suscipit veritatis modi optio?
-                            Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                            ${vo.contents}
                         </p>
                         <div class="post--small-service">
-                            <div class="like">원 게시글 내용</div>
-                            <div class="comment">regDate</div>
+                            <div class="like">${vo.communityVO.contents}</div>
+                            <div class="comment">${vo.regDate}</div>
                         </div>
                     </a>
                     

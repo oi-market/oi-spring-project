@@ -120,7 +120,7 @@
                         <div>이름</div>
                         <form:input  id="name" path="name" placeholder="이름" class="col-12 input--text"/>
 						<form:errors path="name"></form:errors>
-				
+					
                         <div>별명</div>
                         <form:input id="nickName" path="nickName" placeholder="별명" class="col-12 input--text"/>
                         <form:errors path="nickName"></form:errors>

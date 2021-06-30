@@ -117,7 +117,7 @@
 					                          
                             <div>
                                 <a href="../product/select?num=${vo.productVO.num}">
-                                	 <img  id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                	 <img id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
                                 </a>
                             </div>
 
@@ -134,8 +134,8 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                               	 	<a href="./sellUpdate?num=${vo.productVO.num}&productNum=${vo.productVO.num}">판매중 변경</a>                               	 	
-                                    <a href="./productUpdate?num=${vo.productVO.num}">게시글 수정</a>
+                               	 	<a href="./sellUpdate?num=${vo.productVO.num}">판매중 변경</a>
+                                    <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
                                     <a href="./reviewInsert?num=${vo.productVO.num}">리뷰 작성</a>
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.market.oi.member.MemberFileVO;
+
 @Mapper
 public interface CommentsMapper{
 	
@@ -35,5 +37,7 @@ public interface CommentsMapper{
 	
 	//totalCount
 	public Long getTotalCount(CommentsVO commentsVO) throws Exception;
+	
+	public MemberFileVO getCommentsFile(CommentsVO commentsVO) throws Exception;
 	
 }

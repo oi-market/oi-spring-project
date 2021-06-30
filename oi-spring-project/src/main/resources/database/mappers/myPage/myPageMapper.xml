@@ -24,22 +24,23 @@
  		<result property="fileName" column="fileName"/>
  		<result property="ogName" column="ogName"/>
  	</resultMap> 	 
+ 	
  	<resultMap type="PFileVO" id="PFileMap">
 		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
 		<collection property="productVO" resultMap="product"/>
 	</resultMap>
  
-	<!-- 판매완료 된 상품 리스트 -->
+	<!-- 판매 중 상품 리스트 -->
 	<select id="getList" parameterType="MemberVO" resultMap="PFileMap">
-		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where P.username=#{username} and P.sale = 1
+		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where P.username=#{username} and P.sale = 0
 	</select>
 	
-	<!-- 판매중인 상품 리스트 -->
+	<!-- 판매완료 상품 리스트 -->
 	<select id="getSellList" parameterType="MemberVO" resultMap="PFileMap">
-		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where username=#{username} and P.sale = 0
+		select P.*, PF.* from product P left join productFiles PF on P.num=PF.productNum where username=#{username} and P.sale = 1
 	</select>
 	
-	<resultMap type="MywishVO" id="MywishMap">
+	<resultMap type="MywishVO" id="wishMap">
 		<id column="num" property="num"/>
 		<result column="username" property="username"/>
 		<result column="productNum" property="productNum"/>
@@ -65,15 +66,34 @@
  		<result property="fileName" column="fileName"/>
  		<result property="ogName" column="ogName"/>
  	</resultMap> 
+ 	
 	<resultMap type="PWishVO" id="PWishMap">
-	<collection property="productfilesVO" resultMap="PFMap"/>
-		<collection property="mywishVO" resultMap="MywishMap"/>		
+		<collection property="productfilesVO" resultMap="PFMap"/>
+		<collection property="mywishVO" resultMap="wishMap"/>		
 		<collection property="productVO" resultMap="ProductMap"/>
 	</resultMap>
 	
+	
+	<resultMap type="commentsVO" id="commentsMap">
+			<id column="num" property="num"/>
+			<result column="communityNum" property="communityNum"/>
+			<result column="writer" property="writer"/>
+			<result column="contents" property="contents"/>
+			<result column="location" property="location"/>
+			<result column="regDate" property="regDate"/>
+			<result column="ref" property="ref"/>
+			<result column="step" property="step"/>
+			<result column="depth" property="depth"/>
+			<result column="nickName" property="nickName"/>
+			<association property="communityVO" javaType="communityVO">
+			<result column="categoryNum" property="categoryNum"/>
+			<result column="comcon" property="contents"/>
+			</association>
+			</resultMap>
+	
 	<!-- 관심 상품 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultMap="PWishMap">
-		SELECT P.* FROM product P inner JOIN mywish M ON P.num = M.productNum LEFT JOIN productfiles PF ON P.num = PF.fileNum WHERE M.username = #{username}
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num=PF.productNum LEFT JOIN mywish M ON P.num = M.productNum WHERE M.username=#{username}
 	</select>
  
 	<!-- 상품 상세정보 select -->
@@ -86,13 +106,13 @@
 		update product set hit = hit+1 where num = #{num}
 	</update>
 	
-	<!-- 판매완료로 변경 -->
-	<update id="soldoutUpdate" parameterType="ProductVO">
+	<!-- 판매중 변경 -->
+	<update id="sellUpdate" parameterType="ProductVO">
 		update product set sale=0 where num=#{num}
 	</update>
 	
-	<!-- 거래중으로 변경 -->
-	<update id="sellUpdate" parameterType="ProductVO">
+	<!-- 거래완료로 변경 -->
+	<update id="soldoutUpdate" parameterType="ProductVO">
 		update product set sale=1 where num=#{num}
 	</update>
 	
@@ -125,7 +145,8 @@
  		<result property="seller" column="seller"/>
  		<result property="buyer" column="buyer"/>
  		<result property="productNum" column="productNum"/>
- 	</resultMap>   	
+ 	</resultMap>  
+ 	 	
  	<resultMap type="OrderPFileVO" id="OrderPFileMap">
 		<collection property="productfilesVO" resultMap="Productfiles"/>		
 		<collection property="productVO" resultMap="oproduct"/>
@@ -134,18 +155,12 @@
 	
 	<!-- 내가 구매한 상품 -->
 	<select id="getBuyList" parameterType="MemberVO" resultMap="OrderPFileMap">
-		select P.*, O.* from product P left join ordercomplete O on P.num = O.productNum LEFT JOIN productfiles PF ON P.num = PF.fileNum
-		 WHERE O.buyer = #{username}
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num=PF.productNum LEFT JOIN ordercomplete O on P.num = O.productNum WHERE O.buyer =#{username}
 	</select>
-	
-	<!-- 관심 상품 추가 -->
-	<insert id="setWishInsert" parameterType="ProductVO">
-		insert into mywish (username, productNum, amount) values (#{username}, #{num}, #{amount})
-	</insert>
 	
 	<!-- 관심 상품 삭제 -->  
 	<delete id="setWishDelete" parameterType="MyWishVO">
-		delete from mywish where productNum = #{productNum}
+		delete from mywish where productNum = (select productNum from mywish where productNum = #{productNum})
 	</delete>
 	
 	<!-- 관심 수 -->
@@ -165,7 +180,7 @@
 	
 	<!-- 리뷰 리스트 -->
 	<select id="getReviewList" parameterType="MemberVO" resultType="ReviewVO">
-		select * from review
+		select * from review where reciver = #{username} or writer = #{username}
 	</select>
 	
 	<!-- 프로필에서 내가 받은 리뷰 띄우기 -->
@@ -179,13 +194,13 @@
 	</select>
 	
 	<!-- 판매자 리뷰 -->
-	<select id="getSeller" parameterType="ReviewVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller' 
+	<select id="getSeller" parameterType="MemberVO" resultType="ReviewVO">
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller' and R.writer = #{username}
 	</select>
 	
 	<!-- 구매자 리뷰 -->
-	<select id="getBuyer" parameterType="ReviewVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer'
+	<select id="getBuyer" parameterType="MemberVO" resultType="ReviewVO">
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer' and R.reciver = #{username}
 	</select>
 	
 	<!-- 리뷰 작성 -->
@@ -198,9 +213,49 @@
 	<select id="reviewInsert" parameterType="ProductVO" resultType="ProductVO">
 		select P.*, O.* from product P left join ordercomplete O on P.num = O.productNum where P.num = #{num}
 	</select>
+
+
+	<select id="getComment" parameterType="commentsVO" resultMap="commentsMap">
+		select R.*, COM.contents as comcon from
+(select C.*,CM.categoryNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer}) R
+inner join community COM
+on R.communityNum=COM.num order by num desc
+	</select>
 	
+	
+
+	
+	<select id="getcommunity" parameterType="communityVO" resultType="communityVO">
+		select * from community
+		where communityNum in
+		(select C.communityNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer})
+	</select>
+
 	<!-- 내가 쓴 동네 글 -->
 	<select id="getVillage" parameterType="MemberVO" resultType="CommunityVO">
 		select * from community where writer = #{username}
+
 	</select>
+	
+	<!-- 전체 리뷰 카운트 -->
+	<select id="countReview" parameterType="MemberVO" resultType="long" >
+		select count(*) from review where reciver=#{username} or writer=#{username}
+    </select>
+    
+    <!-- 판매자 작성 리뷰 카운트 -->
+    <select id="countSeller" parameterType="MemberVO" resultType="long" >
+		select count(*) from review where writerPosition = 'seller' and writer = #{username}
+    </select>
+    
+    <!-- 구매자 작성 리뷰 카운트 -->
+    <select id="countBuyer" parameterType="MemberVO" resultType="long" >
+		select count(*) from review where writerPosition = 'buyer' and reciver = #{username}
+    </select>
+    
+    <!-- 동네생활 글의 댓글 카운트 -->
+    <select id="countComments" parameterType="CommentsVO" resultType="Long">
+        select count(num) from comments where communityNum = #{communityNum}  
+  	</select>
+  	
+
 </mapper>

@@ -8,4 +8,5 @@ public class PWishVO {
 	private MywishVO mywishVO;
 	private ProductVO productVO;
 	private ProductfilesVO productfilesVO;
+	
 }
