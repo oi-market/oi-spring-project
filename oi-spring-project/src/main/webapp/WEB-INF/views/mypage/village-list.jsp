@@ -63,7 +63,7 @@
                 <c:forEach var="vo" items="${list}" varStatus="true">
                  <div class="village-body">
                     
-                     <a href="#" class="post-bundle">
+                     <a href="../neighborhood/select?categoryNum=${vo.categoryNum}&&num=${vo.num}&&communityNum=${vo.num}" class="post-bundle">
                          <div class="post--category">
                              같이해요
                          </div>
@@ -76,7 +76,7 @@
                         	<%-- </c:if> --%>
                          </div>
                          <div class="post--small-service">
-                             <div class="like">댓글 3개</div>
+                             <%-- <div class="like">댓글 ${countComments}개</div> --%>
                              <div class="comment">좋아요 ${vo.like}개</div>
                          </div>
                      </a>

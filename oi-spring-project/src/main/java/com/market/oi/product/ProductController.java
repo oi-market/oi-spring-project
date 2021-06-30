@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
+import com.market.oi.myPage.MyPageService;
 import com.market.oi.util.Pager;
 
 @Controller
@@ -23,7 +24,6 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private MemberService memberService;
-	
 	
 	
 	@GetMapping("product/list")
@@ -109,6 +109,7 @@ public class ProductController {
 		
 		int result = productService.setWish(productVO, auth);
 		String rst = "redirect:./select?num="+productVO.getNum();
+		
 		return rst;
 	}
 	
