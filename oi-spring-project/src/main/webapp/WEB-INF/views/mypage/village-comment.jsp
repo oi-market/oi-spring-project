@@ -74,23 +74,13 @@
                             ${vo.contents}
                         </p>
                         <div class="post--small-service">
-                            <div class="like">${vo.communityVO.contents}</div>
+                            <div class="like commentTitle">${vo.communityVO.contents}</div>
                             <div class="comment">${vo.regDate}</div>
                         </div>
                     </a>
                     
                     
                     
-                     <div>
-                  <%--    db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
-                        <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-
-                        <div id="on-sale-dropdown" class="dropdown-content">
-                            <a href="#">삭제</a>
-                        </div>
-                    </div>
                         
                         
                        
@@ -119,6 +109,21 @@
 
      </div>
      <script src="../js/main.js"></script>
+     <script type="text/javascript">
+ 	
+     let commentTitles = document.querySelectorAll('.commentTitle');
+
+ 	for(let commentTitle of commentTitles){
+ 		let str = commentTitle.innerHTML;
+ 		let nextText =str.replace(/(<([^>]+)>)/ig,"");
+ 		nextText='글 제목: '+nextText.substring(0,5)+'...';
+ 		commentTitle.innerHTML=nextText;
+ 							
+ 	}
+
+
+     
+     </script>
      <script src="../js/myPage.js"></script>
 
 

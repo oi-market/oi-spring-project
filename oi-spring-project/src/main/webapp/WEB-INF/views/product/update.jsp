@@ -92,10 +92,8 @@
 
 
                         <div class="photo-inner__body">
-                            <div class="preview-images"  id="attachFileDiv" >
-                                 
-                                 <c:forEach items="${vo.productFiles}" var="file" varStatus="status">
-		                           	
+                            <div class="preview-images"  id="attachFileDiv" >   
+                                 <c:forEach items="${vo.productFiles}" var="file" varStatus="status">               	
 		                           	<div id="file${status.index+1000}">
 		                           			<!-- 자바스크립트에서 input[type="file"] 3개 이상일 시 더 못만들게 하기 위해 생성한 input  -->  
 	                                 	<input type="file" id="fileField${status.index+1000}" accept="image/*">	                                	

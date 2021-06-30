@@ -379,13 +379,8 @@ public class MyPageController {
 		
 		
 		System.out.println(commentList);
-		for(int i =0; i<commentList.size(); i++) {
-			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
-			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
-			commentList.get(i).getCommunityVO().setContents(subContents);
-			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
-			}
-		}
+		
+
 		
 
 
