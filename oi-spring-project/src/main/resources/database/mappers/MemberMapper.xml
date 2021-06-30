@@ -110,7 +110,12 @@
       </update>
       
 
-
+		<select id="getChatMembers" parameterType="MemberVO" resultType="MemberVO">
+			select S.* from
+		(select * from member
+		where username in (select senderID from chat where receiverID=#{username}) ) S
+		where S.username != #{username};
+		</select>
 </mapper>
 		
 

@@ -167,7 +167,10 @@
 	insert into MyWish (username,productNum,amount)
 				 values(#{username},#{num},#{price})								
 	</insert>
-	
+	<insert id="setOrderComplete" parameterType="OrdercompleteVO">
+	insert into orderComplete (seller,buyer,productNum)
+			values(#{seller},#{buyer},#{productNum})
+	</insert>
 	
 	
 	
