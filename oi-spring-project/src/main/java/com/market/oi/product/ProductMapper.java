@@ -31,5 +31,5 @@ public interface ProductMapper {
 	public int setWishUp(ProductVO productVO) throws Exception;
 	public long getWishExist(ProductVO productVO)throws Exception;
 	public int setOrderComplete(OrdercompleteVO ordercompleteVO)throws Exception;
-	
+	public int setDeleteOrderComplete(OrdercompleteVO ordercompleteVO)throws Exception;
 }

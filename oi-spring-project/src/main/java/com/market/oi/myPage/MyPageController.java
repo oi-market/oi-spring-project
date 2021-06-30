@@ -99,17 +99,21 @@ public class MyPageController {
 	}
 	
 	//판매완료 변경
-	//product 테이블의 sale 부분 1(판매완료)로 변경
 	@GetMapping("mypage/soldoutUpdate")
 	public String soldoutUpdate(ProductVO productVO,Authentication auth,Model model) throws Exception {		
 		//컨펌 으로 확인 한번 해주면 조을듯
-		int result = myPageService.soldoutUpdate(productVO);		
-		System.out.println("업데이트");
+		
+
 		
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO sessionMemeber = (MemberVO)user;
 		List<MemberVO> ar = memberService.getChatMembers(sessionMemeber);
 		model.addAttribute("list", ar);
+		
+		
+		
+
+		
 		//구매자 선택 페이지로 이동 --> 최근 채팅한 사람 불러오기 (리시버 id가 세션 본인일때 센더 아이디 전부 불러와서 보여주기) 및 나중에 하-> ordercomplete
 		
 		//판매 완료 페이지에서 구매자 설정 dropdown 추가 , if 판매완료 테이블에 produtnum이 없다면 보일수 있도록
@@ -118,20 +122,32 @@ public class MyPageController {
 		return "mypage/selectBuyer";
 	}
 	@PostMapping("mypage/soldoutUpdate")
-	public String soldoutUpdate(OrdercompleteVO ordercompleteVO)throws Exception{
+	public String soldoutUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO,Model model)throws Exception{
+		int result = myPageService.soldoutUpdate(productVO);		
+		System.out.println("업데이트");
+		result= productService.setOrderComplete(ordercompleteVO);
+		String message = "상품 판매 완료 실패!";
 		
-		int reult= productService.setOrderComplete(ordercompleteVO);
-		//마이페이지에 있는 orderComplete 로 메퍼부터 변경 예
+		
+		if(result > 0) {
+			message = "상품 판매 완료 성공했습니다!";
+		}
+		
+		model.addAttribute("msg", message);
+		
 		 
-		 return "redirect:./purchase-sell";
+		 return "mypage/selectBuyer";
 		
 	}
 	
 	//판매중 변경 
 	@GetMapping("mypage/sellUpdate")
-	public String sellUpdate(ProductVO productVO) throws Exception {
+	public String sellUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO) throws Exception {
 		int result = myPageService.sellUpdate(productVO);
 		System.out.println("판매중");
+		//마이페이지에 있는 orderComplete 로 메퍼부터 변경 예정
+		result = productService.setDeleteOrderComplete(ordercompleteVO);
+		
 		
 		return "redirect:purchase-sell";
 	}

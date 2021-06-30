@@ -88,12 +88,12 @@
 	
 	<!-- 판매완료로 변경 -->
 	<update id="soldoutUpdate" parameterType="ProductVO">
-		update product set sale=1 where num=#{num}
+		update product set sale=0 where num=#{num}
 	</update>
 	
 	<!-- 거래중으로 변경 -->
 	<update id="sellUpdate" parameterType="ProductVO">
-		update product set sale=0 where num=#{num}
+		update product set sale=1 where num=#{num}
 	</update>
 	
 	<!-- 상품 삭제 -->
