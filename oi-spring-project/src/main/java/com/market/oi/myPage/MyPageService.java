@@ -10,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.market.oi.community.CommunityVO;
+
+import com.market.oi.community.comments.CommentsVO;
+
 import com.market.oi.member.MemberVO;
 import com.market.oi.util.MypagePager;
 
@@ -103,8 +106,19 @@ public class MyPageService {
 		return myPageMapper.reviewInsert(productVO);
 	}
 	
+
+	public List<CommentsVO> getComment(CommentsVO commentsVO) throws Exception{
+		return myPageMapper.getComment(commentsVO);
+	}
+	
+	public List<CommunityVO> getcommunity(CommunityVO communityVO) throws Exception{
+		return myPageMapper.getcommunity(communityVO);
+	}
+	
+
 	public List<CommunityVO> getVillage(MemberVO memberVO) throws Exception {
 		return myPageMapper.getVillage(memberVO);
 	}
 	
+
 }

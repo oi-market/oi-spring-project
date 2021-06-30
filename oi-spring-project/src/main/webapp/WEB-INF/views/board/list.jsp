@@ -180,9 +180,9 @@
 
 <!--  				<button id="writeBtn" class="mybtn mybtn--primary">쓰기</button>-->
 			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				관리자만 작성가능하게
-			</sec:authorize>
   <a href="./insert" id="writeBtn" class="mybtn mybtn--primary" role="button">Write</a>
+			</sec:authorize>
+
 			</div>
 
 

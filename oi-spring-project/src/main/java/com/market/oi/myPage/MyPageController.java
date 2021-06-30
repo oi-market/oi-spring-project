@@ -1,10 +1,10 @@
 package com.market.oi.myPage;
 
+
+import java.util.ArrayList;
 import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.market.oi.community.CommunityVO;
+
+import com.market.oi.community.comments.CommentsVO;
+
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
@@ -303,6 +306,9 @@ public class MyPageController {
 
 	}
 	
+	
+	
+	
 	@GetMapping("mypage/profile")
 	public ModelAndView getProfile(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
 		
@@ -353,6 +359,39 @@ public class MyPageController {
 		
 	}
 	
+	@GetMapping("mypage/village-comment")
+	public ModelAndView getVillageComment(MemberVO memberVO,Authentication authentication)throws Exception{
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
+		CommunityVO communityVO = new CommunityVO(); 
+		CommentsVO commentsVO = new CommentsVO();
+		
+		commentsVO.setWriter(memberVO.getUsername());
+		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
+		
+		
+		System.out.println(commentList);
+		for(int i =0; i<commentList.size(); i++) {
+			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
+			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
+			commentList.get(i).getCommunityVO().setContents(subContents);
+			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
+			}
+		}
+		
+
+
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("comment", commentList);
+		
+		
+		return mv;
+	}
+	
+	
 	@GetMapping("mypage/village-list")
 	public ModelAndView getVillage(CommunityVO communityVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();		
@@ -369,4 +408,5 @@ public class MyPageController {
 		return mv;
 	}
 	
+
 }
