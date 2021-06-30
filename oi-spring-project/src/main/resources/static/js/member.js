@@ -446,7 +446,7 @@ function update_dtn(){
 function usernameDelete(){
 	var passwordCheck = $("#passwordCheck").val();
 	
-	if(confirm("정말 삭제하시겠습니까?") == true){
+	if(confirm("회원탈퇴시 게시글은 삭제되지 않습니다.\n정말 삭제하시겠습니까?") == true){
 		
 	
 		$.ajax({
