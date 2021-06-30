@@ -167,7 +167,7 @@
 		select R.*, COM.contents as comcon from
 (select C.*,CM.categoryNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer}) R
 inner join community COM
-on R.communityNum=COM.num
+on R.communityNum=COM.num order by num desc
 	</select>
 	
 	
