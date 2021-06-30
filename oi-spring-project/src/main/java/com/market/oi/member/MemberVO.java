@@ -103,6 +103,10 @@ public class MemberVO implements UserDetails{
 	
 	
 	
+	public boolean getEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 	
 	
 }
