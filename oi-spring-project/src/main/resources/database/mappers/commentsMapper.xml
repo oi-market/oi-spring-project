@@ -61,5 +61,12 @@
 	<update id="setReplyUpdate" parameterType="CommentsVO">
 		update comments set step=step+1 where ref=#{ref} and step>#{step}
 	</update>
+	
+	<select id="getCommentsFile" parameterType="CommentsVO" resultType="MemberFileVO">
+	
+				SELECT * FROM MemberFiles
+				WHERE username= #{writer}
+
+	</select>
 
 </mapper>

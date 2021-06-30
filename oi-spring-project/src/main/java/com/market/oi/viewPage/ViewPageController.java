@@ -1,5 +1,7 @@
 package com.market.oi.viewPage;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -9,9 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.community.CommunityVO;
+import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
+import com.market.oi.myPage.MyPageService;
 
 @Controller
 @RequestMapping("/viewPage/**")
@@ -19,6 +24,9 @@ public class ViewPageController {
 
 	@Autowired
 	public ViewPageService viewPageService;
+	
+	@Autowired
+	public MyPageService myPageService;
 	
 	@Autowired
 	public MemberService memberService;
@@ -171,8 +179,32 @@ public class ViewPageController {
 	}
 	@GetMapping("viewVillage-comment")
 	public ModelAndView getVillageComment(MemberVO memberVO)throws Exception{
+		
+		
+		CommunityVO communityVO = new CommunityVO(); 
+		CommentsVO commentsVO = new CommentsVO();
+		
+		commentsVO.setWriter(memberVO.getUsername());
+		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
+		
+		
+		System.out.println(commentList);
+		for(int i =0; i<commentList.size(); i++) {
+			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
+			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
+			commentList.get(i).getCommunityVO().setContents(subContents);
+			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
+			}
+		}
+		
+		
+		
+		
+		
+		
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		mv.addObject("comment", commentList);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewVillage-comment");
 		

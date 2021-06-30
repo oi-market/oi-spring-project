@@ -149,10 +149,11 @@ public class CommunityController {
 		MemberVO sessionMember = (MemberVO)user;
 		
 		MemberVO memberVO = new MemberVO();
-		MemberFileVO memberFileVO = memberService.selectImage(memberVO);
+		memberVO.setUsername(communityVO.getWriter());
+		MemberFileVO writerFileVO = memberService.selectImage(memberVO);
 		
-		if(memberFileVO!=null) {
-			model.addAttribute("imgName", memberFileVO.getFileName());
+		if(writerFileVO!=null) {
+			model.addAttribute("writerImg", writerFileVO.getFileName());
 		}
 		
 		
@@ -167,7 +168,17 @@ public class CommunityController {
 		//comments select
 		List<CommentsVO> ar = commentsService.getList(commentsVO);
 		Long count = commentsService.getTotalCount(commentsVO);
-
+		
+//		List<MemberFileVO> commentFileList = new ArrayList<MemberFileVO>();
+		for(int i =0; i<ar.size(); i++) {
+			MemberFileVO commentsFileVO = new MemberFileVO();
+			commentsFileVO = commentsService.getCommentsFile(ar.get(i));
+			ar.get(i).setMemberFileVO(commentsFileVO);
+//			commentFileList.add(commentsFileVO);
+		}
+		System.out.println(ar);
+//		mv.addObject("commentFile",commentFileList);
+//		System.out.println(commentFileList);
 
 		mv.addObject("cutLocation", cutLocation);
 		

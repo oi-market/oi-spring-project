@@ -42,6 +42,24 @@
 		<collection property="productVO" resultMap="ProductMap"/>
 	</resultMap>
 	
+	
+	<resultMap type="commentsVO" id="commentsMap">
+			<id column="num" property="num"/>
+			<result column="communityNum" property="communityNum"/>
+			<result column="writer" property="writer"/>
+			<result column="contents" property="contents"/>
+			<result column="location" property="location"/>
+			<result column="regDate" property="regDate"/>
+			<result column="ref" property="ref"/>
+			<result column="step" property="step"/>
+			<result column="depth" property="depth"/>
+			<result column="nickName" property="nickName"/>
+			<association property="communityVO" javaType="communityVO">
+			<result column="categoryNum" property="categoryNum"/>
+			<result column="comcon" property="contents"/>
+			</association>
+			</resultMap>
+	
 	<!-- 관심 상품 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultMap="PWishMap">
 		SELECT P.* FROM product P inner JOIN mywish M ON P.num = M.productNum WHERE M.username = #{username}
@@ -143,5 +161,20 @@
 	<select id="reviewInsert" parameterType="ProductVO" resultType="ProductVO">
 		select P.*, O.* from product P left join ordercomplete O on P.num = O.productNum where P.num = #{num}
 	</select>
+
+
+	<select id="getComment" parameterType="commentsVO" resultMap="commentsMap">
+		select R.*, COM.contents as comcon from
+(select C.*,CM.categoryNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer}) R
+inner join community COM
+on R.communityNum=COM.num
+	</select>
 	
+	
+	
+	<select id="getcommunity" parameterType="communityVO" resultType="communityVO">
+		select * from community
+		where communityNum in
+		(select C.communityNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer})
+	</select>
 </mapper>

@@ -105,16 +105,7 @@
 
 
 
-				<div id="find-id-modal">
-					<div class="modal-content">
-						<h3>아이디 찾기</h3>
-						<p>-님의 아이디는 --입니다</p>
-
-						<button id="modal_close_btn" class="mybtn">확인</button>
-					</div>
-
-					<div class="modal-layer"></div>
-				</div>
+				
 
 
 
@@ -138,5 +129,41 @@
 
 
 	<script type="text/javascript" src="../js/member.js"></script>
+	
+	<script  type="text/javascript">
+	
+	//아이디 찾기
+ $("#find_ID").click(function () {
+		 var name = $("#name").val();
+		 var email = $("#email").val();
+		 var phone = $("#phone").val();
+		if (email == "" || name=="" || phone=="") {
+			alert("정보를 입력해주시기 바랍니다.");
+		}else{ $.ajax({
+			type : 'POST',
+			url : 'memberFindID',
+			data : {
+				email	:	email,
+				name	:	name,
+				phone	:	phone,
+			},
+
+			dataType :'text',
+			
+			success : function(data) {
+				
+				msg = data;
+		        alert(msg);
+		        message =$("message").val("principal.username");
+
+		       
+		        
+		    }
+			
+	 })
+		} 
+		
+	})
+	</script>
 </body>
 </html>

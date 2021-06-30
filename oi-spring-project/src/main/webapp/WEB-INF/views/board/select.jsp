@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -70,13 +71,16 @@
 				<div class="qna--answer">
 					<h3>Contents : ${vo.contents}</h3>
 				</div>
-					<div style="margin: 50px auto;">
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<div style="margin: 50px auto;">
 						<a href="./update?num=${vo.num}" 
 						class="mybtn mybtn--primary">Update</a> <a
 						href="./${board}Delete?num=${vo.num}" 
 						class="btn btn-danger"
 						onclick="if(!confirm('게시글을 삭제하시겠습니다?')){return false;}">Delete</a>
 					</div>
+			</sec:authorize>
+					
 			</div>
 		
 			

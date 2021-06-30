@@ -40,9 +40,7 @@ public class HomeController {
 	@GetMapping("mypage/village-list")
 	public void getVillageList()throws Exception{
 	}
-	@GetMapping("mypage/village-comment")
-	public void getVillageComment()throws Exception{
-	}
+	
 	@GetMapping("mypage/password")
 	public void getSetPassword()throws Exception{
 	}
