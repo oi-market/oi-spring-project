@@ -105,17 +105,18 @@
 	<update id="setHitUpdate" parameterType="ProductVO">
 		update product set hit = hit+1 where num = #{num}
 	</update>
-	
-	<!-- 판매중 변경 -->
-	<update id="sellUpdate" parameterType="ProductVO">
+
+	<!-- 판매완료로 변경 -->
+	<update id="soldoutUpdate" parameterType="ProductVO">
 		update product set sale=0 where num=#{num}
 	</update>
 	
-	<!-- 거래완료로 변경 -->
-	<update id="soldoutUpdate" parameterType="ProductVO">
+	<!-- 거래중으로 변경 -->
+
+	<update id="sellUpdate" parameterType="ProductVO">
 		update product set sale=1 where num=#{num}
 	</update>
-	
+		
 	<!-- 상품 삭제 -->
 	<delete id="setDelete" parameterType="ProductVO">
 		delete from product where num = #{num}
@@ -217,13 +218,9 @@
 
 	<select id="getComment" parameterType="commentsVO" resultMap="commentsMap">
 		select R.*, COM.contents as comcon from
-(select C.*,CM.categoryNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer}) R
-inner join community COM
-on R.communityNum=COM.num order by num desc
+			(select C.*,CM.categoryNum from comments C left join community CM on C.communityNum=CM.num where C.writer = #{writer}) R
+			inner join community COM on R.communityNum=COM.num order by num desc
 	</select>
-	
-	
-
 	
 	<select id="getcommunity" parameterType="communityVO" resultType="communityVO">
 		select * from community
@@ -256,6 +253,5 @@ on R.communityNum=COM.num order by num desc
     <select id="countComments" parameterType="CommentsVO" resultType="Long">
         select count(num) from comments where communityNum = #{communityNum}  
   	</select>
-  	
 
 </mapper>

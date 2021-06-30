@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.market.oi.community.CommunityService;
 import com.market.oi.community.CommunityVO;
 import com.market.oi.community.comments.CommentsVO;
+
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
@@ -33,7 +35,6 @@ public class MyPageController {
 	private MemberService memberService;
 	@Autowired
 	private ProductService productService;
-
 	
 	@GetMapping("mypage/purchase-buy")
 	public ModelAndView getbuyList(OrderPFileVO orderPFileVO, Authentication auth) throws Exception {
@@ -408,7 +409,6 @@ public class MyPageController {
 		List<CommunityVO> list = myPageService.getVillage(memberVO);
 		mv.addObject("list", list);
 		mv.addObject("vo", communityVO);		
-		
 		
 		mv.setViewName("mypage/village-list");
 				

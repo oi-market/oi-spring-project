@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.market.oi.community.CommunityVO;
+
 import com.market.oi.community.comments.CommentsVO;
 
 import com.market.oi.member.MemberVO;
@@ -54,16 +55,14 @@ public interface MyPageMapper {
 	
 	public int setReview(ReviewVO reviewVO) throws Exception;
 	
-	public ProductVO reviewInsert(ProductVO productVO) throws Exception;
-	
+	public ProductVO reviewInsert(ProductVO productVO) throws Exception;	
 
 	public List<CommentsVO> getComment(CommentsVO commentsVO)throws Exception;
 	
 	public List<CommunityVO> getcommunity(CommunityVO communityVO)throws Exception;
 	
-
 	public List<CommunityVO> getVillage(MemberVO memberVO) throws Exception;
-	
+
 	public Long countReview(MemberVO memberVO);
 	
 	public Long countSeller(MemberVO memberVO);

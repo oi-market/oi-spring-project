@@ -132,4 +132,5 @@ public class MyPageService {
 		return myPageMapper.countBuyer(memberVO);
 	}
 
+
 }
