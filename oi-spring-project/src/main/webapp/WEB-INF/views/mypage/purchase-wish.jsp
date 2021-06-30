@@ -99,18 +99,12 @@
                         <nav class="kinds-deal kinds-purchase">                    
                             <ul>
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish">
+                                   
                                        
                                         <div>중고거래</div>
-                                    </a>
+                                   
                                 </li>
-                                <li>
-                                    <a href="${pageContext.request.contextPath}/mypage/purchase-wish-village">
-                                        
-                            
-                                        <div>동네생활</div>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </nav>
     
