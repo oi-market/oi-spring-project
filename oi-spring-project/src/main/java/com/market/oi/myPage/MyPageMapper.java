@@ -68,5 +68,11 @@ public interface MyPageMapper {
 	public Long countSeller(MemberVO memberVO);
 	
 	public Long countBuyer(MemberVO memberVO);
+	
+	public String seller(ProductVO productVO);
+	
+	public String buyer(ProductVO productVO);
+	
+	public String getUser(ProductVO productVO);
 
 }
