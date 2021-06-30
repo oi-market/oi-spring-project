@@ -152,6 +152,9 @@
 		where username=#{username} and productNum=#{num}
 	</select>
 
+	
+	
+
 
     <insert id="setProductInsert" parameterType="wProductVO" >
 		insert into product (title,categoryNum,price,contents,sale,username,location,wgs84X,wgs84Y)
@@ -167,7 +170,10 @@
 	insert into MyWish (username,productNum,amount)
 				 values(#{username},#{num},#{price})								
 	</insert>
-	
+	<insert id="setOrderComplete" parameterType="OrdercompleteVO">
+	insert into orderComplete (seller,buyer,productNum)
+			values(#{seller},#{buyer},#{productNum})
+	</insert>
 	
 	
 	
@@ -185,7 +191,9 @@
 	
 	
 	
-	
+	<delete id="setDeleteOrderComplete" parameterType="OrdercompleteVO">
+		delete from orderComplete where productNum= #{productNum}
+	</delete>
 	<delete id="setDeleteProduct" parameterType="wProductVO">
 		  delete from product
   		where num=#{num}

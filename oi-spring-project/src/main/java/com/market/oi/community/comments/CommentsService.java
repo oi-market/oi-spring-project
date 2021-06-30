@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.market.oi.chat.ChatVO;
+import com.market.oi.member.MemberFileVO;
+
 @Service
 public class CommentsService {
 	
@@ -104,4 +107,8 @@ public class CommentsService {
 		return commentsMapper.getTotalCount(commentsVO);
 	}
 
+	public MemberFileVO getCommentsFile(CommentsVO commentsVO) throws Exception {
+		return commentsMapper.getCommentsFile(commentsVO);
+	}
+	
 }

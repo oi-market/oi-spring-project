@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -136,7 +137,11 @@
                      <div class="on-sale">
 
                        
+
+                                           
+                       
 					<c:forEach var="vo" items="${list}" >
+
                        <div class="product">
 
                             <div class="product-img-div">
@@ -158,7 +163,7 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./soldoutUpdate?num=${vo.productVO.num}">거래완료로 변경</a> 
+                                    <a  href="#" onclick="window.open('./soldoutUpdate?num=${vo.productVO.num}&productNum=${vo.productVO.num}&seller=<sec:authentication property="principal.username"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">거래 완료로 변경</a>
                                     <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>

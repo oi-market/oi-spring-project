@@ -12,9 +12,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.market.oi.location.LocationMapper;
+
 import com.market.oi.member.MemberVO;
 import com.market.oi.myPage.MywishVO;
+import com.market.oi.myPage.OrdercompleteVO;
 import com.market.oi.util.Pager;
 import com.market.oi.util.ProductFileManager;
 
@@ -24,8 +25,7 @@ public class ProductService {
 
 	@Autowired
 	ProductMapper productMapper;
-	@Autowired
-	LocationMapper locationMapper;
+
 	@Autowired
 	private ProductFileManager fileManager;
 	@Autowired
@@ -210,6 +210,11 @@ public class ProductService {
 		
 		
 	}
-	
-	
+	public int setOrderComplete(OrdercompleteVO orderCompleteVO)throws Exception{
+		return productMapper.setOrderComplete(orderCompleteVO);
+	}
+	public int setDeleteOrderComplete(OrdercompleteVO ordercompleteVO)throws Exception{
+		return productMapper.setDeleteOrderComplete(ordercompleteVO);
+	}
+
 }

@@ -72,8 +72,8 @@
 					  <!-- 프로필 이미지 변경부분!! -->
 						
                       <div>
-                      	<c:if test="${imgName eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
-					  	<c:if test="${imgName ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>	
+                      	<c:if test="${writerImg eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+					  	<c:if test="${writerImg ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${writerImg}" alt="profile_image"></c:if>	
                       </div>
 	                        <div class="info--users">
 	                            <div class="info--user">${vo.nickName}</div>
@@ -142,8 +142,11 @@
 		                                	<!-- 프로필 이미지 변경부분!! -->
 		                                	
 		                                    <div>
-		                                    	<c:if test="${imgName eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
-					  							<c:if test="${imgName ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>	
+		                                    
+		                                  
+		                                    	<c:if test="${comments.memberFileVO.fileName eq null}"><img class="select-img-size" id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
+					  							<c:if test="${comments.memberFileVO.fileName ne null}"><img class="select-img-size" id="account-image-preview" src="../upload/member/${comments.memberFileVO.fileName}" alt="profile_image"></c:if>	
+
 		                                    </div>
 		                                    <div class="info--users">
 		                                        <div class="info--user">${comments.nickName}</div>
@@ -153,6 +156,7 @@
 		                                            <div class="info--date">${comments.regDate}</div>
 		                                        </div>
 		                                    </div>
+		                                    
 		                                </div>
 		                                
 										<c:if test="${comments.writer eq session}">

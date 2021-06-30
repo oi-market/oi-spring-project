@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.market.oi.myPage.OrdercompleteVO;
+
 
 
 @Mapper
@@ -28,5 +30,6 @@ public interface ProductMapper {
 	public int setHitUpdate(ProductVO productVO) throws Exception;
 	public int setWishUp(ProductVO productVO) throws Exception;
 	public long getWishExist(ProductVO productVO)throws Exception;
-	
+	public int setOrderComplete(OrdercompleteVO ordercompleteVO)throws Exception;
+	public int setDeleteOrderComplete(OrdercompleteVO ordercompleteVO)throws Exception;
 }

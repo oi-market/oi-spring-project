@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.market.oi.member.TestClass_1;
+
 
 
 @Configuration
@@ -54,17 +56,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 				.antMatchers("/").permitAll()
 				.antMatchers("/notice/list", "/notice/select").permitAll()
-				.antMatchers("/notice/**").permitAll()
+				.antMatchers("/notice/update","/notice/insert").hasRole("ADMIN")
 //				.antMatchers("/notice/**").hasRole("ADMIN")
-				.antMatchers("/qna/qnaList").permitAll()
-				.antMatchers("/qna/qnaSelect").permitAll()
-				.antMatchers("/qna/**").permitAll()
+				.antMatchers("/qna/list","/qna/select").permitAll()
+				.antMatchers("/qna/update","/qna/insert").hasRole("ADMIN")
+//				.antMatchers("/qna/**").permitAll()
 //				.antMatchers("/qna/**").hasRole("ADMIN")
-				.antMatchers("/board/**").permitAll()				
-				.antMatchers("/member/memberProfile").hasAnyRole("ADMIN", "MEMBER")
+//				.antMatchers("/board/**").permitAll()				
 				.antMatchers("/member/join").permitAll()
 				.antMatchers("/member/**").permitAll()
-//				.antMatchers("/member/**").hasAnyRole("ADMIN", "MEMBER")
 
 				.antMatchers("/viewPage/**").permitAll()
 
@@ -82,10 +82,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				//로그인페이지를 따로 만들지 않아도 기본 내장된 폼으로 이동
 				//개발자가 만든 로그인폼을 사용하려면 다음과 같이 작성
 				.loginPage("/member/sign-in")
-				.defaultSuccessUrl("/member/memberLoginResult")
+				//.defaultSuccessUrl("/member/memberLoginResult")
+				.successHandler(new TestClass_1())
 				//Login 실패 처리
-				.failureUrl("/member/loginFail")
-//				.failureHandler(new LoginFail())
+//				.failureUrl("/member/loginFail")
+				//.failureHandler(null)
 				.permitAll()
 				.and()
 			.logout()

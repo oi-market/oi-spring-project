@@ -35,18 +35,6 @@
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
   
-
-
-  
-  
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-    <link rel="icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="../favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-       <!-- 먼저 호출되야함 reset! -->
-       <link rel="stylesheet" href="../css/mainScss.css">
-     <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/member.css">
     <style type="text/css">
 .r1 {
 	border: 1px solid red;
@@ -56,7 +44,19 @@
 
 	border: 1px solid blue;
 }
-  </style>
+
+</style>
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="apple-touch-icon" href="./favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+       <!-- 먼저 호출되야함 reset! -->
+       <link rel="stylesheet" href="../css/mainScss.css">
+     <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/member.css">
+  
   
 </head>
 <body>
@@ -120,13 +120,13 @@
                         <div>이름</div>
                         <form:input  id="name" path="name" placeholder="이름" class="col-12 input--text"/>
 						<form:errors path="name"></form:errors>
-				
+					
                         <div>별명</div>
                         <form:input id="nickName" path="nickName" placeholder="별명" class="col-12 input--text"/>
                         <form:errors path="nickName"></form:errors>
                         
                         <div>전화번호</div>
-                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text"  onKeyup="inputPhoneNumber(this);" maxlength="13"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+                        <form:input id="phone" path="phone" placeholder="전화번호" class="col-12 input--text"/>
                 		<form:errors path="phone"></form:errors>     
                 		
                 		

@@ -1,9 +1,10 @@
 package com.market.oi.myPage;
 
+
+import java.util.ArrayList;
+import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,14 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.market.oi.community.CommunityService;
 import com.market.oi.community.CommunityVO;
 import com.market.oi.community.comments.CommentsService;
 import com.market.oi.community.comments.CommentsVO;
+import com.market.oi.community.comments.CommentsVO;
+
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
+import com.market.oi.product.ProductService;
 import com.market.oi.util.MypagePager;
 
 @Controller
@@ -30,6 +33,8 @@ public class MyPageController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProductService productService;
 	
 	@Autowired
 	private CommentsService commentsService;
@@ -102,18 +107,54 @@ public class MyPageController {
 	
 	//판매완료 변경
 	@GetMapping("mypage/soldoutUpdate")
-	public String soldoutUpdate(ProductVO productVO) throws Exception {
-		int result = myPageService.soldoutUpdate(productVO);		
-		System.out.println("업데이트");	
+	public String soldoutUpdate(ProductVO productVO,Authentication auth,Model model) throws Exception {		
+		//컨펌 으로 확인 한번 해주면 조을듯
 		
-		return "redirect:purchase-sell";
+
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemeber = (MemberVO)user;
+		List<MemberVO> ar = memberService.getChatMembers(sessionMemeber);
+		model.addAttribute("list", ar);
+		
+		
+		
+
+		
+		//구매자 선택 페이지로 이동 --> 최근 채팅한 사람 불러오기 (리시버 id가 세션 본인일때 센더 아이디 전부 불러와서 보여주기) 및 나중에 하-> ordercomplete
+		
+		//판매 완료 페이지에서 구매자 설정 dropdown 추가 , if 판매완료 테이블에 produtnum이 없다면 보일수 있도록
+		
+		
+		return "mypage/selectBuyer";
+	}
+	@PostMapping("mypage/soldoutUpdate")
+	public String soldoutUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO,Model model)throws Exception{
+		int result = myPageService.soldoutUpdate(productVO);		
+		System.out.println("업데이트");
+		result= productService.setOrderComplete(ordercompleteVO);
+		String message = "상품 판매 완료 실패!";
+		
+		
+		if(result > 0) {
+			message = "상품 판매 완료 성공했습니다!";
+		}
+		
+		model.addAttribute("msg", message);
+		
+		 
+		 return "mypage/selectBuyer";
+		
 	}
 	
 	//판매중 변경 
 	@GetMapping("mypage/sellUpdate")
-	public String sellUpdate(ProductVO productVO) throws Exception {
+	public String sellUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO) throws Exception {
 		int result = myPageService.sellUpdate(productVO);
 		System.out.println("판매중");
+		//마이페이지에 있는 orderComplete 로 메퍼부터 변경 예정
+		result = productService.setDeleteOrderComplete(ordercompleteVO);
+		
 		
 		return "redirect:purchase-sell";
 	}
@@ -274,6 +315,9 @@ public class MyPageController {
 
 	}
 	
+	
+	
+	
 	@GetMapping("mypage/profile")
 	public ModelAndView getProfile(MemberVO memberVO,Authentication authentication,Model model)throws Exception{
 		
@@ -325,6 +369,39 @@ public class MyPageController {
 		
 	}
 	
+	@GetMapping("mypage/village-comment")
+	public ModelAndView getVillageComment(MemberVO memberVO,Authentication authentication)throws Exception{
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
+		CommunityVO communityVO = new CommunityVO(); 
+		CommentsVO commentsVO = new CommentsVO();
+		
+		commentsVO.setWriter(memberVO.getUsername());
+		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
+		
+		
+		System.out.println(commentList);
+		for(int i =0; i<commentList.size(); i++) {
+			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
+			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
+			commentList.get(i).getCommunityVO().setContents(subContents);
+			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
+			}
+		}
+		
+
+
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("comment", commentList);
+		
+		
+		return mv;
+	}
+	
+	
 	@GetMapping("mypage/village-list")
 	public ModelAndView getVillage(CommunityVO communityVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();		
@@ -346,4 +423,5 @@ public class MyPageController {
 		return mv;
 	}
 	
+
 }
