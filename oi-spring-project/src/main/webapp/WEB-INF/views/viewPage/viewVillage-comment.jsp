@@ -67,7 +67,7 @@
 						<c:forEach items="${comment}" var="vo" begin="0" end="2">
                 <div class="comment-bundle">
                
-                    <a href=" ${pageContext.request.contextPath}/neighborhood/select?categoryNum=${vo.num}&&num=${vo.communityNum}&&communityNum=${vo.num}" class="post-bundle">
+                    <a href=" ${pageContext.request.contextPath}/neighborhood/select?categoryNum=${vo.communityVO.categoryNum}&&num=${vo.communityNum}&&communityNum=${vo.communityNum}" class="post-bundle">
                     
                         <p class="post--content">
                             ${vo.contents}

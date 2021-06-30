@@ -197,10 +197,7 @@ public class ViewPageController {
 			}
 		}
 		
-		
-		
-		
-		
+		System.out.println(commentList);
 		
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);

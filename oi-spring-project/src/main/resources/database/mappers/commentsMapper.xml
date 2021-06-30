@@ -53,13 +53,13 @@
 	<!-- 댓글 setReply -->
 	<insert id="setReply" parameterType="CommentsVO">
 		insert into comments(communityNum, writer, contents, location, ref, step, depth, regDate) 
-		values(#{communityNum}, #{writer}, #{contents}, #{location}, #{ref}, #{step}, #{depth}, now())
+		values(#{communityNum}, #{writer}, #{contents}, #{location}, #{ref}, #{step}, #{depth}, now()) 
 	</insert>
 	
 	
 	<!-- 댓글 setReplyUpdate -->
 	<update id="setReplyUpdate" parameterType="CommentsVO">
-		update comments set step=step+1 where ref=#{ref} and step>#{step}
+		update comments set step=step+1 where ref=#{ref} and step>#{step} 
 	</update>
 	
 	<select id="getCommentsFile" parameterType="CommentsVO" resultType="MemberFileVO">
