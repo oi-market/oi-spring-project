@@ -1,6 +1,7 @@
 package com.market.oi.member;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.tools.JavaFileManager;
@@ -51,7 +52,7 @@ public class MemberService implements UserDetailsService{
 		
 		memberVO = memberMapper.memberLogin(memberVO);
  
-		
+		System.out.println(memberVO.getAuthorities());
 	
 		System.out.println(memberVO);
 		
@@ -252,6 +253,8 @@ public class MemberService implements UserDetailsService{
 //	return memberMapper.getLogin(memberVO);
 //}
   
-
+	public List<MemberVO> getChatMembers(MemberVO memberVO)throws Exception{
+		return memberMapper.getChatMembers(memberVO);
+	}
 
 }

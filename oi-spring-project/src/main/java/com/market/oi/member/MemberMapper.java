@@ -1,5 +1,6 @@
 package com.market.oi.member;
 
+import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -40,10 +41,14 @@ public interface MemberMapper {
 	
 	public int memberUpdateLocation(MemberVO memberVO);
 	
+
+	public List<MemberVO> getChatMembers(MemberVO memberVO);
+
 	public Long countScore(MemberVO memberVO);
 	
 	public Long countProduct(MemberVO memberVO);
 	
+
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 
 	

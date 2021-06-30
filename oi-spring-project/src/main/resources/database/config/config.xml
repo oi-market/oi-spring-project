@@ -7,13 +7,14 @@
 
 	<typeAliases>
 		<typeAlias type="com.market.oi.test.TestVO" alias="TestVO" />
-
 		<typeAlias type="com.market.oi.myPage.ProductVO" alias="ProductVO"/>
 		<typeAlias type="com.market.oi.myPage.ProductfilesVO" alias="ProductfilesVO"/>
 		<typeAlias type="com.market.oi.myPage.OrdercompleteVO" alias="OrdercompleteVO"/>
 		<typeAlias type="com.market.oi.myPage.MywishVO" alias="MywishVO"/>
 		<typeAlias type="com.market.oi.myPage.ReviewVO" alias="ReviewVO"/>
 		<typeAlias type="com.market.oi.myPage.PWishVO" alias="PWishVO"/>
+		<typeAlias type="com.market.oi.myPage.PFileVO" alias="PFileVO"/>
+		<typeAlias type="com.market.oi.myPage.OrderPFileVO" alias="OrderPFileVO"/>
 
 		<typeAlias type="com.market.oi.member.MemberVO" alias="MemberVO"/>
 		<typeAlias type="com.market.oi.member.RoleVO" alias="RoleVO"/>
@@ -30,6 +31,7 @@
 		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO"/>
 		<typeAlias type="com.market.oi.product.ProductVO" alias="wProductVO"/>
 		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="wProductFilesVO"/>
+		<typeAlias type="com.market.oi.product.ProductCategoryVO" alias="ProductCategoryVO"/>
 
 
 

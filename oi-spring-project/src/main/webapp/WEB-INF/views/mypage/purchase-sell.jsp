@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -44,6 +45,27 @@
     <!-- Font Awesome icons (free version)-->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<style type="text/css">
+	.product-title {
+    text-align:center;
+    display:table;
+    border:1px solid #cecece;
+    width:280px;
+    height:250px;
+	}
+
+	.product-img-div {
+	    display:table-cell;
+	    vertical-align:middle;
+	}
+	
+	.product--image {
+		text-align: center;
+		 max-width:180px;
+    max-height:180px;
+	}
+	</style>
 </head>
 <body>
      <div class="body__container">
@@ -115,17 +137,23 @@
                      <div class="on-sale">
 
                        
-					<c:forEach var="vo" items="${product}" >
+
+                                           
+                       
+					<c:forEach var="vo" items="${list}" >
+
                        <div class="product">
 
-                            <div>
-                                <a href="./productSelect?num=${vo.num}">사진</a>
+                            <div class="product-img-div">
+                                <a href="../product/select?num=${vo.productVO.num}">
+                                	 <img  id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                </a>
                             </div>
 
                             <div class="product-description">
-                                <p class="review-name">${vo.title}</p>
-                                <p class="review-location">${vo.location} · ${vo.regDate} </p>
-                                <p>${vo.price}</p>
+                                <p class="review-name">${vo.productVO.title}</p>
+                                <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate} </p>
+                                <p>${vo.productVO.price}</p>
                             </div>
 
                             <div class="inner__dropdown">
@@ -135,10 +163,9 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./soldoutUpdate?num=${vo.num}">거래완료로 변경</a> 
-                                    <a href="./productUpdate?num=${vo.num}">게시글 수정</a>
-                                    <a href="./setWishInsert?num=${vo.num}">관심상품 추가</a>
-                                    <a href="./productDelete?num=${vo.num}">삭제</a>
+                                    <a  href="#" onclick="window.open('./soldoutUpdate?num=${vo.productVO.num}&productNum=${vo.productVO.num}&seller=<sec:authentication property="principal.username"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">거래 완료로 변경</a>
+                                    <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
+                                    <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>
 
                             </div>

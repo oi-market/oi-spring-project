@@ -1,10 +1,10 @@
 package com.market.oi.myPage;
 
+
 import java.util.ArrayList;
+import java.security.Principal;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.market.oi.community.CommunityVO;
+
 import com.market.oi.community.comments.CommentsVO;
+
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
+import com.market.oi.product.ProductService;
 import com.market.oi.util.MypagePager;
 
 @Controller
@@ -29,50 +32,52 @@ public class MyPageController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProductService productService;
 	
 	@GetMapping("mypage/purchase-buy")
-	public ModelAndView getbuyList(ProductVO productVO, Authentication auth) throws Exception {
+	public ModelAndView getbuyList(OrderPFileVO orderPFileVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();		
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 				
 		//내가 구매한 상품 list
-		List<ProductVO> list = myPageService.getBuyList(memberVO);
+		List<OrderPFileVO> list = myPageService.getBuyList(memberVO);
 		mv.addObject("order", list);
-		mv.addObject("vo", productVO);		
+		mv.addObject("vo", orderPFileVO);		
 		mv.setViewName("mypage/purchase-buy");
 				
 		return mv;
 	}
 	
 	@GetMapping("mypage/purchase-sell")
-	public ModelAndView getsellList(ProductVO productVO, Authentication auth) throws Exception {
+	public void getsellList(PFileVO pFileVO, Authentication auth, Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 중인 상품 list
-		List<ProductVO> ar = myPageService.getList(memberVO);		
-		mv.addObject("product", ar);
-		mv.addObject("vo", productVO);	
-		mv.setViewName("mypage/purchase-sell");
-
-		return mv;
+		List<PFileVO> ar = myPageService.getList(memberVO);
+		model.addAttribute("list", ar);
+		model.addAttribute("mypage/purchase-sell");
+		
+		System.out.println("판매상품"+memberVO);
+		System.out.println(ar.size());
 	}
 	
 	@GetMapping("mypage/purchase-sell-soldout")
-	public ModelAndView getsoldList(ProductVO productVO, Authentication auth) throws Exception {
+	public ModelAndView getsoldList(PFileVO pFileVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 상품 중 판매완료된 것 list
-		List<ProductVO> ar = myPageService.getSellList(memberVO);		
+		List<PFileVO> ar = myPageService.getSellList(memberVO);	
 		mv.addObject("sell", ar);
-		mv.addObject("vo", productVO);
+		mv.addObject("vo", pFileVO);
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -97,20 +102,55 @@ public class MyPageController {
 	}
 	
 	//판매완료 변경
-	//product 테이블의 sale 부분 1(판매완료)로 변경
 	@GetMapping("mypage/soldoutUpdate")
-	public String soldoutUpdate(ProductVO productVO) throws Exception {
-		int result = myPageService.soldoutUpdate(productVO);		
-		System.out.println("업데이트");	
+	public String soldoutUpdate(ProductVO productVO,Authentication auth,Model model) throws Exception {		
+		//컨펌 으로 확인 한번 해주면 조을듯
 		
-		return "redirect:purchase-sell";
+
+		
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO sessionMemeber = (MemberVO)user;
+		List<MemberVO> ar = memberService.getChatMembers(sessionMemeber);
+		model.addAttribute("list", ar);
+		
+		
+		
+
+		
+		//구매자 선택 페이지로 이동 --> 최근 채팅한 사람 불러오기 (리시버 id가 세션 본인일때 센더 아이디 전부 불러와서 보여주기) 및 나중에 하-> ordercomplete
+		
+		//판매 완료 페이지에서 구매자 설정 dropdown 추가 , if 판매완료 테이블에 produtnum이 없다면 보일수 있도록
+		
+		
+		return "mypage/selectBuyer";
+	}
+	@PostMapping("mypage/soldoutUpdate")
+	public String soldoutUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO,Model model)throws Exception{
+		int result = myPageService.soldoutUpdate(productVO);		
+		System.out.println("업데이트");
+		result= productService.setOrderComplete(ordercompleteVO);
+		String message = "상품 판매 완료 실패!";
+		
+		
+		if(result > 0) {
+			message = "상품 판매 완료 성공했습니다!";
+		}
+		
+		model.addAttribute("msg", message);
+		
+		 
+		 return "mypage/selectBuyer";
+		
 	}
 	
 	//판매중 변경 
 	@GetMapping("mypage/sellUpdate")
-	public String sellUpdate(ProductVO productVO) throws Exception {
+	public String sellUpdate(ProductVO productVO,OrdercompleteVO ordercompleteVO) throws Exception {
 		int result = myPageService.sellUpdate(productVO);
 		System.out.println("판매중");
+		//마이페이지에 있는 orderComplete 로 메퍼부터 변경 예정
+		result = productService.setDeleteOrderComplete(ordercompleteVO);
+		
 		
 		return "redirect:purchase-sell";
 	}
@@ -150,29 +190,6 @@ public class MyPageController {
 		System.out.println("성공");
 		return "redirect:purchase-wish";
 	}
-	
-	//상품 수정
-	@GetMapping("mypage/productUpdate")
-	public String setUpdate(ProductVO productVO, Model model) throws Exception {
-		productVO = myPageService.getSelect(productVO);
-		model.addAttribute("vo", productVO);
-		
-		return "mypage/productUpdate";
-	}
-	
-	@PostMapping("mypage/productUpdate")
-	public String setUpdate(ProductVO productVO) throws Exception {	
-		int result = myPageService.setUpdate(productVO);
-		
-		if(result>0) {
-			System.out.println("수정 성공");
-		} else {
-			System.out.println("수정 실패");		
-		}
-		
-		return "redirect:purchase-sell";
-	}
-	
 	
 	//상품 선택
 	@GetMapping("mypage/productSelect")
@@ -342,7 +359,6 @@ public class MyPageController {
 		
 	}
 	
-	
 	@GetMapping("mypage/village-comment")
 	public ModelAndView getVillageComment(MemberVO memberVO,Authentication authentication)throws Exception{
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -376,8 +392,21 @@ public class MyPageController {
 	}
 	
 	
+	@GetMapping("mypage/village-list")
+	public ModelAndView getVillage(CommunityVO communityVO, Authentication auth) throws Exception {
+		ModelAndView mv = new ModelAndView();		
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
+				
+		//내가 구매한 상품 list
+		List<CommunityVO> list = myPageService.getVillage(memberVO);
+		mv.addObject("list", list);
+		mv.addObject("vo", communityVO);		
+		mv.setViewName("mypage/village-list");
+				
+		return mv;
+	}
 	
-	
-	
-	
+
 }

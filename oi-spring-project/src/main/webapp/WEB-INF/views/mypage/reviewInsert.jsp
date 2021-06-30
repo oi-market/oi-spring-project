@@ -55,6 +55,24 @@
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+<style type="text/css">
+	#star {
+  display: flex;
+}
+
+.star {
+  font-size: 2rem;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.star:not(.on) {
+  color: #ccc;
+}
+
+.star.on {
+  color: orange;
+}</style>
 </head>
 <body>
 
@@ -79,23 +97,39 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="writer">reciver</label> 
+					<label for="writer">받는사람</label> 
 					<input type="text" id="reciver" name="reciver" value="${vo.username}">
 				</div>
 	
 				<div class="form-group">
-					<label for="contents">Contents:</label>
+					<label for="contents">내용</label>
 					<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 				</div>
 				
-				<div class="form-group">
+				<div class="form-group"> <!-- 선택까지만 되고 값 저장아직! -->
+				<div class="star-container" id="star">
 					<label for="contents">별점</label>
-					<input type="text" id="score" name="score">
+  					<span class="star" name="score" title="1">★
+  						<input type="hidden" id="score" name="score" value="1"> 
+  					</span>
+				    <span class="star" name="score" title="2">★</span>
+				    <span class="star" name="score" title="3">★</span>
+				    <span class="star" name="score" title="4">★</span>
+				    <span class="star" name="score" title="5">★</span>
+				</div> 
 				</div>
 				
 				<div class="form-group">
 					<label for="contents">position</label>
-					<input type="text" id="writerPosition" name="writerPosition">
+					<c:choose>
+						<c:when test="${vo.username != principal.username}"> <!-- 일단 buyer만 제대로 들어감 ㅜ -->
+							<input type="hidden" id="writerPosition" name="writerPosition" value="buyer">
+						</c:when>
+						<c:otherwise>
+							<input type="hidden" id="writerPosition" name="writerPosition" value="seller">
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 					
 				
@@ -110,6 +144,38 @@
     <c:import url="../template/footer.jsp"></c:import>
 
      <script src="../js/main.js"></script>    
-     <script src="../js/neighborhood.js"></script>	
+    <!--  <script src="../js/neighborhood.js"></script>	 -->
+     <script type="text/javascript">
+     (function () {
+    	    var starEls = document.querySelectorAll('#star span.star');
+    	    var rate = 0;
+
+    	    loop(starEls, function (el, index) {
+    	        el.addEventListener('click', function () {
+    	            rating(index + 1);
+    	        });
+    	    });
+
+    	    function loop(list, func) {
+    	        Array.prototype.forEach.call(list, func);
+    	    }
+
+    	    function rating(score) {
+    	        loop(starEls, function (el, index) {
+    	            if (index < score) {
+    	                el.classList.add('on');
+    	            } else {
+    	                el.classList.remove('on');
+    	            }
+    	        });
+
+    	        rate = score;
+    	        
+    	        //alert(score);
+    	        $("#score").val(score);
+    	        
+    	    }
+    	})();
+     </script>
 </body>
 </html>

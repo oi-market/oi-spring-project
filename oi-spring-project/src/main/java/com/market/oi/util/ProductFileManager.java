@@ -139,7 +139,12 @@ public class ProductFileManager {
 		String rootPath = getRootPath(fileName,request);
 		File file = new File(rootPath+File.separator+fileName);
 		
+		
+		
 		MediaType mediaType = ProductMediaUtils.getMediaType(fileName);
+		
+	
+		
 		if(mediaType!=null) {
 			String ogImg = file.getAbsolutePath().replace("s_", "");
 			new File(ogImg).delete();

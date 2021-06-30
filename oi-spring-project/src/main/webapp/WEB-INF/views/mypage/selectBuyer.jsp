@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-
     <meta charset="UTF-8">
-    <title>쪽지|오이마켓</title>
+    <title>중고 거래|오이마켓</title>
 
     <meta name="author" content="wook">
     <meta name="description" content="오이마켓">
@@ -39,59 +37,50 @@
     <link rel="stylesheet" href="../css/mainScss.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/neighborhood.css">
-    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/chat.css">
-    
-    <!-- jsp로 바꿀때 경로 신경쓰기 -->
-
-<meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/mypage.css">
 </head>
 <body>
-	<div class="body__container">
-	
-		<!-- HEADER -->
-    	<c:import url="../template/header.jsp"></c:import>
-	
-		<section class="section article">
-			<div class="inner">
-			
-				<!-- button -->
-				<div class="">
-					<a href="./productList?check=1">
-						<img alt="판매" src="../img/chat-sell-button.png" style="width:100px;">
-					</a>
-					<a href="./productList?check=2">
-						<img alt="구매" src="../img/chat-buy-button.png" style="width:100px;">
-					</a>
-				</div>
+    <div class="body__container">
 
-				<c:forEach items="${list}" var="vo" varStatus="i">
-					
-		           <a href="./chatList?productNum=${vo.num}&check=${param.check}&sellerID=${vo.username}">
-						<div class="post-list">
-						
-		                	
-		                    <div id="chatList"> ${vo.title} </div>
-	                
-	            		</div>
-		           </a>
-				
-				</c:forEach>
 
-				
-				<c:if test="${list.size() eq 0}">
-				<img alt="no-chat" src="../img/no-chat.png" style="width:30%; height: auto;">
-				</c:if>
-				
-			</div>
-		</section>
-		<br><br>
-		
-		<!-- FOOTER -->
-        <c:import url="../template/footer.jsp"></c:import>
-	</div>
-	<script src="../js/main.js"></script>
-	
+        <section class="buyer--popup">
+            <strong>구매한 분을 골라주세요!</strong>
+
+                <form action="./soldoutUpdate" method="post">
+	                <select name="buyer" id="">
+		                <c:forEach items="${list}" var="vo">
+		                    <option value="${vo.username}">닉네임 :${vo.nickName} , 아이디 : ${vo.username} </option>
+		                </c:forEach>
+	                </select>
+                
+                	<input type="hidden" name="productNum" value="${param.productNum}">
+                	<input type="hidden" name="num" value="${param.productNum}">
+                	<input type="hidden" name="seller" value="${param.seller}">
+            <button id="orderCompleteBtn" class="mybtn" type="submit">거래 완료 하기</button>
+            	</form>
+            
+                
+           
+
+    </section>
+
+
+
+
+
+
+        </div>
 </body>
+<script>
+		var result = '${msg}';
+	
+		if(result != ''){
+			alert(result);
+			window.close();
+			//팝업이 열리기 전 페이지(opener)
+			window.opener.location.reload();
+		}
+		
+		
+	</script>
 </html>

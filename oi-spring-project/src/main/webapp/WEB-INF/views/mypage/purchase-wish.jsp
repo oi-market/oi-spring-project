@@ -121,12 +121,10 @@
                         <c:forEach var="vo" items="${list}" varStatus="true">
                       <div class="product">
 
-							<!-- 즐겨찾기의 데이터들만 채워진 빨간 하트 
-                            <c:if test="${vo.mywishVO.wish eq 1}">
-                            <span style="color:red; text-align: center;"><button class="fas fa-heart fa-lg"></button></span>  
-                            </c:if> -->
                             <div>
-                                <a href="./productSelect?num=${vo.productVO.num}">사진</a>
+                                <a href="../product/select?num=${vo.productVO.num}">
+                                	 <img id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                </a>
                             </div>
 
                             <div class="product-description">
