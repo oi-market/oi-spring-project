@@ -37,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		   .antMatchers("/node/**")
 		   .antMatchers("/node_modules/**")
 		   .antMatchers("/upload/**")
+		   .antMatchers("/static/**")
 		   ;
 	}
 	

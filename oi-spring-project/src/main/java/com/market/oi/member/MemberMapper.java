@@ -41,7 +41,14 @@ public interface MemberMapper {
 	
 	public int memberUpdateLocation(MemberVO memberVO);
 	
+
 	public List<MemberVO> getChatMembers(MemberVO memberVO);
+
+	public Long countScore(MemberVO memberVO);
+	
+	public Long countProduct(MemberVO memberVO);
+	
+
 //	public int setJoinFile(MemberFileVO memberFileVO)throws Exception;
 
 	

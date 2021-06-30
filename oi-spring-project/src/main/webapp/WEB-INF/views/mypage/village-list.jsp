@@ -60,6 +60,7 @@
                     <h1 class="page-name">동네생활 글</h1>
                 </div>
                 
+                <c:forEach var="vo" items="${list}" varStatus="true">
                  <div class="village-body">
                     
                      <a href="#" class="post-bundle">
@@ -68,11 +69,7 @@
                          </div>
                          <div class="post--content">
                              <p>
-                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-                             deleniti nostrum doloremque tenetur excepturi,
-                             repellendus distinctio inventore,
-                             repellat corporis suscipit veritatis modi optio?
-                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
+                             ${vo.contents}
                         	</p>
                         	<%-- <c:if test="${커뮤니티.이미지}"> --%>
                         	<!-- <img alt="" src=""> -->
@@ -80,31 +77,12 @@
                          </div>
                          <div class="post--small-service">
                              <div class="like">댓글 3개</div>
-                             <div class="comment">좋아요 n개</div>
+                             <div class="comment">좋아요 ${vo.like}개</div>
                          </div>
                      </a>
-                     
-                     <a href="#" class="post-bundle">
-                         <div class="post--category">
-                             같이해요
-                         </div>
-                         <p class="post--content">
-                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem,
-                             deleniti nostrum doloremque tenetur excepturi,
-                             repellendus distinctio inventore,
-                             repellat corporis suscipit veritatis modi optio?
-                             Fuga consectetur officiis numquam nesciunt dolorum? Minima.
-                         </p>
-                         <div class="post--small-service">
-                             <div class="like">댓글 3개</div>
-                             <div class="comment">좋아요 n개</div>
-                         </div>
-                     </a>
-     
-                
-     
-               
+           
                  </div>
+                 </c:forEach>
                 
             </div>
             

@@ -354,6 +354,7 @@ $("#nickName").on("blur",function(){
 	
 
 	if(nickNameTrim==0){
+		
 		 c = "r1";
 	}
 	nickName = document.getElementById("nickName");
@@ -366,20 +367,59 @@ $("#phone").on("blur",function(){
 
 	var phoneTrim= $.trim(phone.value.length);
 	let c="";
-	
 
 	if(phoneTrim==0){
 		 c = "r1";
 	}
+
 	phone = document.getElementById("phone");
 	$("#phone").removeClass("r1");
 	$("#phone").addClass(c);
 
 });
 
+    $( "#account-phone").on("blur keyup", function() {
+      $(account-phone).val( $(this).val().replace( /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g, '' ) );
+   });
 
 
-/////////////////////////////////
+
+
+
+
+function inputPhoneNumber(obj) {
+   
+    var number = obj.value.replace(/[^0-9]/g, "");
+    var phone = "";
+    
+    if(number.length < 4) {
+        return number;
+    } else if(number.length < 7) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3);
+    } else if(number.length < 11) {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 3);
+        phone += "-";
+        phone += number.substr(6);
+    } else {
+        phone += number.substr(0, 3);
+        phone += "-";
+        phone += number.substr(3, 4);
+        phone += "-";
+        phone += number.substr(7);
+        
+    }
+
+    obj.value = phone;
+}
+
+
+
+
+
 
 
 //회원정보수정

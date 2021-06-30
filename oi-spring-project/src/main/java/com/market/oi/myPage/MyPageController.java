@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.market.oi.community.CommunityVO;
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
@@ -32,48 +33,48 @@ public class MyPageController {
 	private ProductService productService;
 	
 	@GetMapping("mypage/purchase-buy")
-	public ModelAndView getbuyList(ProductVO productVO, Authentication auth) throws Exception {
+	public ModelAndView getbuyList(OrderPFileVO orderPFileVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();		
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 				
 		//내가 구매한 상품 list
-		List<ProductVO> list = myPageService.getBuyList(memberVO);
+		List<OrderPFileVO> list = myPageService.getBuyList(memberVO);
 		mv.addObject("order", list);
-		mv.addObject("vo", productVO);		
+		mv.addObject("vo", orderPFileVO);		
 		mv.setViewName("mypage/purchase-buy");
 				
 		return mv;
 	}
 	
 	@GetMapping("mypage/purchase-sell")
-	public ModelAndView getsellList(ProductVO productVO, Authentication auth) throws Exception {
+	public void getsellList(PFileVO pFileVO, Authentication auth, Model model) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 중인 상품 list
-		List<ProductVO> ar = myPageService.getList(memberVO);		
-		mv.addObject("product", ar);
-		mv.addObject("vo", productVO);	
-		mv.setViewName("mypage/purchase-sell");
-
-		return mv;
+		List<PFileVO> ar = myPageService.getList(memberVO);
+		model.addAttribute("list", ar);
+		model.addAttribute("mypage/purchase-sell");
+		
+		System.out.println("판매상품"+memberVO);
+		System.out.println(ar.size());
 	}
 	
 	@GetMapping("mypage/purchase-sell-soldout")
-	public ModelAndView getsoldList(ProductVO productVO, Authentication auth) throws Exception {
+	public ModelAndView getsoldList(PFileVO pFileVO, Authentication auth) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//session 받아오기
 		UserDetails user = (UserDetails)auth.getPrincipal();
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 상품 중 판매완료된 것 list
-		List<ProductVO> ar = myPageService.getSellList(memberVO);		
+		List<PFileVO> ar = myPageService.getSellList(memberVO);	
 		mv.addObject("sell", ar);
-		mv.addObject("vo", productVO);
+		mv.addObject("vo", pFileVO);
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -170,29 +171,6 @@ public class MyPageController {
 		System.out.println("성공");
 		return "redirect:purchase-wish";
 	}
-	
-	//상품 수정
-	@GetMapping("mypage/productUpdate")
-	public String setUpdate(ProductVO productVO, Model model) throws Exception {
-		productVO = myPageService.getSelect(productVO);
-		model.addAttribute("vo", productVO);
-		
-		return "mypage/productUpdate";
-	}
-	
-	@PostMapping("mypage/productUpdate")
-	public String setUpdate(ProductVO productVO) throws Exception {	
-		int result = myPageService.setUpdate(productVO);
-		
-		if(result>0) {
-			System.out.println("수정 성공");
-		} else {
-			System.out.println("수정 실패");		
-		}
-		
-		return "redirect:purchase-sell";
-	}
-	
 	
 	//상품 선택
 	@GetMapping("mypage/productSelect")
@@ -327,14 +305,25 @@ public class MyPageController {
 		if(memberFileVO!=null) {
 			model.addAttribute("imgName", memberFileVO.getFileName());
 		}
+		Long countScore = memberService.countScore(memberVO);
+		Long countProduct  = memberService.countProduct(memberVO);
 		
+		if(countScore==null) {
+			countScore=0L;
+		}
+		if(countProduct==null) {
+			countProduct=0L;
+		}
+		System.out.println(countScore);
+		System.out.println(countProduct);
 		System.out.println(score);
 		int change = 20;
 		double scoreStar = change*score;
 		System.out.println(score);
 		model.addAttribute("Score",score);
 		model.addAttribute("scoreStar",scoreStar);
-		
+		model.addAttribute("countScore",countScore);
+		model.addAttribute("countProduct",countProduct);
 		/* 내가 받은 리뷰 띄워주기 */
 		ReviewVO reviewVO = new ReviewVO();
 		ModelAndView mv = new ModelAndView();
@@ -343,8 +332,25 @@ public class MyPageController {
 		mv.addObject("vo", reviewVO);		
 		mv.setViewName("mypage/profile");
 		
+
 		return mv;
 		
+	}
+	
+	@GetMapping("mypage/village-list")
+	public ModelAndView getVillage(CommunityVO communityVO, Authentication auth) throws Exception {
+		ModelAndView mv = new ModelAndView();		
+		//session 받아오기
+		UserDetails user = (UserDetails)auth.getPrincipal();
+		MemberVO memberVO = (MemberVO)user;
+				
+		//내가 구매한 상품 list
+		List<CommunityVO> list = myPageService.getVillage(memberVO);
+		mv.addObject("list", list);
+		mv.addObject("vo", communityVO);		
+		mv.setViewName("mypage/village-list");
+				
+		return mv;
 	}
 	
 }

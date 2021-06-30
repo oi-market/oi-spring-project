@@ -27,7 +27,7 @@
 	</select>
 	
 	<select id="getBuyerList" parameterType="ChatVO" resultType="ChatVO">
-		SELECT * FROM chat
+			SELECT * FROM chat
 		WHERE sellerID = #{sellerID} AND productNum = #{productNum}
 		<choose>
 			<when test="check == 2">
@@ -35,6 +35,8 @@
 			</when>
 		</choose>
 		GROUP BY chat.buyerName
+		
+		
 	</select>
 	
 	<select id="getChatList" parameterType="ChatVO" resultType="ChatVO">
@@ -57,5 +59,25 @@
 	<delete id="setChatDelete" parameterType="ChatVO">
 		DELETE FROM chat WHERE productNum = #{productNum}
 	</delete>
+	
+	<select id="getBuyerFileList" parameterType="ChatVO" resultType="MemberFileVO">
+		
+		
+		<choose>
+			<!-- check == 1 : 판매자 -->
+			<when test="check == 1">
+				SELECT * FROM MemberFiles
+				WHERE username= #{buyerID}
+			</when>
+			
+			<!-- check == 1 : 구매자 -->
+			<!-- <when test="check == 2"> -->
+			
+			<otherwise>
+				SELECT * FROM MemberFiles
+				WHERE username= #{sellerID}
+			</otherwise>
+		</choose>
+	</select>
 
 </mapper>

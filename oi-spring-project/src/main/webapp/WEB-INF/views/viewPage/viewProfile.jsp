@@ -69,7 +69,7 @@
                     <div class="user-name">
                         <c:if test="${imgName eq null}"><img id="account-image-preview" src="../img/default-user-picture.png"  alt="profile_image"></c:if>
 							<c:if test="${imgName ne null}"><img id="account-image-preview" src="../upload/member/${imgName}" alt="profile_image"></c:if>
-                     <h1> ${memberVO.nickName} </h1>
+                     <strong>${memberVO.nickName}</strong>
                     </div>
                     <div class="user-info">
                         <div class="star-rating">
@@ -79,7 +79,7 @@
                             </span>
                         </div>
                         <p>${score}</p>
-                        <p>n명이 평가</p>
+                        <p>${countScore}명이 평가</p>
                     </div>
 
                 </div>
@@ -87,7 +87,7 @@
                 <div class="content-body">
                     <div class="title-underline">
                         <p>
-                            판매상품 n개
+                            판매상품 ${countProduct}개
                         </p>
                         <a href="${pageContext.request.contextPath}/viewPage/viewPurchase-sell?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>
@@ -103,7 +103,7 @@
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n
+                            받은 리뷰 ${countScore}
                         </p>
                         <a href="${pageContext.request.contextPath}/viewPage/viewReview?username=${memberVO.username}">
                             <i class="bi bi-caret-right-fill"></i>

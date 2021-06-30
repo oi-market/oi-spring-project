@@ -104,13 +104,15 @@
                       <div class="product">
 
                             <div>
-                                 <a href="./productSelect?num=${vo.num}">사진</a>
+                                 <a href="../product/select?num=${vo.productVO.num}">
+                                 	 <img class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                 </a>
                             </div>
 
                             <div class="product-description">
-                                <p class="review-name">${vo.title}</p>
-                                <p class="review-location">${vo.location} · ${vo.regDate}</p>
-                                <p>${vo.price}</p>
+                                <p class="review-name">${vo.productVO.title}</p>
+                                <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate}</p>
+                                <p>${vo.productVO.price}</p>
                             </div>
 
                             <div class="inner__dropdown">
@@ -120,8 +122,8 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                	<a href="./reviewInsert?num=${vo.num}">리뷰 작성</a>
-                                    <a href="./productDelete?num=${vo.num}">삭제</a> 
+                                	<a href="./reviewInsert?num=${vo.productVO.num}">리뷰 작성</a>
+                                    <a href="./productDelete?num=${vo.productVO.num}">삭제</a> 
                                 </div>
 
                             </div>

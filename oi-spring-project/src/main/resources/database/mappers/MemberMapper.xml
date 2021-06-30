@@ -109,6 +109,14 @@
       		update member set location=#{location},wgs84X=#{wgs84X},wgs84Y=#{wgs84Y} where username=#{username}      
       </update>
       
+      <select id="countScore" parameterType="MemberVO" resultType="long" >
+			select count(score) from oi.review where reciver = #{username}
+		</select>
+		
+		<select id="countProduct" parameterType="MemberVO" resultType="long" >
+			select count(sale) from product where username = #{username} and sale=1
+		</select>
+      
 
 		<select id="getChatMembers" parameterType="MemberVO" resultType="MemberVO">
 			select S.* from

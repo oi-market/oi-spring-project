@@ -10,7 +10,7 @@ public class ProductVO {
 	private Long num;
 	private String title;
 	private Long categoryNum;
-	private Long price;
+	private String price;
 	private String contents;
 	private int sale;
 	private Date regDate;

@@ -154,7 +154,7 @@
      </div>
      <script src="../js/main.js"></script>
      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APPKEY&libraries=services"></script>
+      <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d58b4a3149fa76e3f33c4a03c9252a9d&libraries=services"></script>
      <script src="../js/myPage.js"></script>
 
 

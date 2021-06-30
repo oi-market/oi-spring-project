@@ -61,11 +61,6 @@ const reply = document.querySelectorAll(".comment-insert.comment-insert--reply")
   const toggleSmall=document.querySelectorAll('.toggle--small');
   const toggleBtnSmall=document.getElementById('toggle-btn--village');
 
-  toggleBtnSmall.addEventListener('click',function(){
-      toggleElementsSmall();
-      
-    
-  });
 
   function toggleElementsSmall(){
     [].forEach.call(toggleSmall,function(toggle){
@@ -84,3 +79,9 @@ const reply = document.querySelectorAll(".comment-insert.comment-insert--reply")
     }
   })
 
+
+   toggleBtnSmall.addEventListener('click',function(){
+      toggleElementsSmall();
+      
+    
+  });

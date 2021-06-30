@@ -103,7 +103,7 @@
                     <div class="user-review">
                         <div class="user-reivew-detail">
                             <p class="review-name">${vo.writer}</p>
-                            <p class="review-location">지역 · ${vo.regDate} </p>
+                            <p class="review-location">${vo.regDate} </p>
                             <p class="review-contents">${vo.contents}</p>
                         </div>
                     </div>

@@ -80,7 +80,7 @@
                             </span>
                         </div>
                         <p>${Score}</p>
-                        <p>n명이 평가</p>
+                        <p>${countScore}명이 평가</p>
                     </div>
 
                 </div>
@@ -88,7 +88,7 @@
                 <div class="content-body">
                     <div class="title-underline">
                         <p>
-                            판매상품 n개
+                            판매상품 ${countProduct}개
                         </p>
                         <a href="${pageContext.request.contextPath}/mypage/purchase-sell">
                             <i class="bi bi-caret-right-fill"></i>
@@ -104,7 +104,7 @@
                     </div>
                     <div>
                         <p>
-                            받은 리뷰 n ${review.size()}
+                            받은 리뷰 ${countScore} ${review.size()}개
                         </p>
                         <a href="${pageContext.request.contextPath}/mypage/review">
                             <i class="bi bi-caret-right-fill"></i>

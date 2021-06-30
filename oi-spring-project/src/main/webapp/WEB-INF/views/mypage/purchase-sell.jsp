@@ -45,6 +45,27 @@
     <!-- Font Awesome icons (free version)-->
 	<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<style type="text/css">
+	.product-title {
+    text-align:center;
+    display:table;
+    border:1px solid #cecece;
+    width:280px;
+    height:250px;
+	}
+
+	.product-img-div {
+	    display:table-cell;
+	    vertical-align:middle;
+	}
+	
+	.product--image {
+		text-align: center;
+		 max-width:180px;
+    max-height:180px;
+	}
+	</style>
 </head>
 <body>
      <div class="body__container">
@@ -116,19 +137,23 @@
                      <div class="on-sale">
 
                        
+
                                             <a  href="#" class="mybtn chatBtn" id="chatBtn" onclick="window.open('./soldoutUpdate?productNum=${vo.num}&seller=<sec:authentication property="principal.username"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">만약 구매 완료 버튼이 있다면 이걸거</a>
                        
 					<c:forEach var="vo" items="${product}" >
+
                        <div class="product">
 
-                            <div>
-                                <a href="./productSelect?num=${vo.num}">사진</a>
+                            <div class="product-img-div">
+                                <a href="../product/select?num=${vo.productVO.num}">
+                                	 <img  id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                </a>
                             </div>
 
                             <div class="product-description">
-                                <p class="review-name">${vo.title}</p>
-                                <p class="review-location">${vo.location} · ${vo.regDate} </p>
-                                <p>${vo.price}</p>
+                                <p class="review-name">${vo.productVO.title}</p>
+                                <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate} </p>
+                                <p>${vo.productVO.price}</p>
                             </div>
 
                             <div class="inner__dropdown">
@@ -138,10 +163,9 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./soldoutUpdate?num=${vo.num}">거래완료로 변경</a> 
-                                    <a href="./productUpdate?num=${vo.num}">게시글 수정</a>
-                                    <a href="./setWishInsert?num=${vo.num}">관심상품 추가</a>
-                                    <a href="./productDelete?num=${vo.num}">삭제</a>
+                                    <a href="./soldoutUpdate?num=${vo.productVO.num}">거래완료로 변경</a> 
+                                    <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
+                                    <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>
 
                             </div>

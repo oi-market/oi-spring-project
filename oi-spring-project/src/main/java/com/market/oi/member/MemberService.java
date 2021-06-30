@@ -241,8 +241,13 @@ public class MemberService implements UserDetailsService{
 		return result;
 	}
 
+	public Long countScore(MemberVO memberVO)throws Exception{
+		return memberMapper.countScore(memberVO);
+	}
 
-	
+	public Long countProduct(MemberVO memberVO)throws Exception{
+		return memberMapper.countProduct(memberVO);
+	}
 	
 //	public MemberVO getLogin(MemberVO memberVO)throws Exception{
 //	return memberMapper.getLogin(memberVO);

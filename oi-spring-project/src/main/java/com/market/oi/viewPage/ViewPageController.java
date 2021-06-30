@@ -34,8 +34,7 @@ public class ViewPageController {
 
 	@GetMapping("viewProfile")
 	public void viewProfile(MemberVO memberVO,Model model) throws Exception{
-
-
+		System.out.println(memberVO);
 		memberVO=viewPageService.getUsername(memberVO);
 		
 		System.out.println(memberVO);
@@ -55,6 +54,17 @@ public class ViewPageController {
 			model.addAttribute("imgName", memberFileVO.getFileName());
 		}
 
+		Long countScore = memberService.countScore(memberVO);
+		Long countProduct  = memberService.countProduct(memberVO);
+		
+		if(countScore==null) {
+			countScore=0L;
+		}
+		if(countProduct==null) {
+			countProduct=0L;
+		}
+		System.out.println(countScore);
+		System.out.println(countProduct);
 		
 		
 		System.out.println(score);
@@ -64,7 +74,8 @@ public class ViewPageController {
 		model.addAttribute("memberVO",memberVO);
 		model.addAttribute("score",score);
 		model.addAttribute("scoreStar",scoreStar);
-
+		model.addAttribute("countScore",countScore);
+		model.addAttribute("countProduct",countProduct);
 		
 		
 		
