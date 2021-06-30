@@ -138,9 +138,9 @@
 
                        
 
-                                            <a  href="#" class="mybtn chatBtn" id="chatBtn" onclick="window.open('./soldoutUpdate?productNum=${vo.num}&seller=<sec:authentication property="principal.username"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">만약 구매 완료 버튼이 있다면 이걸거</a>
+                                           
                        
-					<c:forEach var="vo" items="${product}" >
+					<c:forEach var="vo" items="${list}" >
 
                        <div class="product">
 
@@ -163,7 +163,7 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="./soldoutUpdate?num=${vo.productVO.num}">거래완료로 변경</a> 
+                                    <a  href="#" onclick="window.open('./soldoutUpdate?num=${vo.productVO.num}&productNum=${vo.productVO.num}&seller=<sec:authentication property="principal.username"/>','new','scrollbars=yes, resizable=no width=400 height=600, left=400,top=100');return false">거래 완료로 변경</a>
                                     <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>

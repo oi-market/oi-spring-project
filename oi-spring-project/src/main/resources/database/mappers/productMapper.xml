@@ -152,6 +152,9 @@
 		where username=#{username} and productNum=#{num}
 	</select>
 
+	
+	
+
 
     <insert id="setProductInsert" parameterType="wProductVO" >
 		insert into product (title,categoryNum,price,contents,sale,username,location,wgs84X,wgs84Y)
@@ -188,7 +191,9 @@
 	
 	
 	
-	
+	<delete id="setDeleteOrderComplete" parameterType="OrdercompleteVO">
+		delete from orderComplete where productNum= #{productNum}
+	</delete>
 	<delete id="setDeleteProduct" parameterType="wProductVO">
 		  delete from product
   		where num=#{num}

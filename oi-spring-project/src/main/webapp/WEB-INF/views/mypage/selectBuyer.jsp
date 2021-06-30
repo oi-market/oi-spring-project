@@ -54,6 +54,7 @@
 	                </select>
                 
                 	<input type="hidden" name="productNum" value="${param.productNum}">
+                	<input type="hidden" name="num" value="${param.productNum}">
                 	<input type="hidden" name="seller" value="${param.seller}">
             <button id="orderCompleteBtn" class="mybtn" type="submit">거래 완료 하기</button>
             	</form>
@@ -71,7 +72,7 @@
         </div>
 </body>
 <script>
-		
+		var result = '${msg}';
 	
 		if(result != ''){
 			alert(result);
