@@ -136,9 +136,13 @@
                                 <div id="on-sale-dropdown" class="dropdown-content">
                                	 	<a href="./sellUpdate?num=${vo.productVO.num}&productNum=${vo.productVO.num}">판매중 변경</a>                               	 	
                                     <a href="../product/update?num=${vo.productVO.num}">게시글 수정</a>
+                            <c:if test="${empty vo.reviewVO}">
                                     <a href="./reviewInsert?num=${vo.productVO.num}">리뷰 작성</a>
+							</c:if>	                           
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>
+                                
+                            
 
                             </div>
 
