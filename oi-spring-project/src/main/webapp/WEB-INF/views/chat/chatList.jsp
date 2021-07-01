@@ -72,27 +72,27 @@
 
 							<!-- 프로필 이미지 변경부분 !!!! -->
 							<div style="text-align: center;">
-								<c:forEach items="${imgList}" var="imgVo" varStatus="i">
+								
 
-									<c:if test="${imgVo eq null}">
+									<c:if test="${vo.memberFileVO.fileName eq null}">
 										<img class="buyer-profile" id="account-image-preview"
 											src="../img/default-user-picture.png" alt="profile_image"
 											type="button" class="btn btn-primary dropdown-toggle"
 											data-toggle="dropdown">
 									</c:if>
-									<c:if test="${imgVo ne null}">
+									<c:if test="${vo.memberFileVO.fileName  ne null}">
 										<img class="buyer-profile" id="account-image-preview"
-											src="../upload/member/${imgVo.fileName}" alt="profile_image"
+											src="../upload/member/${vo.memberFileVO.fileName }" alt="profile_image"
 											type="button" class="btn btn-primary dropdown-toggle"
 											data-toggle="dropdown">
 									</c:if>
 									<div class="dropdown-menu">
 										<a class="dropdown-item"
 											href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}&check=${param.check}&sellerID=${vo.sellerID}">쪽지보기</a>
-										<a class="dropdown-item" href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${imgVo.username}">프로필보기</a>
+										<a class="dropdown-item" href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.memberFileVO.username}">프로필보기</a>
 									</div>
 
-								</c:forEach>
+								
 							</div>
 
 							<div style="text-align: center;">
