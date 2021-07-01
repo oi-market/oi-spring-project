@@ -15,10 +15,8 @@ for(let i=0;i<fileDelButtons.length;i++){
 		//if input-file 개수1개면 못 지우게 바꿔야함
 		 let countInput = document.querySelectorAll('input[type="file"]');
         if(countInput.length>=3){
-		alert(countInput.length);
 		fileDelFrm[i].submit();
 		}else{
-			alert(countInput.length);
 			alert('사진은 한장 이상 삽입해야합니다!')
 		}
 		
