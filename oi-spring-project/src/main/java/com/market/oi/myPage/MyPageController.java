@@ -45,8 +45,13 @@ public class MyPageController {
 				
 		//내가 구매한 상품 list
 		List<OrderPFileVO> list = myPageService.getBuyList(memberVO);
+		for(OrderPFileVO pfVO : list) {	
+			System.out.println(pfVO.getReviewVO().getWriterPosition());
+			if(pfVO.getReviewVO().getWriterPosition()==null)pfVO.setReviewVO(null);	
+			}
+		
 		mv.addObject("order", list);
-		mv.addObject("vo", orderPFileVO);		
+//		mv.addObject("vo", orderPFileVO);		
 		mv.setViewName("mypage/purchase-buy");
 				
 		return mv;
@@ -77,14 +82,8 @@ public class MyPageController {
 		
 		//내가 판매하는 상품 중 판매완료된 것 list
 		List<PFileVO> ar = myPageService.getSellList(memberVO);
-		for(PFileVO pfVO : ar) {
-			
-
-		if(pfVO.getReviewVO().getWriterPosition()==null) {
-			pfVO.setReviewVO(null);
-		}
-		
-		
+		for(PFileVO pfVO : ar) {			
+		if(pfVO.getReviewVO().getWriterPosition()==null)pfVO.setReviewVO(null);	
 		}
 		
 //		

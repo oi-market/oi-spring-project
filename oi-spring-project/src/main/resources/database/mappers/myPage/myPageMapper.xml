@@ -174,11 +174,17 @@ ORDER BY A.num desc
 		<collection property="productfilesVO" resultMap="Productfiles"/>		
 		<collection property="productVO" resultMap="oproduct"/>
 		<collection property="ordercompleteVO" resultMap="OrderCompleteMap"/>
+		<collection property="reviewVO" resultMap="ReviewVOMap"/>
+		
 	</resultMap>
 	
 	<!-- 내가 구매한 상품 -->
 	<select id="getBuyList" parameterType="MemberVO" resultMap="OrderPFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum WHERE O.buyer =#{username} GROUP BY P.num ORDER BY O.num DESC
+	SELECT * FROM product P
+LEFT JOIN productfiles PF
+ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum left join review R on p.num = R.productNum
+WHERE O.buyer =#{username}
+GROUP BY P.num ORDER BY O.num DESC
 	</select>
 	
 	<!-- 관심 상품 삭제 -->  
