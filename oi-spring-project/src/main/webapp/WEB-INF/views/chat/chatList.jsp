@@ -89,7 +89,12 @@
 									<div class="dropdown-menu">
 										<a class="dropdown-item"
 											href="./chatList?productNum=${param.productNum}&buyerID=${vo.buyerID}&check=${param.check}&sellerID=${vo.sellerID}">쪽지보기</a>
-										<a class="dropdown-item" href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.memberFileVO.username}">프로필보기</a>
+										<c:if test="${vo.check eq 1}">
+										<a class="dropdown-item" href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.buyerID}">프로필보기</a>
+										</c:if>
+										4<c:if test="${vo.check eq 2}">
+										<a class="dropdown-item" href="${pageContext.request.contextPath}/viewPage/viewProfile?username=${vo.sellerID}">프로필보기</a>
+										</c:if>
 									</div>
 
 								

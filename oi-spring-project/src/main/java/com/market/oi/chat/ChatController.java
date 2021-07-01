@@ -98,6 +98,7 @@ public class ChatController {
 					MemberFileVO memberFileVO = new MemberFileVO();
 					buyerAr.get(i).setCheck(1);
 					memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
+					System.out.println(buyerAr);
 					buyerAr.get(i).setMemberFileVO(memberFileVO);
 //					chatFileList.add(memberFileVO);
 					System.out.println("이거봐봐"+buyerAr);
@@ -106,10 +107,11 @@ public class ChatController {
 				for(int i =0; i<buyerAr.size(); i++) {
 					MemberFileVO memberFileVO = new MemberFileVO();
 					buyerAr.get(i).setCheck(2);
+					memberFileVO.setUsername(buyerAr.get(i).getSellerID());
 					memberFileVO = chatService.getBuyerFileList(buyerAr.get(i));
 					buyerAr.get(i).setMemberFileVO(memberFileVO);
 //					chatFileList.add(memberFileVO);
-					
+					System.out.println("이거보자"+buyerAr);
 				}
 				
 			}

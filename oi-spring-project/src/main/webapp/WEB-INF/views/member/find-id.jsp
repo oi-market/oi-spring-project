@@ -88,7 +88,7 @@
 
 					</div>
 					<input id="phone" name="phone" placeholder="전화번호"
-						class="col-12 input--text">
+						class="col-12 input--text" onKeyup="inputPhoneNumber(this);" maxlength="13"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					<div id="id-input">
 						<p>이메일</p>
 
