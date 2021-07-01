@@ -143,5 +143,5 @@ public class MyPageService {
 	public String getUser(ProductVO productVO) throws Exception {
 		return myPageMapper.getUser(productVO);
 	}
-
+	
 }

@@ -75,4 +75,5 @@ public interface MyPageMapper {
 	
 	public String getUser(ProductVO productVO);
 
+
 }

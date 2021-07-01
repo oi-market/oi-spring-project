@@ -75,13 +75,13 @@
                                 <a href="${pageContext.request.contextPath}/mypage/review-seller">
                                    
                         
-                                    <div>판매자 후기</div>
+                                    <div>작성한 후기</div>
                                 </a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/mypage/review-buyer">
                                    
-                                    <div>구매자 후기</div>
+                                    <div>받은 후기</div>
                                 </a>
                             </li>
                         </ul>

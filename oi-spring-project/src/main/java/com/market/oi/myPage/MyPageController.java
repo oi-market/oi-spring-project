@@ -93,8 +93,10 @@ public class MyPageController {
 		
 		
 		mv.addObject("sell", ar);
+
 //		mv.addObject("vo", pFileVO);
-//		mv.addObject("reviewList",reviewAr);
+
+
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -288,6 +290,7 @@ public class MyPageController {
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
 		
+
 		
 		productVO = myPageService.reviewInsert(productVO);
 		String seller = myPageService.seller(productVO);
@@ -298,6 +301,7 @@ public class MyPageController {
 		mv.addObject("seller", seller);
 		mv.addObject("buyer", buyer);
 		mv.addObject("user", user);		
+
 		mv.setViewName("mypage/reviewInsert");
 		
 		return mv;
@@ -326,6 +330,7 @@ public class MyPageController {
 		
 		String seller = myPageService.seller(productVO);
 		mv.addObject("seller", seller);
+		System.out.println(seller);
 		
 		mv.setViewName("mypage/review-insert");
 		

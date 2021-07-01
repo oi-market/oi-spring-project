@@ -211,12 +211,12 @@ ORDER BY A.num desc
 		select * from review where reciver = #{username} ORDER BY num desc
 	</select>
 	
-	<!-- 판매자 리뷰 -->
+	<!-- 내가 작성한 리뷰 -->
 	<select id="getSeller" parameterType="MemberVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller' and R.writer = #{username} ORDER BY num desc
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.writer = #{username} and P.username=#{username} ORDER BY num desc
 	</select>
 	
-	<!-- 구매자 리뷰 -->
+	<!-- 내가 받은 리뷰 -->
 	<select id="getBuyer" parameterType="MemberVO" resultType="ReviewVO">
 		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer' and R.reciver = #{username} ORDER BY num desc
 	</select>
@@ -237,7 +237,7 @@ ORDER BY A.num desc
 	</select>
 	
 	<select id="buyer" parameterType="ProductVO" resultType="java.lang.String">
-		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num} and P.username =#{username}
+		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num}
 	</select>
 	
 	<select id="getUser" parameterType="ProductVO" resultType="java.lang.String">
@@ -263,7 +263,6 @@ ORDER BY A.num desc
 	<!-- 내가 쓴 동네 글 -->
 	<select id="getVillage" parameterType="MemberVO" resultType="CommunityVO">
 		select * from community where writer = #{username}
-
 	</select>
 	
 	<!-- 전체 리뷰 카운트 -->
