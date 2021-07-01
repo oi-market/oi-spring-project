@@ -89,7 +89,9 @@
                         	<c:forEach items="${vo.productFiles}" var="file">
                            <div class="mySlides fades">
                                 <img src="../resources/upload/images${file.thumbnail}" alt="상품 이미지">
-                               <%--  <p>${vo.productFiles}</p> --%>
+                                <c:if test="${vo.sale eq 0}">
+                            		<div class="product--image-soldout product--image-soldout--select">판매완료</div>
+                           		</c:if>
                             </div>
                         	</c:forEach>
                         
