@@ -108,6 +108,23 @@
 
      </div>
      <script src="../js/main.js"></script>
+     
+     
+     <script type="text/javascript">
+ 	
+     let commentTitles = document.querySelectorAll('.commentTitle');
+
+ 	for(let commentTitle of commentTitles){
+ 		let str = commentTitle.innerHTML;
+ 		let nextText =str.replace(/(<([^>]+)>)/ig,"");
+ 		nextText='글 제목: '+nextText.substring(0,5)+'...';
+ 		commentTitle.innerHTML=nextText;
+ 							
+ 	}
+
+
+     
+     </script>
      <script src="../js/myPage.js"></script>
 
 
