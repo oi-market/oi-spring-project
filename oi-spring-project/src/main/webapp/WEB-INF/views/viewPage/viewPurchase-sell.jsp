@@ -96,30 +96,24 @@
                         </nav>
     
                     </div>
-                     <div class="on-sale">
+                     <c:forEach var="vo" items="${list}" >
 
-                         <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${product}" varStatus="true"> --%>
-						<c:forEach var="i" begin="0" end="1">
-                        <div class="product">
-                            <div>
-                                사진
+                       <div class="product">
+
+                            <div class="product-img-div">
+                                <a href="../product/select?num=${vo.productVO.num}">
+                                	 <img id="account-image-preview" class="product--image" src="../resources/upload/images${vo.productfilesVO.thumbnail}" alt="대체텍스트"> 
+                                </a>
                             </div>
+
                             <div class="product-description">
-                                <p class="review-name">상품이름1</p>
-                                <p class="review-location">장소1 · 날짜1 </p>
-                                <p>price</p>
+                                <p class="review-name">${vo.productVO.title}</p>
+                                <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate} </p>
+                                <p>${vo.productVO.price}</p>
                             </div>
-                            <div>
-<%--                   db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
-                                <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
-                                    <i class="bi bi-three-dots"></i>
-                                </button>
-                                <div id="on-sale-dropdown" class="dropdown-content">
-                                    <a href="#">거래완료로 변경</a>
-                                    <a href="#">게시글 수정</a>
-                                    <a href="#">삭제</a>
-                                </div>
-                            </div>
+
+                           
+
                         </div>
                         </c:forEach>
                         

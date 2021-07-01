@@ -72,14 +72,54 @@
 
 .star.on {
   color: orange;
-}</style>
+}
+.container{
+padding-top : 20px;
+padding-bottom : 100px;
+
+}
+#form{
+display: flex;
+flex-direction: column;
+align-content: center;
+}
+/* .form-group,
+.button{
+text-align: center;
+}
+.star-container{
+justify-content: center;} */
+#reciver{
+display: block;}
+label{
+padding-top: 13px;
+padding-right: 20px;
+}
+#contents{
+width: 300px;
+height: 300px;
+display:inline;
+resize: none;
+}
+label{
+font-size: 20px;}
+span{
+font-size: 16px;}
+
+#contentsLable{
+display: inline-block;
+margin-right: 34px;}
+#star--firstChild {
+ margin-left: 38px;
+}
+</style>
 </head>
 <body>
 
  	<!-- HEADER -->
     <c:import url="../template/header.jsp"></c:import>
 	
-	<h1>내 상품 수정 페이지</h1><br><br><br>
+	<h1>내 상품 수정 페이지</h1>
 
 <div class="container">
 	<form id="form" action="./reviewInsert" method="post">
@@ -87,35 +127,36 @@
 			<sec:authorize access="isAuthenticated()">	
 				<div class="form-group">
 					<label for="writer"></label> 
-					<input type="readonly" id="writer" name="writer" value="<sec:authentication property="principal.username"/>">
+					<input type="hidden" id="writer" name="writer" value="<sec:authentication property="principal.username"/>">
 				</div>
 			</sec:authorize>		
 						
 				<div class="form-group">
-					<label for="writer">상품번호</label> 
-					<input type="hidden" id="productNum" name="productNum" value="${vo.num}">
+					<!-- <label for="writer">상품번호</label>  -->
+					<input type="hidden" readonly="readonly" id="productNum" name="productNum" value="${vo.num}">
 				</div>
 				
 				<div class="form-group">
 					<label for="writer">받는사람</label> 
 					<c:if test="${principal.username eq vo.username}">
-						<input type="hidden" id="reciver" name="reciver" value="${seller}">
+						<input type="text" readonly="readonly" id="reciver" name="reciver" value="${seller}">
+						<span>${seller}</span>					
 					</c:if>
 					<c:if test="${buyer != vo.username}">
-						<input type="hidden" id="reciver" name="reciver" value="${buyer}">
-					</c:if>  
-
+						<input type="hidden" readonly="readonly" id="reciver" name="reciver" value="${buyer}">
+						<span>${buyer}</span>
+					</c:if>  					
 				</div>
 	
 				<div class="form-group">
-					<label for="contents">내용</label>
+					<label for="contents" id="contentsLable">내용</label>
 					<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 				</div>
 				
 				<div class="form-group">
 				<div class="star-container" id="star">
 					<label for="contents">별점</label>
-  					<span class="star" name="score" title="1">★
+  					<span id="star--firstChild" class="star" name="score" title="1">★
   						<input type="hidden" id="score" name="score" value="1"> 
   					</span>
 				    <span class="star" name="score" title="2">★</span>
@@ -126,15 +167,15 @@
 				</div>
 				
 				<div class="form-group">
-					<label for="contents">position</label>
+					<!-- <label for="contents">position</label> -->
 							<input type="hidden" id="writerPosition" name="writerPosition" value="seller">
 						
 				</div>
 					
 				
 				<div class="button">
-					<input type="submit" id="btn" value="등록" class="btn btn-primary">
-				</div> <br><br><br><br><br><br>
+					<input type="submit" id="btn" value="등록" class="mybtn mybtn--primary">
+				</div>
 			
 	</form>
 </div>

@@ -3,6 +3,7 @@ package com.market.oi.viewPage;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.market.oi.community.CommunityVO;
+import com.market.oi.community.comments.CommentsService;
 import com.market.oi.community.comments.CommentsVO;
 import com.market.oi.member.MemberFileVO;
 import com.market.oi.member.MemberService;
 import com.market.oi.member.MemberVO;
 import com.market.oi.myPage.MyPageService;
+import com.market.oi.myPage.PFileVO;
+import com.market.oi.myPage.ReviewVO;
 
 @Controller
 @RequestMapping("/viewPage/**")
@@ -30,6 +34,9 @@ public class ViewPageController {
 	
 	@Autowired
 	public MemberService memberService;
+	
+	@Autowired
+	public CommentsService commentsService;
 
 
 	@GetMapping("viewList")
@@ -90,25 +97,38 @@ public class ViewPageController {
 	}
 
 	@GetMapping("viewPurchase-sell")
-	public ModelAndView getPurchasesell(MemberVO memberVO)throws Exception{
+	public ModelAndView getPurchasesell(MemberVO memberVO,PFileVO pFileVO,Model model)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		
+		
+		
+		
+		List<PFileVO> ar = myPageService.getList(memberVO);
+		model.addAttribute("list", ar);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewPurchase-sell");
 		
-
-
 		
 		return mv;
 
 	}
 	
+	
+	
+	
 	@GetMapping("viewPurchase-sell-soldout")
-	public ModelAndView getPurchasesSoldout(MemberVO memberVO)throws Exception{
+	public ModelAndView getPurchasesSoldout(MemberVO memberVO,PFileVO pFileVO)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		
+		
+		List<PFileVO> ar = myPageService.getSellList(memberVO);	
+		
+		mv.addObject("sell", ar);
+		mv.addObject("vo", pFileVO);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewPurchase-sell-soldout");
 		
@@ -117,12 +137,26 @@ public class ViewPageController {
 		return mv;
 
 	}
+	
+	
+
+	
+	
 
 	@GetMapping("viewReview")
-	public ModelAndView getreview(MemberVO memberVO)throws Exception{
+	public ModelAndView getreview(ReviewVO reviewVO,MemberVO memberVO)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		
+		
+		Long countReview  = myPageService.countReview(memberVO);
+		mv.addObject("countReview", countReview);
+		List<ReviewVO> review = myPageService.getReviewList(memberVO);
+				
+		
+		mv.addObject("review", review);
+		mv.addObject("vo", reviewVO);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview");
 		
@@ -130,22 +164,48 @@ public class ViewPageController {
 		
 		return mv;
 	}
+	
+	
+	
+	
+	
 	@GetMapping("viewReview-seller")
-	public ModelAndView getreviewSeller(MemberVO memberVO)throws Exception{
+	public ModelAndView getreviewSeller(ReviewVO reviewVO,MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		
+		
+		Long countSeller  = myPageService.countSeller(memberVO);
+		mv.addObject("countSeller", countSeller);
+		
+		List<ReviewVO> seller = myPageService.getSeller(memberVO);
+		
+		
+		mv.addObject("seller", seller);
+		mv.addObject("vo", reviewVO);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview-seller");
 		
-;
+
 
 		
 		return mv;
 	}
+	
+	
+	
+	
+
 	@GetMapping("viewReview-buyer")
-	public ModelAndView getreviewBuyer(MemberVO memberVO)throws Exception{
+	public ModelAndView getreviewBuyer(ReviewVO reviewVO,MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		Long countBuyer  = myPageService.countBuyer(memberVO);
+		mv.addObject("countBuyer", countBuyer);
+		
+		List<ReviewVO> buyer = myPageService.getBuyer(memberVO);
+		mv.addObject("buyer", buyer);
+		mv.addObject("vo", reviewVO);
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewReview-buyer");
 		
@@ -153,22 +213,25 @@ public class ViewPageController {
 		
 		return mv;
 	}
-	@GetMapping("viewVillage")
-	public ModelAndView getVillage(MemberVO memberVO)throws Exception{
-		ModelAndView mv = new ModelAndView();
-		memberVO=viewPageService.getUsername(memberVO);
-		mv.addObject("memberVO",memberVO);
-		mv.setViewName("viewPage/viewVillage");
-		
-
-
-		
-		return mv;
-	}
+	
+	
+	
+	
+	
+	
 	@GetMapping("viewVillage-list")
-	public ModelAndView getVillageList(MemberVO memberVO)throws Exception{
+	public ModelAndView getVillageList(CommunityVO communityVO,MemberVO memberVO)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		memberVO=viewPageService.getUsername(memberVO);
+		List<CommunityVO> list = myPageService.getVillage(memberVO);
+		mv.addObject("list", list);
+		mv.addObject("vo", communityVO);
+		
+		CommentsVO commentsVO = new CommentsVO();
+		Long countComments = commentsService.getTotalCount(commentsVO);
+		mv.addObject("countComments", countComments);
+		
+		
 		mv.addObject("memberVO",memberVO);
 		mv.setViewName("viewPage/viewVillage-list");
 		
@@ -177,6 +240,11 @@ public class ViewPageController {
 		
 		return mv;
 	}
+	
+	
+	
+	
+	
 	@GetMapping("viewVillage-comment")
 	public ModelAndView getVillageComment(MemberVO memberVO)throws Exception{
 		
@@ -188,14 +256,14 @@ public class ViewPageController {
 		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
 		
 		
-		System.out.println(commentList);
-		for(int i =0; i<commentList.size(); i++) {
-			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
-			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
-			commentList.get(i).getCommunityVO().setContents(subContents);
-			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
-			}
-		}
+//		System.out.println(commentList);
+//		for(int i =0; i<commentList.size(); i++) {
+//			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
+//			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
+//			commentList.get(i).getCommunityVO().setContents(subContents);
+//			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
+//			}
+//		}
 		
 		System.out.println(commentList);
 		
@@ -210,5 +278,41 @@ public class ViewPageController {
 		
 		return mv;
 	}
+	
+	
+	
+
+@GetMapping("mypage/village-comment")
+	public ModelAndView getVillageComment(MemberVO memberVO,Authentication authentication)throws Exception{
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
+		CommunityVO communityVO = new CommunityVO(); 
+		CommentsVO commentsVO = new CommentsVO();
+		
+		commentsVO.setWriter(memberVO.getUsername());
+		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
+		
+		
+		System.out.println(commentList);
+		
+
+		
+
+
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("comment", commentList);
+		
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 
 }
