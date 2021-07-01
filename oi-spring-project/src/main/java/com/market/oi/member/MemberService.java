@@ -19,8 +19,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.multipart.MultipartFile;
 
 
-import com.market.oi.location.LocationMapper;
-import com.market.oi.location.LocationVO;
 import com.market.oi.util.FileManager;
 
 
@@ -36,8 +34,7 @@ public class MemberService implements UserDetailsService{
 	private MemberMapper memberMapper;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	@Autowired
-	private LocationMapper locationMapper;
+
 	
 	@Autowired
 	private FileManager fileManager;

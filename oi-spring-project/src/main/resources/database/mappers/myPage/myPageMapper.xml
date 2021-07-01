@@ -24,20 +24,43 @@
  		<result property="fileName" column="fileName"/>
  		<result property="ogName" column="ogName"/>
  	</resultMap> 	 
+ 	<resultMap type="ReviewVO" id="ReviewVOMap">
+ 		<id property="num" column="num"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="contents" column="contents"/>
+ 		<result property="regDate" column="regDate"/>
+ 		<result property="reciver" column="reciver"/>
+ 		<result property="writer" column="writer"/>
+ 		<result property="score" column="score"/>
+ 		<result property="writerPosition" column="writerPosition"/>
+ 
+ 	</resultMap> 	 
  	
  	<resultMap type="PFileVO" id="PFileMap">
 		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
 		<collection property="productVO" resultMap="product"/>
 	</resultMap>
+ 	<resultMap type="PFileVO" id="PFileReviewMap">
+		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
+		<collection property="productVO" resultMap="product"/>
+		<collection property="reviewVO" resultMap="ReviewVOMap"/>
+	</resultMap>
  
 	<!-- 판매 중 상품 리스트 -->
 	<select id="getList" parameterType="MemberVO" resultMap="PFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=1 GROUP BY P.num ORDER BY P.num desc;
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=1 GROUP BY P.num ORDER BY P.num desc
 	</select>
 	
 	<!-- 판매완료 상품 리스트 -->
-	<select id="getSellList" parameterType="MemberVO" resultMap="PFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=0 GROUP BY P.num ORDER BY P.num desc;
+	<select id="getSellList" parameterType="MemberVO" resultMap="PFileReviewMap">
+		select * from
+(SELECT P.*, PF.*
+FROM product P LEFT JOIN productfiles PF
+ON P.num = PF.productNum) A left join review R
+on A.num = R.productNum
+WHERE A.username=#{username} AND A.sale=0
+GROUP BY A.num
+ORDER BY A.num desc
 	</select>
 	
 	<resultMap type="MywishVO" id="wishMap">
@@ -93,7 +116,7 @@
 	
 	<!-- 관심 상품 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultMap="PWishMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum LEFT JOIN mywish M ON P.num = M.productNum WHERE M.username=#{username} group BY P.num ORDER BY M.num DESC;
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum LEFT JOIN mywish M ON P.num = M.productNum WHERE M.username=#{username} group BY P.num ORDER BY M.num DESC
 	</select>
  
 	<!-- 상품 상세정보 select -->
@@ -155,7 +178,7 @@
 	
 	<!-- 내가 구매한 상품 -->
 	<select id="getBuyList" parameterType="MemberVO" resultMap="OrderPFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum WHERE O.buyer =#{username} GROUP BY P.num ORDER BY O.num DESC;
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum WHERE O.buyer =#{username} GROUP BY P.num ORDER BY O.num DESC
 	</select>
 	
 	<!-- 관심 상품 삭제 -->  

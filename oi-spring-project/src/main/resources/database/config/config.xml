@@ -28,7 +28,7 @@
 		<typeAlias type="com.market.oi.util.Pager" alias="Pager"/>
 
 		
-		<typeAlias type="com.market.oi.location.LocationVO" alias="LocationVO"/>
+
 		<typeAlias type="com.market.oi.product.ProductVO" alias="wProductVO"/>
 		<typeAlias type="com.market.oi.product.ProductFilesVO" alias="wProductFilesVO"/>
 		<typeAlias type="com.market.oi.product.ProductCategoryVO" alias="ProductCategoryVO"/>

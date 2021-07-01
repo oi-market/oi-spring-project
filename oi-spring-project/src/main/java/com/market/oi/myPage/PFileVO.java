@@ -7,4 +7,5 @@ public class PFileVO {
  
 	private ProductVO productVO;
 	private ProductfilesVO productfilesVO;
+	private ReviewVO reviewVO;
 }

@@ -76,10 +76,27 @@ public class MyPageController {
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 상품 중 판매완료된 것 list
-		List<PFileVO> ar = myPageService.getSellList(memberVO);	
-		mv.addObject("sell", ar);
-		mv.addObject("vo", pFileVO);
+		List<PFileVO> ar = myPageService.getSellList(memberVO);
+		for(PFileVO pfVO : ar) {
+			
+
+		if(pfVO.getReviewVO().getWriterPosition()==null) {
+			pfVO.setReviewVO(null);
+		}
 		
+		
+		}
+		
+//		
+//		reviewVO = productService.getReview(wProductVO);
+//		mv.addObject("review",reviewVO);
+		
+		
+		mv.addObject("sell", ar);
+
+//		mv.addObject("vo", pFileVO);
+
+
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -265,19 +282,26 @@ public class MyPageController {
 	
 	//리뷰 작성 페이지
 	@GetMapping("mypage/reviewInsert")
-	public ModelAndView setReview(Authentication authentication, ModelAndView mv, ProductVO productVO) throws Exception {	
+	public ModelAndView setReview(Authentication authentication,
+									ModelAndView mv,
+									ProductVO productVO) throws Exception {	
 		//session 받아오기
 		MemberVO memberVO = new MemberVO();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
-				
-		productVO = myPageService.reviewInsert(productVO);	
-		mv.addObject("vo", productVO);
 		
+
+		
+		productVO = myPageService.reviewInsert(productVO);
+		String seller = myPageService.seller(productVO);
 		String buyer = myPageService.buyer(productVO);
-		mv.addObject("buyer", buyer);
-		System.out.println(buyer);
+		String user = myPageService.getUser(productVO);
 		
+		mv.addObject("vo", productVO);
+		mv.addObject("seller", seller);
+		mv.addObject("buyer", buyer);
+		mv.addObject("user", user);		
+
 		mv.setViewName("mypage/reviewInsert");
 		
 		return mv;
