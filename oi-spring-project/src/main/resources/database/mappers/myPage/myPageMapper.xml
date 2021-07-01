@@ -213,12 +213,12 @@ ORDER BY A.num desc
 	
 	<!-- 내가 작성한 리뷰 -->
 	<select id="getSeller" parameterType="MemberVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.writer = #{username} and P.username=#{username} ORDER BY num desc
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.writer = #{username} ORDER BY num desc
 	</select>
 	
 	<!-- 내가 받은 리뷰 -->
 	<select id="getBuyer" parameterType="MemberVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer' and R.reciver = #{username} ORDER BY num desc
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.reciver = #{username} ORDER BY num desc
 	</select>
 	
 	<!-- 리뷰 작성 -->
@@ -272,12 +272,12 @@ ORDER BY A.num desc
     
     <!-- 판매자 작성 리뷰 카운트 -->
     <select id="countSeller" parameterType="MemberVO" resultType="long" >
-		select count(*) from review where writerPosition = 'seller' and writer = #{username}
+		select count(*) from review where  writer = #{username}
     </select>
     
     <!-- 구매자 작성 리뷰 카운트 -->
     <select id="countBuyer" parameterType="MemberVO" resultType="long" >
-		select count(*) from review where writerPosition = 'buyer' and reciver = #{username}
+		select count(*) from review where  reciver = #{username}
     </select>
     
     <!-- 동네생활 글의 댓글 카운트 -->
