@@ -142,10 +142,7 @@
                                     <a href="./reviewInsert?num=${vo.productVO.num}">리뷰 작성</a>
 							</c:if>	                           
 
-                                 
-                                    <a href="./reviewInsert?num=${vo.productVO.num}">리뷰 작성</a>
-        
-
+                   
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a>
                                 </div>
                                 
