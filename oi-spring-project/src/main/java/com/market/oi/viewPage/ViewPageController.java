@@ -256,14 +256,14 @@ public class ViewPageController {
 		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
 		
 		
-		System.out.println(commentList);
-		for(int i =0; i<commentList.size(); i++) {
-			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
-			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
-			commentList.get(i).getCommunityVO().setContents(subContents);
-			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
-			}
-		}
+//		System.out.println(commentList);
+//		for(int i =0; i<commentList.size(); i++) {
+//			if(commentList.get(i).getCommunityVO().getContents().length()>4) {
+//			String subContents = commentList.get(i).getCommunityVO().getContents().substring(0,4);
+//			commentList.get(i).getCommunityVO().setContents(subContents);
+//			System.out.println("subContents:"+commentList.get(i).getCommunityVO().getContents());
+//			}
+//		}
 		
 		System.out.println(commentList);
 		
@@ -278,5 +278,41 @@ public class ViewPageController {
 		
 		return mv;
 	}
+	
+	
+	
+
+@GetMapping("mypage/village-comment")
+	public ModelAndView getVillageComment(MemberVO memberVO,Authentication authentication)throws Exception{
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
+		CommunityVO communityVO = new CommunityVO(); 
+		CommentsVO commentsVO = new CommentsVO();
+		
+		commentsVO.setWriter(memberVO.getUsername());
+		List<CommentsVO> commentList = myPageService.getComment(commentsVO);
+		
+		
+		System.out.println(commentList);
+		
+
+		
+
+
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.addObject("comment", commentList);
+		
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
 
 }

@@ -64,7 +64,7 @@
                
                
    <%-- db에서 넘겨줄때 :  <c:forEach var="i" items="${comment}" varStatus="true"> --%>
-						<c:forEach items="${comment}" var="vo" begin="0" end="2">
+						<c:forEach items="${comment}" var="vo" begin="0" end="4" >
                 <div class="comment-bundle">
                
                     <a href=" ${pageContext.request.contextPath}/neighborhood/select?categoryNum=${vo.communityVO.categoryNum}&&num=${vo.communityNum}&&communityNum=${vo.communityNum}" class="post-bundle">
@@ -73,23 +73,13 @@
                             ${vo.contents}
                         </p>
                         <div class="post--small-service">
-                            <div class="like">${vo.communityVO.contents}</div>
+                            <div class="like commentTitle">${vo.communityVO.contents}</div>
                             <div class="comment">${vo.regDate}</div>
                         </div>
                     </a>
                     
                     
                     
-                     <div>
-                  <%--    db에서 넘겨줄때 :  <button type="button" class="dropdown" onclick="dropdownFunction(${status.index})"> --%>
-                        <button type="button" class="dropdown" onclick="dropdownFunction(${i})">
-                            <i class="bi bi-three-dots"></i>
-                        </button>
-
-                        <div id="on-sale-dropdown" class="dropdown-content">
-                            <a href="#">삭제</a>
-                        </div>
-                    </div>
                         
                         
                        
