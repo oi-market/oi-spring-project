@@ -98,13 +98,7 @@
 				
 				<div class="form-group">
 					<label for="writer">받는사람</label> 
-					<c:if test="${principal.username eq vo.username}">
-						<input type="hidden" id="reciver" name="reciver" value="${seller}">
-					</c:if>
-					<c:if test="${buyer != vo.username}">
-						<input type="hidden" id="reciver" name="reciver" value="${buyer}">
-					</c:if>  
-
+							<input type="hidden" id="reciver" name="reciver" value="${seller}">
 				</div>
 	
 				<div class="form-group">
@@ -127,8 +121,7 @@
 				
 				<div class="form-group">
 					<label for="contents">position</label>
-							<input type="hidden" id="writerPosition" name="writerPosition" value="seller">
-						
+							<input type="hidden" id="writerPosition" name="writerPosition" value="buyer">					
 				</div>
 					
 				

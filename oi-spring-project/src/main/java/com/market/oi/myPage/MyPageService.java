@@ -131,6 +131,17 @@ public class MyPageService {
 	public Long countBuyer(MemberVO memberVO) throws Exception {
 		return myPageMapper.countBuyer(memberVO);
 	}
-
+	
+	public String seller(ProductVO productVO) throws Exception {
+		return myPageMapper.seller(productVO);
+	}
+	
+	public String buyer(ProductVO productVO) throws Exception {
+		return myPageMapper.buyer(productVO);
+	}
+	
+	public String getUser(ProductVO productVO) throws Exception {
+		return myPageMapper.getUser(productVO);
+	}
 
 }

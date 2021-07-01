@@ -264,16 +264,59 @@ public class MyPageController {
 	
 	//리뷰 작성 페이지
 	@GetMapping("mypage/reviewInsert")
-	public ModelAndView setReview(ModelAndView mv, ProductVO productVO) throws Exception {	
+	public ModelAndView setReview(Authentication authentication, ModelAndView mv, ProductVO productVO) throws Exception {	
+		//session 받아오기
+		MemberVO memberVO = new MemberVO();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+				
 		productVO = myPageService.reviewInsert(productVO);	
 		mv.addObject("vo", productVO);
+		
+		String seller = myPageService.seller(productVO);
+		mv.addObject("seller", seller);
+		
+		String buyer = myPageService.buyer(productVO);
+		mv.addObject("buyer", buyer);
+		
+		String user = myPageService.getUser(productVO);
+		mv.addObject("user", user);		
 		mv.setViewName("mypage/reviewInsert");
 		
 		return mv;
 	}
 	
 	@PostMapping("mypage/reviewInsert")
-	public String setReview(Authentication authentication, MemberVO memberVO, ReviewVO reviewVO) throws Exception {
+	public String setReview(Authentication authentication, ModelAndView mv, MemberVO memberVO, ReviewVO reviewVO) throws Exception {
+		//session 받아오기
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+		
+		int result = myPageService.setReview(reviewVO);
+				
+		return "redirect:review";
+	}
+	
+	@GetMapping("mypage/review-insert")
+	public ModelAndView review(Authentication authentication, ModelAndView mv, ProductVO productVO) throws Exception {	
+		//session 받아오기
+		MemberVO memberVO = new MemberVO();
+		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		memberVO.setUsername(userDetails.getUsername());
+				
+		productVO = myPageService.reviewInsert(productVO);	
+		mv.addObject("vo", productVO);
+		
+		String seller = myPageService.seller(productVO);
+		mv.addObject("seller", seller);
+		
+		mv.setViewName("mypage/review-insert");
+		
+		return mv;
+	}
+	
+	@PostMapping("mypage/review-insert")
+	public String review(Authentication authentication, ModelAndView mv, MemberVO memberVO, ReviewVO reviewVO) throws Exception {
 		//session 받아오기
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
