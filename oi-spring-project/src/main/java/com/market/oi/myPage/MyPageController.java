@@ -79,6 +79,7 @@ public class MyPageController {
 		List<PFileVO> ar = myPageService.getSellList(memberVO);	
 		mv.addObject("sell", ar);
 		mv.addObject("vo", pFileVO);
+		
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -281,6 +282,7 @@ public class MyPageController {
 		
 		String user = myPageService.getUser(productVO);
 		mv.addObject("user", user);		
+		
 		mv.setViewName("mypage/reviewInsert");
 		
 		return mv;

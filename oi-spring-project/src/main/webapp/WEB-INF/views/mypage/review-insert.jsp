@@ -98,7 +98,7 @@
 				
 				<div class="form-group">
 					<label for="writer">받는사람</label> 
-							<input type="hidden" id="reciver" name="reciver" value="${seller}">
+							<input type="text" id="reciver" name="reciver" value="${seller}">
 				</div>
 	
 				<div class="form-group">
@@ -121,7 +121,7 @@
 				
 				<div class="form-group">
 					<label for="contents">position</label>
-							<input type="hidden" id="writerPosition" name="writerPosition" value="buyer">					
+							<input type="text" id="writerPosition" name="writerPosition" value="buyer">					
 				</div>
 					
 				
