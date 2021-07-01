@@ -214,7 +214,7 @@
 	</select>
 	
 	<select id="buyer" parameterType="ProductVO" resultType="java.lang.String">
-		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num} and P.username =#{username}
+		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num}
 	</select>
 	
 	<select id="getUser" parameterType="ProductVO" resultType="java.lang.String">

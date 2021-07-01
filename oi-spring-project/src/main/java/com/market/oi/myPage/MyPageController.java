@@ -274,14 +274,9 @@ public class MyPageController {
 		productVO = myPageService.reviewInsert(productVO);	
 		mv.addObject("vo", productVO);
 		
-		String seller = myPageService.seller(productVO);
-		mv.addObject("seller", seller);
-		
 		String buyer = myPageService.buyer(productVO);
 		mv.addObject("buyer", buyer);
-		
-		String user = myPageService.getUser(productVO);
-		mv.addObject("user", user);		
+		System.out.println(buyer);
 		
 		mv.setViewName("mypage/reviewInsert");
 		
@@ -311,6 +306,7 @@ public class MyPageController {
 		
 		String seller = myPageService.seller(productVO);
 		mv.addObject("seller", seller);
+		System.out.println(seller);
 		
 		mv.setViewName("mypage/review-insert");
 		

@@ -138,14 +138,8 @@ margin-right: 34px;}
 				
 				<div class="form-group">
 					<label for="writer">받는사람</label> 
-					<c:if test="${principal.username eq vo.username}">
-						<input type="text" readonly="readonly" id="reciver" name="reciver" value="${seller}">
-						<span>${seller}</span>					
-					</c:if>
-					<c:if test="${buyer != vo.username}">
 						<input type="hidden" readonly="readonly" id="reciver" name="reciver" value="${buyer}">
-						<span>${buyer}</span>
-					</c:if>  					
+						<span>${buyer}</span> 					
 				</div>
 	
 				<div class="form-group">
