@@ -112,20 +112,9 @@
                     <!-- 반복문으로 최대 3개만 불러오기 -->
                     <div class="user-review">
                         <div class="user-reivew-detail">
-                            <p class="review-name">이름1</p>
-                            <p class="review-location">장소1 · 날짜1 </p>
-                            <p class="review-contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur ullam non aspernatur minus accusantium. Cumque veritatis quibusdam necessitatibus repellat doloribus iure nesciunt eaque, debitis vitae esse cupiditate nobis ipsa incidunt?</p>
-                        </div>
-                        <div class="user-reivew-detail">
-                            <p class="review-name">이름2</p>
-                            <p class="review-location">장소2 · 날짜3 </p>
-                            <p class="review-contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur ullam non aspernatur minus accusantium. Cumque veritatis quibusdam necessitatibus repellat doloribus iure nesciunt eaque, debitis vitae esse cupiditate nobis ipsa incidunt?</p>
-                        </div>
-                        <div class="user-reivew-detail">
-                            <p class="review-name">이름3</p>
-                            <p class="review-location">장소2 · 날짜3 </p>
-                            <p class="review-contents">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur ullam non aspernatur minus accusantium. Cumque veritatis quibusdam necessitatibus repellat doloribus iure nesciunt eaque, debitis vitae esse cupiditate nobis ipsa incidunt?</p>
-                        </div>
+
+                       
+                      
 
 
                     </div>

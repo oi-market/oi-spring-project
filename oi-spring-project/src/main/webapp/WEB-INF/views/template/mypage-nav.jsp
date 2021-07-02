@@ -15,15 +15,15 @@
                         <a href="${pageContext.request.contextPath}/mypage/review">후기</a>
                     </li>
                     
-                    <li>
-                        <a href="${pageContext.request.contextPath}/mypage/village">내 동네 설정</a>
-                    </li>
 
                     <li>
                         <a href="${pageContext.request.contextPath}/mypage/village-list">동네생활 글</a>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/mypage/village-comment">동네생활 댓글</a>
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/mypage/village">내 동네 설정</a>
                     </li>
 
                     <li>

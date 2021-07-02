@@ -22,15 +22,15 @@ if(pageName=='후기'){
     let li = document.querySelector(".sidebar-menu li:nth-child(3)");
     sidebarStyle(li)
 }
-if(pageName=='내 동네 설정'){   
+if(pageName=='동네생활 글'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(4)");
     sidebarStyle(li)
 }
-if(pageName=='동네생활 글'){   
+if(pageName=='동네생활 댓글'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(5)");
     sidebarStyle(li)
 }
-if(pageName=='동네생활 댓글'){   
+if(pageName=='내 동네 설정'){   
     let li = document.querySelector(".sidebar-menu li:nth-child(6)");
     sidebarStyle(li)
 }

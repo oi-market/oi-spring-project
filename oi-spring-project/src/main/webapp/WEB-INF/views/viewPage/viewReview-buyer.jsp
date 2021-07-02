@@ -75,13 +75,13 @@
                                 <a href="${pageContext.request.contextPath}/viewPage/viewReview-seller?username=${memberVO.username}">
                                    
                         
-                                    <div>판매자 후기</div>
+                                    <div>쓴 후기</div>
                                 </a>
                             </li>
                             <li>
                                 <a href="${pageContext.request.contextPath}/viewPage/viewReview-buyer?username=${memberVO.username}">
                                    
-                                    <div>구매자 후기</div>
+                                    <div>받은 후기</div>
                                 </a>
                             </li>
                         </ul>

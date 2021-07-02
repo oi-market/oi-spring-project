@@ -106,7 +106,7 @@
                                 </a>
                             </div>
 
-                            <div class="product-description">
+                            <div class="product-description" style="flex-direction:column;">
                                 <p class="review-name">${vo.productVO.title}</p>
                                 <p class="review-location">${vo.productVO.location} · ${vo.productVO.regDate} </p>
                                 <p>${vo.productVO.price}</p>

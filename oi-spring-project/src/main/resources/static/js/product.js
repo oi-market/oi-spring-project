@@ -37,6 +37,14 @@ function showSlides(n) {
 }
 
 
+wishBtn.addEventListener('click',function(){	
+	let result = confirm('위시리스트에 추가하시겠습니까?');
+		if(result==true){
+			wishFrm.submit();
+		}else{
+			alert('추가하지 않았습니다.')
+		}
+});
 
 	delBtn.addEventListener('click',function(){	
 	let result = confirm('지우시겠습니까!');
@@ -47,13 +55,5 @@ function showSlides(n) {
 		}
 });
 
-wishBtn.addEventListener('click',function(){	
-	let result = confirm('위시리스트에 추가하시겠습니까?');
-		if(result==true){
-			wishFrm.submit();
-		}else{
-			alert('추가하지 않았습니다.')
-		}
-});
 
 
