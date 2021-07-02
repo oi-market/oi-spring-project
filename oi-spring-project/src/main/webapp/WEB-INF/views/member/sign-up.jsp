@@ -37,10 +37,9 @@
   
 
   
-  
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="./favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        <!-- 먼저 호출되야함 reset! -->
        <link rel="stylesheet" href="../css/mainScss.css">
@@ -92,9 +91,6 @@
 
                 <h1>계정 만들기</h1>
                 <div class="d-grid col-12 col-md-12">
-                    <button class="btn btn-primary">소셜로그인</button>
-                    <button class="btn btn-secondary">일단 넣어놈</button>
-                    <button class="btn btn-dark">삭제 가능</button>
                 </div>
                 
                 

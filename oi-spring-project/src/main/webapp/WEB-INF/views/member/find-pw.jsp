@@ -29,9 +29,9 @@
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
   
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="./favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+	<link rel="icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css" integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
        <!-- 먼저 호출되야함 reset! -->
        <link rel="stylesheet" href="../css/mainScss.css">

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>코멘트 업데이트|오이마켓</title>
 
 </head>
 <body>

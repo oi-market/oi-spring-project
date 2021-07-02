@@ -6,7 +6,7 @@
 <head>
 <c:import url="../template/hm_import.jsp"></c:import>
 <meta charset="UTF-8">
-<title>아이디 찾기  오이마켓</title>
+<title>아이디 찾기 |오이마켓</title>
 
 <meta name="author" content="wook">
 <meta name="description" content="오이마켓">
@@ -30,9 +30,9 @@
 <meta property="twitter:image" content="img/logo__github">
 <meta property="twitter:url" content="summary">
 
-<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-<link rel="icon" href="./favicon.ico">
-<link rel="apple-touch-icon" href="./favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+<link rel="icon" href="../favicon.ico">
+<link rel="apple-touch-icon" href="../favicon.ico">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
 	integrity="sha512-IJEbgDEF7OeKJRa0MY2PApnyJHRIsgzCveek4ec8VWQ+7KG3ZSKVNYa5xP/Gh0hVP0Mwb+gBsk+GwR3JQGhQNg=="

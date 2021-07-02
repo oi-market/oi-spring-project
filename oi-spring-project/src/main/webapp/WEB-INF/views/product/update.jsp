@@ -29,9 +29,9 @@
     <meta property="twitter:image" content="img/logo__github">
     <meta property="twitter:url" content="summary">
   
-    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
-    <link rel="icon" href="./favicon.ico">
-    <link rel="apple-touch-icon" href="./favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="apple-touch-icon" href="../favicon.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <!-- 먼저 호출되야함 reset! -->
