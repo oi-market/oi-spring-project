@@ -188,11 +188,26 @@ header .inner--second{
 .product-list .product--header{
     width: 217px;
     height: 217px;
+    position: relative;
 }
 .product-list .product--image{
     object-fit: cover;
     width: 217px;
     height: 180px;
+}
+.product--image-soldout{
+	width: 217px;
+    height: 180px;
+    background-color: #ccc;
+    position: absolute;
+    top:0;
+    opacity: 0.7;
+    line-height: 180px;
+    text-align: center;
+}
+.product--image-soldout--select{
+	width: 408px;
+	height: 408px;
 }
 .product-list .product--name{
     font-weight: 700;
@@ -713,5 +728,9 @@ header .inner--second{
        .buttons--modify{
         right:8%;
     }
-
+    .product--image-soldout.product--image-soldout--select{
+    width:250px;
+    height: 250px;
+    }
+    
 }

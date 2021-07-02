@@ -32,8 +32,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import com.market.oi.location.LocationVO;
-
 
 
 @Controller

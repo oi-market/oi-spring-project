@@ -45,8 +45,13 @@ public class MyPageController {
 				
 		//내가 구매한 상품 list
 		List<OrderPFileVO> list = myPageService.getBuyList(memberVO);
+		for(OrderPFileVO pfVO : list) {	
+			System.out.println(pfVO.getReviewVO().getWriterPosition());
+			if(pfVO.getReviewVO().getWriterPosition()==null)pfVO.setReviewVO(null);	
+			}
+		
 		mv.addObject("order", list);
-		mv.addObject("vo", orderPFileVO);		
+//		mv.addObject("vo", orderPFileVO);		
 		mv.setViewName("mypage/purchase-buy");
 				
 		return mv;
@@ -76,9 +81,21 @@ public class MyPageController {
 		MemberVO memberVO = (MemberVO)user;
 		
 		//내가 판매하는 상품 중 판매완료된 것 list
-		List<PFileVO> ar = myPageService.getSellList(memberVO);	
+		List<PFileVO> ar = myPageService.getSellList(memberVO);
+		for(PFileVO pfVO : ar) {			
+		if(pfVO.getReviewVO().getWriterPosition()==null)pfVO.setReviewVO(null);	
+		}
+		
+//		
+//		reviewVO = productService.getReview(wProductVO);
+//		mv.addObject("review",reviewVO);
+		
+		
 		mv.addObject("sell", ar);
-		mv.addObject("vo", pFileVO);
+
+//		mv.addObject("vo", pFileVO);
+
+
 		mv.setViewName("mypage/purchase-sell-soldout");
 		
 		return mv;
@@ -264,23 +281,26 @@ public class MyPageController {
 	
 	//리뷰 작성 페이지
 	@GetMapping("mypage/reviewInsert")
-	public ModelAndView setReview(Authentication authentication, ModelAndView mv, ProductVO productVO) throws Exception {	
+	public ModelAndView setReview(Authentication authentication,
+									ModelAndView mv,
+									ProductVO productVO) throws Exception {	
 		//session 받아오기
 		MemberVO memberVO = new MemberVO();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());
-				
-		productVO = myPageService.reviewInsert(productVO);	
-		mv.addObject("vo", productVO);
 		
+
+		
+		productVO = myPageService.reviewInsert(productVO);
 		String seller = myPageService.seller(productVO);
-		mv.addObject("seller", seller);
-		
 		String buyer = myPageService.buyer(productVO);
-		mv.addObject("buyer", buyer);
-		
 		String user = myPageService.getUser(productVO);
+		
+		mv.addObject("vo", productVO);
+		mv.addObject("seller", seller);
+		mv.addObject("buyer", buyer);
 		mv.addObject("user", user);		
+
 		mv.setViewName("mypage/reviewInsert");
 		
 		return mv;
@@ -309,6 +329,7 @@ public class MyPageController {
 		
 		String seller = myPageService.seller(productVO);
 		mv.addObject("seller", seller);
+		System.out.println(seller);
 		
 		mv.setViewName("mypage/review-insert");
 		

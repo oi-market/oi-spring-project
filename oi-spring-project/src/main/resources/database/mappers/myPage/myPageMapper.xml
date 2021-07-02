@@ -24,20 +24,43 @@
  		<result property="fileName" column="fileName"/>
  		<result property="ogName" column="ogName"/>
  	</resultMap> 	 
+ 	<resultMap type="ReviewVO" id="ReviewVOMap">
+ 		<id property="num" column="num"/>
+ 		<result property="productNum" column="productNum"/>
+ 		<result property="contents" column="contents"/>
+ 		<result property="regDate" column="regDate"/>
+ 		<result property="reciver" column="reciver"/>
+ 		<result property="writer" column="writer"/>
+ 		<result property="score" column="score"/>
+ 		<result property="writerPosition" column="writerPosition"/>
+ 
+ 	</resultMap> 	 
  	
  	<resultMap type="PFileVO" id="PFileMap">
 		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
 		<collection property="productVO" resultMap="product"/>
 	</resultMap>
+ 	<resultMap type="PFileVO" id="PFileReviewMap">
+		<collection property="productfilesVO" resultMap="ProductfilesMap"/>		
+		<collection property="productVO" resultMap="product"/>
+		<collection property="reviewVO" resultMap="ReviewVOMap"/>
+	</resultMap>
  
 	<!-- 판매 중 상품 리스트 -->
 	<select id="getList" parameterType="MemberVO" resultMap="PFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=1 GROUP BY P.num ORDER BY P.num desc;
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=1 GROUP BY P.num ORDER BY P.num desc
 	</select>
 	
 	<!-- 판매완료 상품 리스트 -->
-	<select id="getSellList" parameterType="MemberVO" resultMap="PFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum WHERE P.username=#{username} AND P.sale=0 GROUP BY P.num ORDER BY P.num desc;
+	<select id="getSellList" parameterType="MemberVO" resultMap="PFileReviewMap">
+		select * from
+(SELECT P.*, PF.*
+FROM product P LEFT JOIN productfiles PF
+ON P.num = PF.productNum) A left join review R
+on A.num = R.productNum
+WHERE A.username=#{username} AND A.sale=0
+GROUP BY A.num
+ORDER BY A.num desc
 	</select>
 	
 	<resultMap type="MywishVO" id="wishMap">
@@ -93,7 +116,7 @@
 	
 	<!-- 관심 상품 목록 -->
 	<select id="getMywish" parameterType="MemberVO" resultMap="PWishMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum LEFT JOIN mywish M ON P.num = M.productNum WHERE M.username=#{username} group BY P.num ORDER BY M.num DESC;
+		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON P.num = PF.productNum LEFT JOIN mywish M ON P.num = M.productNum WHERE M.username=#{username} group BY P.num ORDER BY M.num DESC
 	</select>
  
 	<!-- 상품 상세정보 select -->
@@ -151,11 +174,17 @@
 		<collection property="productfilesVO" resultMap="Productfiles"/>		
 		<collection property="productVO" resultMap="oproduct"/>
 		<collection property="ordercompleteVO" resultMap="OrderCompleteMap"/>
+		<collection property="reviewVO" resultMap="ReviewVOMap"/>
+		
 	</resultMap>
 	
 	<!-- 내가 구매한 상품 -->
 	<select id="getBuyList" parameterType="MemberVO" resultMap="OrderPFileMap">
-		SELECT P.*, PF.* FROM product P LEFT JOIN productfiles PF ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum WHERE O.buyer =#{username} GROUP BY P.num ORDER BY O.num DESC;
+	SELECT * FROM product P
+LEFT JOIN productfiles PF
+ON p.num = PF.productNum LEFT JOIN ordercomplete O ON P.num = O.productNum left join review R on p.num = R.productNum
+WHERE O.buyer =#{username}
+GROUP BY P.num ORDER BY O.num DESC
 	</select>
 	
 	<!-- 관심 상품 삭제 -->  
@@ -188,14 +217,14 @@
 		select * from review where reciver = #{username} ORDER BY num desc
 	</select>
 	
-	<!-- 판매자 리뷰 -->
+	<!-- 내가 작성한 리뷰 -->
 	<select id="getSeller" parameterType="MemberVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'seller' and R.writer = #{username} ORDER BY num desc
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.writer = #{username} ORDER BY num desc
 	</select>
 	
-	<!-- 구매자 리뷰 -->
+	<!-- 내가 받은 리뷰 -->
 	<select id="getBuyer" parameterType="MemberVO" resultType="ReviewVO">
-		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE writerPosition = 'buyer' and R.reciver = #{username} ORDER BY num desc
+		SELECT R.* FROM review R LEFT JOIN product P ON R.productNum = P.num WHERE R.reciver = #{username} ORDER BY num desc
 	</select>
 	
 	<!-- 리뷰 작성 -->
@@ -214,7 +243,7 @@
 	</select>
 	
 	<select id="buyer" parameterType="ProductVO" resultType="java.lang.String">
-		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num} and P.username =#{username}
+		select O.buyer from ordercomplete O left join product P on O.productNum=P.num where P.num=#{num}
 	</select>
 	
 	<select id="getUser" parameterType="ProductVO" resultType="java.lang.String">
@@ -240,7 +269,6 @@
 	<!-- 내가 쓴 동네 글 -->
 	<select id="getVillage" parameterType="MemberVO" resultType="CommunityVO">
 		select * from community where writer = #{username}
-
 	</select>
 	
 	<!-- 전체 리뷰 카운트 -->
@@ -250,12 +278,12 @@
     
     <!-- 판매자 작성 리뷰 카운트 -->
     <select id="countSeller" parameterType="MemberVO" resultType="long" >
-		select count(*) from review where writerPosition = 'seller' and writer = #{username}
+		select count(*) from review where  writer = #{username}
     </select>
     
     <!-- 구매자 작성 리뷰 카운트 -->
     <select id="countBuyer" parameterType="MemberVO" resultType="long" >
-		select count(*) from review where writerPosition = 'buyer' and reciver = #{username}
+		select count(*) from review where  reciver = #{username}
     </select>
     
     <!-- 동네생활 글의 댓글 카운트 -->

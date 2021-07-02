@@ -8,4 +8,5 @@ public class OrderPFileVO {
 	private ProductVO productVO;
 	private ProductfilesVO productfilesVO;
 	private OrdercompleteVO ordercompleteVO;
+	private ReviewVO reviewVO;
 }

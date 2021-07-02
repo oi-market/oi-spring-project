@@ -122,7 +122,11 @@
                                 </button>
 
                                 <div id="on-sale-dropdown" class="dropdown-content">
-                                	<a href="./review-insert?num=${vo.productVO.num}">리뷰 작성</a>
+                                	
+                                	<c:if test="${empty vo.reviewVO}">
+                                		<a href="./review-insert?num=${vo.productVO.num}">리뷰 작성</a>
+                                	</c:if>
+                                	
                                     <a href="./productDelete?num=${vo.productVO.num}">삭제</a> 
                                 </div>
 

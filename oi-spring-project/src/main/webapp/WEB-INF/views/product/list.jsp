@@ -73,6 +73,9 @@
                         <div class="product--header">
                             <img class="product--image" src="../resources/upload/images${vo.productFiles[0].thumbnail}" alt="대체텍스트">
                             <div class="product--name">${vo.title}</div>
+                            <c:if test="${vo.sale eq 0}">
+                            	<div class="product--image-soldout">판매완료</div>
+                            </c:if>
                         </div>
                         <div class="product--location">${vo.location}</div>
                         <div class="product--footer">
