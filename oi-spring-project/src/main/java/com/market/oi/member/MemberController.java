@@ -379,7 +379,8 @@ public class MemberController {
 
 	@PostMapping("memberPWChange")
 	@ResponseBody
-	public String memberPWChange(MemberVO memberVO ,Authentication authentication,String newPW1, String newPW2) throws Exception{
+	public String memberPWChange(MemberVO memberVO ,Authentication authentication,String newPW1, String newPW2)
+	throws Exception{
 		String message="";
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 		memberVO.setUsername(userDetails.getUsername());

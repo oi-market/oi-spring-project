@@ -92,49 +92,22 @@ public class MemberService implements UserDetailsService{
 	
 	
 	@Transactional(rollbackFor = Exception.class)
-	public int memberJoin(MemberVO memberVO, MultipartFile multipartFile)throws Exception{
-		//0. 사전 작업
-		//a. password 암호화
-		System.out.println(memberVO);
-//		System.out.println(locationVO.getLocation());
-//		System.out.println(locationVO.getWgs84X());
-//		System.out.println(locationVO.getWgs84Y());
-		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
-		 
-		//b. 사용자 계정 활성화
-		 
+	public int memberJoin(MemberVO memberVO)throws Exception{
 
-//		
-//		//0. Location Table 저장
-//		if(locationMapper.searchLocation(locationVO)==null) {
-//			int result=locationMapper.setLocation(locationVO);
-//		 }
-		 
-		
+		//1. password 암호화
+		System.out.println(memberVO);
+
+		 memberVO.setPassword(passwordEncoder.encode(memberVO.getPassword()));
+
 		//1. Member Table 저장
 		int result =memberMapper.memberJoin(memberVO);
-		
-		
-		
+
 		//2. Role Table 저장
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("username", memberVO.getUsername());
 		map.put("roleName", "ROLE_MEMBER");
 		result = memberMapper.setMemberRole(map);
-		
-		//2. HDD에 저장
-//		String filePath= "upload/member/";
-//		if(multipartFile.getSize() != 0) {
-//			String fileName= fileManager.save(multipartFile, filePath);
-//			System.out.println(fileName);
-//			MemberFileVO memberFileVO = new MemberFileVO();
-//			memberFileVO.setFileName(fileName);
-//			memberFileVO.setOriName(multipartFile.getOriginalFilename());
-//			memberFileVO.setUsername(memberVO.getUsername());
-//		//3. MemberFiles table 저장
-//			result = memberMapper.setJoinFile(memberFileVO);
-//		}
-//		
+
 		return result;
 	}
 	
