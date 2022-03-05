@@ -163,11 +163,8 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,java,maven,windows,eclipse
 
+.classpath
+HELP.md
 
-bin/
-
-oi-spring-project/src/main/resources/application.properties
-
-oi-spring-project/src/main/resources/application.properties
-
-oi-spring-project-1/
+node_modules/
+node/
