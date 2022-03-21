@@ -12,17 +12,16 @@
 [강현민](https://github.com/vkfkd420): 회원기능 , 공지사항  
 [이욱창](https://github.com/wook95): 위치 기반 상품 기능, UI 전반  
 [장혜민](https://github.com/hyemin386): 마이페이지  
-[최연아](https://github.com/yeon-a-choi): 커뮤니티 게시판, 쪽지
-개발 기간 : 4주 소요
+[최연아](https://github.com/yeon-a-choi): 커뮤니티 게시판, 쪽지  
 <br />
 
 
 # 사용 기술
 
 `개발 언어` : Java (version 11)  
-`FrameWork` : SpringBoot / Mybatis / Spring Security  
-`Front-End-Skill` : HTML5 / CSS/ JavaScript / jQuery / AJax / JSP  
-`DBMS` : MariaDB (Mysql)  
+`Back-End` : SpringBoot / Mybatis / Spring Security  
+`Front-End` : JavaScript / jQuery / AJax / JSP  
+`DBMS` : MariaDB  
 `Web Server` : Apache Tomcat 9.0  
 `프로젝트 관리` : Git  
 `오픈 API` : 카카오주소 API, 카카오 지오코딩  
@@ -51,7 +50,8 @@
 
 2. 거리 기반 물품 등록
 
-   - 카카오 지오코딩을 기반으로 wgs84 좌표계를 이용, 거리를 기준으로 상품 등록 및 sorting
+   - 카카오 지오코딩을 기반으로 wgs84 좌표계와 mysql 함수를 통해 좌표계,거리 변환
+   - 거리를 기준으로 상품 등록 및 sorting
    - 판매 완료시 이미지 변경
 
 3. 쪽지 기능
